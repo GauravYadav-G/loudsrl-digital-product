@@ -21,16 +21,8 @@ export function renderHeader(currentPath = '/') {
 
   const leftHtml = isHome
     ? `
-      <a href="/" class="brand-wrapper cursor-link" id="brand-logo-link" data-cursor="ARKA HOME">
-        <svg class="brand-logo-svg" width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="6" opacity="0.4" stroke-dasharray="8 6"/>
-          <path d="M50 15L78 78H22L50 15Z" fill="currentColor"/>
-          <circle cx="50" cy="50" r="10" fill="#0B0C10"/>
-        </svg>
-        <div class="brand-text">
-          <span class="brand-title">ARKA.</span>
-          <span class="brand-subtitle">Technovation • Noida, Delhi NCR</span>
-        </div>
+      <a href="/" class="brand-wrapper cursor-link" id="brand-logo-link" data-cursor="ARKA HOME" style="display:flex;align-items:center;">
+        <img src="/images/logo/arka-logo-black.png" alt="ARKA Technovation" style="height:64px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.5));" />
       </a>
     `
     : `

@@ -232,8 +232,22 @@ export function InsightsPage() {
 /* ═══ CAREERS ══════════════════════════════════════════════════ */
 export function CareersPage() {
   const [team, setTeam] = useState('All');
+  const [app, setApp] = useState({ name: '', email: '', phone: '', role: '', message: '' });
+  const [sent, setSent] = useState(false);
   const teams = ['All', ...Array.from(new Set(ROLES.map(r => r.team)))];
   const list = team === 'All' ? ROLES : ROLES.filter(r => r.team === team);
+
+  const fld = (k: keyof typeof app) => ({
+    value: app[k],
+    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+      setApp(p => ({ ...p, [k]: e.target.value })),
+  });
+
+  const handleApply = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSent(true);
+    setTimeout(() => setSent(false), 6000);
+  };
 
   return (
     <>
@@ -241,7 +255,8 @@ export function CareersPage() {
         intro="We hire for craft and curiosity. If you want to work on manufacturing, D2C, healthcare and software brands alongside senior people who will actually teach you — this is the place."
         img="https://images.pexels.com/photos/8485591/pexels-photo-8485591.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1800" />
 
-      <Section pad="py-16 lg:py-24">
+      {/* OPEN ROLES */}
+      <Section id="open-roles" eyebrow="Open positions" title="We are hiring." pad="py-16 lg:py-24">
         <div className="flex flex-wrap gap-2 border-y border-paper/15 py-5">
           {teams.map(t => (
             <button key={t} onClick={() => setTeam(t)} data-hover
@@ -249,21 +264,76 @@ export function CareersPage() {
           ))}
         </div>
         <div className="mt-6 border-t border-paper/15">
-          {list.map((r, i) => (
-            <Fade key={r.role} delay={i * .05} y={14}>
-              <a href={`mailto:${COMPANY.careers}?subject=Application — ${r.role}`} data-cursor="Apply"
-                className="group grid grid-cols-[1fr_auto] md:grid-cols-[1.6fr_1fr_1fr_auto] items-center gap-3 md:gap-6 border-b border-paper/15 py-5 hover:px-3 transition-all duration-500">
-                <span className="text-[16px] font-light group-hover:text-solar transition-colors">{r.role}</span>
-                <span className="hidden md:block mono text-[0.58rem] tracking-[0.18em] uppercase text-paper/40">{r.team}</span>
-                <span className="hidden md:block mono text-[0.58rem] tracking-[0.18em] uppercase text-paper/40">{r.type} · {r.place}</span>
-                <ArrowUpRight className="h-4 w-4 text-paper/40 group-hover:text-solar group-hover:rotate-45 transition-all duration-500 justify-self-end" />
-              </a>
-            </Fade>
-          ))}
+          {list.length > 0 ? (
+            list.map((r, i) => (
+              <Fade key={r.role} delay={i * 0.05} y={14}>
+                <div className="group border border-paper/15 rounded-xl p-5 hover:border-solar/50 hover:bg-void/20 transition-all duration-400">
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
+                    <div>
+                      <span className="mono text-[0.55rem] tracking-[0.16em] uppercase text-paper/35">{r.team}</span>
+                      <p className="mt-1 text-[16px] font-light text-paper group-hover:text-solar transition-colors">{r.role}</p>
+                      <span className="mono text-[0.58rem] tracking-[0.18em] uppercase text-paper/40">{r.type} · {r.place}</span>
+                    </div>
+                    <button onClick={() => setApp(p => ({ ...p, role: r.role }))} data-hover
+                      className="inline-flex items-center gap-2 text-solar font-light hover:pr-2 transition-colors">
+                      Apply for this role →
+                    </button>
+                  </div>
+                </div>
+              </Fade>
+            ))
+          ) : (
+            <div className="border border-paper/15 rounded-xl p-12 text-center text-paper/55">
+              <p>No open positions in this team right now. Send us a note anyway.</p>
+            </div>
+          )}
         </div>
-        <div className="mt-9 flex flex-wrap items-center gap-5">
-          <a href={`mailto:${COMPANY.careers}`} data-hover className="group inline-flex items-center gap-3 font-light text-base"><span className="hover-line">{COMPANY.careers}</span><CircleArrow size={26} className="text-solar transition-transform duration-500 group-hover:rotate-45" /></a>
-          <span className="mono text-[0.58rem] tracking-[0.18em] uppercase text-paper/35">Noida · Hybrid · Remote (India)</span>
+      </Section>
+
+      {/* APPLY */}
+      <Section id="apply" eyebrow="Application" title="Send us your details." pad="py-16 lg:py-24">
+        <div className="mt-10 max-w-2xl">
+          {!sent ? (
+            <form onSubmit={handleApply} className="space-y-5">
+              <div className="grid sm:grid-cols-2 gap-5">
+                <label className="block border-b border-paper/20 py-4 focus-within:border-solar transition-colors">
+                  <span className="mono text-[0.56rem] tracking-[0.22em] text-paper/45">FULL NAME*</span>
+                  <input {...fld('name')} required className="mt-2 w-full bg-transparent text-[16px] font-light outline-none" placeholder="Your name" />
+                </label>
+                <label className="block border-b border-paper/20 py-4 focus-within:border-solar transition-colors">
+                  <span className="mono text-[0.56rem] tracking-[0.22em] text-paper/45">EMAIL*</span>
+                  <input type="email" {...fld('email')} required className="mt-2 w-full bg-transparent text-[16px] font-light outline-none" placeholder="you@example.com" />
+                </label>
+              </div>
+              <label className="block border-b border-paper/20 py-4 focus-within:border-solar transition-colors">
+                <span className="mono text-[0.56rem] tracking-[0.22em] text-paper/45">PHONE*</span>
+                <input {...fld('phone')} required className="mt-2 w-full bg-transparent text-[16px] font-light outline-none" placeholder="+91 9xxxxxxxx" />
+              </label>
+              <label className="block border-b border-paper/20 py-4 focus-within:border-solar transition-colors">
+                <span className="mono text-[0.56rem] tracking-[0.22em] text-paper/45">ROLE INTERESTED IN*</span>
+                <select {...fld('role')} required className="mt-2 w-full bg-transparent text-[16px] font-light outline-none">
+                  <option value="" className="bg-void">Select a role</option>
+                  {ROLES.map(r => <option key={r.role} className="bg-void">{r.role}</option>)}
+                </select>
+              </label>
+              <label className="block border-b border-paper/20 py-4 focus-within:border-solar transition-colors">
+                <span className="mono text-[0.56rem] tracking-[0.22em] text-paper/45">MESSAGE / LINKS*</span>
+                <textarea rows={4} {...fld('message')} required className="mt-2 w-full bg-transparent text-[16px] font-light outline-none placeholder:text-paper/25" placeholder="Portfolio, GitHub, LinkedIn, why you…" />
+              </label>
+              <label className="mt-5 flex items-start gap-3 text-[12px] font-light text-paper/50">
+                <input type="checkbox" required className="mt-0.5 h-4 w-4 accent-[#E8742C] shrink-0" />
+                <span>I agree to be contacted about this application.</span>
+              </label>
+              <button data-hover className="group inline-flex items-center gap-3 font-light text-lg">
+                <span className="hover-line">Send application</span><CircleArrow className="text-solar transition-transform duration-500 group-hover:rotate-45" />
+              </button>
+            </form>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-solar font-light">Application sent.</p>
+              <p className="mt-3 text-[13px] text-paper/50">We’ll get back to you within a few business days.</p>
+            </div>
+          )}
         </div>
       </Section>
 

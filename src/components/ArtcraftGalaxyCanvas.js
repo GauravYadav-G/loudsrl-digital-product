@@ -19,6 +19,8 @@ export class ArtcraftGalaxyCanvas {
     this.container = container;
     this.onCardClick = options.onCardClick || (() => {});
     this.theme = options.theme || 'light';
+    this.offsetX = options.offsetX || 0;
+    this.offsetY = options.offsetY || 0;
 
     // Tunables calibrated for prominent floating logos across the celestial wheel
     this.tunables = {
@@ -26,7 +28,7 @@ export class ArtcraftGalaxyCanvas {
       turns: 1.05,
       rMaxFrac: 0.60,     // Contained radius prevents logos from reaching corners
       birthFrac: 0.14,    // Natural center galaxy vortex
-      cardHFrac: 0.28,    // Extra large logo size (~140-230px)
+      cardHFrac: 0.18,    // Balanced logo badge size (~70-110px)
       density: 0.90,      // Collision-free distance multiplier
       innerCap: 0.65,     // Birth size ceiling (large and bold right away)
       idleSpeed: 0.45,    // Cycles / minute
@@ -87,7 +89,7 @@ export class ArtcraftGalaxyCanvas {
 
     // Parent group for celestial spin
     this.galaxyGroup = new THREE.Group();
-    this.galaxyGroup.position.set(0, 0, 0);
+    this.galaxyGroup.position.set(this.offsetX, this.offsetY, 0);
     this.scene.add(this.galaxyGroup);
 
     // 1:1 Square plane geometry for floating logo emblems
@@ -174,13 +176,13 @@ export class ArtcraftGalaxyCanvas {
     this.galaxyGroup.add(this.underlayGroup);
 
     const isLight = this.theme === 'light';
-    const baseColor = isLight ? 0x222222 : 0xffffff;
+    const baseColor = isLight ? 0x18181b : 0xffffff;
 
-    // 1. Logarithmic Spiral Guide Arms
+    // 1. Logarithmic Spiral Guide Arms (Crisp compass geometry)
     const armMaterial = new THREE.LineBasicMaterial({
       color: baseColor,
       transparent: true,
-      opacity: isLight ? 0.06 : 0.10,
+      opacity: isLight ? 0.20 : 0.10,
       depthTest: false,
     });
 
@@ -221,7 +223,7 @@ export class ArtcraftGalaxyCanvas {
     this.tickLines = new THREE.LineSegments(tickGeom, new THREE.LineBasicMaterial({
       color: baseColor,
       transparent: true,
-      opacity: isLight ? 0.08 : 0.15,
+      opacity: isLight ? 0.24 : 0.15,
       depthTest: false,
     }));
     this.underlayGroup.add(this.tickLines);
@@ -241,7 +243,7 @@ export class ArtcraftGalaxyCanvas {
     this.circLines = new THREE.LineSegments(circGeom, new THREE.LineBasicMaterial({
       color: baseColor,
       transparent: true,
-      opacity: isLight ? 0.09 : 0.16,
+      opacity: isLight ? 0.25 : 0.16,
       depthTest: false,
     }));
     this.underlayGroup.add(this.circLines);
@@ -699,34 +701,59 @@ export class ArtcraftGalaxyCanvas {
       ctx.arc(cx, cy, discR * 1.3, 0, Math.PI * 2);
       ctx.fill();
 
-      // 2. Midnight Obsidian Circular Disc (High contrast against milky white background)
-      const discGrad = ctx.createLinearGradient(cx - discR, cy - discR, cx + discR, cy + discR);
-      discGrad.addColorStop(0, '#181C26');
-      discGrad.addColorStop(1, '#0C0E14');
-      ctx.fillStyle = discGrad;
-      ctx.beginPath();
-      ctx.arc(cx, cy, discR, 0, Math.PI * 2);
-      ctx.fill();
+      const isLight = this.theme === 'light';
 
-      // 3. Subtle Brand-Tinted Circular Hairline Rim
-      ctx.strokeStyle = `${item.color}66`;
-      ctx.lineWidth = 5;
-      ctx.stroke();
+      if (isLight) {
+        // 2. Porcelain Glass Disc for Light Mode
+        const discGrad = ctx.createLinearGradient(cx - discR, cy - discR, cx + discR, cy + discR);
+        discGrad.addColorStop(0, '#FFFFFF');
+        discGrad.addColorStop(1, '#F3F4F6');
+        ctx.fillStyle = discGrad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, discR, 0, Math.PI * 2);
+        ctx.fill();
 
-      // Outer specular ring
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.20)';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.arc(cx, cy, discR - 2, 0, Math.PI * 2);
-      ctx.stroke();
+        // Subtle clean border
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.12)';
+        ctx.lineWidth = 4;
+        ctx.stroke();
 
-      // 4. Draw Official Vector Logo in the Center (Prominent & Extra Large)
+        // Vibrant brand accent rim
+        ctx.strokeStyle = `${item.color}77`;
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.arc(cx, cy, discR - 3, 0, Math.PI * 2);
+        ctx.stroke();
+      } else {
+        // 2. Midnight Obsidian Circular Disc for Dark Mode
+        const discGrad = ctx.createLinearGradient(cx - discR, cy - discR, cx + discR, cy + discR);
+        discGrad.addColorStop(0, '#181C26');
+        discGrad.addColorStop(1, '#0C0E14');
+        ctx.fillStyle = discGrad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, discR, 0, Math.PI * 2);
+        ctx.fill();
+
+        // 3. Subtle Brand-Tinted Circular Hairline Rim
+        ctx.strokeStyle = `${item.color}66`;
+        ctx.lineWidth = 5;
+        ctx.stroke();
+
+        // Outer specular ring
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.20)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(cx, cy, discR - 2, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // 4. Draw Official Vector Logo in the Center
       if (logoLoaded) {
-        const iconSize = 310;
+        const iconSize = 270;
         ctx.drawImage(logoImg, cx - iconSize / 2, cy - iconSize / 2, iconSize, iconSize);
       } else {
         // Monogram fallback while loading
-        ctx.fillStyle = '#FFFFFF';
+        ctx.fillStyle = isLight ? '#111827' : '#FFFFFF';
         ctx.font = 'bold 100px "Space Grotesk", sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
@@ -778,7 +805,7 @@ export class ArtcraftGalaxyCanvas {
     const thetaMax = this.tunables.turns * Math.PI * 2;
     const b = rMax / thetaMax;
     const thetaBirth = this.tunables.birthFrac * thetaMax;
-    const baseLogoSize = Math.min(240, Math.max(140, this.height * this.tunables.cardHFrac));
+    const baseLogoSize = Math.min(140, Math.max(70, this.height * this.tunables.cardHFrac));
     const thetaExit = (rMax + baseLogoSize * 0.8) / b;
 
     const slotsPerArm = Math.max(1, Math.ceil(this.cards.length / this.tunables.arms));
@@ -872,7 +899,7 @@ export class ArtcraftGalaxyCanvas {
 
       const isTarget = i === this.targetCardIndex;
       const boost = isTarget ? this.tunables.boostScale : 1.0;
-      const finalSize = Math.max(110, Math.min(250, card.currentSize * boost));
+      const finalSize = Math.max(56, Math.min(130, card.currentSize * boost));
 
       card.mesh.scale.set(finalSize, finalSize, 1);
       card.mesh.position.set(card.x, card.y, isTarget ? 30 : 0);

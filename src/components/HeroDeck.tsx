@@ -11,7 +11,7 @@ const INDUSTRIES = [
     name: 'Manufacturing',
     line: 'Visibility, leads, trust',
     desc: 'Websites, SEO and corporate films for manufacturers selling to the world.',
-    img: 'https://images.pexels.com/photos/34221997/pexels-photo-34221997.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=700&w=1000',
+    img: '/images/industries/industries-manufacturing.webp',
     to: '/work',
     preset: 1,
   },
@@ -19,7 +19,7 @@ const INDUSTRIES = [
     name: 'E-Commerce',
     line: 'Headless, sales, growth',
     desc: 'High-performance stores and media that convert first-time visits into lasting customers.',
-    img: 'https://images.pexels.com/photos/7212924/pexels-photo-7212924.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=700&w=1000',
+    img: '/images/industries/saas.webp',
     to: '/services/e-commerce',
     preset: 2,
   },
@@ -27,7 +27,7 @@ const INDUSTRIES = [
     name: 'Enterprise Software',
     line: 'Efficiency, data, security',
     desc: 'Custom CRM and software that replace fragmented processes with one reliable system.',
-    img: 'https://images.pexels.com/photos/8102000/pexels-photo-8102000.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=700&w=1000',
+    img: '/images/industries/robotics-hardware.webp',
     to: '/services/crm-software',
     preset: 3,
   },
@@ -35,7 +35,7 @@ const INDUSTRIES = [
     name: 'Corporate Film',
     line: 'Concept, camera, craft',
     desc: 'Films that turn the people, products and places behind your brand into a story worth watching.',
-    img: 'https://images.pexels.com/photos/6883811/pexels-photo-6883811.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=700&w=1000',
+    img: '/images/industries/deeptech.webp',
     to: '/services/film-making',
     preset: 5,
   },
@@ -54,11 +54,12 @@ export default function HeroDeck() {
 
   const scrollToContent = () => {
     if (scroll?.scrollTo) {
-      scroll.scrollTo('#galaxy-showcase');
+      scroll.scrollTo('#projects');
     } else {
-      document.querySelector('#galaxy-showcase')?.scrollIntoView({ behavior: 'smooth' });
+      document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
 
   return (
     <section id="home-hero" data-scr-skip

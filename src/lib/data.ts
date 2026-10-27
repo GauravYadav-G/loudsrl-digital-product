@@ -7,6 +7,8 @@
 export const COMPANY = {
   name: 'ARKA Technovation',
   short: 'ARKA.',
+  logo: '/images/logo/arka-logo-black.png',
+  logoWhite: '/images/logo/arka-logo-white.png',
   tagline: 'Digital Product Company.',
   legacy: 'Jaikvik Technology India Pvt. Ltd.',
   founded: 2016,
@@ -55,9 +57,9 @@ export const NAV: NavGroup[] = [
     { label: 'Community Impact', to: '/who-we-are#impact' },
   ] },
   { label: 'Our Work', to: '/work' },
+  { label: 'Careers', to: '/careers' },
   { label: 'Insights', to: '/insights', children: [
     { label: 'Blog', to: '/insights#blog' },
-    { label: 'Careers', to: '/careers' },
     { label: 'FAQ', to: '/insights#faq' },
   ] },
   { label: 'Contact', to: '/contact' },

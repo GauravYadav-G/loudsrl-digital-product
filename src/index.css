@@ -9,25 +9,25 @@
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "DM Mono", ui-monospace, monospace;
 
-  --color-void: #08080A;
-  --color-coal: #101014;
-  --color-smoke: #191920;
-  --color-paper: #F1EEE7;
-  --color-bone: #E3DED2;
+  --color-void: #FFFFFF;
+  --color-coal: #F4F4F6;
+  --color-smoke: #E4E4E7;
+  --color-paper: #09090B;
+  --color-bone: #18181B;
   --color-solar: #E8742C;
   --color-gold: #D9A760;
   --color-rust: #753B2D;
   --color-cobalt: #4050A7;
-  --color-mist: #8C8880;
+  --color-mist: #71717A;
 }
 
 html {
-  background: #08080A;
+  background: #FFFFFF;
 }
 
 body {
-  background: #08080A;
-  color: #F1EEE7;
+  background: #FFFFFF;
+  color: #09090B;
   font-family: "DM Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
@@ -35,7 +35,7 @@ body {
 
 ::selection {
   background: #E8742C;
-  color: #08080A;
+  color: #FFFFFF;
 }
 
 ::-webkit-scrollbar {
@@ -43,11 +43,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #08080A;
+  background: #F4F4F6;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2A2A32;
+  background: #D4D4D8;
   border-radius: 9px;
 }
 
@@ -223,6 +223,22 @@ body {
 
 .arka-marquee {
   animation: marquee 42s linear infinite;
+}
+
+@keyframes showcaseKenBurns {
+  0% {
+    transform: scale(1.0) translate(0%, 0%);
+  }
+  50% {
+    transform: scale(1.06) translate(-1.2%, -0.8%);
+  }
+  100% {
+    transform: scale(1.0) translate(0%, 0%);
+  }
+}
+
+.animate-ken-burns {
+  animation: showcaseKenBurns 14s ease-in-out infinite alternate;
 }
 
 .marquee-slow {
@@ -401,10 +417,10 @@ img {
 .clients-showcase {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  gap: 32px;
   align-items: center;
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 @media (max-width: 1024px) {
@@ -605,7 +621,7 @@ img {
 
 /* ── Statement Capabilities Grid (Fills Blank Space) ── */
 .statement {
-  padding: 80px 0 100px !important;
+  padding: 56px 0 72px !important;
 }
 
 .statement__grid {
@@ -754,4 +770,91 @@ img {
   object-fit: cover !important;
   display: block !important;
   visibility: visible !important;
+}
+
+/* ── Portfolite Framer Aesthetics & Utilities ── */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+
+.animate-marquee:hover,
+.animate-marquee-slow:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 35s linear infinite;
+}
+
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
+.framer-btn-primary {
+  background: #09090B !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.framer-btn-primary:hover {
+  background: #27272A !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.framer-card-dark {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.framer-card-dark:hover {
+  border-color: rgba(0, 0, 0, 0.18);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.font-framer {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+}
+
+.font-framer h1,
+.font-framer h2,
+.font-framer h3,
+.font-framer h4,
+.font-framer h5,
+.font-framer h6 {
+  color: #09090B;
+}
+
+.ws__title,
+.ws__card h3,
+.ws__card .ws__sub {
+  color: #ffffff !important;
+}
+
+.framer-mask-gradient {
+  mask-image: linear-gradient(180deg, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 5%, black 95%, transparent 100%);
 }

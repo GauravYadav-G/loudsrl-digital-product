@@ -189,22 +189,11 @@ export function CtaBand() {
   );
 }
 
-import ArtcraftGalaxySection from '../components/ArtcraftGalaxySection';
-import JuncaBody from '../components/JuncaBody';
+import PortfoliteHome from './PortfoliteHome';
 
 /* ── HOME PAGE ────────────────────────────────────────────────── */
 export default function Home() {
-  return (
-    <>
-      {/* Fullscreen liquid pillar hero from zip codebase */}
-      <HeroDeck />
-
-      {/* ArtCraft 3D Celestial Galaxy Canvas Showcase */}
-      <ArtcraftGalaxySection />
-
-      {/* Complete authentic Junca body down */}
-      <JuncaBody />
-    </>
-  );
+  return <PortfoliteHome />;
 }
+
 
