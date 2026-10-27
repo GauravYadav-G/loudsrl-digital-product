@@ -52,7 +52,8 @@ function ScrollManager() {
   useEffect(() => {
     if (hash) {
       setTimeout(() => {
-        document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+        document.querySelector(hash)?.scrollIntoView({ behavior, block: 'start' });
       }, 200);
     } else {
       window.scrollTo(0, 0);

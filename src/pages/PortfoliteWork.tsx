@@ -32,7 +32,7 @@ export default function PortfoliteWork() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black font-framer selection:bg-black selection:text-white">
+    <div className="min-h-screen bg-white text-black font-framer selection:bg-solar selection:text-white">
       <PortfoliteNav />
 
       {/* Hero Section */}
@@ -231,7 +231,7 @@ export default function PortfoliteWork() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a
               href="/contact"
-              className="px-7 py-3 rounded-full !bg-black !text-white text-sm font-semibold hover:!bg-zinc-800 transition-colors flex items-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
+              className="site-button px-7 py-3 rounded-full !bg-black !text-white text-sm font-semibold hover:!bg-zinc-800 transition-colors flex items-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
             >
               <span>Start a Project</span>
               <ArrowRight className="w-4 h-4" />

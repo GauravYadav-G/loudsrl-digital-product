@@ -80,6 +80,8 @@ export default function PortfoliteProcess() {
                 <img
                   src="/portfolite/process-banner.png"
                   alt="ARKA Engineering & Production Process"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-[520px] sm:h-[640px] object-cover opacity-90 group-hover:scale-105 transition-all duration-700 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent opacity-80" />

@@ -108,7 +108,7 @@ export default function PortfoliteServiceDetail() {
             <div className="md:col-span-4 flex flex-col gap-3">
               <Link
                 to="/contact"
-                className="w-full py-3 rounded-full !bg-black !text-white text-sm font-semibold flex items-center justify-center gap-2 hover:!bg-zinc-800 transition-colors shadow-lg"
+                className="site-button w-full py-3 rounded-full !bg-black !text-white text-sm font-semibold flex items-center justify-center gap-2 hover:!bg-zinc-800 transition-colors shadow-lg"
               >
                 <span>Request Project Proposal</span>
                 <ArrowRight className="w-4 h-4" />
@@ -219,7 +219,7 @@ export default function PortfoliteServiceDetail() {
               <div className="pt-6 border-t border-black/10 space-y-3">
                 <Link
                   to="/contact"
-                  className="w-full py-3.5 rounded-full !bg-black !text-white text-sm font-semibold flex items-center justify-center gap-2 hover:!bg-zinc-800 transition-colors shadow-lg"
+                  className="site-button w-full py-3.5 rounded-full !bg-black !text-white text-sm font-semibold flex items-center justify-center gap-2 hover:!bg-zinc-800 transition-colors shadow-lg"
                 >
                   <span>Start this Project</span>
                   <ArrowRight className="w-4 h-4" />

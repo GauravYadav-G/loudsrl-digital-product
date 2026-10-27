@@ -45,7 +45,7 @@ export default function PortfoliteContact() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black font-framer selection:bg-black selection:text-white">
+    <div className="min-h-screen bg-white text-black font-framer selection:bg-solar selection:text-white">
       <PortfoliteNav />
 
       {/* Hero Section */}
@@ -233,79 +233,88 @@ export default function PortfoliteContact() {
                   {/* Inputs Grid */}
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-medium text-zinc-700 mb-1.5">
+                      <label htmlFor="contact-name" className="block text-xs font-medium text-zinc-700 mb-1.5">
                         Your Name *
                       </label>
                       <input
                         type="text"
+                        id="contact-name"
+                        autoComplete="name"
                         required
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                         placeholder="Rajesh Verma"
-                        className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 outline-none transition-colors"
+                        className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 transition-colors"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-zinc-700 mb-1.5">
+                      <label htmlFor="contact-email" className="block text-xs font-medium text-zinc-700 mb-1.5">
                         Work Email *
                       </label>
                       <input
                         type="email"
+                        id="contact-email"
+                        autoComplete="email"
                         required
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                         placeholder="rajesh@company.com"
-                        className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 outline-none transition-colors"
+                        className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 transition-colors"
                       />
                     </div>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-medium text-zinc-700 mb-1.5">
+                      <label htmlFor="contact-phone" className="block text-xs font-medium text-zinc-700 mb-1.5">
                         Phone / WhatsApp *
                       </label>
                       <input
                         type="tel"
+                        id="contact-phone"
+                        autoComplete="tel"
                         required
                         value={form.phone}
                         onChange={(e) => setForm({ ...form, phone: e.target.value })}
                         placeholder="+91 98xxxxxxxx"
-                        className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 outline-none transition-colors"
+                        className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 transition-colors"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-zinc-700 mb-1.5">
+                      <label htmlFor="contact-company" className="block text-xs font-medium text-zinc-700 mb-1.5">
                         Company Name
                       </label>
                       <input
                         type="text"
+                        id="contact-company"
+                        autoComplete="organization"
                         value={form.company}
                         onChange={(e) => setForm({ ...form, company: e.target.value })}
                         placeholder="Precision Engineering Ltd."
-                        className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 outline-none transition-colors"
+                        className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 transition-colors"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-zinc-700 mb-1.5">
+                    <label htmlFor="contact-message" className="block text-xs font-medium text-zinc-700 mb-1.5">
                       Project Goals / Scope *
                     </label>
                     <textarea
                       rows={4}
+                      id="contact-message"
                       required
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       placeholder="Briefly describe your current challenge, target timeline, or what you want to achieve..."
-                      className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 outline-none transition-colors"
+                      className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 transition-colors"
                     />
                   </div>
 
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full py-3.5 rounded-full !bg-black !text-white font-semibold text-sm inline-flex items-center justify-center gap-2 hover:!bg-zinc-800 shadow-xl"
+                      className="site-button w-full py-3.5 rounded-full !bg-black !text-white font-semibold text-sm inline-flex items-center justify-center gap-2 hover:!bg-zinc-800 shadow-xl"
                     >
                       <span>Submit Project Inquiry</span>
                       <Send className="w-3.5 h-3.5" />

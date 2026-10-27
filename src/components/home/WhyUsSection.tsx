@@ -51,67 +51,66 @@ export default function WhyUsSection() {
     const bodies = items.map((item) => item.querySelector<HTMLElement>('[data-ws-body]'));
     const images = items.map((item) => item.querySelector<HTMLElement>('.ws__fig img'));
     const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const desktopQuery = window.matchMedia('(min-width: 810px)');
     const clamp01 = (val: number) => Math.min(1, Math.max(0, val));
 
     let rafId = 0;
-    let isRunning = false;
+    let isInView = false;
 
     const updateParallax = () => {
+      rafId = 0;
+      if (!isInView) return;
+
       const winH = window.innerHeight;
-      const isDesktop = window.matchMedia('(min-width: 810px)').matches;
+      const isDesktop = desktopQuery.matches;
+      const rects = items.map((item) => item.getBoundingClientRect());
+      const imageHeights = images.map((image) => image?.offsetHeight ?? 0);
 
       for (let idx = 0; idx < items.length; idx++) {
-        const rect = items[idx].getBoundingClientRect();
+        const rect = rects[idx];
 
         // Parallax image shift
         if (!isReduced && images[idx]) {
           const progress = clamp01((winH - rect.top) / (winH + rect.height));
-          const offset = (progress * (images[idx].offsetHeight * 0.153)).toFixed(1);
+          const offset = (progress * (imageHeights[idx] * 0.153)).toFixed(1);
           images[idx].style.setProperty('--py', offset);
         }
 
         // Stacking card body fade out as next card slides over
         if (isDesktop && idx < items.length - 1 && bodies[idx]) {
-          const nextTop = items[idx + 1].getBoundingClientRect().top;
+          const nextTop = rects[idx + 1].top;
           const fadeProg = clamp01((rect.bottom - nextTop) / Math.max(1, rect.height - 64));
           bodies[idx].style.opacity = String(1 - Math.min(1, fadeProg * 1.4));
         } else if (bodies[idx]) {
           bodies[idx].style.opacity = '1';
         }
       }
-
-      if (isRunning) {
-        rafId = requestAnimationFrame(updateParallax);
-      }
     };
 
-    const start = () => {
-      if (!isRunning) {
-        isRunning = true;
-        rafId = requestAnimationFrame(updateParallax);
-      }
-    };
-
-    const stop = () => {
-      isRunning = false;
-      cancelAnimationFrame(rafId);
+    const scheduleUpdate = () => {
+      if (isInView && !rafId) rafId = requestAnimationFrame(updateParallax);
     };
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          start();
-        } else {
-          stop();
+        isInView = entry.isIntersecting;
+        if (isInView) scheduleUpdate();
+        else if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = 0;
         }
       },
       { rootMargin: '20% 0px' }
     );
 
     observer.observe(el);
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate, { passive: true });
 
     return () => {
-      stop();
+      if (rafId) cancelAnimationFrame(rafId);
+      window.removeEventListener('scroll', scheduleUpdate);
+      window.removeEventListener('resize', scheduleUpdate);
       observer.disconnect();
     };
   }, []);

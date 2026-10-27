@@ -210,9 +210,6 @@ export default function LiquidBackground({ preset }: { preset: number }) {
     window.addEventListener('pointermove', move, { passive: true });
     window.addEventListener('pointerleave', leave);
 
-    const visible = { current: true };
-    const observer = new IntersectionObserver(entries => { visible.current = entries.some(e => e.isIntersecting); });
-    observer.observe(canvas);
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth < 700 ? 1.1 : 1.4);
       const w = Math.round(canvas.clientWidth * dpr);
@@ -223,20 +220,25 @@ export default function LiquidBackground({ preset }: { preset: number }) {
         gl.viewport(0, 0, w, h);
       }
     };
+    resize();
     window.addEventListener('resize', resize, { passive: true });
+    const resizeObserver = typeof ResizeObserver !== 'undefined'
+      ? new ResizeObserver(resize)
+      : null;
+    if (canvas.parentElement) resizeObserver?.observe(canvas.parentElement);
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let frame = 0;
     let last = 0;
     let elapsed = 0;
     let initial = true;
+    let isVisible = false;
     const render = (now: number) => {
-      frame = requestAnimationFrame(render);
-      if (!visible.current || document.hidden || (window.innerWidth < 700 && now - last < 32)) return;
+      frame = 0;
+      if (!isVisible || document.hidden) return;
       const dt = Math.min((now - (last || now)) / 1000, .05);
       last = now;
       if (!reduced) elapsed += dt;
-      resize();
       const next = PRESETS[Math.max(0, Math.min(PRESETS.length - 1, targetRef.current))];
       const n = reduced ? .14 : .055;
       current.spin = mix(current.spin, next.spin, n);
@@ -264,12 +266,33 @@ export default function LiquidBackground({ preset }: { preset: number }) {
       gl.uniform1i(uniform('uDepth'), next.depth);
       for (let j = 0; j < 3; j++) gl.uniform3f(uniform(`uColor${j + 1}`), ...current.colors[j]);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
+      frame = requestAnimationFrame(render);
     };
-    frame = requestAnimationFrame(render);
+
+    const start = () => {
+      if (frame || !isVisible || document.hidden) return;
+      last = 0;
+      frame = requestAnimationFrame(render);
+    };
+    const stop = () => {
+      if (frame) cancelAnimationFrame(frame);
+      frame = 0;
+      last = 0;
+    };
+    const observer = new IntersectionObserver(entries => {
+      isVisible = entries.some(entry => entry.isIntersecting);
+      if (isVisible) start();
+      else stop();
+    });
+    observer.observe(canvas);
+    const onVisibilityChange = () => document.hidden ? stop() : start();
+    document.addEventListener('visibilitychange', onVisibilityChange);
 
     return () => {
-      cancelAnimationFrame(frame);
+      stop();
       observer.disconnect();
+      resizeObserver?.disconnect();
+      document.removeEventListener('visibilitychange', onVisibilityChange);
       window.removeEventListener('pointermove', move);
       window.removeEventListener('pointerleave', leave);
       window.removeEventListener('resize', resize);

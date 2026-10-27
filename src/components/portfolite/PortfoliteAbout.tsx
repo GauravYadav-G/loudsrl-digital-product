@@ -100,6 +100,8 @@ export default function PortfoliteAbout() {
               <img
                 src="/portfolite/designer.jpg"
                 alt="ARKA Technovation Team & Leadership"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />

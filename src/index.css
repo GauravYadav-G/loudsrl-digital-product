@@ -1,13 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900;1,9..40,300;1,9..40,400&family=Krona+One&display=swap');
 @import "lenis/dist/lenis.css";
 @import "./junca-theme.css";
 @import "./junca-components.css";
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Krona One", ui-sans-serif, sans-serif;
-  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "DM Mono", ui-monospace, monospace;
+  --font-display: "Cabinet Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
 
   --color-void: #FFFFFF;
   --color-coal: #F4F4F6;
@@ -21,14 +20,33 @@
   --color-mist: #71717A;
 }
 
+:root {
+  --arka-ink: #09090B;
+  --arka-paper: #FFFFFF;
+  --arka-accent: #E8742C;
+  --arka-muted: #71717A;
+  --arka-line: rgba(9, 9, 11, 0.1);
+  --arka-surface: #F4F4F5;
+  --arka-radius-card: 1rem;
+  --arka-radius-panel: 1.5rem;
+  --arka-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --red: var(--arka-accent);
+  --red-text: #A64712;
+  --red-dark: #873B12;
+}
+
 html {
   background: #FFFFFF;
+  color-scheme: light;
+  scroll-padding-top: 7rem;
 }
 
 body {
   background: #FFFFFF;
   color: #09090B;
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
@@ -56,12 +74,94 @@ body {
 }
 
 .mono {
-  font-family: "DM Mono", monospace !important;
+  font-family: var(--font-mono) !important;
 }
 
 .display {
-  font-family: "Krona One", sans-serif;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  letter-spacing: -0.04em;
+}
+
+.font-framer {
+  font-family: var(--font-sans);
+}
+
+.font-framer h1,
+.font-framer h2,
+.font-framer h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.font-framer h4,
+.font-framer h5,
+.font-framer h6 {
+  text-wrap: balance;
+}
+
+.site-skip-link {
+  position: fixed;
+  z-index: 10000;
+  top: 0.75rem;
+  left: 0.75rem;
+  transform: translateY(calc(-100% - 1rem));
+  border-radius: 999px;
+  background: var(--arka-ink);
+  color: var(--arka-paper);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: transform 180ms var(--arka-ease-out);
+}
+
+.site-skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+.site-button {
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  line-height: 1;
+  transition-property: transform, color, background-color, border-color, box-shadow;
+  transition-duration: 240ms;
+  transition-timing-function: var(--arka-ease-out);
+}
+
+.framer-btn-primary {
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-button:active {
+  transform: scale(0.98);
+}
+
+.site-button--light {
+  background-color: var(--arka-paper);
+  color: var(--arka-ink);
+}
+
+.site-button--light:hover {
+  background-color: #F4F4F5;
+}
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--arka-accent);
+  outline-offset: 3px;
+}
+
+:target {
+  scroll-margin-top: 7rem;
+}
+
+:where(a, button) {
+  touch-action: manipulation;
 }
 
 @media (pointer:fine) {
@@ -811,10 +911,10 @@ img {
 }
 
 .framer-btn-primary {
-  background: #09090B !important;
-  color: #FFFFFF !important;
+  background: var(--arka-ink) !important;
+  color: var(--arka-paper) !important;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s var(--arka-ease-out), background-color 0.3s var(--arka-ease-out), box-shadow 0.3s var(--arka-ease-out);
 }
 
 .framer-btn-primary:hover {
@@ -824,10 +924,10 @@ img {
 }
 
 .framer-card-dark {
-  background: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--arka-paper);
+  border: 1px solid var(--arka-line);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.4s var(--arka-ease-out), box-shadow 0.4s var(--arka-ease-out);
 }
 
 .framer-card-dark:hover {
@@ -836,7 +936,7 @@ img {
 }
 
 .font-framer {
-  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  font-family: var(--font-sans);
 }
 
 .font-framer h1,

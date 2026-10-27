@@ -58,7 +58,7 @@ export default function PortfoliteCareers() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black font-framer selection:bg-black selection:text-white">
+    <div className="min-h-screen bg-white text-black font-framer selection:bg-solar selection:text-white">
       <PortfoliteNav />
 
       {/* Hero Section */}
@@ -232,6 +232,9 @@ export default function PortfoliteCareers() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 14 }}
               transition={{ duration: 0.3 }}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="career-application-heading"
               className="relative w-full max-w-lg p-6 sm:p-8 rounded-3xl bg-white border border-black/15 shadow-2xl overflow-hidden text-black"
             >
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-black/10">
@@ -239,13 +242,14 @@ export default function PortfoliteCareers() {
                   <span className="text-xs uppercase tracking-wider text-solar font-mono font-semibold">
                     Application
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-black mt-1">
+                  <h3 id="career-application-heading" className="text-xl sm:text-2xl font-bold tracking-tight text-black mt-1">
                     {selectedRoleForModal}
                   </h3>
                 </div>
                 <button
                   onClick={() => setSelectedRoleForModal(null)}
-                  className="w-8 h-8 rounded-full border border-black/15 bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center text-zinc-600 hover:text-black transition-colors"
+                  aria-label="Close application form"
+                  className="w-11 h-11 rounded-full border border-black/15 bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center text-zinc-600 hover:text-black transition-colors"
                 >
                   ✕
                 </button>
@@ -254,79 +258,87 @@ export default function PortfoliteCareers() {
               {!submitted ? (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-medium text-zinc-700 mb-1.5">
+                    <label htmlFor="career-name" className="block text-xs font-medium text-zinc-700 mb-1.5">
                       Full Name *
                     </label>
                     <input
                       type="text"
+                      id="career-name"
+                      autoComplete="name"
                       required
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
                       placeholder="Your name"
-                      className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 outline-none transition-colors"
+                      className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 transition-colors"
                     />
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-medium text-zinc-700 mb-1.5">
+                      <label htmlFor="career-email" className="block text-xs font-medium text-zinc-700 mb-1.5">
                         Email Address *
                       </label>
                       <input
                         type="email"
+                        id="career-email"
+                        autoComplete="email"
                         required
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                         placeholder="you@example.com"
-                        className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 outline-none transition-colors"
+                        className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 transition-colors"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-zinc-700 mb-1.5">
+                      <label htmlFor="career-phone" className="block text-xs font-medium text-zinc-700 mb-1.5">
                         Phone Number *
                       </label>
                       <input
                         type="tel"
+                        id="career-phone"
+                        autoComplete="tel"
                         required
                         value={form.phone}
                         onChange={(e) => setForm({ ...form, phone: e.target.value })}
                         placeholder="+91 9xxxxxxxx"
-                        className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 outline-none transition-colors"
+                        className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 transition-colors"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-zinc-700 mb-1.5">
+                    <label htmlFor="career-portfolio" className="block text-xs font-medium text-zinc-700 mb-1.5">
                       Portfolio, GitHub, or LinkedIn Link *
                     </label>
                     <input
                       type="url"
+                      id="career-portfolio"
                       required
                       value={form.portfolio}
                       onChange={(e) => setForm({ ...form, portfolio: e.target.value })}
                       placeholder="https://github.com/yourhandle"
-                      className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 outline-none transition-colors"
+                      className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-zinc-700 mb-1.5">
+                    <label htmlFor="career-message" className="block text-xs font-medium text-zinc-700 mb-1.5">
                       Why you? (Brief note on your best projects)
                     </label>
                     <textarea
                       rows={3}
+                      id="career-message"
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       placeholder="Tell us about the hardest problem you solved..."
-                      className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 outline-none transition-colors"
+                      className="w-full px-4 py-2.5 rounded-xl bg-zinc-50 border border-black/15 focus:border-black text-sm text-black placeholder-zinc-400 transition-colors"
                     />
                   </div>
 
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full py-3 rounded-full !bg-black !text-white font-semibold text-sm inline-flex items-center justify-center gap-2 hover:!bg-zinc-800 shadow-lg"
+                      className="site-button w-full py-3 rounded-full !bg-black !text-white font-semibold text-sm inline-flex items-center justify-center gap-2 hover:!bg-zinc-800 shadow-lg"
                     >
                       <span>Send Application</span>
                       <Send className="w-3.5 h-3.5" />

@@ -28,6 +28,10 @@ export default function PortfoliteNav() {
     setOpen(null);
   }, [loc.pathname]);
 
+  useEffect(() => () => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+  }, []);
+
   // Lock body scroll when mobile drawer is open
   useEffect(() => {
     if (mobile) {
@@ -122,6 +126,9 @@ export default function PortfoliteNav() {
             className="hidden lg:flex items-center h-full"
             style={{ color: isOverHero ? '#ffffff' : undefined }}
             onMouseLeave={leave}
+            onKeyDown={(event) => {
+              if (event.key === 'Escape') setOpen(null);
+            }}
           >
             {NAV.map((item) => {
               const active = item.to === '/' ? loc.pathname === '/' : loc.pathname.startsWith(item.to);
@@ -132,21 +139,27 @@ export default function PortfoliteNav() {
                   key={item.label}
                   className="relative h-full flex items-center"
                   onMouseEnter={() => item.children && enter(item.label)}
+                  onFocus={() => item.children && enter(item.label)}
+                  onBlur={(event) => {
+                    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) leave();
+                  }}
                 >
                   <Link
                     to={item.to}
-                    style={{ color: isOverHero ? '#ffffff' : undefined }}
-                    className={`relative h-full flex items-center gap-1.5 px-4 text-[13px] font-medium transition-colors duration-300 ${
+                    aria-current={active ? 'page' : undefined}
+                    aria-haspopup={item.children ? true : undefined}
+                    aria-expanded={item.children ? isOpen : undefined}
+                    className={`group relative h-full flex items-center gap-2 px-3.5 text-sm tracking-[-0.01em] font-medium transition-colors duration-200 ${
                       isOverHero
                         ? active
-                          ? 'text-white font-bold'
+                          ? 'text-white font-semibold'
                           : 'text-white hover:text-white/80'
                         : active
                         ? 'text-solar font-semibold'
                         : 'text-zinc-700 hover:text-black'
                     }`}
                   >
-                    <span style={{ color: isOverHero ? '#ffffff' : undefined }}>{item.label}</span>
+                    <span>{item.label}</span>
                     {item.badge && (
                       <span
                         style={{
@@ -154,7 +167,7 @@ export default function PortfoliteNav() {
                           borderColor: isOverHero ? 'rgba(255,255,255,0.45)' : undefined,
                           backgroundColor: isOverHero ? 'rgba(255,255,255,0.18)' : undefined,
                         }}
-                        className={`font-mono text-[9px] px-1.5 py-0.2 rounded-full font-semibold ${
+                        className={`font-mono text-[10px] px-2 py-0.5 rounded-full font-semibold tracking-normal ${
                           isOverHero
                             ? 'text-white border'
                             : 'bg-solar/20 text-solar border border-solar/35'
@@ -166,7 +179,7 @@ export default function PortfoliteNav() {
                     {item.children && (
                       <ChevronDown
                         style={{ color: isOverHero ? '#ffffff' : undefined }}
-                        className={`w-3.5 h-3.5 transition-transform duration-300 ${
+                        className={`w-4 h-4 transition-transform duration-300 ${
                           isOpen ? 'rotate-180' : ''
                         } ${isOverHero ? 'text-white' : isOpen ? 'text-solar' : 'text-zinc-400 group-hover:text-black'}`}
                       />
@@ -176,7 +189,7 @@ export default function PortfoliteNav() {
                         backgroundColor: isOverHero ? '#ffffff' : undefined,
                         boxShadow: isOverHero ? '0 0 10px rgba(255,255,255,0.9)' : undefined,
                       }}
-                      className={`absolute bottom-0 left-4 right-4 h-[2px] origin-left transition-transform duration-300 ${
+                      className={`absolute bottom-0 left-3.5 right-3.5 h-0.5 origin-left transition-transform duration-300 ${
                         isOverHero ? 'bg-white' : 'bg-solar'
                       } ${active ? 'scale-x-100' : 'scale-x-0'}`}
                     />
@@ -194,39 +207,28 @@ export default function PortfoliteNav() {
                           item.label === 'Services' ? 'w-[680px]' : 'w-[280px]'
                         }`}
                       >
-                        <div className="bg-white/98 backdrop-blur-2xl border border-black/10 shadow-[0_25px_60px_rgba(0,0,0,0.14)] rounded-2xl overflow-hidden text-black">
+                        <div className="bg-white/65 backdrop-blur-2xl border border-white/60 shadow-[0_18px_50px_rgba(0,0,0,0.14)] rounded-2xl overflow-hidden text-black">
                           {item.label === 'Services' ? (
                             <>
-                              <div className="flex items-center justify-between px-4 pt-3 pb-2 border-b border-black/6">
-                                <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-zinc-500 font-medium">
-                                  One Growth Engine · 10 Disciplines
-                                </span>
-                                <span className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-solar font-semibold">
-                                  Enterprise Ready
-                                </span>
-                              </div>
                               <div className="grid grid-cols-2 p-2 gap-1">
                                 <div className="space-y-0.5">
                                   {item.children.slice(0, 5).map((c, i) => (
                                     <DropLink key={c.to} c={c} i={i} onGo={() => setOpen(null)} />
                                   ))}
                                 </div>
-                                <div className="space-y-0.5 border-l border-black/6 pl-2">
+                                <div className="space-y-0.5 border-l border-black/[0.06] pl-2">
                                   {item.children.slice(5).map((c, i) => (
                                     <DropLink key={c.to} c={c} i={i + 5} onGo={() => setOpen(null)} />
                                   ))}
                                 </div>
                               </div>
-                              <div className="border-t border-black/6 px-4 py-3 flex items-center justify-between bg-zinc-50/70">
-                                <span className="font-mono text-[9.5px] tracking-[0.16em] uppercase text-zinc-500">
-                                  Full-Spectrum Capabilities
-                                </span>
+                              <div className="border-t border-black/[0.06] px-4 py-2.5 flex justify-end bg-white/25">
                                 <Link
                                   to="/services"
                                   onClick={() => setOpen(null)}
-                                  className="font-mono text-[10px] tracking-[0.14em] uppercase text-solar hover:underline inline-flex items-center gap-1 font-semibold"
+                                  className="font-sans text-xs tracking-[-0.01em] text-solar hover:text-[#c65a19] inline-flex items-center gap-1.5 font-semibold transition-colors"
                                 >
-                                  <span>View All 10 Services</span>
+                                  <span>View all services</span>
                                   <ChevronRight className="w-3.5 h-3.5" />
                                 </Link>
                               </div>
@@ -251,7 +253,7 @@ export default function PortfoliteNav() {
           <div className="flex items-center gap-3 shrink-0">
             <Link
               to="/contact"
-              className={`hidden sm:inline-flex font-mono text-[10.5px] tracking-[0.14em] uppercase h-[38px] px-5 items-center gap-2 rounded-full font-semibold shadow-sm group transition-all duration-300 ${
+              className={`site-button hidden sm:inline-flex font-sans text-xs tracking-[0.08em] uppercase h-[38px] px-5 items-center gap-2 rounded-full font-semibold shadow-sm group transition-all duration-300 ${
                 isOverHero
                   ? 'bg-white text-black hover:bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.2)]'
                   : 'bg-black text-white hover:bg-zinc-800'
@@ -266,12 +268,14 @@ export default function PortfoliteNav() {
 
             <button
               onClick={() => setMobile(true)}
-              className={`lg:hidden grid h-9 w-9 place-items-center rounded-lg border transition-colors ${
+              className={`lg:hidden grid h-11 w-11 place-items-center rounded-lg border transition-colors ${
                 isOverHero
                   ? 'border-white/30 text-white hover:bg-white/10'
                   : 'border-black/15 text-zinc-800 hover:text-black hover:bg-black/5'
               }`}
               aria-label="Open menu"
+              aria-expanded={mobile}
+              aria-controls="mobile-navigation"
             >
               <Menu className="h-4 w-4" />
             </button>
@@ -297,7 +301,8 @@ export default function PortfoliteNav() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed inset-y-0 right-0 w-full max-w-sm bg-white/98 backdrop-blur-2xl z-[950] border-l border-black/10 shadow-2xl flex flex-col lg:hidden text-black font-sans"
+              id="mobile-navigation"
+              className="fixed inset-y-0 right-0 w-full max-w-sm bg-white/98 backdrop-blur-2xl z-[950] border-l border-black/[0.08] shadow-2xl flex flex-col lg:hidden text-black font-sans"
             >
               <div className="h-[84px] px-5 flex items-center justify-between border-b border-black/8">
                 <Link to="/" onClick={() => setMobile(false)} className="flex items-center" aria-label="ARKA Technovation">
@@ -309,7 +314,7 @@ export default function PortfoliteNav() {
                 </Link>
                 <button
                   onClick={() => setMobile(false)}
-                  className="grid h-8 w-8 place-items-center rounded-lg border border-black/15 text-zinc-700 hover:text-black hover:bg-black/5"
+                  className="grid h-11 w-11 place-items-center rounded-lg border border-black/15 text-zinc-700 hover:text-black hover:bg-black/5"
                   aria-label="Close menu"
                 >
                   <X className="h-4 w-4" />
@@ -320,6 +325,7 @@ export default function PortfoliteNav() {
                 {NAV.map((item) => {
                   const hasChildren = item.children && item.children.length > 0;
                   const isGroupOpen = mobGroup === item.label;
+                  const active = item.to === '/' ? loc.pathname === '/' : loc.pathname.startsWith(item.to);
 
                   return (
                     <div key={item.label} className="border-b border-black/6 pb-1">
@@ -329,7 +335,10 @@ export default function PortfoliteNav() {
                           onClick={() => {
                             if (!hasChildren) setMobile(false);
                           }}
-                          className="flex-1 py-3 px-3 font-medium text-[15px] text-zinc-900 hover:text-solar transition-colors flex items-center gap-2"
+                          className={`flex-1 py-3.5 px-3 font-medium text-base tracking-[-0.015em] transition-colors flex items-center gap-2 ${
+                            active ? 'text-solar' : 'text-zinc-900 hover:text-solar'
+                          }`}
+                          aria-current={active ? 'page' : undefined}
                         >
                           <span>{item.label}</span>
                           {item.badge && (
@@ -343,6 +352,8 @@ export default function PortfoliteNav() {
                             onClick={() => setMobGroup(isGroupOpen ? null : item.label)}
                             className="p-3 text-zinc-500 hover:text-black"
                             aria-label={`Toggle ${item.label}`}
+                            aria-expanded={isGroupOpen}
+                            aria-controls={isGroupOpen ? `mobile-submenu-${item.label.toLowerCase().replace(/\s+/g, '-')}` : undefined}
                           >
                             <ChevronDown
                               className={`w-4 h-4 transition-transform duration-300 ${
@@ -360,6 +371,7 @@ export default function PortfoliteNav() {
                             animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.25 }}
+                            id={`mobile-submenu-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
                             className="overflow-hidden pl-4 pr-2 pb-2 space-y-1 bg-zinc-50/70 rounded-xl"
                           >
                             {item.children!.map((c) => (
@@ -367,11 +379,11 @@ export default function PortfoliteNav() {
                                 key={c.to}
                                 to={c.to}
                                 onClick={() => setMobile(false)}
-                                className="block py-2 px-3 text-[13px] text-zinc-700 hover:text-solar transition-colors rounded-lg hover:bg-zinc-100"
+                                className="block py-2.5 px-3 text-sm tracking-[-0.01em] text-zinc-700 hover:text-solar transition-colors rounded-lg hover:bg-white"
                               >
                                 <div className="font-medium">{c.label}</div>
                                 {c.note && (
-                                  <div className="font-mono text-[9px] text-zinc-400 uppercase tracking-wider mt-0.5">
+                                  <div className="font-mono text-[10px] leading-relaxed text-zinc-500 uppercase tracking-[0.06em] mt-1">
                                     {c.note}
                                   </div>
                                 )}
@@ -389,9 +401,9 @@ export default function PortfoliteNav() {
                 <Link
                   to="/contact"
                   onClick={() => setMobile(false)}
-                  className="w-full h-[40px] rounded-full bg-black text-white hover:bg-zinc-800 transition-colors font-mono text-[10.5px] tracking-[0.14em] uppercase font-semibold flex items-center justify-center gap-2 shadow-sm"
+                  className="site-button w-full h-[44px] rounded-full bg-black text-white hover:bg-zinc-800 transition-colors font-sans text-xs tracking-[0.08em] uppercase font-semibold flex items-center justify-center gap-2 shadow-sm"
                 >
-                  <span>Start a Project</span>
+                  <span>Start a project</span>
                   <CircleArrow size={14} className="text-white" />
                 </Link>
                 <div className="font-mono text-[9px] tracking-[0.16em] uppercase text-zinc-500 space-y-1 text-center">
@@ -421,7 +433,7 @@ function DropLink({
     <Link
       to={c.to}
       onClick={onGo}
-      className="group flex items-start gap-3 p-2.5 rounded-xl hover:bg-zinc-100/90 transition-colors duration-200"
+      className="group flex items-start gap-3 p-2.5 rounded-xl hover:bg-zinc-100/90 focus-visible:bg-zinc-100/90 transition-colors duration-200"
     >
       <span className="font-mono text-[10px] text-solar/80 mt-0.5 w-4 shrink-0 font-medium">
         {String(i + 1).padStart(2, '0')}

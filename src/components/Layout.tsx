@@ -8,7 +8,7 @@ export default function Layout() {
   const lenis = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    const l = new Lenis({ lerp: 0.085, smoothWheel: true });
+    const l = new Lenis({ lerp: 0.12, smoothWheel: true });
     lenis.current = l;
     let raf = 0;
     const loop = (t: number) => {
@@ -25,7 +25,8 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen bg-white text-black font-framer selection:bg-solar selection:text-white">
-      <main>
+      <a className="site-skip-link" href="#main-content">Skip to content</a>
+      <main id="main-content" tabIndex={-1}>
         <Outlet />
       </main>
 

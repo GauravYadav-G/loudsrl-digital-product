@@ -57,20 +57,22 @@ export default function ServicesStickySection() {
     const sCount = steps.length;
     let currentStep = -1;
 
-    // 1. Initialize WebGL2 Three.js Particle Relief Wave Animation (creerReleve)
+    // Build the particle field only as the section approaches the viewport.
     let releve: ReleveInstance | null = null;
     const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (canvas) {
+    const initializeReleve = () => {
+      if (!canvas || releve) return;
       releve = creerReleve(canvas, {
         seed: 5.3,
         reduce: isReduced,
         vague: true,
         souris: true,
       });
-      releve?.setStep(0, sCount);
+      releve?.setStep(Math.max(0, currentStep), sCount);
       releve?.start();
-    }
+      updateHoles();
+    };
 
     const updateHoles = () => {
       if (!releve || !canvas || !pfRef.current) return;
@@ -92,8 +94,6 @@ export default function ServicesStickySection() {
         })
       );
     };
-
-    setTimeout(updateHoles, 80);
 
     // 2. Continuous Scroll Listener (Always active, NEVER detached by intersection observer)
     const handleScroll = () => {
@@ -119,21 +119,30 @@ export default function ServicesStickySection() {
       }
     };
 
+    let scrollRaf = 0;
+    const scheduleScroll = () => {
+      if (!scrollRaf) scrollRaf = requestAnimationFrame(() => {
+        scrollRaf = 0;
+        handleScroll();
+      });
+    };
+
     // Initial check
     handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', scheduleScroll, { passive: true });
 
-    // 3. Pause/Resume particle render loop when out of viewport for efficiency
+    // 3. Initialize and run the particle render loop only while nearby.
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          initializeReleve();
           releve?.start();
           handleScroll();
         } else {
           releve?.stop();
         }
       },
-      { threshold: 0 }
+      { rootMargin: '240px 0px', threshold: 0 }
     );
     observer.observe(track);
 
@@ -196,7 +205,8 @@ export default function ServicesStickySection() {
 
     return () => {
       observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', scheduleScroll);
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
       window.removeEventListener('resize', onResize);
       if (pf) {
         pf.removeEventListener('pointermove', onPointerMove);
@@ -226,6 +236,13 @@ export default function ServicesStickySection() {
         } as React.CSSProperties
       }
     >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-0 lg:absolute lg:inset-x-0 lg:top-0 lg:z-20">
+        <p className="eyebrow text-zinc-500">What we do</p>
+        <h2 className="mt-3 text-4xl sm:text-6xl font-bold tracking-tight text-black leading-none">
+          Services
+        </h2>
+      </div>
+
       <div
         className="pf__track"
         ref={pfTrackRef}
