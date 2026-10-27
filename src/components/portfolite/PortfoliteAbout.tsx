@@ -36,8 +36,8 @@ export default function PortfoliteAbout() {
       id="about"
       className="relative py-20 sm:py-32 font-framer bg-white text-black border-t border-black/10 overflow-hidden"
     >
-      {/* Background ambient glow */}
-      <div className="absolute top-1/2 right-10 w-[550px] h-[550px] bg-zinc-200/[0.4] rounded-full blur-[140px] pointer-events-none" />
+      {/* Background ambient light pool (GPU accelerated) */}
+      <div className="absolute top-1/2 right-10 w-[550px] h-[550px] bg-[radial-gradient(circle,rgba(228,228,231,0.5)_0%,rgba(228,228,231,0)_70%)] rounded-full pointer-events-none" style={{ transform: 'translate3d(0, -50%, 0)' }} />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">

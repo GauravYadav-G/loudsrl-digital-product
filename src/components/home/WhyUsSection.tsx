@@ -57,6 +57,12 @@ export default function WhyUsSection() {
     let rafId = 0;
     let isInView = false;
 
+    let imageHeights = images.map((image) => image?.offsetHeight ?? 0);
+    const measureHeights = () => {
+      imageHeights = images.map((image) => image?.offsetHeight ?? 0);
+    };
+    measureHeights();
+
     const updateParallax = () => {
       rafId = 0;
       if (!isInView) return;
@@ -64,7 +70,6 @@ export default function WhyUsSection() {
       const winH = window.innerHeight;
       const isDesktop = desktopQuery.matches;
       const rects = items.map((item) => item.getBoundingClientRect());
-      const imageHeights = images.map((image) => image?.offsetHeight ?? 0);
 
       for (let idx = 0; idx < items.length; idx++) {
         const rect = rects[idx];
@@ -105,11 +110,13 @@ export default function WhyUsSection() {
 
     observer.observe(el);
     window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', measureHeights, { passive: true });
     window.addEventListener('resize', scheduleUpdate, { passive: true });
 
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
       window.removeEventListener('scroll', scheduleUpdate);
+      window.removeEventListener('resize', measureHeights);
       window.removeEventListener('resize', scheduleUpdate);
       observer.disconnect();
     };

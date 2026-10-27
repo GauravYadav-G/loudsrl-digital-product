@@ -12,10 +12,23 @@ export default function PortfoliteNav() {
   const closeTimer = useRef<number | null>(null);
   const loc = useLocation();
 
-  // Scroll listener to toggle solid backdrop vs transparent blend
+  // Throttled scroll listener to avoid redundant re-renders (120 FPS optimized)
   useEffect(() => {
+    let prevSolid = false;
+    let ticking = false;
+
     const handleScroll = () => {
-      setSolid(window.scrollY > 35);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          ticking = false;
+          const nextSolid = window.scrollY > 35;
+          if (nextSolid !== prevSolid) {
+            prevSolid = nextSolid;
+            setSolid(nextSolid);
+          }
+        });
+        ticking = true;
+      }
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });

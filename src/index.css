@@ -958,3 +958,42 @@ img {
   mask-image: linear-gradient(180deg, transparent 0%, black 5%, black 95%, transparent 100%);
   -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 5%, black 95%, transparent 100%);
 }
+
+/* ─────────────────────────────────────────────────────────────
+   120 FPS Hardware Accelerated Compositing & Smooth Scrolling
+   ───────────────────────────────────────────────────────────── */
+.animate-marquee {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+.ws__card,
+.hn__card,
+.fw__card,
+.artcraft-galaxy-canvas {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+img {
+  content-visibility: auto;
+}
+

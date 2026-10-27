@@ -181,8 +181,8 @@ export default function PortfoliteProjectsGrid() {
       ref={sectionRef}
       className="relative pt-0 sm:pt-2 pb-16 sm:pb-24 font-framer bg-white text-black overflow-hidden"
     >
-      {/* Background Subtle Radial Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[700px] bg-gradient-to-b from-zinc-200/[0.4] to-transparent rounded-full blur-[150px] pointer-events-none" />
+      {/* Background Subtle Radial Light Pool (GPU Accelerated without heavy blur filter) */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[700px] bg-[radial-gradient(ellipse_at_center,rgba(228,228,231,0.45)_0%,rgba(228,228,231,0)_70%)] rounded-full pointer-events-none" style={{ transform: 'translate3d(-50%, -50%, 0)' }} />
 
       <div className="max-w-[1520px] mx-auto px-3 sm:px-6">
         {/* Exact Framer Top Mask Gradient Container */}
@@ -191,7 +191,7 @@ export default function PortfoliteProjectsGrid() {
           <div className="flex flex-col md:flex-row items-start justify-center gap-2.5 sm:gap-3">
             {/* Column 1 (Left Column) */}
             <motion.div
-              style={{ y: scrollYCol1 }}
+              style={{ y: scrollYCol1, willChange: 'transform' }}
               className="flex-1 w-full"
             >
               <motion.div
@@ -207,7 +207,7 @@ export default function PortfoliteProjectsGrid() {
 
             {/* Column 5 (Center Column - Elevated Flagship Scale) */}
             <motion.div
-              style={{ y: scrollYCol5 }}
+              style={{ y: scrollYCol5, willChange: 'transform' }}
               className="flex-[1.22] w-full z-10"
             >
               <motion.div
@@ -223,7 +223,7 @@ export default function PortfoliteProjectsGrid() {
 
             {/* Column 6 (Right Column) */}
             <motion.div
-              style={{ y: scrollYCol6 }}
+              style={{ y: scrollYCol6, willChange: 'transform' }}
               className="flex-1 w-full"
             >
               <motion.div

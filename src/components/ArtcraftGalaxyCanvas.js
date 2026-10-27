@@ -77,7 +77,7 @@ export class ArtcraftGalaxyCanvas {
       alpha: true,
       powerPreference: 'high-performance',
     });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     this.renderer.setSize(this.width, this.height);
     this.canvas = this.renderer.domElement;
     this.canvas.className = 'artcraft-galaxy-canvas';
@@ -85,6 +85,7 @@ export class ArtcraftGalaxyCanvas {
     this.canvas.style.inset = '0';
     this.canvas.style.pointerEvents = 'auto';
     this.canvas.style.zIndex = '1';
+    this.canvas.style.transform = 'translateZ(0)';
     this.container.appendChild(this.canvas);
 
     // Parent group for celestial spin
@@ -104,10 +105,31 @@ export class ArtcraftGalaxyCanvas {
     // Event listeners
     this.bindEvents();
 
-    // Render loop
+    // Viewport-aware Render loop (pauses when off-screen for 120 FPS performance)
+    this.isVisible = false;
     this.clock = new THREE.Clock();
     this.animate = this.animate.bind(this);
-    this.rafId = requestAnimationFrame(this.animate);
+
+    this.start = () => {
+      if (this.rafId || !this.isVisible) return;
+      this.clock.start();
+      this.rafId = requestAnimationFrame(this.animate);
+    };
+
+    this.stop = () => {
+      if (this.rafId) {
+        cancelAnimationFrame(this.rafId);
+        this.rafId = 0;
+      }
+      this.clock.stop();
+    };
+
+    this.observer = new IntersectionObserver(([entry]) => {
+      this.isVisible = entry.isIntersecting;
+      if (this.isVisible) this.start();
+      else this.stop();
+    }, { rootMargin: '160px 0px' });
+    this.observer.observe(this.container);
   }
 
   bindEvents() {
@@ -958,13 +980,20 @@ export class ArtcraftGalaxyCanvas {
       }
     }
 
-    // 6. Render Scene
+    // 6. Render Scene (only when visible in viewport)
+    if (!this.isVisible) {
+      this.rafId = 0;
+      return;
+    }
     this.renderer.render(this.scene, this.camera);
     this.rafId = requestAnimationFrame(this.animate);
   }
 
   destroy() {
-    cancelAnimationFrame(this.rafId);
+    this.stop();
+    if (this.observer) {
+      this.observer.disconnect();
+    }
     window.removeEventListener('resize', this.onResize);
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();

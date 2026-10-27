@@ -81,7 +81,7 @@ void main() { gl_Position = vec4(position, 0.0, 1.0); }
 `;
 
 const FRAGMENT = `
-precision highp float;
+precision mediump float;
 uniform float uTime;
 uniform vec2 uResolution;
 uniform vec2 uPointer;
@@ -211,7 +211,7 @@ export default function LiquidBackground({ preset }: { preset: number }) {
     window.addEventListener('pointerleave', leave);
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth < 700 ? 1.1 : 1.4);
+      const dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth < 700 ? 0.9 : 1.0);
       const w = Math.round(canvas.clientWidth * dpr);
       const h = Math.round(canvas.clientHeight * dpr);
       if (w > 0 && h > 0 && (canvas.width !== w || canvas.height !== h)) {
@@ -305,7 +305,7 @@ export default function LiquidBackground({ preset }: { preset: number }) {
 
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_44%,#51516a_0%,#111631_45%,#08080a_83%)]">
-      <canvas ref={canvasRef} className="block h-full w-full" />
+      <canvas ref={canvasRef} className="block h-full w-full" style={{ willChange: 'transform', transform: 'translateZ(0)' }} />
     </div>
   );
 }
