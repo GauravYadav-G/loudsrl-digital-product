@@ -9,42 +9,36 @@ export default function PortfoliteAbout() {
     'Financial Management',
     'Marketing Strategy',
     'Team Leadership',
-    'Full-Stack Web & Software',
-    'Enterprise Transformations',
-    'Technical SEO & Growth',
     'Strategic Planning',
+    'Full-Stack Web & Next.js',
+    'Technical SEO & Rankings',
+    'Corporate Film Production',
+  ];
+
+  const workedIn = [
+    'Tata Teleservices Ltd',
+    'Kotak Mahindra Bank',
+    'Aegon Religare',
+    'Care Ratings Ltd.',
+    'Indiamart Intermesh Ltd.',
+    'Resurgent India Ltd.',
   ];
 
   const experienceRows = [
     {
-      role: 'Founder & Director',
+      role: 'Enterprise Digital Product Company',
       company: 'ARKA Technovation',
-      period: 'Present',
+      period: 'Currently',
     },
     {
-      role: 'Enterprise Telecom & Networks',
-      company: 'Tata Teleservices Ltd',
-      period: 'Leadership',
+      role: 'Executive & Industry Leadership',
+      company: 'Director Kranti Parashar',
+      period: '17+ Years',
     },
     {
-      role: 'Banking & Financial Services',
-      company: 'Kotak Mahindra Bank',
-      period: 'Executive',
-    },
-    {
-      role: 'Credit Ratings & Risk Analysis',
-      company: 'Care Ratings Ltd.',
-      period: 'Strategic',
-    },
-    {
-      role: 'B2B Digital Marketplace',
-      company: 'Indiamart Intermesh Ltd.',
-      period: 'Growth',
-    },
-    {
-      role: 'Merchant Banking & Corporate Finance',
-      company: 'Resurgent India Ltd. · Aegon Religare',
-      period: 'Advisory',
+      role: 'B2B Enterprise & Industrial Growth',
+      company: 'National & Global Brands',
+      period: 'Heritage',
     },
   ];
 
@@ -74,7 +68,7 @@ export default function PortfoliteAbout() {
             </h2>
 
             <p className="mt-6 text-zinc-600 text-sm sm:text-base font-light leading-relaxed max-w-xl">
-              Led by Founder &amp; Director <strong className="font-semibold text-black">Mr. Kranti Parashar</strong>, an eminent figure in Indian industry circles with over 17 years of exposure across financial levels, advertising, and communication sectors. With an MBA background, focus on pragmatic execution, strategic planning, and relationship management, he drives integrated technology and branding solutions for enabling business transformations across industries.
+              Led by Founder &amp; Director <strong className="font-semibold text-black">Mr. Kranti Parashar</strong>, an eminent figure in Indian industry circles with over 17 years of exposure across financial levels, advertising, and communication sectors. With an MBA background, focus on execution, strategic planning, and relationship management, he drives integrated technology and branding solutions for enabling business transformations across sectors.
             </p>
 
             {/* Capability Pills (Framer Badges) */}
@@ -89,8 +83,25 @@ export default function PortfoliteAbout() {
               ))}
             </div>
 
-            {/* Experience / Institutional Pedigree Table (Authentic Framer Style) */}
-            <div className="mt-10 pt-8 border-t border-black/10 w-full flex flex-col divide-y divide-black/8 text-xs sm:text-sm">
+            {/* Worked in Companies */}
+            <div className="mt-8 pt-6 border-t border-black/10 w-full">
+              <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-3">
+                Worked in:
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {workedIn.map((company) => (
+                  <span
+                    key={company}
+                    className="px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-100 border border-black/8 text-zinc-800"
+                  >
+                    {company}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Experience / Heritage Table (Authentic Framer Style) */}
+            <div className="mt-8 pt-6 border-t border-black/10 w-full flex flex-col divide-y divide-black/8 text-xs sm:text-sm">
               {experienceRows.map((row, idx) => (
                 <div
                   key={idx}
