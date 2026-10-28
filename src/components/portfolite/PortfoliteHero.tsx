@@ -142,22 +142,17 @@ export default function PortfoliteHero() {
         </motion.div>
       </div>
 
-      {/* Scroll Down Mouse Indicator (Exact Framer Structure) */}
+      {/* Scroll Down Mouse Indicator — Pure icon button, no text */}
       <motion.div
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-20 mt-10 w-full max-w-xl mx-auto px-4 flex items-center justify-center gap-4 text-xs sm:text-[13px] text-white/80 font-light select-none"
+        className="relative z-20 mt-10 flex items-center justify-center select-none"
       >
-        <span className="whitespace-nowrap">Scroll down</span>
-
-        <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-white/20 to-white/35" />
-
-        {/* Interactive Mouse Icon with Animated Dot */}
         <button
           onClick={scrollToProjects}
           aria-label="Scroll down to projects"
-          className="w-5 h-8 rounded-full border border-white/40 bg-white/15 backdrop-blur-sm flex justify-center pt-1.5 hover:border-white transition-colors cursor-pointer group shadow-sm"
+          className="w-5 h-8 rounded-full border border-white/40 bg-white/15 hover:bg-white/25 hover:border-white transition-all backdrop-blur-sm flex justify-center pt-1.5 cursor-pointer shadow-sm group"
         >
           <motion.div
             animate={{ y: [0, 8, 0], opacity: [1, 0.3, 1] }}
@@ -165,10 +160,6 @@ export default function PortfoliteHero() {
             className="w-1 h-1.5 rounded-full bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)]"
           />
         </button>
-
-        <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-white/20 to-white/35" />
-
-        <span className="whitespace-nowrap">to see projects</span>
       </motion.div>
     </section>
   );

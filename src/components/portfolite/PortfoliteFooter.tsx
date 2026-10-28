@@ -58,43 +58,29 @@ function ThemeTesterButton() {
 
   return (
     <div className="relative inline-flex items-center gap-2">
-      {/* Quick Test / Cycle Button */}
+      {/* Quick Test Theme Swatch Icon Button — No text, icon itself is button */}
       <button
         type="button"
         onClick={nextTheme}
-        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-paper/5 hover:bg-paper/10 border border-paper/15 hover:border-paper/30 text-paper text-xs font-mono tracking-wider transition-all cursor-pointer group shadow-sm"
-        title="Click to test next fluid shader theme in hero"
+        className="w-8 h-8 rounded-full bg-paper/5 hover:bg-paper/15 border border-paper/15 hover:border-paper/30 flex items-center justify-center transition-all cursor-pointer group shadow-sm"
+        title={`Fluid theme: ${PRESET_NAMES[currentPreset]} (Click to test next)`}
+        aria-label="Cycle theme"
       >
         <span
-          className="w-2.5 h-2.5 rounded-full shadow-[0_0_8px_currentColor] transition-colors"
+          className="w-3 h-3 rounded-full shadow-[0_0_8px_currentColor] transition-colors group-hover:scale-110"
           style={{ backgroundColor: PRESET_ACCENTS[currentPreset] }}
         />
-        <span className="text-[11px] uppercase text-paper/90 group-hover:text-white font-medium">
-          Theme: {PRESET_NAMES[currentPreset]}
-        </span>
-        <Sparkles className="w-3 h-3 text-solar group-hover:rotate-12 transition-transform" />
       </button>
 
-      {/* Mini Palette Selector Trigger */}
+      {/* Palette Tray Trigger Icon Button */}
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="p-1.5 rounded-full bg-paper/5 hover:bg-paper/10 border border-paper/15 hover:border-paper/30 text-paper/60 hover:text-white transition-colors cursor-pointer text-xs"
-        title="Open all 12 fluid themes palette tray"
+        className="w-8 h-8 rounded-full bg-paper/5 hover:bg-paper/15 border border-paper/15 hover:border-paper/30 flex items-center justify-center text-paper/60 hover:text-white transition-colors cursor-pointer"
+        title="Open theme palette"
         aria-label="Toggle theme picker tray"
       >
         <Palette className="w-3.5 h-3.5" />
-      </button>
-
-      {/* Scroll to Top to View Active Hero Shader */}
-      <button
-        type="button"
-        onClick={scrollToHero}
-        className="text-[10px] mono text-paper/40 hover:text-solar transition-colors cursor-pointer flex items-center gap-1 uppercase tracking-wider"
-        title="Scroll to top to view fluid shader in Hero"
-      >
-        <span>Preview Hero</span>
-        <span>↑</span>
       </button>
 
       {/* Popover Tray with All 12 Themes */}
