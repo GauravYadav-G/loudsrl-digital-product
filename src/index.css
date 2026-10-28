@@ -1360,6 +1360,50 @@ img {
   animation: pixelBreathe4 1.0s ease-in-out infinite 0.15s;
 }
 
+/* SVG Vector Motion Graphics for Showcase Cards */
+@keyframes radarSweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.mg-radar-sweep {
+  transform-origin: 80px 60px;
+  animation: radarSweep 2.8s linear infinite;
+}
+
+@keyframes eqBounce1 {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes eqBounce2 {
+  0%, 100% { transform: scaleY(0.85); }
+  50% { transform: scaleY(0.3); }
+}
+
+@keyframes eqBounce3 {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(0.95); }
+}
+
+.mg-bar-1 { transform-origin: bottom; animation: eqBounce1 0.7s ease-in-out infinite; }
+.mg-bar-2 { transform-origin: bottom; animation: eqBounce2 0.85s ease-in-out infinite 0.15s; }
+.mg-bar-3 { transform-origin: bottom; animation: eqBounce3 0.65s ease-in-out infinite 0.25s; }
+.mg-bar-4 { transform-origin: bottom; animation: eqBounce1 0.9s ease-in-out infinite 0.1s; }
+
+@keyframes codeBracketWiggle {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-3px); }
+}
+
+@keyframes codeBracketWiggleRight {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+
+.mg-code-left { animation: codeBracketWiggle 1.4s ease-in-out infinite; }
+.mg-code-right { animation: codeBracketWiggleRight 1.4s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee-showcase {
     animation: none !important;
