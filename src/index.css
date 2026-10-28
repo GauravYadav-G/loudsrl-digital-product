@@ -1149,4 +1149,184 @@ img {
   }
 }
 
+/* ─────────────────────────────────────────────────────────────
+   PROCESS SECTION MOTION GRAPHICS (60 FPS Vector Animations)
+   ───────────────────────────────────────────────────────────── */
+
+/* 1. Split-Pane Resize Animation */
+@keyframes paneResizeLeft {
+  0%, 100% { width: 56px; }
+  50% { width: 84px; }
+}
+
+@keyframes paneResizeRight {
+  0%, 100% { x: 74px; width: 93px; }
+  50% { x: 102px; width: 65px; }
+}
+
+@keyframes cursorDragPane {
+  0%, 100% { transform: translate(66px, 40px); }
+  50% { transform: translate(94px, 40px); }
+}
+
+@keyframes marchAnts {
+  to { stroke-dashoffset: -24; }
+}
+
+.mg-pane-left {
+  animation: paneResizeLeft 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.mg-pane-right {
+  animation: paneResizeRight 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.mg-cursor-pane {
+  animation: cursorDragPane 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.mg-march-ants {
+  animation: marchAnts 1.2s linear infinite;
+}
+
+/* 2. Slider Control & Property Animation */
+@keyframes sliderThumbMove {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(36px); }
+}
+
+@keyframes sliderCursorDrag {
+  0%, 100% { transform: translate(114px, 32px); }
+  50% { transform: translate(150px, 32px); }
+}
+
+@keyframes propertyBarExpand {
+  0%, 100% { width: 52px; }
+  50% { width: 76px; }
+}
+
+.mg-slider-thumb {
+  animation: sliderThumbMove 3.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.mg-slider-cursor {
+  animation: sliderCursorDrag 3.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.mg-property-bar {
+  animation: propertyBarExpand 3.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+/* 3. Distributed Node Streaming Animation */
+@keyframes dataBusStream {
+  to { stroke-dashoffset: -20; }
+}
+
+@keyframes nodePing {
+  0%, 100% { opacity: 0.35; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+
+@keyframes packetTravel1 {
+  0% { transform: translate(56px, 34px); opacity: 0; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { transform: translate(76px, 48px); opacity: 0; }
+}
+
+@keyframes packetTravel2 {
+  0% { transform: translate(142px, 92px); opacity: 0; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { transform: translate(122px, 78px); opacity: 0; }
+}
+
+.mg-databus {
+  animation: dataBusStream 1.2s linear infinite;
+}
+
+.mg-node-ping {
+  transform-origin: center;
+  animation: nodePing 2s ease-in-out infinite;
+}
+
+.mg-packet-1 {
+  animation: packetTravel1 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.mg-packet-2 {
+  animation: packetTravel2 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite 1.1s;
+}
+
+/* 4. Trajectory Milestone Pulse & Spark Animation */
+@keyframes milestonePulse {
+  0%, 100% { opacity: 0.35; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+
+@keyframes sparkBurst {
+  0%, 100% { opacity: 0; transform: scale(0.6); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes trajectoryCursorWiggle {
+  0%, 100% { transform: translate(132px, 54px) rotate(0deg); }
+  50% { transform: translate(135px, 50px) rotate(-6deg); }
+}
+
+@keyframes streamWaterfall {
+  to { stroke-dashoffset: -16; }
+}
+
+.mg-milestone-1 {
+  transform-origin: 62px 56px;
+  animation: milestonePulse 2.4s ease-in-out infinite;
+}
+
+.mg-milestone-2 {
+  transform-origin: 98px 56px;
+  animation: milestonePulse 2.4s ease-in-out infinite 0.8s;
+}
+
+.mg-milestone-3 {
+  transform-origin: 132px 56px;
+  animation: milestonePulse 2.4s ease-in-out infinite 1.6s;
+}
+
+.mg-spark {
+  transform-origin: 126px 50px;
+  animation: sparkBurst 1.6s ease-in-out infinite;
+}
+
+.mg-trajectory-cursor {
+  animation: trajectoryCursorWiggle 3s ease-in-out infinite;
+}
+
+.mg-waterfall {
+  animation: streamWaterfall 1.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mg-pane-left,
+  .mg-pane-right,
+  .mg-cursor-pane,
+  .mg-march-ants,
+  .mg-slider-thumb,
+  .mg-slider-cursor,
+  .mg-property-bar,
+  .mg-databus,
+  .mg-node-ping,
+  .mg-packet-1,
+  .mg-packet-2,
+  .mg-milestone-1,
+  .mg-milestone-2,
+  .mg-milestone-3,
+  .mg-spark,
+  .mg-trajectory-cursor,
+  .mg-waterfall {
+    animation: none !important;
+  }
+}
+
+
 

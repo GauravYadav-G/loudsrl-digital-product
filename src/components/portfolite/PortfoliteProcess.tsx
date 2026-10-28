@@ -10,7 +10,7 @@ const PROCESS_COLUMNS = [
     illustration: (
       <svg
         viewBox="0 0 200 130"
-        className="w-full max-w-[220px] h-auto text-black select-none pointer-events-none group-hover:translate-y-[-2px] transition-transform duration-300"
+        className="w-full max-w-[220px] h-auto text-black select-none pointer-events-none group-hover:scale-[1.03] transition-transform duration-300"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
@@ -18,16 +18,16 @@ const PROCESS_COLUMNS = [
         {/* Top Main Window */}
         <rect x="1" y="1" width="176" height="84" rx="8" stroke="currentColor" strokeWidth="1.5" />
 
-        {/* Left Panel */}
-        <rect x="10" y="10" width="60" height="66" rx="5" stroke="currentColor" strokeWidth="1.2" />
+        {/* Dynamic Resizing Left Panel */}
+        <rect className="mg-pane-left" x="10" y="10" width="60" height="66" rx="5" stroke="currentColor" strokeWidth="1.2" fill="white" />
         <line x1="18" y1="26" x2="52" y2="26" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
         <line x1="18" y1="36" x2="42" y2="36" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
 
-        {/* Right Panel */}
-        <rect x="76" y="10" width="91" height="66" rx="5" stroke="currentColor" strokeWidth="1.2" />
+        {/* Dynamic Yielding Right Panel */}
+        <rect className="mg-pane-right" x="76" y="10" width="91" height="66" rx="5" stroke="currentColor" strokeWidth="1.2" fill="white" />
 
-        {/* Mouse Cursor at boundary */}
-        <g transform="translate(68, 40)">
+        {/* Animated Mouse Cursor Dragging the Seam */}
+        <g className="mg-cursor-pane">
           <path
             d="M0 0 L0 15 L4.2 11.5 L7.2 18 L10 16.6 L7 10.2 L12 10.2 Z"
             fill="#18181b"
@@ -37,12 +37,13 @@ const PROCESS_COLUMNS = [
           />
         </g>
 
-        {/* Bottom Pills */}
+        {/* Bottom Pills with streaming dash animation */}
         <rect x="1" y="96" width="76" height="18" rx="9" stroke="currentColor" strokeWidth="1.4" />
         <line x1="16" y1="105" x2="62" y2="105" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
 
-        <rect x="85" y="96" width="76" height="18" rx="9" stroke="currentColor" strokeWidth="1.4" strokeDasharray="3 3" />
+        <rect className="mg-march-ants" x="85" y="96" width="76" height="18" rx="9" stroke="currentColor" strokeWidth="1.4" strokeDasharray="4 4" />
         <line
+          className="mg-march-ants"
           x1="100"
           y1="105"
           x2="146"
@@ -50,7 +51,7 @@ const PROCESS_COLUMNS = [
           stroke="currentColor"
           strokeWidth="1.2"
           strokeLinecap="round"
-          strokeDasharray="2 2"
+          strokeDasharray="3 3"
         />
       </svg>
     ),
@@ -61,7 +62,7 @@ const PROCESS_COLUMNS = [
     illustration: (
       <svg
         viewBox="0 0 200 130"
-        className="w-full max-w-[220px] h-auto text-black select-none pointer-events-none group-hover:translate-y-[-2px] transition-transform duration-300"
+        className="w-full max-w-[220px] h-auto text-black select-none pointer-events-none group-hover:scale-[1.03] transition-transform duration-300"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
@@ -70,21 +71,21 @@ const PROCESS_COLUMNS = [
         <rect x="1" y="1" width="186" height="116" rx="8" stroke="currentColor" strokeWidth="1.5" />
 
         {/* Left Sidebar */}
-        <rect x="10" y="10" width="58" height="98" rx="6" stroke="currentColor" strokeWidth="1.2" />
+        <rect x="10" y="10" width="58" height="98" rx="6" stroke="currentColor" strokeWidth="1.2" fill="white" />
         <line x1="18" y1="24" x2="52" y2="24" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
         <line x1="18" y1="34" x2="42" y2="34" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
         {/* Component card in sidebar */}
         <rect x="18" y="50" width="30" height="24" rx="4" stroke="currentColor" strokeWidth="1.2" fill="#f4f4f5" />
 
         {/* Right Canvas: Top Slider Bar Box */}
-        <rect x="76" y="10" width="101" height="42" rx="6" stroke="currentColor" strokeWidth="1.2" />
+        <rect x="76" y="10" width="101" height="42" rx="6" stroke="currentColor" strokeWidth="1.2" fill="white" />
         <line x1="86" y1="22" x2="118" y2="22" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
         {/* Slider track line */}
         <line x1="86" y1="34" x2="167" y2="34" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-        {/* Slider thumb */}
-        <circle cx="132" cy="34" r="5" fill="#18181b" />
-        {/* Cursor dragging thumb */}
-        <g transform="translate(130, 32)">
+        {/* Animated Slider thumb */}
+        <circle className="mg-slider-thumb" cx="116" cy="34" r="5" fill="#18181b" />
+        {/* Animated Cursor dragging thumb */}
+        <g className="mg-slider-cursor">
           <path
             d="M0 0 L0 15 L4.2 11.5 L7.2 18 L10 16.6 L7 10.2 L12 10.2 Z"
             fill="#18181b"
@@ -94,9 +95,9 @@ const PROCESS_COLUMNS = [
           />
         </g>
 
-        {/* Right Canvas: Bottom Property Block */}
-        <rect x="76" y="60" width="101" height="48" rx="6" stroke="currentColor" strokeWidth="1.2" />
-        <line x1="86" y1="74" x2="162" y2="74" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+        {/* Right Canvas: Bottom Property Block with dynamic bar expansion */}
+        <rect x="76" y="60" width="101" height="48" rx="6" stroke="currentColor" strokeWidth="1.2" fill="white" />
+        <line className="mg-property-bar" x1="86" y1="74" x2="162" y2="74" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
         <line x1="86" y1="86" x2="140" y2="86" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
       </svg>
     ),
@@ -107,42 +108,48 @@ const PROCESS_COLUMNS = [
     illustration: (
       <svg
         viewBox="0 0 200 130"
-        className="w-full max-w-[220px] h-auto text-black select-none pointer-events-none group-hover:translate-y-[-2px] transition-transform duration-300"
+        className="w-full max-w-[220px] h-auto text-black select-none pointer-events-none group-hover:scale-[1.03] transition-transform duration-300"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
         {/* Center Node Engine Box */}
-        <rect x="76" y="38" width="46" height="54" rx="6" stroke="currentColor" strokeWidth="1.5" />
+        <rect x="76" y="38" width="46" height="54" rx="6" stroke="currentColor" strokeWidth="1.5" fill="white" />
         <line x1="84" y1="62" x2="114" y2="62" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
         <line x1="84" y1="70" x2="104" y2="70" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
 
+        {/* Streaming connector buses */}
+        <line className="mg-databus" x1="56" y1="34" x2="76" y2="48" stroke="currentColor" strokeWidth="1.2" strokeDasharray="4 4" />
+        <line className="mg-databus" x1="56" y1="92" x2="76" y2="78" stroke="currentColor" strokeWidth="1.2" strokeDasharray="4 4" />
+        <line className="mg-databus" x1="142" y1="34" x2="122" y2="48" stroke="currentColor" strokeWidth="1.2" strokeDasharray="4 4" />
+        <line className="mg-databus" x1="142" y1="92" x2="122" y2="78" stroke="currentColor" strokeWidth="1.2" strokeDasharray="4 4" />
+
+        {/* Traveling data packets */}
+        <circle className="mg-packet-1" cx="0" cy="0" r="2.5" fill="#E8742C" />
+        <circle className="mg-packet-2" cx="0" cy="0" r="2.5" fill="#E8742C" />
+
         {/* Top Left Satellite Node */}
-        <rect x="10" y="10" width="46" height="34" rx="5" stroke="currentColor" strokeWidth="1.3" />
+        <rect x="10" y="10" width="46" height="34" rx="5" stroke="currentColor" strokeWidth="1.3" fill="white" />
         <line x1="18" y1="22" x2="38" y2="22" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
         <line x1="18" y1="30" x2="30" y2="30" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-        <line x1="56" y1="34" x2="76" y2="48" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 3" />
 
         {/* Bottom Left Satellite Node */}
-        <rect x="10" y="82" width="46" height="34" rx="5" stroke="currentColor" strokeWidth="1.3" />
+        <rect x="10" y="82" width="46" height="34" rx="5" stroke="currentColor" strokeWidth="1.3" fill="white" />
         <line x1="18" y1="94" x2="38" y2="94" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
         <line x1="18" y1="102" x2="30" y2="102" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-        <line x1="56" y1="92" x2="76" y2="78" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 3" />
 
         {/* Top Right Satellite Node */}
-        <rect x="142" y="10" width="46" height="34" rx="5" stroke="currentColor" strokeWidth="1.3" />
+        <rect x="142" y="10" width="46" height="34" rx="5" stroke="currentColor" strokeWidth="1.3" fill="white" />
         <line x1="150" y1="22" x2="170" y2="22" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
         <line x1="150" y1="30" x2="162" y2="30" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-        <line x1="142" y1="34" x2="122" y2="48" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 3" />
 
         {/* Bottom Right Satellite Node */}
-        <rect x="142" y="82" width="46" height="34" rx="5" stroke="currentColor" strokeWidth="1.3" />
+        <rect x="142" y="82" width="46" height="34" rx="5" stroke="currentColor" strokeWidth="1.3" fill="white" />
         <line x1="150" y1="94" x2="170" y2="94" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
         <line x1="150" y1="102" x2="162" y2="102" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-        <line x1="142" y1="92" x2="122" y2="78" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 3" />
 
-        {/* Center Node dot indicator */}
-        <circle cx="122" cy="78" r="3" fill="#18181b" />
+        {/* Center Node pulsing ping dot */}
+        <circle className="mg-node-ping" cx="122" cy="78" r="3" fill="#18181b" />
       </svg>
     ),
   },
@@ -152,13 +159,13 @@ const PROCESS_COLUMNS = [
     illustration: (
       <svg
         viewBox="0 0 200 130"
-        className="w-full max-w-[220px] h-auto text-black select-none pointer-events-none group-hover:translate-y-[-2px] transition-transform duration-300"
+        className="w-full max-w-[220px] h-auto text-black select-none pointer-events-none group-hover:scale-[1.03] transition-transform duration-300"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
-        {/* Top Pill / Status Tag */}
-        <rect x="2" y="12" width="80" height="18" rx="9" stroke="currentColor" strokeWidth="1.4" />
+        {/* Top Pill / Status Tag with subtle pulse */}
+        <rect x="2" y="12" width="80" height="18" rx="9" stroke="currentColor" strokeWidth="1.4" fill="white" />
         <line x1="14" y1="21" x2="70" y2="21" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
 
         {/* Baseline horizontal axis */}
@@ -172,22 +179,30 @@ const PROCESS_COLUMNS = [
           strokeLinecap="round"
         />
 
-        {/* Milestone control points */}
-        <circle cx="62" cy="56" r="3" fill="#18181b" />
-        <circle cx="98" cy="56" r="3" fill="#18181b" />
-        <circle cx="132" cy="56" r="3" fill="#18181b" />
+        {/* Sequentially pulsing milestone control points */}
+        <circle className="mg-milestone-1" cx="62" cy="56" r="3" fill="#18181b" />
+        <circle className="mg-milestone-2" cx="98" cy="56" r="3" fill="#18181b" />
+        <circle className="mg-milestone-3" cx="132" cy="56" r="3" fill="#E8742C" />
 
-        {/* Descending dashed curve */}
+        {/* Descending dashed curve with streaming waterfall animation */}
         <path
+          className="mg-waterfall"
           d="M 132 56 C 146 56 154 84 166 98"
           stroke="currentColor"
           strokeWidth="1.4"
-          strokeDasharray="3 3"
+          strokeDasharray="4 4"
           strokeLinecap="round"
         />
 
-        {/* Cursor steering the trajectory with sparks */}
-        <g transform="translate(132, 54)">
+        {/* Sparks bursting from active control point */}
+        <g className="mg-spark">
+          <line x1="124" y1="46" x2="128" y2="48" stroke="#E8742C" strokeWidth="1.3" strokeLinecap="round" />
+          <line x1="121" y1="52" x2="125" y2="52" stroke="#E8742C" strokeWidth="1.3" strokeLinecap="round" />
+          <line x1="126" y1="42" x2="128" y2="44" stroke="#E8742C" strokeWidth="1.3" strokeLinecap="round" />
+        </g>
+
+        {/* Cursor steering the trajectory with interactive wiggle */}
+        <g className="mg-trajectory-cursor">
           <path
             d="M0 0 L0 15 L4.2 11.5 L7.2 18 L10 16.6 L7 10.2 L12 10.2 Z"
             fill="#18181b"
@@ -195,9 +210,6 @@ const PROCESS_COLUMNS = [
             strokeWidth="1.2"
             strokeLinejoin="round"
           />
-          {/* Micro sparks */}
-          <line x1="-8" y1="-4" x2="-4" y2="-2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-          <line x1="-9" y1="4" x2="-5" y2="4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
         </g>
       </svg>
     ),
