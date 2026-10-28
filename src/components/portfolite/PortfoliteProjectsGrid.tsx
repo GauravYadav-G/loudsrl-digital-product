@@ -1,9 +1,12 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, ArrowRight, Sparkles, TrendingUp } from 'lucide-react';
-import ProjectModal, { ProjectData } from './ProjectModal';
+import type { ProjectData } from './ProjectModal';
+
+const ProjectModal = dynamic(() => import('./ProjectModal'), { ssr: false });
 
 export default function PortfoliteProjectsGrid() {
   const sectionRef = useRef<HTMLDivElement>(null);

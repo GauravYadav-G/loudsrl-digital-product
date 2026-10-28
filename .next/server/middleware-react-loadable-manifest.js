@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"components/portfolite/PortfoliteProjectsGrid.tsx -> ./ProjectModal\":{\"id\":\"components/portfolite/PortfoliteProjectsGrid.tsx -> ./ProjectModal\",\"files\":[\"static/chunks/_app-pages-browser_src_components_portfolite_ProjectModal_tsx.js\"]},\"components/portfolite/PortfoliteRecentWorksCarousel.tsx -> ./ProjectModal\":{\"id\":\"components/portfolite/PortfoliteRecentWorksCarousel.tsx -> ./ProjectModal\",\"files\":[\"static/chunks/_app-pages-browser_src_components_portfolite_ProjectModal_tsx.js\"]}}"

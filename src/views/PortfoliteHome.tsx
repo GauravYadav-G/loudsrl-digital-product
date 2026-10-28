@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import PortfoliteNav from '../components/portfolite/PortfoliteNav';
 import PortfoliteHero from '../components/portfolite/PortfoliteHero';
 import PortfoliteLogosMarquee from '../components/portfolite/PortfoliteLogosMarquee';
@@ -5,10 +6,18 @@ import PortfoliteProjectsGrid from '../components/portfolite/PortfoliteProjectsG
 import PortfoliteAbout from '../components/portfolite/PortfoliteAbout';
 import PortfoliteRecentWorksCarousel from '../components/portfolite/PortfoliteRecentWorksCarousel';
 import PortfoliteProcess from '../components/portfolite/PortfoliteProcess';
-import ServicesStickySection from '../components/home/ServicesStickySection';
-import WhyUsSection from '../components/home/WhyUsSection';
-import LatestNewsSection from '../components/home/LatestNewsSection';
 import PortfoliteFooter from '../components/portfolite/PortfoliteFooter';
+
+// Code-split heavy interactive and particle sections for instant first paint and smooth scrolling
+const ServicesStickySection = dynamic(() => import('../components/home/ServicesStickySection'), {
+  ssr: true,
+});
+const WhyUsSection = dynamic(() => import('../components/home/WhyUsSection'), {
+  ssr: true,
+});
+const LatestNewsSection = dynamic(() => import('../components/home/LatestNewsSection'), {
+  ssr: true,
+});
 
 export default function PortfoliteHome() {
   return (

@@ -1,8 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { ArrowUpRight, ArrowDownLeft } from 'lucide-react';
-import ProjectModal, { ProjectData } from './ProjectModal';
+import type { ProjectData } from './ProjectModal';
+
+const ProjectModal = dynamic(() => import('./ProjectModal'), { ssr: false });
 
 export default function PortfoliteRecentWorksCarousel() {
   const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
@@ -105,14 +108,15 @@ export default function PortfoliteRecentWorksCarousel() {
               <div
                 key={idx}
                 onClick={() => setSelectedProject(item)}
-                className="group relative w-[290px] sm:w-[350px] shrink-0 rounded-xl sm:rounded-2xl overflow-hidden bg-white border border-black/10 hover:border-black/30 transition-all duration-500 shadow-xl cursor-pointer"
+                className="group relative w-[290px] sm:w-[350px] shrink-0 rounded-xl sm:rounded-2xl overflow-hidden bg-white border border-black/10 hover:border-black/30 transition-[border-color,box-shadow] duration-300 shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-xl cursor-pointer"
               >
                 <div className="relative aspect-[4/4.8] overflow-hidden bg-zinc-100">
                   <img
                     src={item.image}
                     alt={item.title}
                     loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 ease-out"
+                    decoding="async"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
 
                   {/* Gradient Scrim for frosted button legibility */}

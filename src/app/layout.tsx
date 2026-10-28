@@ -45,6 +45,20 @@ export default function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
+        {/* Speculation Rules API for instant same-origin client navigation */}
+        <script
+          type="speculationrules"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              prerender: [
+                {
+                  where: { href_matches: '/*' },
+                  eagerness: 'moderate',
+                },
+              ],
+            }),
+          }}
+        />
       </head>
       <body className="bg-white text-black antialiased selection:bg-solar selection:text-white">
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
