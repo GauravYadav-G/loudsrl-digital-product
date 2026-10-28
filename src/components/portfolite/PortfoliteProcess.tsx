@@ -280,35 +280,36 @@ export default function PortfoliteProcess() {
 
         {/* 4-Column Layout Structure Matching the Design Reference */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-black/10 backdrop-blur-[2px] bg-white/40">
-          {PROCESS_COLUMNS.map((col, idx) => (
-            <div
-              key={col.label}
-              className={`p-6 sm:p-8 lg:p-10 flex flex-col justify-between min-h-[420px] sm:min-h-[460px] lg:min-h-[500px] transition-colors duration-300 group hover:bg-white/90 border-black/10 ${
-                idx < 3 ? 'border-b lg:border-b-0' : ''
-              } ${
-                idx % 2 === 0 ? 'md:border-r' : 'md:border-r-0'
-              } ${
-                idx === 1 ? 'lg:border-r' : ''
-              } ${
-                idx === 3 ? 'lg:border-r-0' : ''
-              }`}
-            >
-              {/* Top Meta & Headline */}
-              <div>
-                <span className="block text-xs sm:text-sm font-normal text-zinc-400 mb-4 tracking-normal">
-                  {col.label}
-                </span>
-                <h3 className="text-lg sm:text-xl lg:text-[22px] font-bold text-black tracking-tight leading-[1.35] max-w-[280px]">
-                  {col.title}
-                </h3>
-              </div>
+          {PROCESS_COLUMNS.map((col, idx) => {
+            const borderClasses = [
+              'border-b md:border-b lg:border-b-0 md:border-r lg:border-r',
+              'border-b md:border-b lg:border-b-0 md:border-r-0 lg:border-r',
+              'border-b md:border-b-0 lg:border-b-0 md:border-r lg:border-r',
+              'border-b-0 md:border-b-0 lg:border-b-0 md:border-r-0 lg:border-r-0',
+            ][idx];
 
-              {/* Bottom Technical Schematic Wireframe Illustration */}
-              <div className="mt-16 sm:mt-24 pt-6 w-full flex items-end justify-start min-h-[130px]">
-                {col.illustration}
+            return (
+              <div
+                key={col.label}
+                className={`p-6 sm:p-8 lg:p-10 flex flex-col justify-between min-h-[420px] sm:min-h-[460px] lg:min-h-[500px] transition-colors duration-300 group hover:bg-white/90 border-black/10 ${borderClasses}`}
+              >
+                {/* Top Meta & Headline */}
+                <div>
+                  <span className="block text-xs sm:text-sm font-normal text-zinc-400 mb-4 tracking-normal">
+                    {col.label}
+                  </span>
+                  <h3 className="text-lg sm:text-xl lg:text-[22px] font-bold text-black tracking-tight leading-[1.35] max-w-[280px]">
+                    {col.title}
+                  </h3>
+                </div>
+
+                {/* Bottom Technical Schematic Wireframe Illustration */}
+                <div className="mt-16 sm:mt-24 pt-6 w-full flex items-end justify-start min-h-[130px]">
+                  {col.illustration}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
