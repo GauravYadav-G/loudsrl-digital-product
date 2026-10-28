@@ -408,11 +408,13 @@ function DynamicMosaicCanvas({ variant }: { variant: string }) {
     >
       {tiles.map((tile, i) => {
         const animClass =
-          i % 3 === 0
+          i % 4 === 0
             ? 'mg-pixel-1'
-            : i % 2 === 0
+            : i % 4 === 1
             ? 'mg-pixel-2'
-            : 'mg-pixel-3';
+            : i % 4 === 2
+            ? 'mg-pixel-3'
+            : 'mg-pixel-4';
 
         return (
           <rect
@@ -432,7 +434,7 @@ function DynamicMosaicCanvas({ variant }: { variant: string }) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   SHOWCASE CARDS DATA (Tailored to ARKA Technovation)
+   SHOWCASE CARDS DATA (Generic for Software, Marketing & SEO)
    ───────────────────────────────────────────────────────────── */
 const SHOWCASE_CARDS: ShowcaseCardItem[] = [
   {
@@ -442,34 +444,37 @@ const SHOWCASE_CARDS: ShowcaseCardItem[] = [
     glassWidget: (
       <div className="text-left w-full">
         <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-2">
-          EDGE CACHE · QUERY
+          REALTIME CACHE
         </div>
         <div className="font-mono text-xs sm:text-[13px] text-zinc-800 leading-snug mb-2 font-medium">
           <span className="text-blue-600">usePipeline</span>
           <span className="text-zinc-600">(</span>
-          <span className="text-amber-700">Deal</span>
+          <span className="text-amber-700">Orders</span>
           <span className="text-zinc-600">, &#123; </span>
-          <span className="text-purple-600">status: &quot;converted&quot;</span>
+          <span className="text-purple-600">status: &quot;active&quot;</span>
           <span className="text-zinc-600"> &#125;)</span>
         </div>
         <div className="text-[11px] font-mono text-zinc-500 flex items-center justify-between">
-          <span>1,500+ clients</span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Edge verified</span>
+          </span>
           <span className="text-zinc-400">·</span>
-          <span>0.4s edge hit</span>
+          <span>Live sync</span>
         </div>
       </div>
     ),
     projectData: {
       id: 'showcase-1',
-      title: 'Precision Engineering Exporter',
-      category: 'Manufacturing · SEO & Fast Web',
+      title: 'Enterprise Web Platform',
+      category: 'Custom Software · Web Engineering',
       image: '/portfolite/proj-1.png',
-      client: 'Rajesh Verma, Director',
+      client: 'Engineering Director',
       year: '2025',
       description:
-        'Rebuilt sixty specification pages and headless Next.js catalog that unlocked verified buyer inquiries from Europe and North America.',
-      deliverables: ['Intent SEO', 'Fast Web Platform', 'Edge Caching'],
-      results: '+300% Organic Traffic',
+        'Headless Next.js architecture, real-time edge catalog, and high-performance search infrastructure.',
+      deliverables: ['Web Architecture', 'Edge Caching', 'Performance Optimization'],
+      results: 'Verified High Conversion',
     },
   },
   {
@@ -479,27 +484,28 @@ const SHOWCASE_CARDS: ShowcaseCardItem[] = [
     glassWidget: (
       <div className="text-left w-full">
         <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-1.5">
-          UPTIME · 365 DAYS
+          SYSTEM ARCHITECTURE
         </div>
-        <div className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 mb-1">
-          99.98%
+        <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 mb-1 flex items-center gap-2">
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0 animate-pulse" />
+          <span>Continuous Uptime</span>
         </div>
         <div className="text-xs text-zinc-500 font-medium">
-          zero downtime across 850+ deployments
+          High-availability cloud infrastructure
         </div>
       </div>
     ),
     projectData: {
       id: 'showcase-2',
-      title: 'Enterprise Multi-Branch CRM',
-      category: 'Custom ERP & WhatsApp Sync',
+      title: 'Cloud CRM & ERP Integration',
+      category: 'Software Development · Cloud Systems',
       image: '/portfolite/proj-4.jpg',
-      client: 'Amit Patel, CEO',
+      client: 'Chief Technology Officer',
       year: '2025',
       description:
-        'High-availability multi-tier cloud ERP with role-based dashboards, automated approval matrices, and real-time Tally accounting sync.',
-      deliverables: ['Custom CRM', 'Tally Sync', 'High Availability'],
-      results: '99.98% Uptime · 12h Saved Weekly',
+        'Scalable multi-tier cloud CRM with role-based dashboards, automated approval matrices, and live enterprise sync.',
+      deliverables: ['Custom CRM', 'ERP Sync', 'High Availability'],
+      results: 'Enterprise Uptime & Efficiency',
     },
   },
   {
@@ -509,35 +515,35 @@ const SHOWCASE_CARDS: ShowcaseCardItem[] = [
     glassWidget: (
       <div className="text-left w-full">
         <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-2.5">
-          CORE TEAM & ARCHITECTURE
+          COLLABORATION
         </div>
         <div className="space-y-2 text-xs sm:text-[13px] text-zinc-800 font-medium">
           <div className="flex items-center gap-2">
             <svg className="w-3.5 h-3.5 text-blue-600 fill-current shrink-0" viewBox="0 0 16 16">
               <path d="M0 0 L0 14 L3.8 10.8 L6.5 16 L8.8 14.8 L6.2 9.4 L11 9.4 Z" />
             </svg>
-            <span>17+ Years Leadership</span>
+            <span>In-house Engineers</span>
           </div>
           <div className="flex items-center gap-2">
             <svg className="w-3.5 h-3.5 text-[#E8742C] fill-current shrink-0" viewBox="0 0 16 16">
               <path d="M0 0 L0 14 L3.8 10.8 L6.5 16 L8.8 14.8 L6.2 9.4 L11 9.4 Z" />
             </svg>
-            <span>In-house Engineers & Growth</span>
+            <span>Dedicated Growth Team</span>
           </div>
         </div>
       </div>
     ),
     projectData: {
       id: 'showcase-3',
-      title: 'Meridian Healthcare Portal',
-      category: 'UX Design & Patient Booking',
+      title: 'Healthcare Experience Portal',
+      category: 'UI/UX Design & Engineering',
       image: '/portfolite/proj-6.png',
-      client: 'Sneha Kulkarni, CMO',
+      client: 'Product Head',
       year: '2025',
       description:
-        'Direct partnership with in-house design and engineering teams — seamless patient booking experience with zero outsourcing.',
-      deliverables: ['Patient Portal', 'Design System', 'Local SEO'],
-      results: '3.4× Booking Lift',
+        'Direct partnership with in-house design and engineering teams — seamless user experience and modern design system.',
+      deliverables: ['Patient Portal', 'Design System', 'User Research'],
+      results: 'Measurable Engagement Lift',
     },
   },
   {
@@ -547,37 +553,37 @@ const SHOWCASE_CARDS: ShowcaseCardItem[] = [
     glassWidget: (
       <div className="text-left w-full">
         <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-2.5">
-          SEARCH DOMAIN
+          SEARCH & WEB VISIBILITY
         </div>
         <div className="space-y-2 text-xs font-mono">
           <div className="flex items-center justify-between gap-1">
             <div className="flex items-center gap-2 min-w-0">
               <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-              <span className="text-zinc-800 font-medium text-[11px] truncate">arkatechnovation.com</span>
+              <span className="text-zinc-800 font-medium text-[11px] truncate">Search Visibility</span>
             </div>
-            <span className="text-zinc-600 text-[10.5px] bg-white/70 px-1.5 py-0.5 rounded border border-black/5 shrink-0">140+ #1</span>
+            <span className="text-zinc-600 text-[10.5px] bg-white/70 px-2 py-0.5 rounded border border-black/5 shrink-0">Page 1</span>
           </div>
           <div className="flex items-center justify-between gap-1">
             <div className="flex items-center gap-2 min-w-0">
               <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-              <span className="text-zinc-800 font-medium text-[11px] truncate">clientportal.enterprise.io</span>
+              <span className="text-zinc-800 font-medium text-[11px] truncate">Organic Indexing</span>
             </div>
-            <span className="text-zinc-600 text-[10.5px] bg-white/70 px-1.5 py-0.5 rounded border border-black/5 shrink-0">live</span>
+            <span className="text-zinc-600 text-[10.5px] bg-white/70 px-2 py-0.5 rounded border border-black/5 shrink-0">Live</span>
           </div>
         </div>
       </div>
     ),
     projectData: {
       id: 'showcase-4',
-      title: 'Industrial Plant Nationwide',
-      category: 'Search Engine Domination',
+      title: 'Organic Search Architecture',
+      category: 'Search Engine Optimization',
       image: '/portfolite/proj-5.png',
-      client: 'Business Head, Industrial Plant',
+      client: 'Growth Director',
       year: '2024',
       description:
-        'Modular city-page architecture and Google Business Profile optimization across 9 key manufacturing clusters.',
-      deliverables: ['Multi-City SEO', 'Technical Schema', 'Lead Capture'],
-      results: '140+ #1 Rankings',
+        'Modular technical architecture and Google Business Profile optimization across key target regions.',
+      deliverables: ['Technical SEO', 'Schema Markup', 'Keyword Strategy'],
+      results: 'Page-One Organic Dominance',
     },
   },
   {
@@ -587,27 +593,27 @@ const SHOWCASE_CARDS: ShowcaseCardItem[] = [
     glassWidget: (
       <div className="text-left w-full">
         <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-1.5">
-          QUALIFIED LEADS · MONTHLY
+          GROWTH PIPELINE
         </div>
-        <div className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 mb-1">
-          1,204
+        <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 mb-1">
+          Active Demand
         </div>
         <div className="text-xs text-zinc-500 font-medium">
-          +18% organic growth vs last month
+          Continuous inbound buyer traffic
         </div>
       </div>
     ),
     projectData: {
       id: 'showcase-5',
-      title: 'Maison D2C Online Store',
-      category: 'E-Commerce · Checkout Rebuild',
+      title: 'D2C E-Commerce Growth Platform',
+      category: 'E-Commerce · Digital Marketing',
       image: '/portfolite/proj-2.png',
-      client: 'Priya Sharma, Founder',
+      client: 'Brand Founder',
       year: '2025',
       description:
-        'Headless storefront with 1.4s load time, streamlined checkout funnel, and full-funnel remarketing acquisition.',
-      deliverables: ['Headless Storefront', 'Checkout Rebuild', 'Meta Ads'],
-      results: '+60% Revenue · 1,204 Leads',
+        'Fast mobile-first storefront, streamlined checkout funnel, and full-funnel digital marketing campaigns.',
+      deliverables: ['E-Commerce Storefront', 'Checkout Rebuild', 'Performance Marketing'],
+      results: 'Compounding Revenue & Leads',
     },
   },
   {
@@ -617,27 +623,27 @@ const SHOWCASE_CARDS: ShowcaseCardItem[] = [
     glassWidget: (
       <div className="text-left w-full">
         <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-1.5">
-          ATTRIBUTION · ROAS
+          ATTRIBUTION & ROI
         </div>
-        <div className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 mb-1">
-          4.6×
+        <div className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 mb-1">
+          Profitable Growth
         </div>
         <div className="text-xs text-zinc-500 font-medium">
-          average ROAS · 2.1M verified views
+          Full-funnel attribution and scalable return
         </div>
       </div>
     ),
     projectData: {
       id: 'showcase-6',
-      title: 'Northline Heavy Industries',
-      category: 'Corporate Film & TVC',
+      title: 'Industrial Brand Media & Campaign',
+      category: 'Content Marketing & Video Production',
       image: '/portfolite/proj-3.png',
-      client: 'Marketing Head, Northline',
+      client: 'Marketing Head',
       year: '2024',
       description:
-        'Cinematic brand film shot across two manufacturing hubs, distributed with an account-based campaign to 900 institutional buyers.',
-      deliverables: ['Brand Film', 'Factory Cinematography', 'Social Cuts'],
-      results: '2.1M Views · 4.6× ROAS',
+        'Cinematic brand media and account-based digital campaigns tailored to enterprise decision makers.',
+      deliverables: ['Brand Film', 'Content Strategy', 'Targeted Distribution'],
+      results: 'Qualified Inbound Pipeline',
     },
   },
 ];

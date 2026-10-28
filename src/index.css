@@ -1306,7 +1306,7 @@ img {
   animation: streamWaterfall 1.2s linear infinite;
 }
 
-/* Dynamic Showcase Marquee & Breathing Pixel Texture */
+/* Dynamic Showcase Marquee & Fast Breathing Pixel Texture */
 @keyframes marqueeShowcase {
   0% { transform: translate3d(0, 0, 0); }
   100% { transform: translate3d(-50%, 0, 0); }
@@ -1315,7 +1315,7 @@ img {
 .animate-marquee-showcase {
   display: flex;
   width: max-content;
-  animation: marqueeShowcase 38s linear infinite;
+  animation: marqueeShowcase 28s linear infinite;
   will-change: transform;
 }
 
@@ -1324,31 +1324,40 @@ img {
 }
 
 @keyframes pixelBreathe1 {
-  0%, 100% { opacity: 0.95; }
-  50% { opacity: 0.38; }
+  0%, 100% { opacity: 0.98; }
+  50% { opacity: 0.22; }
 }
 
 @keyframes pixelBreathe2 {
-  0%, 100% { opacity: 0.42; }
+  0%, 100% { opacity: 0.25; }
   50% { opacity: 1; }
 }
 
 @keyframes pixelBreathe3 {
-  0%, 100% { opacity: 0.82; }
-  33% { opacity: 0.32; }
+  0%, 100% { opacity: 0.9; }
+  33% { opacity: 0.2; }
   66% { opacity: 1; }
 }
 
+@keyframes pixelBreathe4 {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.95; }
+}
+
 .mg-pixel-1 {
-  animation: pixelBreathe1 3.4s ease-in-out infinite;
+  animation: pixelBreathe1 0.9s ease-in-out infinite;
 }
 
 .mg-pixel-2 {
-  animation: pixelBreathe2 4.2s ease-in-out infinite 0.7s;
+  animation: pixelBreathe2 1.15s ease-in-out infinite 0.2s;
 }
 
 .mg-pixel-3 {
-  animation: pixelBreathe3 2.9s ease-in-out infinite 1.4s;
+  animation: pixelBreathe3 0.75s ease-in-out infinite 0.35s;
+}
+
+.mg-pixel-4 {
+  animation: pixelBreathe4 1.0s ease-in-out infinite 0.15s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1357,9 +1366,8 @@ img {
   }
   .mg-pixel-1,
   .mg-pixel-2,
-  .mg-pixel-3 {
-    animation: none !important;
-  }
+  .mg-pixel-3,
+  .mg-pixel-4,
   .mg-pane-left,
   .mg-pane-right,
   .mg-cursor-pane,
