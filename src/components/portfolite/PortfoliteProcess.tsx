@@ -5,8 +5,8 @@ import { ArtcraftGalaxyCanvas } from '../ArtcraftGalaxyCanvas';
 
 const PROCESS_COLUMNS = [
   {
-    label: 'Interfacer',
-    title: 'Our AI harness that makes it easy to design and build software.',
+    label: '01 · Discovery',
+    title: 'Commercial and technical roadmaps tailored to your growth goals.',
     illustration: (
       <svg
         viewBox="0 0 200 130"
@@ -56,8 +56,8 @@ const PROCESS_COLUMNS = [
     ),
   },
   {
-    label: 'Canvas',
-    title: 'Full manual control when you want it. What you see is what you get.',
+    label: '02 · Interface Design',
+    title: 'Interactive prototypes and design systems built for high conversion.',
     illustration: (
       <svg
         viewBox="0 0 200 130"
@@ -102,8 +102,8 @@ const PROCESS_COLUMNS = [
     ),
   },
   {
-    label: 'Operand',
-    title: 'Our own development framework, custom built for your apps.',
+    label: '03 · Engineering',
+    title: 'High-performance Next.js platforms, custom CRM, and cloud infrastructure.',
     illustration: (
       <svg
         viewBox="0 0 200 130"
@@ -147,8 +147,8 @@ const PROCESS_COLUMNS = [
     ),
   },
   {
-    label: 'Operators',
-    title: 'Autonomous AI agents that build and scale your business.',
+    label: '04 · Growth & Scale',
+    title: 'Page-one organic search dominance and compounding lead pipelines.',
     illustration: (
       <svg
         viewBox="0 0 200 130"
@@ -257,11 +257,12 @@ export default function PortfoliteProcess() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Header */}
         <div className="max-w-3xl mb-16 sm:mb-20">
+          <p className="text-xs uppercase tracking-widest text-zinc-500 font-mono mb-3">Our Delivery Process</p>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-black leading-[1.08]">
-            Built for software businesses.
+            Engineered for enterprise scale.
           </h2>
           <p className="mt-4 sm:mt-5 text-zinc-600 text-base sm:text-lg font-light leading-relaxed max-w-2xl">
-            Every part of ARKA was built specifically to make it easy to turn an idea into something real that people want.
+            From technical architecture to search dominance — every phase of our delivery process turns business requirements into scalable, high-converting digital products.
           </p>
         </div>
 
