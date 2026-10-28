@@ -153,9 +153,9 @@ void main() {
   gl.linkProgram(prog);
   if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return null;
 
-  // High-performance calibrated particle grid (50,400 particles for buttery 120 FPS)
-  const rows = 180;
-  const cols = 280;
+  // High-performance calibrated particle grid (18,700 particles for smooth 60/120 FPS on all laptops)
+  const rows = 110;
+  const cols = 170;
   const numPoints = rows * cols;
   const gridData = new Float32Array(numPoints * 3);
   let fIdx = 0;

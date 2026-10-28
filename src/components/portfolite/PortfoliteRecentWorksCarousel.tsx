@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { ArrowUpRight, ArrowDownLeft } from 'lucide-react';
 import ProjectModal, { ProjectData } from './ProjectModal';

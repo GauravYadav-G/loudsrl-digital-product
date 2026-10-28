@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 import { ArrowRight, Lightbulb, ListChecks, Rocket } from 'lucide-react';
 import { ArtcraftGalaxyCanvas } from '../ArtcraftGalaxyCanvas';

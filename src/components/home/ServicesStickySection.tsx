@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import Link from '@/components/Link';
 import { creerReleve, ReleveInstance } from './releve';
 
 const SERVICES = [
@@ -119,8 +121,10 @@ export default function ServicesStickySection() {
       }
     };
 
+    let isNearViewport = false;
     let scrollRaf = 0;
     const scheduleScroll = () => {
+      if (!isNearViewport) return;
       if (!scrollRaf) scrollRaf = requestAnimationFrame(() => {
         scrollRaf = 0;
         handleScroll();
@@ -134,6 +138,7 @@ export default function ServicesStickySection() {
     // 3. Initialize and run the particle render loop only while nearby.
     const observer = new IntersectionObserver(
       ([entry]) => {
+        isNearViewport = entry.isIntersecting;
         if (entry.isIntersecting) {
           initializeReleve();
           releve?.start();
@@ -142,7 +147,7 @@ export default function ServicesStickySection() {
           releve?.stop();
         }
       },
-      { rootMargin: '240px 0px', threshold: 0 }
+      { rootMargin: '400px 0px', threshold: 0 }
     );
     observer.observe(track);
 

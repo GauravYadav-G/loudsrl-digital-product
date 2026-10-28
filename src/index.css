@@ -916,25 +916,27 @@ img {
 
 /* ── Portfolite Framer Aesthetics & Utilities ── */
 @keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translate3d(0%, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 @keyframes marquee-reverse {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0%); }
+  0% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0%, 0, 0); }
 }
 
 .animate-marquee {
   display: flex;
   width: max-content;
   animation: marquee 30s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee-slow {
   display: flex;
   width: max-content;
   animation: marquee 45s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee:hover,

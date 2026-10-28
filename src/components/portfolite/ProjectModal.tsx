@@ -1,3 +1,5 @@
+'use client';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Calendar, Tag, User, CheckCircle2, ArrowRight } from 'lucide-react';
 

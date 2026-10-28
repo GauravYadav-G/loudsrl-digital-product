@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, ArrowRight } from 'lucide-react';
@@ -15,7 +17,14 @@ export default function PortfoliteHero() {
   const line2Words = ['need', 'Indeed'];
 
   const scrollToProjects = () => {
-    document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
+    const target = document.querySelector('#projects');
+    if (!target) return;
+    const lenis = (window as unknown as { __lenis?: { scrollTo: (t: Element | string, opt?: object) => void } }).__lenis;
+    if (lenis) {
+      lenis.scrollTo(target, { offset: -70 });
+    } else {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -34,10 +43,10 @@ export default function PortfoliteHero() {
         <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
           {/* Framer "Crafting Unique" Pill */}
           <motion.div
-            initial={{ opacity: 0, y: -16, filter: 'blur(6px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/25 border border-white/25 backdrop-blur-xl shadow-sm cursor-default"
+            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/40 border border-white/25 shadow-sm cursor-default"
           >
             <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
             <span className="text-xs sm:text-[13px] text-white font-medium tracking-wide">
@@ -47,11 +56,11 @@ export default function PortfoliteHero() {
 
           {/* Interactive Palette Shuffle Badge */}
           <motion.button
-            initial={{ opacity: 0, y: -16, filter: 'blur(6px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             onClick={shuffleColor}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/25 border border-white/25 hover:border-white/50 backdrop-blur-xl shadow-sm transition-all cursor-pointer group"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 border border-white/25 hover:border-white/50 shadow-sm transition-all cursor-pointer group"
             title="Click to shuffle fluid shader animation colors"
           >
             <span
@@ -75,11 +84,11 @@ export default function PortfoliteHero() {
               <motion.span
                 key={word}
                 style={{ color: '#ffffff' }}
-                initial={{ opacity: 0.001, y: 16, filter: 'blur(10px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 0.7,
-                  delay: 0.15 + i * 0.08,
+                  duration: 0.6,
+                  delay: 0.12 + i * 0.07,
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 className="inline-block"
@@ -93,11 +102,11 @@ export default function PortfoliteHero() {
               <motion.span
                 key={word}
                 style={{ color: word === 'Indeed' ? 'rgba(255, 255, 255, 0.75)' : '#ffffff' }}
-                initial={{ opacity: 0.001, y: 16, filter: 'blur(10px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 0.7,
-                  delay: 0.5 + i * 0.08,
+                  duration: 0.6,
+                  delay: 0.45 + i * 0.07,
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 className={`inline-block ${word === 'Indeed' ? 'font-light' : ''}`}

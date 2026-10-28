@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, ArrowRight, Sparkles, TrendingUp } from 'lucide-react';
@@ -133,20 +135,20 @@ export default function PortfoliteProjectsGrid() {
     <div
       key={proj.id}
       onClick={() => setSelectedProject(proj)}
-      className={`group relative overflow-hidden rounded-xl sm:rounded-2xl bg-white border border-black/10 hover:border-black/30 transition-all duration-500 cursor-pointer shadow-xl ${
+      className={`group relative overflow-hidden rounded-xl sm:rounded-2xl bg-white border border-black/10 hover:border-black/30 transition-[border-color,box-shadow] duration-300 cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:shadow-xl ${
         featured ? 'ring-1 ring-black/15' : ''
       }`}
     >
       {/* Category Pill Tag (Top Left) */}
       <div className="absolute top-3.5 left-3.5 z-20 pointer-events-none flex items-center gap-2">
-        <span className="px-2.5 py-1 rounded-full text-[10.5px] font-medium tracking-wide bg-white/85 backdrop-blur-md border border-black/12 text-zinc-800 shadow-sm">
+        <span className="px-2.5 py-1 rounded-full text-[10.5px] font-medium tracking-wide bg-white/95 border border-black/12 text-zinc-800 shadow-sm">
           {proj.category}
         </span>
       </div>
 
       {/* Result Metric Tag (Top Right) */}
       <div className="absolute top-3.5 right-3.5 z-20 pointer-events-none">
-        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wide bg-solar/15 backdrop-blur-md border border-solar/35 text-solar flex items-center gap-1 shadow-sm">
+        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wide bg-solar/15 border border-solar/35 text-solar flex items-center gap-1 shadow-sm">
           <TrendingUp className="w-2.5 h-2.5" />
           <span>{proj.results.split(' ')[0]}</span>
         </span>
@@ -157,16 +159,17 @@ export default function PortfoliteProjectsGrid() {
         <img
           src={proj.image}
           alt={proj.title}
-          loading="lazy"
-          className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 ease-out"
+          loading="eager"
+          decoding="async"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
         />
 
         {/* Subtle Dark Vignette at Bottom for Frosted Pill Contrast */}
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
 
-        {/* Permanent Frosted Glass "View Casestudy" Button (Authentic Framer Component) */}
+        {/* Permanent Glass "View Casestudy" Button (Authentic Framer Component) */}
         <div className="absolute bottom-3 sm:bottom-3.5 inset-x-3 sm:inset-x-3.5 z-20">
-          <div className="w-full h-10 sm:h-11 rounded-full border border-black/15 bg-white/95 hover:bg-white group-hover:border-black/35 backdrop-blur-md flex items-center justify-center gap-2 text-black text-xs sm:text-[13px] font-medium tracking-wide transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.12)]">
+          <div className="w-full h-10 sm:h-11 rounded-full border border-black/15 bg-white/95 hover:bg-white group-hover:border-black/35 flex items-center justify-center gap-2 text-black text-xs sm:text-[13px] font-medium tracking-wide transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.12)]">
             <span>View Casestudy</span>
             <ArrowUpRight className="w-3.5 h-3.5 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </div>
@@ -184,57 +187,42 @@ export default function PortfoliteProjectsGrid() {
       {/* Background Subtle Radial Light Pool (GPU Accelerated without heavy blur filter) */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[700px] bg-[radial-gradient(ellipse_at_center,rgba(228,228,231,0.45)_0%,rgba(228,228,231,0)_70%)] rounded-full pointer-events-none" style={{ transform: 'translate3d(-50%, -50%, 0)' }} />
 
-      <div className="max-w-[1520px] mx-auto px-3 sm:px-6">
-        {/* Exact Framer Top Mask Gradient Container */}
-        <div className="framer-mask-gradient py-2">
+      <div className="max-w-[1520px] mx-auto px-3 sm:px-6 relative">
+        {/* Hardware-accelerated edge fades (0% GPU composite penalty) */}
+        <div className="pointer-events-none absolute inset-x-3 sm:inset-x-6 top-0 h-12 bg-gradient-to-b from-white via-white/80 to-transparent z-20" />
+        <div className="pointer-events-none absolute inset-x-3 sm:inset-x-6 bottom-16 sm:bottom-20 h-12 bg-gradient-to-t from-white via-white/80 to-transparent z-20" />
+
+        <div className="py-2">
           {/* Outer Parallax Flex Columns (Gap 10px-12px exactly like Framer) */}
           <div className="flex flex-col md:flex-row items-start justify-center gap-2.5 sm:gap-3">
             {/* Column 1 (Left Column) */}
             <motion.div
-              style={{ y: scrollYCol1, willChange: 'transform' }}
-              className="flex-1 w-full"
+              style={{ y: scrollYCol1 }}
+              className="flex-1 w-full will-change-transform"
             >
-              <motion.div
-                initial={{ opacity: 1, y: -120, scale: 1 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, amount: 0.05 }}
-                transition={{ type: 'spring', stiffness: 50, damping: 30, mass: 1 }}
-                className="w-full flex flex-col gap-2.5 sm:gap-3"
-              >
+              <div className="w-full flex flex-col gap-2.5 sm:gap-3">
                 {projectsCol1.map((p) => renderProjectCard(p))}
-              </motion.div>
+              </div>
             </motion.div>
 
             {/* Column 5 (Center Column - Elevated Flagship Scale) */}
             <motion.div
-              style={{ y: scrollYCol5, willChange: 'transform' }}
-              className="flex-[1.22] w-full z-10"
+              style={{ y: scrollYCol5 }}
+              className="flex-[1.22] w-full z-10 will-change-transform"
             >
-              <motion.div
-                initial={{ opacity: 1, y: -80, scale: 1.3 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, amount: 0.05 }}
-                transition={{ type: 'spring', stiffness: 50, damping: 30, mass: 1 }}
-                className="w-full flex flex-col gap-2.5 sm:gap-3"
-              >
+              <div className="w-full flex flex-col gap-2.5 sm:gap-3">
                 {projectsCol5.map((p) => renderProjectCard(p, true))}
-              </motion.div>
+              </div>
             </motion.div>
 
             {/* Column 6 (Right Column) */}
             <motion.div
-              style={{ y: scrollYCol6, willChange: 'transform' }}
-              className="flex-1 w-full"
+              style={{ y: scrollYCol6 }}
+              className="flex-1 w-full will-change-transform"
             >
-              <motion.div
-                initial={{ opacity: 1, y: -160, scale: 1 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, amount: 0.05 }}
-                transition={{ type: 'spring', stiffness: 50, damping: 30, mass: 1 }}
-                className="w-full flex flex-col gap-2.5 sm:gap-3"
-              >
+              <div className="w-full flex flex-col gap-2.5 sm:gap-3">
                 {projectsCol6.map((p) => renderProjectCard(p))}
-              </motion.div>
+              </div>
             </motion.div>
           </div>
         </div>

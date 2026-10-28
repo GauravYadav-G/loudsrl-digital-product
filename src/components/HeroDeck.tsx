@@ -1,10 +1,13 @@
+'use client';
+
 import { useState } from 'react';
-import { Link, useOutletContext } from 'react-router-dom';
+import Link from '@/components/Link';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, ChevronUp, Sparkles, X } from 'lucide-react';
 import { CircleArrow, EASE } from './ui';
 import LiquidBackground, { PRESETS, PRESET_NAMES, PRESET_ACCENTS } from './LiquidBackground';
-import type { ScrollControls } from './Layout';
+
+export type ScrollControls = { scrollTo?: (target: string) => void };
 
 const INDUSTRIES = [
   {
@@ -42,7 +45,6 @@ const INDUSTRIES = [
 ] as const;
 
 export default function HeroDeck() {
-  const scroll = useOutletContext<ScrollControls>();
   // Each time the website is opened, randomize the color animation palette
   const [presetIndex, setPresetIndex] = useState(() => Math.floor(Math.random() * PRESETS.length));
   const [industry, setIndustry] = useState<number | null>(null);
@@ -53,11 +55,7 @@ export default function HeroDeck() {
   };
 
   const scrollToContent = () => {
-    if (scroll?.scrollTo) {
-      scroll.scrollTo('#projects');
-    } else {
-      document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
-    }
+    document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
   };
 
 

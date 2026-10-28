@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 
 type Color = [number, number, number];
@@ -132,7 +134,6 @@ void main() {
               + uLighting * max(b * 5.0 - 4.0, 0.0);
   vec3 base = (.3 / uContrast) * uColor1
     + (1.0 - .3 / uContrast) * (uColor1 * a + uColor2 * b + uColor3 * c) + light;
-  base += .022 * (random(gl_FragCoord.xy + uTime) - .5);
   gl_FragColor = vec4(base, 1.0);
 }
 `;
@@ -211,7 +212,7 @@ export default function LiquidBackground({ preset }: { preset: number }) {
     window.addEventListener('pointerleave', leave);
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth < 768 ? 0.75 : 1.0);
+      const dpr = window.innerWidth < 768 ? 0.45 : 0.55;
       const w = Math.round(canvas.clientWidth * dpr);
       const h = Math.round(canvas.clientHeight * dpr);
       if (w > 0 && h > 0 && (canvas.width !== w || canvas.height !== h)) {
@@ -264,7 +265,7 @@ export default function LiquidBackground({ preset }: { preset: number }) {
       one('uSpeed', current.speed);
       one('uAmount', current.amount);
       const isMobile = window.innerWidth < 768;
-      const depthOverride = isMobile ? Math.min(next.depth, 5) : next.depth;
+      const depthOverride = isMobile ? 2 : Math.min(next.depth, 3);
       gl.uniform1i(uniform('uDepth'), depthOverride);
       for (let j = 0; j < 3; j++) gl.uniform3f(uniform(`uColor${j + 1}`), ...current.colors[j]);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
@@ -281,11 +282,29 @@ export default function LiquidBackground({ preset }: { preset: number }) {
       frame = 0;
       last = 0;
     };
+
+    const handleScroll = () => {
+      const scrolledPast = window.scrollY > window.innerHeight * 0.75;
+      if (scrolledPast && isVisible) {
+        isVisible = false;
+        stop();
+      } else if (!scrolledPast && !isVisible) {
+        const rect = canvas.getBoundingClientRect();
+        if (rect.bottom > 50 && rect.top < window.innerHeight) {
+          isVisible = true;
+          start();
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     const observer = new IntersectionObserver(entries => {
-      isVisible = entries.some(entry => entry.isIntersecting);
+      const entry = entries[0];
+      const inHeroZone = window.scrollY <= window.innerHeight * 0.75;
+      isVisible = entry ? (entry.isIntersecting && inHeroZone) : false;
       if (isVisible) start();
       else stop();
-    });
+    }, { threshold: [0, 0.25] });
     observer.observe(canvas);
     const onVisibilityChange = () => document.hidden ? stop() : start();
     document.addEventListener('visibilitychange', onVisibilityChange);
@@ -295,6 +314,7 @@ export default function LiquidBackground({ preset }: { preset: number }) {
       observer.disconnect();
       resizeObserver?.disconnect();
       document.removeEventListener('visibilitychange', onVisibilityChange);
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('pointermove', move);
       window.removeEventListener('pointerleave', leave);
       window.removeEventListener('resize', resize);

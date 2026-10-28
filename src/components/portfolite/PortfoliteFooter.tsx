@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+'use client';
+
+import Link from '@/components/Link';
 import { motion } from 'framer-motion';
 import { ArrowUp, Phone, Mail, MapPin } from 'lucide-react';
 import { SERVICES, COMPANY, OFFICES } from '../../lib/data';

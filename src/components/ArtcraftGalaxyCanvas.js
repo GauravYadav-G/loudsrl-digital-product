@@ -75,13 +75,13 @@ export class ArtcraftGalaxyCanvas {
     this.camera.position.set(0, 0, cameraZ);
     this.camera.lookAt(0, 0, 0);
 
-    // WebGL Renderer with alpha transparency
+    // WebGL Renderer with alpha transparency (optimized for 60/120fps)
     this.renderer = new THREE.WebGLRenderer({
-      antialias: true,
+      antialias: false,
       alpha: true,
-      powerPreference: 'high-performance',
+      powerPreference: 'default',
     });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, window.innerWidth < 768 ? 1.0 : 1.5));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.0));
     this.renderer.setSize(this.width, this.height);
     this.canvas = this.renderer.domElement;
     this.canvas.className = 'artcraft-galaxy-canvas';
@@ -137,7 +137,16 @@ export class ArtcraftGalaxyCanvas {
   }
 
   bindEvents() {
+    this._containerRect = null;
+    this.updateContainerRect = () => {
+      if (this.isVisible) {
+        this._containerRect = this.container.getBoundingClientRect();
+      }
+    };
+    window.addEventListener('scroll', this.updateContainerRect, { passive: true });
+
     this.onResize = () => {
+      this._containerRect = null;
       const rect = this.container.getBoundingClientRect();
       this.width = Math.max(300, rect.width || this.container.clientWidth || window.innerWidth);
       this.height = Math.max(300, rect.height || this.container.clientHeight || window.innerHeight);
@@ -160,7 +169,11 @@ export class ArtcraftGalaxyCanvas {
     }
 
     this.onPointerMove = (e) => {
-      const rect = this.container.getBoundingClientRect();
+      if (!this.isVisible) {
+        if (this.pointer.active) this.pointer.active = false;
+        return;
+      }
+      const rect = this._containerRect || (this._containerRect = this.container.getBoundingClientRect());
       const inX = e.clientX >= rect.left && e.clientX <= rect.right;
       const inY = e.clientY >= rect.top && e.clientY <= rect.bottom;
       if (inX && inY) {
@@ -171,7 +184,7 @@ export class ArtcraftGalaxyCanvas {
         this.pointer.active = false;
       }
     };
-    window.addEventListener('pointermove', this.onPointerMove);
+    window.addEventListener('pointermove', this.onPointerMove, { passive: true });
 
     this.onPointerLeave = () => {
       this.pointer.active = false;
@@ -815,9 +828,9 @@ export class ArtcraftGalaxyCanvas {
     const delta = Math.min(this.clock.getDelta(), 0.05);
     const elapsedTime = this.clock.getElapsedTime();
 
-    // 1. Conveyor progress and celestial spin
+    // 1. Conveyor progress and celestial spin (uses cached rect, 0 forced reflows)
     this.idleProgress += (delta * this.tunables.idleSpeed) / 60;
-    const rect = this.container.getBoundingClientRect();
+    const rect = this._containerRect || (this._containerRect = this.container.getBoundingClientRect());
     const relativeScroll = Math.max(0, window.innerHeight - rect.top);
     const scrollScrub = (relativeScroll * this.tunables.scrub) / 1000;
     const totalProgress = this.idleProgress + scrollScrub;
@@ -1007,6 +1020,9 @@ export class ArtcraftGalaxyCanvas {
     this.stop();
     if (this.observer) {
       this.observer.disconnect();
+    }
+    if (this.updateContainerRect) {
+      window.removeEventListener('scroll', this.updateContainerRect);
     }
     window.removeEventListener('resize', this.onResize);
     if (this.resizeObserver) {

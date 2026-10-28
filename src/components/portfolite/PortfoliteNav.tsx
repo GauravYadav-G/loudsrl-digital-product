@@ -1,5 +1,8 @@
+'use client';
+
 import { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
+import Link from '@/components/Link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronRight, Menu, X, Phone, Mail, MapPin } from 'lucide-react';
 import { NAV, COMPANY } from '../../lib/data';
@@ -10,7 +13,7 @@ export default function PortfoliteNav() {
   const [solid, setSolid] = useState(false);
   const [mobGroup, setMobGroup] = useState<string | null>('Services');
   const closeTimer = useRef<number | null>(null);
-  const loc = useLocation();
+  const pathname = usePathname() || '/';
 
   // Throttled scroll listener to avoid redundant re-renders (120 FPS optimized)
   useEffect(() => {
@@ -39,7 +42,7 @@ export default function PortfoliteNav() {
   useEffect(() => {
     setMobile(false);
     setOpen(null);
-  }, [loc.pathname]);
+  }, [pathname]);
 
   useEffect(() => () => {
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
@@ -69,70 +72,93 @@ export default function PortfoliteNav() {
   };
 
   // Above the hero section on the home page: completely transparent with pure white text
-  const isHome = loc.pathname === '/';
+  const isHome = pathname === '/';
   const isOverHero = isHome && !solid;
 
   return (
     <>
-      <header
-        className={`fixed top-0 inset-x-0 z-[900] transition-all duration-500 font-sans ${
-          isOverHero
-            ? 'bg-transparent border-b border-white/10'
-            : 'bg-white/95 backdrop-blur-xl border-b border-black/10 shadow-[0_4px_24px_rgba(0,0,0,0.06)]'
-        }`}
-      >
-        {/* ── Utility Strip (Offices + Contact, collapses on scroll) ── */}
+      <header className="fixed top-0 inset-x-0 z-[900] font-sans">
+        {/* Hardware-accelerated glassmorphic solid background layer */}
         <div
-          className={`hidden lg:block overflow-hidden transition-all duration-500 ${
-            solid ? 'max-h-0 opacity-0' : 'max-h-10 opacity-100'
+          aria-hidden="true"
+          className={`absolute inset-0 pointer-events-none transition-opacity duration-300 ${
+            isOverHero ? 'opacity-0' : 'opacity-100'
+          } bg-white/95 backdrop-blur-md border-b border-black/10 shadow-[0_2px_12px_rgba(0,0,0,0.06)]`}
+        />
+        {/* Transparent hero boundary line */}
+        <div
+          aria-hidden="true"
+          className={`absolute inset-x-0 bottom-0 pointer-events-none border-b transition-opacity duration-300 ${
+            isOverHero ? 'opacity-100 border-white/10' : 'opacity-0 border-transparent'
           }`}
-        >
-          <div
-            className={`xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 h-9 flex items-center justify-between font-mono text-[9.5px] tracking-[0.16em] uppercase border-b transition-colors duration-300 ${
-              isOverHero ? 'text-white border-white/15' : 'text-zinc-500 border-black/[0.06]'
-            }`}
-          >
-            <span className="flex items-center gap-2">
-              <MapPin className={`h-3 w-3 ${isOverHero ? 'text-white' : 'text-solar'}`} />
-              <span>Noida · Kolkata · Mumbai</span>
-            </span>
-            <span className="flex items-center gap-6">
-              <a
-                href={`tel:${COMPANY.phones[0].replace(/\s/g, '')}`}
-                className={`flex items-center gap-1.5 transition-colors ${
-                  isOverHero ? 'hover:text-white/80' : 'hover:text-solar'
-                }`}
-              >
-                <Phone className="h-3 w-3" />
-                <span>{COMPANY.phones[0]}</span>
-              </a>
-              <a
-                href={`mailto:${COMPANY.email}`}
-                className={`flex items-center gap-1.5 transition-colors ${
-                  isOverHero ? 'hover:text-white/80' : 'hover:text-solar'
-                }`}
-              >
-                <Mail className="h-3 w-3" />
-                <span>{COMPANY.email}</span>
-              </a>
-            </span>
-          </div>
-        </div>
+        />
 
-        {/* ── Main Edge-to-Edge Navigation Bar (Reduced Height by 1 Point) ── */}
-        <div className="xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 h-[70px] sm:h-[80px] flex items-center justify-between gap-6">
-          {/* Official ARKA Technovation Logo: White for Hero section, Black for rest of website */}
-          <Link to="/" className="flex items-center group cursor-pointer shrink-0 py-1" aria-label="ARKA Technovation Home">
-            <img
-              src={isOverHero ? '/images/logo/arka-logo-white.png' : '/images/logo/arka-logo-black.png'}
-              alt="ARKA Technovation"
-              className={`h-11 sm:h-14 lg:h-[62px] w-auto max-w-[280px] sm:max-w-[360px] object-contain transition-all duration-300 group-hover:scale-105 ${
-                isOverHero
-                  ? 'drop-shadow-[0_0_14px_rgba(255,255,255,0.4)]'
-                  : 'drop-shadow-[0_1px_3px_rgba(0,0,0,0.12)]'
+        <div className="relative z-10">
+          {/* ── Utility Strip (Offices + Contact, collapses smoothly on scroll) ── */}
+          <div
+            className="hidden lg:block overflow-hidden transition-[height,opacity] duration-300 ease-out"
+            style={{
+              height: solid ? 0 : 36,
+              opacity: solid ? 0 : 1,
+            }}
+          >
+            <div
+              className={`xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 h-9 flex items-center justify-between font-mono text-[9.5px] tracking-[0.16em] uppercase border-b transition-colors duration-300 ${
+                isOverHero ? 'text-white border-white/15' : 'text-zinc-500 border-black/[0.06]'
               }`}
-            />
-          </Link>
+            >
+              <span className="flex items-center gap-2">
+                <MapPin className={`h-3 w-3 ${isOverHero ? 'text-white' : 'text-solar'}`} />
+                <span>Noida · Kolkata · Mumbai</span>
+              </span>
+              <span className="flex items-center gap-6">
+                <a
+                  href={`tel:${COMPANY.phones[0].replace(/\s/g, '')}`}
+                  className={`flex items-center gap-1.5 transition-colors ${
+                    isOverHero ? 'hover:text-white/80' : 'hover:text-solar'
+                  }`}
+                >
+                  <Phone className="h-3 w-3" />
+                  <span>{COMPANY.phones[0]}</span>
+                </a>
+                <a
+                  href={`mailto:${COMPANY.email}`}
+                  className={`flex items-center gap-1.5 transition-colors ${
+                    isOverHero ? 'hover:text-white/80' : 'hover:text-solar'
+                  }`}
+                >
+                  <Mail className="h-3 w-3" />
+                  <span>{COMPANY.email}</span>
+                </a>
+              </span>
+            </div>
+          </div>
+
+          {/* ── Main Edge-to-Edge Navigation Bar ── */}
+          <div className="xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 h-[70px] sm:h-[80px] flex items-center justify-between gap-6">
+            {/* Official ARKA Technovation Logo: Zero-lag preloaded crossfade between white and black logos */}
+            <Link to="/" className="relative flex items-center group cursor-pointer shrink-0 py-1" aria-label="ARKA Technovation Home">
+              <div className="relative h-11 sm:h-14 lg:h-[62px] w-[180px] sm:w-[240px] lg:w-[280px]">
+                <img
+                  src="/images/logo/arka-logo-white.png"
+                  alt="ARKA Technovation"
+                  loading="eager"
+                  decoding="async"
+                  className={`absolute inset-0 h-full w-auto max-w-full object-contain transition-opacity duration-300 group-hover:scale-105 ${
+                    isOverHero ? 'opacity-100 drop-shadow-[0_0_14px_rgba(255,255,255,0.4)]' : 'opacity-0 pointer-events-none'
+                  }`}
+                />
+                <img
+                  src="/images/logo/arka-logo-black.png"
+                  alt="ARKA Technovation"
+                  loading="eager"
+                  decoding="async"
+                  className={`absolute inset-0 h-full w-auto max-w-full object-contain transition-opacity duration-300 group-hover:scale-105 ${
+                    isOverHero ? 'opacity-0 pointer-events-none' : 'opacity-100 drop-shadow-[0_1px_3px_rgba(0,0,0,0.12)]'
+                  }`}
+                />
+              </div>
+            </Link>
 
           {/* Desktop Navigation Links with Full Height & Underline Indicator */}
           <nav
@@ -144,7 +170,7 @@ export default function PortfoliteNav() {
             }}
           >
             {NAV.map((item) => {
-              const active = item.to === '/' ? loc.pathname === '/' : loc.pathname.startsWith(item.to);
+              const active = item.to === '/' ? pathname === '/' : pathname.startsWith(item.to);
               const isOpen = open === item.label;
 
               return (
@@ -309,7 +335,8 @@ export default function PortfoliteNav() {
             </button>
           </div>
         </div>
-      </header>
+      </div>
+    </header>
 
       {/* ── Mobile Slide-in Drawer ── */}
       <AnimatePresence>
@@ -353,7 +380,7 @@ export default function PortfoliteNav() {
                 {NAV.map((item) => {
                   const hasChildren = item.children && item.children.length > 0;
                   const isGroupOpen = mobGroup === item.label;
-                  const active = item.to === '/' ? loc.pathname === '/' : loc.pathname.startsWith(item.to);
+                  const active = item.to === '/' ? pathname === '/' : pathname.startsWith(item.to);
 
                   return (
                     <div key={item.label} className="border-b border-black/6 pb-1">
@@ -482,12 +509,21 @@ function DropLink({
 }
 
 // Inline CircleArrow icon for precision styling
-function CircleArrow({ size = 16, className = '' }: { size?: number; className?: string }) {
+function CircleArrow({
+  size = 16,
+  className = '',
+  style,
+}: {
+  size?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
   return (
     <svg
       viewBox="0 0 50 50"
       width={size}
       height={size}
+      style={style}
       className={`fill-none stroke-current shrink-0 ${className}`}
       aria-hidden="true"
     >
