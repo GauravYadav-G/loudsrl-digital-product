@@ -26,11 +26,11 @@ export function AboutPage() {
         <div className="mt-12 grid md:grid-cols-12 gap-10">
           <Fade className="md:col-span-5">
             <p className="text-[clamp(1.05rem,1.6vw,1.4rem)] font-light leading-[1.65] text-paper/90">
-              {COMPANY.name} carries forward twelve years of craft from <span className="text-solar">{COMPANY.legacy}</span> — the strategy, software, marketing and film that more than 1,500 brands across India and abroad already trust.
+              {COMPANY.name} carries forward over 17 years of craft — the strategy, software, marketing and film that more than 1,500 brands across India and abroad already trust.
             </p>
-            <p className="mt-6 text-[14.5px] font-light text-paper/55 leading-[1.85]">Founded by Kranti, the company operates from a corporate office in Noida with regional offices in Kolkata and Mumbai. Our team of creative professionals works toward creating perfection in order to achieve the best for our clients.</p>
+            <p className="mt-6 text-[14.5px] font-light text-paper/55 leading-[1.85]">Founded by Kranti, the company operates from its corporate headquarters in Sector 63, Noida. Our team of creative professionals works toward creating perfection in order to achieve the best for our clients.</p>
             <div className="mt-8 grid grid-cols-3 gap-5 border-t border-paper/15 pt-7">
-              {[['2016', 'Founded'], ['3', 'Offices'], ['45+', 'Team members']].map(([v, l], i) => (
+              {[['2016', 'Founded'], ['1', 'Corporate HQ'], ['45+', 'Team members']].map(([v, l], i) => (
                 <Fade key={l} delay={i * .07} y={12}><div><p className="display text-2xl text-gold">{v}</p><p className="mt-1.5 mono text-[0.55rem] tracking-[0.18em] uppercase text-paper/40">{l}</p></div></Fade>
               ))}
             </div>
@@ -54,7 +54,7 @@ export function AboutPage() {
         <div ref={ref} className="xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 py-20">
           <Label>Milestones</Label>
           <div className="mt-10 flex gap-4 overflow-x-auto pb-3">
-            {[['2016', 'The practice begins in Noida'], ['2018', 'Film production launched in-house'], ['2020', 'CRM & software division scaled'], ['2022', 'Kolkata & Mumbai offices opened'], ['2024', '600th manufacturing client'], ['2026', 'Arka Technovation — new chapter']].map(([y, t], i) => (
+            {[['2016', 'The practice begins in Noida'], ['2018', 'Film production launched in-house'], ['2020', 'CRM & software division scaled'], ['2022', 'National enterprise expansion'], ['2024', '600th manufacturing client'], ['2026', 'Arka Technovation — new chapter']].map(([y, t], i) => (
               <Fade key={y} delay={i * .07} y={16}>
                 <div className="group relative w-[210px] shrink-0 border-l border-paper/20 pl-5 hover:border-solar transition-colors duration-500">
                   <span className="absolute -left-[5px] top-1.5 h-2 w-2 rounded-full bg-solar group-hover:scale-150 transition-transform duration-500" />

@@ -25,7 +25,7 @@ export default function PortfoliteCta() {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_8px_#10b981]" />
           </span>
           <span className="text-[12px] sm:text-[13px] font-medium tracking-wide text-zinc-700">
-            Available For New Projects — Noida · Kolkata · Mumbai
+            Available For New Projects — Sector 63, Noida (Delhi NCR)
           </span>
         </div>
 

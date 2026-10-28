@@ -15,7 +15,7 @@ export default function PortfoliteTestimonials() {
     {
       name: 'Priya Sharma',
       role: 'Founder, Maison D2C',
-      location: 'Mumbai',
+      location: 'D2C Brand',
       avatar: '/portfolite/avatar-2.jpg',
       quote:
         'Transparent reporting, real numbers, every month. Our organic traffic rose 150% in six months and revenue followed by sixty percent. The ROAS has completely transformed our margins.',

@@ -98,7 +98,7 @@ export default function PortfoliteAbout() {
                 <div>
                   <p className="text-white font-bold text-base sm:text-lg">Mr. Kranti Parashar</p>
                   <p className="text-zinc-300 text-xs">Founder &amp; Director · ARKA Technovation</p>
-                  <p className="text-zinc-400 text-[11px] mt-0.5">Noida · Kolkata · Mumbai</p>
+                  <p className="text-zinc-400 text-[11px] mt-0.5">Sector 63, Noida (Delhi NCR)</p>
                 </div>
                 <div className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-[11px] font-semibold">
                   17+ Years

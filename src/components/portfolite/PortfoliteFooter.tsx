@@ -191,7 +191,7 @@ export default function PortfoliteFooter() {
             <Link to="/contact" className="hover:text-paper transition-colors">Support SLA</Link>
             <a href="#" className="hover:text-paper transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-paper transition-colors">Terms</a>
-            <span className="text-paper/50">Noida · Kolkata · Mumbai</span>
+            <span className="text-paper/50">Sector 63, Noida (Delhi NCR)</span>
           </div>
         </div>
       </div>

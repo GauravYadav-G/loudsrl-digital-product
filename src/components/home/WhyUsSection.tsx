@@ -36,7 +36,7 @@ const WHY_US_ITEMS = [
     last: true,
     title: 'A team that’s ultra responsive',
     sub: 'Small team, big availability.',
-    text: 'We’re an independent, human-sized studio, and genuinely available across Noida, Kolkata, and Mumbai hubs. Got a question? An idea to test? We’re here, fast, no delays.',
+    text: 'We’re an independent, human-sized studio, and genuinely available from our Sector 63, Noida headquarters. Got a question? An idea to test? We’re here, fast, no delays.',
     img: '/_astro/why-responsive-team.CUOm7YkS_2rEQPE.webp',
     alt: 'Ultra responsive agile engineering studio',
   },

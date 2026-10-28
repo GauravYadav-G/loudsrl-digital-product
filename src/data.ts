@@ -160,7 +160,7 @@ export const STATS = [
 
 export const TESTIMONIALS = [
   { quote: 'They rebuilt our digital presence end-to-end — website, SEO and film. Enquiries didn’t just grow, they became the right kind of enquiries.', name: 'Rajesh Verma', role: 'Director, Precision Engineering Co.', place: 'Delhi NCR', metric: '+300% traffic' },
-  { quote: 'Transparent reporting, real numbers, every month. Our organic traffic rose 150% in six months and sales followed by 60%.', name: 'Priya Sharma', role: 'Founder, Maison D2C', place: 'Mumbai', metric: '4.6× ROAS' },
+  { quote: 'Transparent reporting, real numbers, every month. Our organic traffic rose 150% in six months and sales followed by 60%.', name: 'Priya Sharma', role: 'Founder, Maison D2C', place: 'India', metric: '4.6× ROAS' },
   { quote: 'One team for software, marketing and film. Our CRM saves each team hours every week — and support actually picks up the phone.', name: 'Amit Patel', role: 'CEO, Industrial Solutions', place: 'Ahmedabad', metric: '12h saved / wk' },
   { quote: 'Creative that looks world-class and strategy that behaves like it. That combination is rare, and it is why we have stayed for years.', name: 'Sneha Kulkarni', role: 'CMO, Meridian Healthcare', place: 'Bengaluru', metric: '3.4× engagement' },
   { quote: 'The brand film opened doors our sales team had been knocking on for two years. Four hundred and eighty qualified leads from one campaign.', name: 'Harpreet Singh', role: 'Marketing Head, Northline', place: 'Ludhiana', metric: '2.1M views' },

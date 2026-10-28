@@ -109,7 +109,7 @@ export default function PortfoliteNav() {
             >
               <span className="flex items-center gap-2">
                 <MapPin className={`h-3 w-3 ${isOverHero ? 'text-white' : 'text-solar'}`} />
-                <span>Noida · Kolkata · Mumbai</span>
+                <span>Corporate HQ · Sector 63, Noida</span>
               </span>
               <span className="flex items-center gap-6">
                 <a
@@ -465,7 +465,7 @@ export default function PortfoliteNav() {
                 <div className="font-mono text-[9px] tracking-[0.16em] uppercase text-zinc-500 space-y-1 text-center">
                   <p>{COMPANY.phones[0]}</p>
                   <p>{COMPANY.email}</p>
-                  <p>Noida · Kolkata · Mumbai</p>
+                  <p>Sector 63, Noida · Delhi NCR</p>
                 </div>
               </div>
             </motion.div>

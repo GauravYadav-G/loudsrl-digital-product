@@ -20,8 +20,6 @@ export const COMPANY = {
 
 export const OFFICES = [
   { label: 'Corporate Office', city: 'Noida', lines: ['A-82, Sector 63', 'Noida, Uttar Pradesh 201301'], primary: true },
-  { label: 'Regional Office', city: 'Kolkata', lines: ['7/1, Marhatta Ditch Lane', 'Kolkata, West Bengal'] },
-  { label: 'Regional Office', city: 'Mumbai', lines: ['304, Peninsula Spenta-1', 'Senapati Bapat Marg, Lower Parel'] },
 ];
 
 export const STATS = [
@@ -329,7 +327,7 @@ export const ROLES = [
 export const FAQS = [
   { q: 'What does Arka Technovation do?', a: 'Ten services across three disciplines: marketing (SEO, digital marketing, digital advertising, content, analytics), technology (web development, CRM software, e-commerce) and creative (film making, UX and interactive design). One in-house team delivers all of it.' },
   { q: 'Who leads ARKA Technovation?', a: 'ARKA Technovation is founded and led by Mr. Kranti Parashar, an eminent leader with over 17 years of experience in enterprise technology, strategic finance, and corporate communication.' },
-  { q: 'Where are your offices?', a: 'Our corporate office is at A-82, Sector 63, Noida, Uttar Pradesh. Regional offices operate in Kolkata at 7/1, Marhatta Ditch Lane, and in Mumbai at 304, Peninsula Spenta-1, Senapati Bapat Marg, Lower Parel.' },
+  { q: 'Where are your offices?', a: 'Our corporate office is located at A-82, Sector 63, Noida, Uttar Pradesh (Delhi NCR).' },
   { q: 'How long does a project take?', a: 'A corporate website ships in three to six weeks. E-commerce and mobile apps run eight to sixteen. Custom CRM depends on scope and is planned in milestones. Marketing engines show measurable movement in sixty to ninety days.' },
   { q: 'Do you provide reports after launch?', a: 'Yes. Monthly performance reports, a live dashboard, quarterly strategy reviews and a named account contact. Maintenance, hosting and iteration are available as retainers or per project.' },
   { q: 'What does it cost?', a: 'Focused websites and single campaigns start around ₹1 lakh. Retainers typically run ₹40,000 to ₹2,50,000 per month depending on scope. After the discovery call you receive a written proposal with a fixed number, not a range.' },
@@ -337,7 +335,7 @@ export const FAQS = [
 
 export const TESTIMONIALS_LITE = [
   { quote: 'They rebuilt our digital presence end-to-end — website, SEO and film. Enquiries did not just grow, they became the right kind of enquiries.', name: 'Rajesh Verma', role: 'Director, Precision Engineering · Delhi NCR', metric: '+300% traffic' },
-  { quote: 'Transparent reporting, real numbers, every month. Our organic traffic rose 150% in six months and sales followed by sixty percent.', name: 'Priya Sharma', role: 'Founder, Maison D2C · Mumbai', metric: '4.6× ROAS' },
+  { quote: 'Transparent reporting, real numbers, every month. Our organic traffic rose 150% in six months and sales followed by sixty percent.', name: 'Priya Sharma', role: 'Founder, Maison D2C', metric: '4.6× ROAS' },
   { quote: 'One team for software, marketing and film. Our CRM saves each team hours every week — and support actually picks up the phone.', name: 'Amit Patel', role: 'CEO, Industrial Solutions · Ahmedabad', metric: '12h saved / week' },
   { quote: 'Creative that looks world-class and strategy that behaves like it. That combination is rare, and it is why we have stayed for years.', name: 'Sneha Kulkarni', role: 'CMO, Meridian Healthcare · Bengaluru', metric: '3.4× engagement' },
 ];
