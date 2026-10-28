@@ -53,6 +53,10 @@ export class ArtcraftGalaxyCanvas {
     this.cards = [];
     this.textureCache = new Map();
 
+    // Nearest-neighbor cache for O(n²) collision avoidance (updated every 3rd frame)
+    this._nnFrame = 0;
+    this._nnCache = null;
+
     this.init();
   }
 
@@ -77,7 +81,7 @@ export class ArtcraftGalaxyCanvas {
       alpha: true,
       powerPreference: 'high-performance',
     });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, window.innerWidth < 768 ? 1.0 : 1.5));
     this.renderer.setSize(this.width, this.height);
     this.canvas = this.renderer.domElement;
     this.canvas.className = 'artcraft-galaxy-canvas';
@@ -292,7 +296,10 @@ export class ArtcraftGalaxyCanvas {
 
     // Floating logo count tailored for extra large prominent nodes: 22 to 30 floating nodes
     const mpx = (this.width * this.height) / 1e6;
-    const cardN = Math.max(22, Math.min(30, Math.round(26 * (mpx / 1.2))));
+    const isMobile = window.innerWidth < 768;
+    const cardN = isMobile
+      ? Math.max(12, Math.min(18, Math.round(16 * (mpx / 1.2))))
+      : Math.max(22, Math.min(30, Math.round(26 * (mpx / 1.2))));
 
     // ONE Unified Wheel containing all 31 services & technologies
     const items = this.getAllServicesItems();
@@ -901,16 +908,23 @@ export class ArtcraftGalaxyCanvas {
       this.canvas.style.cursor = targetIdx >= 0 ? 'pointer' : 'default';
     }
 
-    // 5. Dynamic Collision-Free Nearest-Neighbor Sizing
+    // 5. Dynamic Collision-Free Nearest-Neighbor Sizing (cached every 3 frames)
+    this._nnFrame = (this._nnFrame + 1) % 3;
+    const shouldRecalcNN = this._nnFrame === 0;
+
     for (let i = 0; i < this.cards.length; i++) {
       const card = this.cards[i];
-      let nearestDist = Infinity;
+      let nearestDist = (this._nnCache && !shouldRecalcNN) ? (this._nnCache[i] ?? Infinity) : Infinity;
 
-      for (let j = 0; j < this.cards.length; j++) {
-        if (i === j) continue;
-        const other = this.cards[j];
-        const dist = Math.hypot(other.x - card.x, other.y - card.y);
-        if (dist < nearestDist) nearestDist = dist;
+      if (shouldRecalcNN) {
+        for (let j = 0; j < this.cards.length; j++) {
+          if (i === j) continue;
+          const other = this.cards[j];
+          const dist = Math.hypot(other.x - card.x, other.y - card.y);
+          if (dist < nearestDist) nearestDist = dist;
+        }
+        if (!this._nnCache) this._nnCache = new Float32Array(this.cards.length);
+        this._nnCache[i] = nearestDist;
       }
 
       // Smooth size ramp from birth to outer edge

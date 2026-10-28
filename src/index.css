@@ -120,7 +120,7 @@ body {
 }
 
 .site-button {
-  min-height: 44px;
+  min-height: 40px;
   align-items: center;
   justify-content: center;
   gap: 0.625rem;
@@ -130,6 +130,36 @@ body {
   transition-property: transform, color, background-color, border-color, box-shadow;
   transition-duration: 240ms;
   transition-timing-function: var(--arka-ease-out);
+}
+
+/* Ensure all black/dark buttons and links across the site always have crisp white text */
+.site-button.bg-black,
+.site-button.bg-black *,
+.site-button[class*="bg-black"],
+.site-button[class*="bg-black"] *,
+.site-button.text-white,
+.site-button.text-white *,
+.site-button[class*="text-white"],
+.site-button[class*="text-white"] *,
+a.bg-black,
+a.bg-black *,
+button.bg-black,
+button.bg-black *,
+.framer-btn-primary,
+.framer-btn-primary * {
+  color: #FFFFFF !important;
+  fill: #FFFFFF !important;
+}
+
+/* Ensure light/white buttons have crisp black text */
+.site-button.bg-white,
+.site-button.bg-white *,
+.site-button[class*="bg-white"],
+.site-button[class*="bg-white"] *,
+.site-button.text-black,
+.site-button.text-black * {
+  color: #000000 !important;
+  fill: #000000 !important;
 }
 
 .framer-btn-primary {
@@ -176,14 +206,16 @@ body {
 .grain-layer::after {
   content: "";
   position: fixed;
-  inset: -60%;
-  width: 220%;
-  height: 220%;
+  inset: -30%;
+  width: 160%;
+  height: 160%;
   pointer-events: none;
   z-index: 60;
   opacity: .05;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation: grain 7s steps(8) infinite;
+  will-change: transform;
+  contain: layout style paint;
 }
 
 @keyframes grain {
@@ -323,6 +355,7 @@ body {
 
 .arka-marquee {
   animation: marquee 42s linear infinite;
+  will-change: transform;
 }
 
 @keyframes showcaseKenBurns {
@@ -343,10 +376,12 @@ body {
 
 .marquee-slow {
   animation: marquee 70s linear infinite;
+  will-change: transform;
 }
 
 .marquee-rev {
   animation: marquee-rev 55s linear infinite;
+  will-change: transform;
 }
 
 @keyframes marquee-rev {
@@ -486,6 +521,13 @@ img {
   .blobs .blob {
     animation: none !important;
   }
+
+  .grain-layer::after { animation: none !important; }
+  .animate-ken-burns { animation: none !important; }
+  .spin-slow, .spin-slower { animation: none !important; }
+  .drift { animation: none !important; }
+  .pulse-dot { animation: none !important; }
+  .bounce-left, .bounce-right { animation: none !important; }
 }
 
 @media (max-height: 600px) {
@@ -983,6 +1025,7 @@ html.lenis body {
 
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
+  contain: layout;
 }
 
 .lenis.lenis-smooth [data-lenis-prevent] {
@@ -995,5 +1038,6 @@ html.lenis body {
 
 img {
   content-visibility: auto;
+  decoding: async;
 }
 

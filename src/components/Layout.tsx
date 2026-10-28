@@ -1,29 +1,32 @@
 import { useEffect, useRef } from 'react';
 import { Outlet } from 'react-router-dom';
 import Lenis from 'lenis';
+import { frame, cancelFrame } from 'framer-motion';
 import FloatingSocialWidget from './FloatingSocialWidget';
 
 export default function Layout() {
   const lenis = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const l = new Lenis({
-      lerp: 0.1,
-      duration: 1.0,
-      smoothWheel: true,
+      lerp: prefersReducedMotion ? 1 : 0.1,
+      duration: prefersReducedMotion ? 0 : 1.0,
+      smoothWheel: !prefersReducedMotion,
       wheelMultiplier: 1.0,
       touchMultiplier: 1.2,
       syncTouch: false,
+      autoRaf: false,
     });
     lenis.current = l;
-    let raf = 0;
-    const loop = (t: number) => {
-      l.raf(t);
-      raf = requestAnimationFrame(loop);
-    };
-    raf = requestAnimationFrame(loop);
+
+    function update(data: { timestamp: number }) {
+      l.raf(data.timestamp);
+    }
+    frame.update(update, true);
+
     return () => {
-      cancelAnimationFrame(raf);
+      cancelFrame(update);
       l.destroy();
       lenis.current = null;
     };

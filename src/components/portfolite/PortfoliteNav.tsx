@@ -119,14 +119,14 @@ export default function PortfoliteNav() {
           </div>
         </div>
 
-        {/* ── Main Edge-to-Edge Navigation Bar ── */}
-        <div className="xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 h-[84px] sm:h-[96px] flex items-center justify-between gap-6">
+        {/* ── Main Edge-to-Edge Navigation Bar (Reduced Height by 1 Point) ── */}
+        <div className="xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 h-[70px] sm:h-[80px] flex items-center justify-between gap-6">
           {/* Official ARKA Technovation Logo: White for Hero section, Black for rest of website */}
           <Link to="/" className="flex items-center group cursor-pointer shrink-0 py-1" aria-label="ARKA Technovation Home">
             <img
               src={isOverHero ? '/images/logo/arka-logo-white.png' : '/images/logo/arka-logo-black.png'}
               alt="ARKA Technovation"
-              className={`h-14 sm:h-20 lg:h-[84px] w-auto max-w-[320px] sm:max-w-[420px] object-contain transition-all duration-300 group-hover:scale-105 ${
+              className={`h-11 sm:h-14 lg:h-[62px] w-auto max-w-[280px] sm:max-w-[360px] object-contain transition-all duration-300 group-hover:scale-105 ${
                 isOverHero
                   ? 'drop-shadow-[0_0_14px_rgba(255,255,255,0.4)]'
                   : 'drop-shadow-[0_1px_3px_rgba(0,0,0,0.12)]'
@@ -266,16 +266,31 @@ export default function PortfoliteNav() {
           <div className="flex items-center gap-3 shrink-0">
             <Link
               to="/contact"
-              className={`site-button hidden sm:inline-flex font-sans text-xs tracking-[0.08em] uppercase h-[38px] px-5 items-center gap-2 rounded-full font-semibold shadow-sm group transition-all duration-300 ${
+              className={`site-button hidden sm:inline-flex font-sans text-xs tracking-[0.08em] uppercase h-[36px] px-5 items-center gap-2 rounded-full font-semibold shadow-sm group transition-all duration-300 ${
                 isOverHero
-                  ? 'bg-white text-black hover:bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.2)]'
-                  : 'bg-black text-white hover:bg-zinc-800'
+                  ? 'bg-white !text-black hover:bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.2)]'
+                  : 'bg-black !text-white hover:bg-zinc-800 shadow-[0_2px_10px_rgba(0,0,0,0.18)]'
               }`}
+              style={{
+                color: isOverHero ? '#000000' : '#FFFFFF',
+                backgroundColor: isOverHero ? '#FFFFFF' : '#000000',
+              }}
             >
-              <span>Start a project</span>
+              <span
+                className={isOverHero ? '!text-black' : '!text-white'}
+                style={{ color: isOverHero ? '#000000' : '#FFFFFF' }}
+              >
+                Start a project
+              </span>
               <CircleArrow
                 size={14}
-                className={`${isOverHero ? 'text-black' : 'text-white'} group-hover:rotate-45 transition-transform duration-300`}
+                className={`shrink-0 group-hover:rotate-45 transition-transform duration-300 ${
+                  isOverHero ? '!text-black' : '!text-white'
+                }`}
+                style={{
+                  color: isOverHero ? '#000000' : '#FFFFFF',
+                  stroke: isOverHero ? '#000000' : '#FFFFFF',
+                }}
               />
             </Link>
 
@@ -317,12 +332,12 @@ export default function PortfoliteNav() {
               id="mobile-navigation"
               className="fixed inset-y-0 right-0 w-full max-w-sm bg-white/98 backdrop-blur-2xl z-[950] border-l border-black/[0.08] shadow-2xl flex flex-col lg:hidden text-black font-sans"
             >
-              <div className="h-[84px] px-5 flex items-center justify-between border-b border-black/8">
+              <div className="h-[70px] sm:h-[80px] px-5 flex items-center justify-between border-b border-black/8">
                 <Link to="/" onClick={() => setMobile(false)} className="flex items-center" aria-label="ARKA Technovation">
                   <img
                     src="/images/logo/arka-logo-black.png"
                     alt="ARKA Technovation"
-                    className="h-14 sm:h-16 w-auto max-w-[260px] object-contain"
+                    className="h-11 sm:h-13 w-auto max-w-[240px] object-contain"
                   />
                 </Link>
                 <button
@@ -414,10 +429,11 @@ export default function PortfoliteNav() {
                 <Link
                   to="/contact"
                   onClick={() => setMobile(false)}
-                  className="site-button w-full h-[44px] rounded-full bg-black text-white hover:bg-zinc-800 transition-colors font-sans text-xs tracking-[0.08em] uppercase font-semibold flex items-center justify-center gap-2 shadow-sm"
+                  className="site-button w-full h-[44px] rounded-full bg-black !text-white hover:bg-zinc-800 transition-colors font-sans text-xs tracking-[0.08em] uppercase font-semibold flex items-center justify-center gap-2 shadow-sm"
+                  style={{ color: '#FFFFFF', backgroundColor: '#000000' }}
                 >
-                  <span>Start a project</span>
-                  <CircleArrow size={14} className="text-white" />
+                  <span style={{ color: '#FFFFFF' }}>Start a project</span>
+                  <CircleArrow size={14} className="!text-white" style={{ color: '#FFFFFF', stroke: '#FFFFFF' }} />
                 </Link>
                 <div className="font-mono text-[9px] tracking-[0.16em] uppercase text-zinc-500 space-y-1 text-center">
                   <p>{COMPANY.phones[0]}</p>

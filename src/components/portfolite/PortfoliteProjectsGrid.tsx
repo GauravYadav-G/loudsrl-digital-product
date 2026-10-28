@@ -195,7 +195,7 @@ export default function PortfoliteProjectsGrid() {
               className="flex-1 w-full"
             >
               <motion.div
-                initial={{ opacity: 1, y: -650, scale: 1 }}
+                initial={{ opacity: 1, y: -120, scale: 1 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, amount: 0.05 }}
                 transition={{ type: 'spring', stiffness: 50, damping: 30, mass: 1 }}
@@ -211,7 +211,7 @@ export default function PortfoliteProjectsGrid() {
               className="flex-[1.22] w-full z-10"
             >
               <motion.div
-                initial={{ opacity: 1, y: -260, scale: 1.6 }}
+                initial={{ opacity: 1, y: -80, scale: 1.3 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, amount: 0.05 }}
                 transition={{ type: 'spring', stiffness: 50, damping: 30, mass: 1 }}
@@ -227,7 +227,7 @@ export default function PortfoliteProjectsGrid() {
               className="flex-1 w-full"
             >
               <motion.div
-                initial={{ opacity: 1, y: -720, scale: 1 }}
+                initial={{ opacity: 1, y: -160, scale: 1 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, amount: 0.05 }}
                 transition={{ type: 'spring', stiffness: 50, damping: 30, mass: 1 }}

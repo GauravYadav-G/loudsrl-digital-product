@@ -211,7 +211,7 @@ export default function LiquidBackground({ preset }: { preset: number }) {
     window.addEventListener('pointerleave', leave);
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth < 700 ? 0.9 : 1.0);
+      const dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth < 768 ? 0.75 : 1.0);
       const w = Math.round(canvas.clientWidth * dpr);
       const h = Math.round(canvas.clientHeight * dpr);
       if (w > 0 && h > 0 && (canvas.width !== w || canvas.height !== h)) {
@@ -263,7 +263,9 @@ export default function LiquidBackground({ preset }: { preset: number }) {
       one('uSpin', current.spin);
       one('uSpeed', current.speed);
       one('uAmount', current.amount);
-      gl.uniform1i(uniform('uDepth'), next.depth);
+      const isMobile = window.innerWidth < 768;
+      const depthOverride = isMobile ? Math.min(next.depth, 5) : next.depth;
+      gl.uniform1i(uniform('uDepth'), depthOverride);
       for (let j = 0; j < 3; j++) gl.uniform3f(uniform(`uColor${j + 1}`), ...current.colors[j]);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       frame = requestAnimationFrame(render);

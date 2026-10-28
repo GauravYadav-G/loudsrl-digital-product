@@ -19,7 +19,7 @@ export default function PortfoliteHero() {
   };
 
   return (
-    <section className="relative min-h-[92vh] sm:min-h-screen pt-32 sm:pt-40 pb-12 sm:pb-16 font-framer bg-white text-black overflow-hidden flex flex-col justify-between items-center text-center isolate select-none">
+    <section className="relative min-h-[92vh] sm:min-h-screen pt-32 sm:pt-40 pb-12 sm:pb-16 font-framer bg-white text-black overflow-hidden flex flex-col justify-between items-center text-center isolate select-none" style={{ contain: 'layout style' }}>
       {/* Interactive Liquid WebGL Canvas Background */}
       <LiquidBackground preset={presetIndex} />
 
