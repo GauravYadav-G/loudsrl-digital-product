@@ -56,21 +56,26 @@ body {
   color: #FFFFFF;
 }
 
+/* Hide side scrollbar globally across all modern browsers while preserving scroll */
+html,
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
 ::-webkit-scrollbar {
-  width: 5px;
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+  background: transparent !important;
 }
 
-::-webkit-scrollbar-track {
-  background: #F4F4F6;
-}
-
+::-webkit-scrollbar-track,
 ::-webkit-scrollbar-thumb {
-  background: #D4D4D8;
-  border-radius: 9px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #E8742C;
+  display: none !important;
+  background: transparent !important;
 }
 
 .mono {
