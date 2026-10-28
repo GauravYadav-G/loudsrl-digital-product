@@ -1,7 +1,7 @@
 /* ─────────────────────────────────────────────────────────────
-   Business data carried forward from Jaikvik Technology India
-   Pvt. Ltd. (jaikviktechnology.com) — now operating as
-   ARKA TECHNOVATION, founded by Kranti.
+   ARKA TECHNOVATION
+   Enterprise Digital Products, Engineering & Growth
+   Founded and led by Mr. Kranti Parashar
    ───────────────────────────────────────────────────────────── */
 
 export const COMPANY = {
@@ -10,9 +10,9 @@ export const COMPANY = {
   logo: '/images/logo/arka-logo-black.png',
   logoWhite: '/images/logo/arka-logo-white.png',
   tagline: 'Digital Product Company.',
-  legacy: 'Jaikvik Technology India Pvt. Ltd.',
+  legacy: 'ARKA Enterprise Heritage',
   founded: 2016,
-  years: 12,
+  years: 17,
   email: 'info@arkatechnovation.com',
   careers: 'careers@arkatechnovation.com',
   phones: ['+91 92208 26934', '+91 93109 07227', '0120-4200970'],
@@ -31,7 +31,7 @@ export const STATS = [
   { v: 600, s: '+', l: 'Manufacturers', d: 'Our deepest specialisation' },
 ];
 
-/* ── NAVBAR REPRESENTATION — mega-menu, as on jaikviktechnology.com ── */
+/* ── NAVBAR NAVIGATION DATA ── */
 export type NavChild = { label: string; to: string; note?: string };
 export type NavGroup = { label: string; to: string; children?: NavChild[]; badge?: string };
 
@@ -328,7 +328,7 @@ export const ROLES = [
 
 export const FAQS = [
   { q: 'What does Arka Technovation do?', a: 'Ten services across three disciplines: marketing (SEO, digital marketing, digital advertising, content, analytics), technology (web development, CRM software, e-commerce) and creative (film making, UX and interactive design). One in-house team delivers all of it.' },
-  { q: 'How is Arka connected to Jaikvik Technology?', a: 'Arka Technovation is founded by Kranti, one of the founders behind Jaikvik Technology India Pvt. Ltd. Twelve years of experience, the same team, and more than 1,500 client relationships carry forward under the new name.' },
+  { q: 'Who leads ARKA Technovation?', a: 'ARKA Technovation is founded and led by Mr. Kranti Parashar, an eminent leader with over 17 years of experience in enterprise technology, strategic finance, and corporate communication.' },
   { q: 'Where are your offices?', a: 'Our corporate office is at A-82, Sector 63, Noida, Uttar Pradesh. Regional offices operate in Kolkata at 7/1, Marhatta Ditch Lane, and in Mumbai at 304, Peninsula Spenta-1, Senapati Bapat Marg, Lower Parel.' },
   { q: 'How long does a project take?', a: 'A corporate website ships in three to six weeks. E-commerce and mobile apps run eight to sixteen. Custom CRM depends on scope and is planned in milestones. Marketing engines show measurable movement in sixty to ninety days.' },
   { q: 'Do you provide reports after launch?', a: 'Yes. Monthly performance reports, a live dashboard, quarterly strategy reviews and a named account contact. Maintenance, hosting and iteration are available as retainers or per project.' },

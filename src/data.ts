@@ -182,7 +182,7 @@ export const CAREERS = [
 
 export const FAQS = [
   { q: 'What does Arka Technovation actually do?', a: 'Ten services across four disciplines: digital marketing, SEO, performance ads, social, email, website and e-commerce development, mobile apps and custom software, brand and product design, and corporate film production. One senior in-house team, start to finish.' },
-  { q: 'How is Arka connected to Jaikvik Technology?', a: 'Arka Technovation is founded by Kranti, one of the founders behind Jaikvik Technology. The craft, the team and twelve years of client trust carry forward — under a sharper, design-led identity built for the next decade.' },
+  { q: 'Who leads ARKA Technovation?', a: 'ARKA Technovation is founded and led by Mr. Kranti Parashar, an eminent leader with over 17 years of experience across financial levels, enterprise technology, marketing strategy, and corporate communication.' },
   { q: 'Where are you based, and who do you work with?', a: 'Headquartered at A-82, Sector 63, Noida, with work delivered for 1,500+ clients across India and abroad — including 600+ manufacturing enterprises, D2C brands, healthcare groups and software companies.' },
   { q: 'How long does a typical project take?', a: 'A corporate website ships in three to six weeks. E-commerce and apps run eight to sixteen. Custom software depends on scope and is planned in milestones. Growth engines show measurable movement in sixty to ninety days.' },
   { q: 'Do you provide reporting and support after launch?', a: 'Yes — monthly performance reports, a live dashboard, quarterly strategy reviews and a named account contact. Maintenance, hosting and iteration are available as retainers or per project.' },

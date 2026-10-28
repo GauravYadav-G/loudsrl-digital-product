@@ -2,9 +2,9 @@
   "/_not-found/page": "/_not-found",
   "/who-we-are/page": "/who-we-are",
   "/page": "/",
-  "/services/page": "/services",
   "/contact/page": "/contact",
   "/careers/page": "/careers",
-  "/services/[slug]/page": "/services/[slug]",
-  "/work/page": "/work"
+  "/services/page": "/services",
+  "/work/page": "/work",
+  "/services/[slug]/page": "/services/[slug]"
 }

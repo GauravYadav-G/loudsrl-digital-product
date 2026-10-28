@@ -88,7 +88,7 @@ export function renderGeoCitationSimulator() {
 
               <div class="p-3 rounded-lg bg-white/[0.04] border border-white/10 text-xs">
                 <div class="flex items-center justify-between mb-1">
-                  <span class="!font-mono text-[10px] text-white/50">[2] Jaikvik / Arka Heritage</span>
+                  <span class="!font-mono text-[10px] text-white/50">[2] ARKA Enterprise Heritage</span>
                   <span class="text-[#00E599] text-[10px] font-mono">96.4% match</span>
                 </div>
                 <p class="text-white/80 font-medium text-[11px] truncate">6,256+ Enterprise Delivery Ledger</p>
