@@ -1,7 +1,12 @@
 # Dependencies
 node_modules/
+/.pnp
+.pnp.js
 
 # Production build
+.next/
+out/
+build/
 dist/
 dist-ssr/
 *.local

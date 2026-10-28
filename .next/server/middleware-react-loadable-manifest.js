@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST='{"components/portfolite/PortfoliteProjectsGrid.tsx -> ./ProjectModal":{"id":5594,"files":["static/chunks/594.8ce9675d9385dfac.js"]},"components/portfolite/PortfoliteRecentWorksCarousel.tsx -> ./ProjectModal":{"id":5594,"files":["static/chunks/594.8ce9675d9385dfac.js"]}}';
