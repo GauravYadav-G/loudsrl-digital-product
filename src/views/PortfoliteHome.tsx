@@ -34,7 +34,7 @@ export default function PortfoliteHome() {
       {/* 3-Column Parallax Featured Case Studies Grid */}
       <PortfoliteProjectsGrid />
 
-      {/* Who We Are: Founded by Kranti, 12+ Years Heritage */}
+      {/* Who We Are: Founded by Kranti Parashar, 17+ Years Heritage */}
       <PortfoliteAbout />
 
       {/* Recent Works Carousel */}
