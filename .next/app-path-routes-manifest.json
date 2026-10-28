@@ -5,6 +5,6 @@
   "/services/page": "/services",
   "/careers/page": "/careers",
   "/services/[slug]/page": "/services/[slug]",
-  "/work/page": "/work",
-  "/contact/page": "/contact"
+  "/contact/page": "/contact",
+  "/work/page": "/work"
 }

@@ -5,6 +5,6 @@
   "/services/page": "app/services/page.js",
   "/careers/page": "app/careers/page.js",
   "/services/[slug]/page": "app/services/[slug]/page.js",
-  "/work/page": "app/work/page.js",
-  "/contact/page": "app/contact/page.js"
+  "/contact/page": "app/contact/page.js",
+  "/work/page": "app/work/page.js"
 }

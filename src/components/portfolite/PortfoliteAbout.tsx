@@ -1,8 +1,5 @@
 'use client';
 
-import { MapPin } from 'lucide-react';
-import { OFFICES } from '../../lib/data';
-
 export default function PortfoliteAbout() {
   const capabilities = [
     'Relationship Management',
@@ -22,24 +19,6 @@ export default function PortfoliteAbout() {
     'Care Ratings Ltd.',
     'Indiamart Intermesh Ltd.',
     'Resurgent India Ltd.',
-  ];
-
-  const experienceRows = [
-    {
-      role: 'Enterprise Digital Product Company',
-      company: 'ARKA Technovation',
-      period: 'Currently',
-    },
-    {
-      role: 'Executive & Industry Leadership',
-      company: 'Director Kranti Parashar',
-      period: '17+ Years',
-    },
-    {
-      role: 'B2B Enterprise & Industrial Growth',
-      company: 'National & Global Brands',
-      period: 'Heritage',
-    },
   ];
 
   return (
@@ -98,30 +77,6 @@ export default function PortfoliteAbout() {
                   </span>
                 ))}
               </div>
-            </div>
-
-            {/* Experience / Heritage Table (Authentic Framer Style) */}
-            <div className="mt-8 pt-6 border-t border-black/10 w-full flex flex-col divide-y divide-black/8 text-xs sm:text-sm">
-              {experienceRows.map((row, idx) => (
-                <div
-                  key={idx}
-                  className="py-3.5 flex items-center justify-between text-zinc-700 font-light"
-                >
-                  <span className="text-black font-semibold">{row.role}</span>
-                  <span className="text-zinc-600">{row.company}</span>
-                  <span className="text-zinc-500 font-mono text-xs">{row.period}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Office Locations */}
-            <div className="mt-8 flex flex-wrap items-center gap-4 text-xs text-zinc-600">
-              {OFFICES.map((off) => (
-                <span key={off.city} className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-solar" />
-                  <span>{off.city} (Sector 63)</span>
-                </span>
-              ))}
             </div>
           </div>
 
