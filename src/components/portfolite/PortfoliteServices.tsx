@@ -62,7 +62,7 @@ export default function PortfoliteServices() {
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-zinc-200/[0.4] rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Split Layout (Exact Framer Structure) */}
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Left Column: Heading, Subtitle, Pills, CTAs */}
@@ -113,7 +113,7 @@ export default function PortfoliteServices() {
 
           {/* Right Column: Featured Visual Frame */}
           <div className="lg:col-span-5">
-            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-black/12 bg-zinc-100 aspect-[4/3.2] shadow-xl group">
+            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-black/12 bg-zinc-100 aspect-[4/3.4] min-h-[380px] sm:min-h-[440px] shadow-xl group">
               <img
                 src="/portfolite/proj-5.png"
                 alt="ARKA Technovation Engineering Services"
@@ -125,25 +125,25 @@ export default function PortfoliteServices() {
         </div>
 
         {/* 4 Bento Grid Cards (2x2 Layout Exactly Matching Framer) */}
-        <div className="mt-16 grid sm:grid-cols-2 gap-4 sm:gap-6">
+        <div className="mt-16 grid sm:grid-cols-2 gap-6 sm:gap-8">
           {bentoCards.map((card, idx) => {
             const Icon = card.icon;
             return (
               <div
                 key={idx}
-                className="p-7 sm:p-8 rounded-2xl bg-white border border-black/10 hover:border-black/25 transition-all duration-300 flex flex-col justify-between group shadow-sm"
+                className="p-8 sm:p-10 lg:p-12 rounded-3xl bg-white border border-black/10 hover:border-black/25 transition-all duration-300 flex flex-col justify-between group shadow-sm min-h-[300px]"
               >
                 <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-8 h-8 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-700 group-hover:text-solar transition-colors">
-                      <Icon className="w-4 h-4" />
+                  <div className="flex items-center gap-3.5 mb-5">
+                    <div className="w-11 h-11 rounded-xl bg-zinc-100 flex items-center justify-center text-zinc-700 group-hover:text-solar transition-colors">
+                      <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-black tracking-tight">
+                    <h3 className="text-xl sm:text-2xl font-bold text-black tracking-tight">
                       {card.title}
                     </h3>
                   </div>
 
-                  <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed font-light">
+                  <p className="text-zinc-600 text-sm sm:text-base leading-relaxed font-light">
                     {card.desc}
                   </p>
                 </div>

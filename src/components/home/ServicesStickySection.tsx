@@ -241,7 +241,7 @@ export default function ServicesStickySection() {
         } as React.CSSProperties
       }
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-0 lg:absolute lg:inset-x-0 lg:top-0 lg:z-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 pt-12 sm:pt-16 pb-0 lg:absolute lg:inset-x-0 lg:top-0 lg:z-20">
         <p className="eyebrow text-zinc-500">What we do</p>
         <h2 className="mt-3 text-4xl sm:text-6xl font-bold tracking-tight text-black leading-none">
           Services

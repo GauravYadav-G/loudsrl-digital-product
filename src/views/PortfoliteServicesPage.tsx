@@ -114,8 +114,8 @@ export default function PortfoliteServicesPage() {
       </section>
 
       {/* Services Bento Grid */}
-      <section className="py-12 sm:py-16 max-w-6xl mx-auto px-4 sm:px-6">
-        <motion.div layout className="grid md:grid-cols-2 gap-6 sm:gap-8">
+      <section className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div layout className="grid md:grid-cols-2 gap-8 lg:gap-10">
           <AnimatePresence mode="popLayout">
             {filteredServices.map((service, idx) => (
               <motion.div
@@ -128,58 +128,75 @@ export default function PortfoliteServicesPage() {
               >
                 <Link
                   to={`/services/${service.slug}`}
-                  className="group relative h-full flex flex-col justify-between p-7 sm:p-9 rounded-3xl bg-white border border-black/10 hover:border-black/25 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] overflow-hidden shadow-sm"
+                  className="group relative h-full flex flex-col justify-between p-8 sm:p-10 lg:p-12 rounded-[28px] sm:rounded-[32px] bg-white border border-black/10 hover:border-black/25 transition-all duration-300 hover:shadow-[0_24px_60px_rgba(0,0,0,0.1)] overflow-hidden shadow-sm min-h-[520px]"
                 >
                   {/* Subtle top-right hover glow */}
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-radial-gradient from-black/[0.03] to-transparent rounded-full blur-2xl pointer-events-none group-hover:from-solar/10 transition-colors duration-500" />
+                  <div className="absolute top-0 right-0 w-80 h-80 bg-radial-gradient from-black/[0.04] to-transparent rounded-full blur-3xl pointer-events-none group-hover:from-solar/15 transition-colors duration-500" />
 
                   {/* Top Bar: Kicker + Index + Stat */}
                   <div>
-                    <div className="flex items-center justify-between text-xs text-zinc-600 font-mono">
+                    <div className="flex items-center justify-between text-xs sm:text-sm text-zinc-600 font-mono mb-5">
                       <span className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-solar" />
-                        <span className="uppercase tracking-widest">{service.kicker}</span>
+                        <span className="w-2 h-2 rounded-full bg-solar" />
+                        <span className="uppercase tracking-widest font-semibold">{service.kicker}</span>
                       </span>
-                      <span className="px-2.5 py-1 rounded-full bg-zinc-100 border border-black/8 text-zinc-700">
-                        {service.stat} <span className="text-zinc-500 font-sans text-[10px]">{service.statLabel}</span>
+                      <span className="px-3.5 py-1 rounded-full bg-zinc-100 border border-black/8 text-zinc-700 font-medium">
+                        {service.stat} <span className="text-zinc-500 font-sans text-xs">{service.statLabel}</span>
                       </span>
                     </div>
 
+                    {/* Service Visual Preview Banner */}
+                    {service.img && (
+                      <div className="relative w-full aspect-[16/8.5] rounded-2xl overflow-hidden bg-zinc-100 border border-black/8 mb-6 group-hover:border-black/15 transition-colors">
+                        <img
+                          src={service.img}
+                          alt={service.title}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent pointer-events-none" />
+                        <div className="absolute bottom-3 left-4 text-[11px] font-mono uppercase tracking-wider text-white/90 font-medium">
+                          {service.cat} Discipline
+                        </div>
+                      </div>
+                    )}
+
                     {/* Title */}
-                    <div className="mt-5 flex items-start justify-between gap-4">
-                      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-black group-hover:text-zinc-800 transition-colors">
+                    <div className="mt-2 flex items-start justify-between gap-4">
+                      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-black group-hover:text-zinc-800 transition-colors">
                         {service.title}
                       </h2>
-                      <div className="w-9 h-9 rounded-full bg-zinc-100 border border-black/10 flex items-center justify-center text-zinc-600 group-hover:bg-black group-hover:text-white transition-all shrink-0">
-                        <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform" />
+                      <div className="w-11 h-11 rounded-full bg-zinc-100 border border-black/10 flex items-center justify-center text-zinc-600 group-hover:bg-black group-hover:text-white transition-all shrink-0">
+                        <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform" />
                       </div>
                     </div>
 
                     {/* Short Description */}
-                    <p className="mt-3 text-zinc-600 text-sm font-light leading-relaxed">
+                    <p className="mt-4 text-zinc-600 text-base sm:text-lg font-light leading-relaxed">
                       {service.short}
                     </p>
                   </div>
 
                   {/* Sub-services Pills & Read Details */}
-                  <div className="mt-8 pt-6 border-t border-black/[0.08] space-y-4">
-                    <div className="flex flex-wrap gap-1.5">
+                  <div className="mt-10 pt-6 border-t border-black/[0.08] space-y-4">
+                    <div className="flex flex-wrap gap-2">
                       {service.subs.slice(0, 4).map((sub) => (
                         <span
                           key={sub.name}
-                          className="px-2.5 py-1 rounded-lg bg-zinc-100 border border-black/6 text-xs text-zinc-600 font-light"
+                          className="px-3 py-1.5 rounded-xl bg-zinc-100 border border-black/6 text-xs sm:text-sm text-zinc-700 font-normal"
                         >
                           {sub.name}
                         </span>
                       ))}
                       {service.subs.length > 4 && (
-                        <span className="px-2 py-1 rounded-lg bg-zinc-100 text-xs text-zinc-500">
+                        <span className="px-2.5 py-1.5 rounded-xl bg-zinc-100 text-xs text-zinc-500 font-medium">
                           +{service.subs.length - 4} more
                         </span>
                       )}
                     </div>
 
-                    <div className="flex items-center justify-between text-xs font-semibold text-zinc-700 group-hover:text-black pt-1">
+                    <div className="flex items-center justify-between text-sm font-semibold text-zinc-700 group-hover:text-black pt-2">
                       <span>View Scope &amp; Deliverables</span>
                       <span className="text-solar group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
                         Explore →

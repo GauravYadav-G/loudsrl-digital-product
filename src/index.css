@@ -1043,3 +1043,110 @@ img {
   decoding: async;
 }
 
+/* ─────────────────────────────────────────────────────────────
+   SERVICES SECTION — ENLARGED PROMINENT CARDS
+   Expanded dimensions for desktop stage & elevated mobile cards
+   ───────────────────────────────────────────────────────────── */
+
+@media (width >= 1024px) {
+  .pf__stage {
+    --mw: min(54vw, 84vh);
+    --mh: calc(var(--mw) / 1.48);
+    --mtop: calc(50% - var(--mh) / 2);
+  }
+
+  .pf__fig {
+    --cut: 42px;
+    left: 45%;
+    width: var(--mw);
+    height: var(--mh);
+    margin: 0 0 0 calc(var(--mw) / -2);
+    border-radius: 14px;
+    box-shadow: 0 28px 70px -15px rgba(0, 0, 0, 0.24);
+  }
+
+  .pf__info {
+    top: calc(var(--mtop) + var(--mh) * 0.16);
+    left: calc(45% + var(--mw) / 2 + 44px);
+    width: min(400px, calc(100vw - (45% + var(--mw) / 2 + 44px) - var(--side, 3vw)));
+  }
+
+  .pf__title {
+    font-size: 34px;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+  }
+
+  .pf__text {
+    margin-top: 16px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #404040;
+  }
+}
+
+@media (width >= 1440px) {
+  .pf__stage {
+    --mw: min(57vw, 85vh);
+    --mh: calc(var(--mw) / 1.46);
+    --mtop: calc(50% - var(--mh) / 2);
+  }
+
+  .pf__fig {
+    left: 44%;
+  }
+
+  .pf__info {
+    left: calc(44% + var(--mw) / 2 + 52px);
+    width: min(440px, calc(100vw - (44% + var(--mw) / 2 + 52px) - var(--side, 3vw)));
+  }
+
+  .pf__title {
+    font-size: 38px;
+  }
+
+  .pf__text {
+    font-size: 17px;
+    line-height: 1.65;
+  }
+}
+
+@media (width <= 1023px) {
+  .pf__track {
+    width: 92%;
+    max-width: 820px;
+    margin: 56px auto 0;
+  }
+
+  .pf__steps {
+    gap: 48px;
+  }
+
+  .pf__step {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 24px;
+    padding: 28px 24px;
+    box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.06);
+  }
+
+  .pf__fig {
+    aspect-ratio: 16/10;
+    border-radius: 16px;
+    margin: 0 0 24px;
+    width: 100%;
+    box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.08);
+  }
+
+  .pf__title {
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  .pf__text {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
+
+
