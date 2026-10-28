@@ -1,17 +1,164 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from '@/components/Link';
 import { motion } from 'framer-motion';
-import { ArrowUp, Phone, Mail, MapPin } from 'lucide-react';
+import { ArrowUp, Phone, Mail, MapPin, Sparkles, Palette } from 'lucide-react';
 import { SERVICES, COMPANY, OFFICES } from '../../lib/data';
 import { CircleArrow } from '../ui';
+import { PRESETS, PRESET_NAMES, PRESET_ACCENTS } from '../LiquidBackground';
+
+/* ─────────────────────────────────────────────────────────────
+   BOTTOM THEME TESTER COMPONENT
+   Default theme: Solar Fire (0)
+   Allows interactive testing of all 12 fluid WebGL palettes
+   ───────────────────────────────────────────────────────────── */
+function ThemeTesterButton() {
+  const [currentPreset, setCurrentPreset] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('arka-hero-theme');
+      if (saved !== null) {
+        const idx = parseInt(saved, 10);
+        if (!isNaN(idx) && idx >= 0 && idx < PRESETS.length) {
+          setCurrentPreset(idx);
+        }
+      }
+
+      const handleThemeChange = (e: Event) => {
+        const customEvent = e as CustomEvent<{ index: number }>;
+        if (typeof customEvent.detail?.index === 'number') {
+          setCurrentPreset(customEvent.detail.index);
+        }
+      };
+
+      window.addEventListener('arka:theme-change', handleThemeChange);
+      return () => window.removeEventListener('arka:theme-change', handleThemeChange);
+    }
+  }, []);
+
+  const selectTheme = (index: number) => {
+    setCurrentPreset(index);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('arka-hero-theme', String(index));
+      window.dispatchEvent(new CustomEvent('arka:theme-change', { detail: { index } }));
+    }
+  };
+
+  const nextTheme = () => {
+    const next = (currentPreset + 1) % PRESETS.length;
+    selectTheme(next);
+  };
+
+  const scrollToHero = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <div className="relative inline-flex items-center gap-2">
+      {/* Quick Test / Cycle Button */}
+      <button
+        type="button"
+        onClick={nextTheme}
+        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-paper/5 hover:bg-paper/10 border border-paper/15 hover:border-paper/30 text-paper text-xs font-mono tracking-wider transition-all cursor-pointer group shadow-sm"
+        title="Click to test next fluid shader theme in hero"
+      >
+        <span
+          className="w-2.5 h-2.5 rounded-full shadow-[0_0_8px_currentColor] transition-colors"
+          style={{ backgroundColor: PRESET_ACCENTS[currentPreset] }}
+        />
+        <span className="text-[11px] uppercase text-paper/90 group-hover:text-white font-medium">
+          Theme: {PRESET_NAMES[currentPreset]}
+        </span>
+        <Sparkles className="w-3 h-3 text-solar group-hover:rotate-12 transition-transform" />
+      </button>
+
+      {/* Mini Palette Selector Trigger */}
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="p-1.5 rounded-full bg-paper/5 hover:bg-paper/10 border border-paper/15 hover:border-paper/30 text-paper/60 hover:text-white transition-colors cursor-pointer text-xs"
+        title="Open all 12 fluid themes palette tray"
+        aria-label="Toggle theme picker tray"
+      >
+        <Palette className="w-3.5 h-3.5" />
+      </button>
+
+      {/* Scroll to Top to View Active Hero Shader */}
+      <button
+        type="button"
+        onClick={scrollToHero}
+        className="text-[10px] mono text-paper/40 hover:text-solar transition-colors cursor-pointer flex items-center gap-1 uppercase tracking-wider"
+        title="Scroll to top to view fluid shader in Hero"
+      >
+        <span>Preview Hero</span>
+        <span>↑</span>
+      </button>
+
+      {/* Popover Tray with All 12 Themes */}
+      {isOpen && (
+        <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 w-[300px] sm:w-[340px] p-4 rounded-2xl bg-void/95 backdrop-blur-xl border border-paper/20 shadow-2xl z-50 text-left">
+          <div className="flex items-center justify-between pb-3 mb-3 border-b border-paper/10">
+            <span className="text-xs font-mono uppercase tracking-wider text-paper/80 font-semibold">
+              Test Fluid Themes ({PRESETS.length})
+            </span>
+            <button
+              type="button"
+              onClick={() => selectTheme(0)}
+              className="text-[10px] font-mono text-solar hover:underline cursor-pointer"
+            >
+              Reset to Solar Fire
+            </button>
+          </div>
+
+          <div className="grid grid-cols-2 gap-1.5 max-h-[220px] overflow-y-auto pr-1">
+            {PRESET_NAMES.map((name, idx) => {
+              const isSelected = idx === currentPreset;
+              return (
+                <button
+                  key={name}
+                  type="button"
+                  onClick={() => {
+                    selectTheme(idx);
+                    setIsOpen(false);
+                  }}
+                  className={`flex items-center gap-2 px-2.5 py-2 rounded-lg text-left text-xs transition-all cursor-pointer ${
+                    isSelected
+                      ? 'bg-solar/20 text-white border border-solar/40 font-medium'
+                      : 'hover:bg-paper/5 text-paper/70 hover:text-white border border-transparent'
+                  }`}
+                >
+                  <span
+                    className="w-2.5 h-2.5 rounded-full shrink-0 shadow-sm"
+                    style={{ backgroundColor: PRESET_ACCENTS[idx] }}
+                  />
+                  <span className="truncate text-[11px]">{name}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="mt-3 pt-2.5 border-t border-paper/10 flex items-center justify-between text-[10px] font-mono text-paper/50">
+            <span>Defaults to Solar Fire</span>
+            <button
+              type="button"
+              onClick={scrollToHero}
+              className="text-solar hover:underline flex items-center gap-0.5 cursor-pointer"
+            >
+              <span>Scroll to Hero</span>
+              <span>↑</span>
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function PortfoliteFooter() {
   const serviceList = SERVICES.slice(0, 7);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   const socials = [
     { label: 'FB', href: '#' },
@@ -105,48 +252,30 @@ export default function PortfoliteFooter() {
           </ul>
         </div>
 
-        {/* Col 4: Our Services */}
+        {/* Col 4: Services */}
         <div>
           <p className="mono text-[0.6rem] tracking-[0.24em] uppercase text-paper/40 mb-5 font-semibold">
-            Our Services
+            Services
           </p>
           <ul className="space-y-3">
             {serviceList.map((s) => (
               <li key={s.slug}>
                 <Link
                   to={`/services/${s.slug}`}
-                  className="text-paper/70 hover:text-solar transition-colors block text-xs sm:text-sm truncate"
+                  className="text-paper/70 hover:text-solar transition-colors block text-xs sm:text-sm truncate max-w-[200px]"
                 >
                   {s.title}
                 </Link>
               </li>
             ))}
-            <li className="pt-1">
-              <Link
-                to="/services"
-                className="text-solar hover:underline inline-flex items-center gap-1 text-xs font-medium"
-              >
-                <span>View all 10 disciplines →</span>
-              </Link>
-            </li>
           </ul>
         </div>
 
-        {/* Col 5: Get In Touch & Regional Offices */}
+        {/* Col 5: Location & Contact */}
         <div>
-          <div className="flex items-center justify-between mb-5">
-            <p className="mono text-[0.6rem] tracking-[0.24em] uppercase text-paper/40 font-semibold">
-              Get In Touch
-            </p>
-            <button
-              onClick={scrollToTop}
-              className="w-7 h-7 rounded-full border border-paper/20 flex items-center justify-center text-paper/60 hover:text-paper hover:bg-paper/10 transition-colors"
-              aria-label="Back to top"
-            >
-              <ArrowUp className="w-3.5 h-3.5" />
-            </button>
-          </div>
-
+          <p className="mono text-[0.6rem] tracking-[0.24em] uppercase text-paper/40 mb-5 font-semibold">
+            Contact Details
+          </p>
           <ul className="space-y-4 text-xs">
             {OFFICES.map((o) => (
               <li key={o.city}>
@@ -183,15 +312,24 @@ export default function PortfoliteFooter() {
         </div>
       </div>
 
-      {/* ── Legal Band ── */}
-      <div className="border-t border-paper/10 relative z-10">
-        <div className="xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 py-6 flex flex-col md:flex-row justify-between items-center gap-3 mono text-[0.56rem] tracking-[0.14em] uppercase text-paper/35">
-          <span>© 2026 {COMPANY.name} — Founded by Kranti</span>
-          <div className="flex items-center gap-5">
+      {/* ── Legal Band & Interactive Theme Tester ── */}
+      <div className="border-t border-paper/10 relative z-20">
+        <div className="xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 py-6 flex flex-col lg:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center gap-3 mono text-[0.58rem] tracking-[0.14em] uppercase text-paper/40">
+            <span>© 2026 {COMPANY.name} — Founded by Kranti</span>
+            <span className="hidden sm:inline text-paper/20">•</span>
+            <span className="text-paper/50">Sector 63, Noida (Delhi NCR)</span>
+          </div>
+
+          {/* Theme Tester Button in the bottom of website */}
+          <div className="flex items-center gap-3">
+            <ThemeTesterButton />
+          </div>
+
+          <div className="flex items-center gap-5 mono text-[0.58rem] tracking-[0.14em] uppercase text-paper/40">
             <Link to="/contact" className="hover:text-paper transition-colors">Support SLA</Link>
             <a href="#" className="hover:text-paper transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-paper transition-colors">Terms</a>
-            <span className="text-paper/50">Sector 63, Noida (Delhi NCR)</span>
           </div>
         </div>
       </div>

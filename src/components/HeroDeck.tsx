@@ -68,9 +68,6 @@ export default function HeroDeck() {
 
       {/* Hero Center Content — Clean, Powerful, No Pillars */}
       <div className="arka-hero-center relative z-10 flex h-full flex-col items-center justify-center px-5 pb-16 pt-20 text-center sm:pt-24">
-        <p className="mono text-[9px] uppercase tracking-[.3em] text-paper/75 sm:text-[10px]">
-          Digital Product Company • Noida, India
-        </p>
 
         <h1 className="arka-hero-brand mt-4 display text-[clamp(3.5rem,8.5vw,7.6rem)] leading-none tracking-tight sm:mt-5 text-paper">
           ARKA<span className="text-solar">.</span>

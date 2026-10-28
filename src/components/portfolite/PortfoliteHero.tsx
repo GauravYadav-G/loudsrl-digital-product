@@ -1,23 +1,42 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, ArrowRight } from 'lucide-react';
-import LiquidBackground, { PRESETS, PRESET_NAMES, PRESET_ACCENTS } from '../LiquidBackground';
+import { ArrowRight } from 'lucide-react';
+import LiquidBackground, { PRESETS } from '../LiquidBackground';
 
 export default function PortfoliteHero() {
-  // Default to ARKA Solar Fire palette without random blue presets
+  // Default to ARKA Solar Fire palette (index 0)
   const [presetIndex, setPresetIndex] = useState(0);
 
-  const shuffleColor = () => {
-    setPresetIndex((prev) => (prev + 1) % PRESETS.length);
-  };
+  useEffect(() => {
+    // Check if user previously saved a theme preference for testing
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('arka-hero-theme');
+      if (saved !== null) {
+        const idx = parseInt(saved, 10);
+        if (!isNaN(idx) && idx >= 0 && idx < PRESETS.length) {
+          setPresetIndex(idx);
+        }
+      }
+
+      const handleThemeChange = (e: Event) => {
+        const customEvent = e as CustomEvent<{ index: number }>;
+        if (typeof customEvent.detail?.index === 'number') {
+          setPresetIndex(customEvent.detail.index);
+        }
+      };
+
+      window.addEventListener('arka:theme-change', handleThemeChange);
+      return () => window.removeEventListener('arka:theme-change', handleThemeChange);
+    }
+  }, []);
 
   const line1Words = ['Digital', 'Products', 'that', 'you'];
   const line2Words = ['need', 'Indeed'];
 
   const scrollToProjects = () => {
-    const target = document.querySelector('#projects');
+    const target = document.querySelector('#projects') || document.querySelector('#works');
     if (!target) return;
     const lenis = (window as unknown as { __lenis?: { scrollTo: (t: Element | string, opt?: object) => void } }).__lenis;
     if (lenis) {
@@ -29,7 +48,7 @@ export default function PortfoliteHero() {
 
   return (
     <section className="relative min-h-[92vh] sm:min-h-screen pt-32 sm:pt-40 pb-12 sm:pb-16 font-framer bg-white text-black overflow-hidden flex flex-col justify-between items-center text-center isolate select-none" style={{ contain: 'layout style' }}>
-      {/* Interactive Liquid WebGL Canvas Background */}
+      {/* Interactive Liquid WebGL Canvas Background (Defaults to Solar Fire) */}
       <LiquidBackground preset={presetIndex} />
 
       {/* Subtle Feathered Bottom Blend into White Section */}
@@ -38,42 +57,7 @@ export default function PortfoliteHero() {
         className="pointer-events-none absolute inset-x-0 bottom-0 h-16 sm:h-20 bg-gradient-to-t from-white via-white/40 to-transparent z-10"
       />
 
-      <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 flex flex-col items-center my-auto">
-        {/* Top Badges Row: Framer Badge + Interactive Liquid Palette Shuffle */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-          {/* Framer "Crafting Unique" Pill */}
-          <motion.div
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/40 border border-white/25 shadow-sm cursor-default"
-          >
-            <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
-            <span className="text-xs sm:text-[13px] text-white font-medium tracking-wide">
-              Digital Product Company · Noida, India
-            </span>
-          </motion.div>
-
-          {/* Interactive Palette Shuffle Badge */}
-          <motion.button
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            onClick={shuffleColor}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 border border-white/25 hover:border-white/50 shadow-sm transition-all cursor-pointer group"
-            title="Click to shuffle fluid shader animation colors"
-          >
-            <span
-              className="w-2 h-2 rounded-full shadow-[0_0_8px_currentColor]"
-              style={{ backgroundColor: PRESET_ACCENTS[presetIndex] }}
-            />
-            <span className="text-[11px] uppercase tracking-wider text-white font-medium">
-              {PRESET_NAMES[presetIndex]}
-            </span>
-            <Sparkles className="w-3 h-3 text-solar group-hover:rotate-12 transition-transform" />
-          </motion.button>
-        </div>
-
+      <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 flex flex-col items-center my-auto pt-6 sm:pt-10">
         {/* Hero Title with Framer Word Blur-Fade-In Animation */}
         <h1
           style={{ color: '#ffffff' }}
@@ -151,7 +135,7 @@ export default function PortfoliteHero() {
           <button
             onClick={scrollToProjects}
             style={{ color: '#ffffff' }}
-            className="px-7 sm:px-8 py-3 rounded-full bg-black/25 hover:bg-black/40 border border-white/30 hover:border-white/60 text-white text-xs sm:text-sm font-medium tracking-wide transition-all backdrop-blur-md shadow-sm"
+            className="px-7 sm:px-8 py-3 rounded-full bg-black/25 hover:bg-black/40 border border-white/30 hover:border-white/60 text-white text-xs sm:text-sm font-medium tracking-wide transition-all backdrop-blur-md shadow-sm cursor-pointer"
           >
             See Projects
           </button>
