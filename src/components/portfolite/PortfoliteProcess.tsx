@@ -1,6 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { ArtcraftGalaxyCanvas } from '../ArtcraftGalaxyCanvas';
 
 const PROCESS_COLUMNS = [
   {
@@ -14,7 +15,7 @@ const PROCESS_COLUMNS = [
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
-        {/* Top Main Window Frame */}
+        {/* Top Main Window */}
         <rect x="1" y="1" width="176" height="84" rx="8" stroke="currentColor" strokeWidth="1.5" />
 
         {/* Dynamic Resizing Left Panel */}
@@ -216,76 +217,57 @@ const PROCESS_COLUMNS = [
 ];
 
 export default function PortfoliteProcess() {
+  const galaxyContainerRef = useRef<HTMLDivElement>(null);
+  const galaxyInstanceRef = useRef<ArtcraftGalaxyCanvas | null>(null);
+
+  useEffect(() => {
+    const container = galaxyContainerRef.current;
+    if (!container) return;
+
+    try {
+      const galaxy = new ArtcraftGalaxyCanvas(container, {
+        theme: 'light',
+        offsetX: 0,
+        offsetY: 0,
+      });
+      galaxyInstanceRef.current = galaxy;
+    } catch (err) {
+      console.warn('Failed to initialize ArtcraftGalaxyCanvas in Process section:', err);
+    }
+
+    return () => {
+      if (galaxyInstanceRef.current) {
+        galaxyInstanceRef.current.destroy();
+        galaxyInstanceRef.current = null;
+      }
+    };
+  }, []);
+
   return (
     <section
       id="process"
-      className="relative py-24 sm:py-32 font-framer bg-[#FAF9F5] text-black border-t border-black/10 overflow-hidden"
+      className="relative py-24 sm:py-32 font-framer bg-white text-black border-t border-black/10 overflow-hidden"
     >
-      {/* ── Background Celestial Orbit Wheel (Subtle, soft glow, positioned behind columns 2, 3, 4) ── */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 select-none">
-        {/* Soft Warm Ambient Radial Glow Pool behind the wheel */}
+      {/* 3D Celestial Galaxy Wheel in Background (Centered) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        {/* Dynamic Warm Ambient Light Pool in Center */}
         <div
           aria-hidden="true"
-          className="absolute -bottom-20 right-[5%] w-[550px] sm:w-[750px] h-[450px] sm:h-[550px] blur-[140px] rounded-full opacity-20 bg-[#FF8A00] pointer-events-none"
+          className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[600px] blur-[150px] rounded-full opacity-20 bg-[#FF8A00]"
         />
 
-        {/* Celestial Orbit Wheel Container (Strictly lower region behind the wireframes) */}
-        <div className="absolute -bottom-40 sm:-bottom-48 right-[-10%] sm:right-[2%] md:right-[6%] w-[500px] h-[500px] sm:w-[680px] sm:h-[680px] opacity-40 pointer-events-none">
-          {/* Rotating Celestial Orbit System */}
-          <div className="w-full h-full relative animate-[spin_60s_linear_infinite]">
-            {/* Outer Orbit Ring */}
-            <div className="absolute inset-0 rounded-full border border-zinc-400/30" />
+        {/* 3D Artcraft Canvas Wheel */}
+        <div
+          ref={galaxyContainerRef}
+          className="w-full h-full opacity-80"
+        />
 
-            {/* Middle Orbit Ring */}
-            <div className="absolute inset-16 sm:inset-20 rounded-full border border-dashed border-zinc-400/25" />
-
-            {/* Inner Orbit Ring */}
-            <div className="absolute inset-32 sm:inset-40 rounded-full border border-zinc-400/20" />
-
-            {/* Orbiting Tech Badges (Matching Image 2: Meta, YouTube, React, Kubernetes, Next.js, Docker) */}
-            {/* Meta Badge */}
-            <div className="absolute top-[8%] left-[28%] -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/80 shadow-md backdrop-blur-sm border border-black/5 flex items-center justify-center p-2.5">
-              <svg viewBox="0 0 24 24" className="w-full h-full text-[#0668E1]" fill="currentColor">
-                <path d="M12 15.65c-1.4 0-2.48-.95-3.08-2.02l-1.9 2.58C8.17 17.6 9.94 18.5 12 18.5c2.06 0 3.83-.9 4.98-2.29l-1.9-2.58c-.6 1.07-1.68 2.02-3.08 2.02zm8.5-8.4c-1.35-1.57-3.32-2.5-5.5-2.5-2.28 0-4.32 1.03-5.65 2.68C8.02 5.78 5.98 4.75 3.7 4.75c-2.18 0-4.15.93-5.5 2.5-1.4 1.63-2.2 3.9-2.2 6.5s.8 4.87 2.2 6.5c1.35 1.57 3.32 2.5 5.5 2.5 2.28 0 4.32-1.03 5.65-2.68 1.33 1.65 3.37 2.68 5.65 2.68 2.18 0 4.15-.93 5.5-2.5 1.4-1.63 2.2-3.9 2.2-6.5s-.8-4.87-2.2-6.5z" />
-              </svg>
-            </div>
-
-            {/* YouTube Badge */}
-            <div className="absolute bottom-[20%] left-[16%] -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/80 shadow-md backdrop-blur-sm border border-black/5 flex items-center justify-center p-2.5">
-              <svg viewBox="0 0 24 24" className="w-full h-full text-[#FF0000]" fill="currentColor">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-              </svg>
-            </div>
-
-            {/* React Atom Badge */}
-            <div className="absolute top-[38%] right-[6%] -translate-x-1/2 -translate-y-1/2 w-15 h-15 rounded-full bg-white/80 shadow-md backdrop-blur-sm border border-black/5 flex items-center justify-center p-3">
-              <svg viewBox="-11.5 -10.23174 23 20.46348" className="w-full h-full text-[#61DAFB]" fill="none" stroke="currentColor" strokeWidth="1">
-                <circle cx="0" cy="0" r="2.05" fill="#61DAFB" />
-                <ellipse rx="11" ry="4.2" />
-                <ellipse rx="11" ry="4.2" transform="rotate(60)" />
-                <ellipse rx="11" ry="4.2" transform="rotate(120)" />
-              </svg>
-            </div>
-
-            {/* Kubernetes Helm Badge */}
-            <div className="absolute top-[6%] right-[22%] -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/80 shadow-md backdrop-blur-sm border border-black/5 flex items-center justify-center p-2.5">
-              <svg viewBox="0 0 24 24" className="w-full h-full text-[#326CE5]" fill="currentColor">
-                <path d="M12 2.25a.75.75 0 0 0-.375.1l-8.25 4.75a.75.75 0 0 0-.375.65v9.5c0 .27.14.51.375.65l8.25 4.75a.75.75 0 0 0 .75 0l8.25-4.75a.75.75 0 0 0 .375-.65v-9.5a.75.75 0 0 0-.375-.65l-8.25-4.75a.75.75 0 0 0-.375-.1zm0 2.15 6.75 3.89-2.5 1.44a4.5 4.5 0 0 0-2.75-.98v-2.88a1.5 1.5 0 0 0-3 0v2.88c-1.02.16-1.96.52-2.75.98l-2.5-1.44L12 4.4zm-5.25 4.5 2.5 1.44c-.6.82-.98 1.82-.99 2.91h-2.89a1.5 1.5 0 0 0 0 3h2.89c.01 1.09.39 2.09.99 2.91l-2.5 1.44L4.5 16.71v-7.81zm10.5 0 2.25 3.9v7.81l-2.25 3.9-2.5-1.44a4.5 4.5 0 0 0 .99-2.91h2.89a1.5 1.5 0 0 0 0-3h-2.89a4.5 4.5 0 0 0-.99-2.91l2.5-1.44zM12 10.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6z" />
-              </svg>
-            </div>
-
-            {/* Docker Whale Badge */}
-            <div className="absolute bottom-[8%] right-[32%] -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/80 shadow-md backdrop-blur-sm border border-black/5 flex items-center justify-center p-2.5">
-              <svg viewBox="0 0 24 24" className="w-full h-full text-[#2496ED]" fill="currentColor">
-                <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.186.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.186.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.186.186.186m5.893 2.715h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186H8.1a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186H5.136a.186.186 0 00-.186.185v1.888c0 .102.084.185.186.185m-2.928 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186H2.208a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185M23.76 9.89a6.002 6.002 0 00-2.83-2.02l-.63-.22-.39.54c-.9 1.25-2.29 2.02-3.83 2.07H1.14c-.63 0-1.14.51-1.14 1.14 0 5.48 4.09 9.89 9.38 9.89 4.3 0 7.97-2.91 9.07-7.06.67-.18 2.05-.71 3.01-1.77.71-.78 1.14-1.74 1.29-2.58l.01-.01z" />
-              </svg>
-            </div>
-          </div>
-        </div>
+        {/* Soft radial vignette so typography & wireframe diagrams remain razor-sharp while wheel is visible */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(255,255,255,0.65)_70%,#ffffff_100%)] pointer-events-none" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Header Matching Reference (Clean, bold, high contrast) */}
+        {/* Top Header */}
         <div className="max-w-3xl mb-16 sm:mb-20">
           <p className="text-xs uppercase tracking-widest text-zinc-500 font-mono mb-3">Our Delivery Process</p>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-black leading-[1.08]">
@@ -296,8 +278,8 @@ export default function PortfoliteProcess() {
           </p>
         </div>
 
-        {/* 4-Column Layout Structure Matching Reference (Images 1 & 2) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-zinc-300/80">
+        {/* 4-Column Layout Structure Matching the Design Reference */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-black/10 backdrop-blur-[2px] bg-white/40">
           {PROCESS_COLUMNS.map((col, idx) => {
             const borderClasses = [
               'border-b md:border-b lg:border-b-0 md:border-r lg:border-r',
@@ -309,20 +291,20 @@ export default function PortfoliteProcess() {
             return (
               <div
                 key={col.label}
-                className={`p-6 sm:p-8 lg:p-10 flex flex-col justify-between min-h-[440px] sm:min-h-[480px] lg:min-h-[520px] transition-colors duration-300 group hover:bg-white/80 border-zinc-300/80 ${borderClasses}`}
+                className={`p-6 sm:p-8 lg:p-10 flex flex-col justify-between min-h-[420px] sm:min-h-[460px] lg:min-h-[500px] transition-colors duration-300 group hover:bg-white/90 border-black/10 ${borderClasses}`}
               >
                 {/* Top Meta & Headline */}
                 <div>
-                  <span className="block text-xs sm:text-sm font-normal text-zinc-400 mb-3 tracking-normal">
+                  <span className="block text-xs sm:text-sm font-normal text-zinc-400 mb-4 tracking-normal">
                     {col.label}
                   </span>
-                  <h3 className="text-lg sm:text-xl lg:text-[22px] font-bold text-black tracking-tight leading-[1.32] max-w-[280px]">
+                  <h3 className="text-lg sm:text-xl lg:text-[22px] font-bold text-black tracking-tight leading-[1.35] max-w-[280px]">
                     {col.title}
                   </h3>
                 </div>
 
                 {/* Bottom Technical Schematic Wireframe Illustration */}
-                <div className="mt-14 sm:mt-20 pt-6 w-full flex items-end justify-start min-h-[130px]">
+                <div className="mt-16 sm:mt-24 pt-6 w-full flex items-end justify-start min-h-[130px]">
                   {col.illustration}
                 </div>
               </div>
