@@ -68,7 +68,7 @@ voice = voice.replace('/images/clients/lucy.webp', '/assets/marketing_growth_col
 # Adapt footer
 footer = footer.replace('Junca is a French creative web studio', 'Arka Technovation is an institutional technology and media enterprise')
 footer = footer.replace('contact@juncastudio.com', 'contact@arkatechnovation.com')
-footer = footer.replace('+33 7 82 33 69 45', '+91 92208 26934')
+footer = footer.replace('+33 7 82 33 69 45', '+91 97114 87316')
 footer = footer.replace('/images/logo/junca-wordmark-ink.svg', '/assets/arka-icon.svg')
 footer = footer.replace('© 2026 Studio Junca All rights reserved.', '© 2026 Arka Technovation Private Limited • Director Kranti Parashar • Noida HQ')
 

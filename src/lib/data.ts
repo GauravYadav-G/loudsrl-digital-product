@@ -15,7 +15,7 @@ export const COMPANY = {
   years: 17,
   email: 'info@arkatechnovation.com',
   careers: 'careers@arkatechnovation.com',
-  phones: ['+91 92208 26934', '+91 93109 07227', '0120-4200970'],
+  phones: ['+91 97114 87316', '+91 93109 07227', '0120-4200970'],
 };
 
 export const OFFICES = [

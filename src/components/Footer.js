@@ -26,7 +26,7 @@ export function renderFooter() {
                 </g>
               </svg>
             </a>
-            <a class="font-mono text-xs tracking-wider flex items-center justify-center gap-2 px-5 py-3.5 rounded-full border border-white/30 text-white/90 hover:border-white transition-colors" href="https://wa.me/919220826934" target="_blank" rel="noopener">
+            <a class="font-mono text-xs tracking-wider flex items-center justify-center gap-2 px-5 py-3.5 rounded-full border border-white/30 text-white/90 hover:border-white transition-colors" href="https://wa.me/919711487316" target="_blank" rel="noopener">
               <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>WhatsApp Direct</span>
             </a>

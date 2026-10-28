@@ -67,8 +67,8 @@ export default function FooterSection() {
           <div className="footer__col">
             <p className="footer__head">CONTACT</p>
             <ul>
-              <li><a href="mailto:contact@juncastudio.com">contact@juncastudio.com</a></li>
-              <li><a href="https://wa.me/33782336945" target="_blank" rel="noopener">Whatsapp : +33 7 82 33 69 45</a></li>
+              <li><a href="mailto:info@arkatechnovation.com">info@arkatechnovation.com</a></li>
+              <li><a href="https://wa.me/919711487316" target="_blank" rel="noopener">Whatsapp : +91 97114 87316</a></li>
             </ul>
             <p className="footer__head footer__head--latest">LEGAL</p>
             <ul>

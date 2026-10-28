@@ -40,9 +40,9 @@ export function renderContactPage() {
             <a class="text-base !font-mono text-black leading-tight opacity-70 hover:opacity-100 transition-opacity" href="mailto:contact@arkatechnovation.com">
               contact@arkatechnovation.com
             </a>
-            <a class="text-xs !font-mono text-emerald-600 hover:text-emerald-700 transition-colors flex items-center gap-1.5" href="https://wa.me/919220826934" target="_blank" rel="noopener">
+            <a class="text-xs !font-mono text-emerald-600 hover:text-emerald-700 transition-colors flex items-center gap-1.5" href="https://wa.me/919711487316" target="_blank" rel="noopener">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>WhatsApp: +91 92208 26934</span>
+              <span>WhatsApp: +91 97114 87316</span>
             </a>
           </div>
         </div>

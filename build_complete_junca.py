@@ -22,7 +22,7 @@ chrome = chrome.replace('Junca Studio home', 'Arka Technovation Home')
 chrome = chrome.replace('/contact', '/contact-us')
 
 scrim_drawer = scrim_drawer.replace('contact@juncastudio.com', 'contact@arkatechnovation.com')
-scrim_drawer = scrim_drawer.replace('+33 7 82 33 69 45', '+91 92208 26934')
+scrim_drawer = scrim_drawer.replace('+33 7 82 33 69 45', '+91 97114 87316')
 scrim_drawer = scrim_drawer.replace('/contact', '/contact-us')
 
 # 3. Adapt clients logos
@@ -81,7 +81,7 @@ voice = voice.replace('/images/clients/lucy.webp', '/assets/marketing_growth_col
 # 11. Adapt footer
 footer = footer.replace('Junca is a French creative web studio for ambitious tech companies. We design and build premium websites on Framer, Astro or Next.js, using motion design and interactive 3D to make complex products clear and easy to buy.', 'Arka Technovation Private Limited is an enterprise digital engineering, search authority, performance marketing, and corporate cinema company based in Noida (Delhi NCR), India. Led by Founder & CEO Kranti Parashar.')
 footer = footer.replace('contact@juncastudio.com', 'contact@arkatechnovation.com')
-footer = footer.replace('+33 7 82 33 69 45', '+91 92208 26934')
+footer = footer.replace('+33 7 82 33 69 45', '+91 97114 87316')
 footer = footer.replace('/images/logo/junca-wordmark-ink.svg', '/assets/arka-icon.svg')
 footer = footer.replace('© 2026 Studio Junca All rights reserved.', '© 2026 Arka Technovation Private Limited • Founder & CEO Kranti Parashar • Noida HQ')
 footer = footer.replace('/contact', '/contact-us')

@@ -17,7 +17,7 @@ interface SocialItem {
 const SOCIAL_ITEMS: SocialItem[] = [
   {
     name: 'WhatsApp',
-    href: 'https://wa.me/919220826934',
+    href: 'https://wa.me/919711487316',
     ariaLabel: 'Chat with ARKA on WhatsApp',
     colorClass: 'text-[#25D366]',
     hoverBorder: 'hover:border-[#25D366]/50',
@@ -71,8 +71,8 @@ const SOCIAL_ITEMS: SocialItem[] = [
   },
   {
     name: 'Call Direct',
-    href: 'tel:+919220826934',
-    ariaLabel: 'Call ARKA Technovation Support (+91 92208 26934)',
+    href: 'tel:+919711487316',
+    ariaLabel: 'Call ARKA Technovation Support (+91 97114 87316)',
     colorClass: 'text-[#E8742C]',
     hoverBorder: 'hover:border-[#E8742C]/50',
     hoverGlow: 'hover:shadow-[0_0_14px_rgba(232,116,44,0.45)]',
