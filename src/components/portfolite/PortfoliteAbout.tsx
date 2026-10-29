@@ -2,14 +2,14 @@
 
 export default function PortfoliteAbout() {
   const capabilities = [
-    'Relationship Management',
-    'Financial Management',
-    'Marketing Strategy',
-    'Team Leadership',
-    'Strategic Planning',
-    'Full-Stack Web & Next.js',
-    'Technical SEO & Rankings',
+    'SEO & Lead Generation',
+    'Custom CRM & Enterprise ERP',
+    'Full-Stack Next.js 15 Web',
+    'Mobile Application Systems',
+    'Conversion Optimization (CRO)',
+    'Data & Revenue Attribution',
     'Corporate Film Production',
+    'WCAG 2.2 ADA Compliance',
   ];
 
   const workedIn = [
@@ -47,7 +47,7 @@ export default function PortfoliteAbout() {
             </h2>
 
             <p className="mt-6 text-zinc-600 text-sm sm:text-base font-light leading-relaxed max-w-xl">
-              Led by Founder &amp; Director <strong className="font-semibold text-black">Mr. Kranti Parashar</strong>, an eminent figure in Indian industry circles with over 17 years of exposure across financial levels, advertising, and communication sectors. With an MBA background, focus on execution, strategic planning, and relationship management, he drives integrated technology and branding solutions for enabling business transformations across sectors.
+              Led by Founder &amp; Director <strong className="font-semibold text-black">Mr. Kranti Parashar</strong>, an eminent figure in Indian industry circles with over 17 years of craft across technology, enterprise software, and growth marketing. With an MBA background, focus on execution, and dedicated in-house specialist pods based in Sector 63, Noida, he drives integrated digital transformation and revenue acceleration across 850+ enterprise and manufacturing deployments.
             </p>
 
             {/* Capability Pills (Framer Badges) */}

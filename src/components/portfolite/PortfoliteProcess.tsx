@@ -5,8 +5,8 @@ import { ArtcraftGalaxyCanvas } from '../ArtcraftGalaxyCanvas';
 
 const PROCESS_COLUMNS = [
   {
-    label: '01 · Discovery',
-    title: 'Commercial and technical roadmaps tailored to your growth goals.',
+    label: '01 · Discovery & Strategy',
+    title: 'Technical SEO audits, market intent mapping, and commercial roadmaps tailored to your pipeline.',
     illustration: (
       <svg
         viewBox="0 0 200 130"
@@ -57,8 +57,8 @@ const PROCESS_COLUMNS = [
     ),
   },
   {
-    label: '02 · Interface Design',
-    title: 'Interactive prototypes and design systems built for high conversion.',
+    label: '02 · UI & System Architecture',
+    title: 'WCAG 2.2 accessible flows, CRO prototypes, and scalable component design systems.',
     illustration: (
       <svg
         viewBox="0 0 200 130"
@@ -103,8 +103,8 @@ const PROCESS_COLUMNS = [
     ),
   },
   {
-    label: '03 · Engineering',
-    title: 'High-performance Next.js platforms, custom CRM, and cloud infrastructure.',
+    label: '03 · Full-Stack Engineering',
+    title: 'Sub-second Next.js 15 platforms, custom CRM & ERP pipelines, and cloud APIs.',
     illustration: (
       <svg
         viewBox="0 0 200 130"

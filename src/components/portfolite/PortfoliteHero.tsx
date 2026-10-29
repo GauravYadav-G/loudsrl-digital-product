@@ -102,7 +102,7 @@ export default function PortfoliteHero() {
           <div className="relative group">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-white/20 via-white/40 to-white/20 rounded-full blur-md opacity-40 group-hover:opacity-80 transition duration-500" />
             <a
-              href="#contact"
+              href="/contact"
               className="site-button site-button--light relative px-7 sm:px-8 py-3 rounded-full bg-white hover:bg-zinc-100 text-black text-xs sm:text-sm font-semibold tracking-wide inline-flex items-center gap-2 transition-all shadow-[0_4px_24px_rgba(255,255,255,0.25)]"
             >
               <span>Get Started Now</span>
