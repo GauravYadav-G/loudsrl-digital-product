@@ -33,6 +33,7 @@ import {
   Compass,
   FileText,
   PieChart,
+  BookOpen,
 } from 'lucide-react';
 import PortfoliteNav from '@/components/portfolite/PortfoliteNav';
 import PortfoliteFooter from '@/components/portfolite/PortfoliteFooter';
@@ -570,26 +571,66 @@ export default function OurTechnologyPage() {
         </div>
       </section>
 
-      {/* ── Category Filter Tabs ── */}
-      <section className="py-6 border-b border-black/8 bg-zinc-50/70 sticky top-[70px] sm:top-[78px] z-30 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-start sm:justify-center">
-          <div className="flex items-center gap-2 overflow-x-auto py-1">
-            {(['All', 'Revenue Acceleration', 'Analytic & Attribution', 'Marketing Automation', 'Learn'] as TechTab[]).map((tab) => {
+      {/* ── Category Filter Tabs Segmented Dock with Spring Physics Animation ── */}
+      <section className="py-4 border-b border-black/5 bg-white/85 sticky top-[70px] sm:top-[78px] z-30 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-start sm:justify-center overflow-x-auto scrollbar-none py-1">
+          <div className="inline-flex items-center gap-1 sm:gap-1.5 p-1.5 rounded-full bg-zinc-100/90 border border-black/8 shadow-[inset_0_1px_2px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.04)] relative">
+            {[
+              { tab: 'All' as TechTab, icon: Cpu },
+              { tab: 'Revenue Acceleration' as TechTab, icon: Zap },
+              { tab: 'Analytic & Attribution' as TechTab, icon: BarChart3 },
+              { tab: 'Marketing Automation' as TechTab, icon: Workflow },
+              { tab: 'Learn' as TechTab, icon: BookOpen },
+            ].map(({ tab, icon: Icon }) => {
               const count = tab === 'All' ? platforms.length : platforms.filter((p) => p.category === tab).length;
               const active = activeTab === tab;
               return (
-                <button
+                <motion.button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  style={active ? { backgroundColor: '#000000', color: '#FFFFFF' } : undefined}
-                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
-                    active
-                      ? '!bg-black !text-white shadow-sm'
-                      : '!bg-white !border !border-black/10 !text-zinc-600 hover:text-black hover:!bg-zinc-100'
-                  }`}
+                  whileTap={{ scale: 0.96 }}
+                  className="group relative px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 flex items-center gap-2 whitespace-nowrap focus:outline-none select-none cursor-pointer"
                 >
-                  <span style={active ? { color: '#FFFFFF' } : undefined}>{tab} ({count})</span>
-                </button>
+                  {/* Sliding active background pill */}
+                  {active && (
+                    <motion.div
+                      layoutId="ourTechTabActiveIndicator"
+                      className="absolute inset-0 bg-black rounded-full shadow-md shadow-black/20"
+                      transition={{
+                        type: 'spring',
+                        stiffness: 450,
+                        damping: 35,
+                      }}
+                    />
+                  )}
+
+                  {/* Tab Icon */}
+                  <Icon
+                    className={`relative z-10 w-3.5 h-3.5 transition-colors duration-200 ${
+                      active ? 'text-white' : 'text-zinc-500 group-hover:text-black'
+                    }`}
+                  />
+
+                  {/* Tab Label */}
+                  <span
+                    className={`relative z-10 font-semibold tracking-tight transition-colors duration-200 ${
+                      active ? 'text-white' : 'text-zinc-600 group-hover:text-black'
+                    }`}
+                  >
+                    {tab}
+                  </span>
+
+                  {/* Tab Count Pill */}
+                  <span
+                    className={`relative z-10 px-2 py-0.5 rounded-full text-[10px] font-mono tracking-tight font-bold transition-colors duration-200 ${
+                      active
+                        ? 'bg-white/20 text-white'
+                        : 'bg-black/5 text-zinc-500 group-hover:bg-black/10 group-hover:text-black'
+                    }`}
+                  >
+                    {count}
+                  </span>
+                </motion.button>
               );
             })}
           </div>
@@ -610,74 +651,81 @@ export default function OurTechnologyPage() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {filteredPlatforms.map((platform, idx) => (
-            <div
-              key={platform.id}
-              id={platform.id}
-              className="scroll-mt-36 p-8 sm:p-10 rounded-2xl bg-zinc-50 border border-black/8 hover:border-black/20 hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group"
-            >
-              {/* Alias anchors for deep linking */}
-              {platform.aliasIds?.map((alias) => (
-                <span key={alias} id={alias} className="absolute -top-36 left-0" aria-hidden="true" />
-              ))}
+        <motion.div layout className="grid md:grid-cols-2 gap-8">
+          <AnimatePresence mode="popLayout">
+            {filteredPlatforms.map((platform, idx) => (
+              <motion.div
+                key={platform.id}
+                layout
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ duration: 0.22, ease: 'easeOut' }}
+                id={platform.id}
+                className="scroll-mt-36 p-8 sm:p-10 rounded-2xl bg-zinc-50 border border-black/8 hover:border-black/20 hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group"
+              >
+                {/* Alias anchors for deep linking */}
+                {platform.aliasIds?.map((alias) => (
+                  <span key={alias} id={alias} className="absolute -top-36 left-0" aria-hidden="true" />
+                ))}
 
-              <div>
-                {/* Top Bar: Tag & Benchmark */}
-                <div className="flex items-center justify-between mb-5">
-                  <span className="font-mono text-xs px-3 py-1 rounded-full bg-white border border-black/10 text-solar font-medium tracking-wide">
-                    {platform.tag}
-                  </span>
-                  <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">
-                    #{String(idx + 1).padStart(2, '0')} · {platform.category}
-                  </span>
-                </div>
+                <div>
+                  {/* Top Bar: Tag & Benchmark */}
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="font-mono text-xs px-3 py-1 rounded-full bg-white border border-black/10 text-solar font-medium tracking-wide">
+                      {platform.tag}
+                    </span>
+                    <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">
+                      #{String(idx + 1).padStart(2, '0')} · {platform.category}
+                    </span>
+                  </div>
 
-                {/* Title & Subtitle */}
-                <h3 className="text-2xl font-bold text-black tracking-tight group-hover:text-zinc-900 transition-colors">
-                  {platform.name}
-                </h3>
-                <p className="text-xs font-mono text-solar font-medium mt-1">
-                  {platform.subtitle}
-                </p>
-
-                {/* Comprehensive Descriptive Paragraph */}
-                <p className="mt-4 text-sm text-zinc-600 leading-relaxed font-light">
-                  {platform.desc}
-                </p>
-
-                {/* Key Capabilities / Highlights */}
-                <div className="mt-6 pt-5 border-t border-black/8">
-                  <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-3">
-                    Technical Capabilities &amp; Architecture:
+                  {/* Title & Subtitle */}
+                  <h3 className="text-2xl font-bold text-black tracking-tight group-hover:text-zinc-900 transition-colors">
+                    {platform.name}
+                  </h3>
+                  <p className="text-xs font-mono text-solar font-medium mt-1">
+                    {platform.subtitle}
                   </p>
-                  <ul className="space-y-2.5">
-                    {platform.capabilities.map((point, pIdx) => (
-                      <li key={pIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 font-medium">
-                        <CheckCircle2 className="w-4 h-4 text-solar shrink-0 mt-0.5" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
 
-              {/* Bottom Action Strip */}
-              <div className="mt-8 pt-4 border-t border-black/8 flex items-center justify-between">
-                <span className="text-xs font-mono text-zinc-500 font-medium">
-                  {platform.metric ? `${platform.metric} ${platform.metricLabel || ''}` : 'Enterprise SLA'}
-                </span>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-black hover:text-solar transition-colors"
-                >
-                  <span>Request Technical Demo</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
+                  {/* Comprehensive Descriptive Paragraph */}
+                  <p className="mt-4 text-sm text-zinc-600 leading-relaxed font-light">
+                    {platform.desc}
+                  </p>
+
+                  {/* Key Capabilities / Highlights */}
+                  <div className="mt-6 pt-5 border-t border-black/8">
+                    <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-3">
+                      Technical Capabilities &amp; Architecture:
+                    </p>
+                    <ul className="space-y-2.5">
+                      {platform.capabilities.map((point, pIdx) => (
+                        <li key={pIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 font-medium">
+                          <CheckCircle2 className="w-4 h-4 text-solar shrink-0 mt-0.5" />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Bottom Action Strip */}
+                <div className="mt-8 pt-4 border-t border-black/8 flex items-center justify-between">
+                  <span className="text-xs font-mono text-zinc-500 font-medium">
+                    {platform.metric ? `${platform.metric} ${platform.metricLabel || ''}` : 'Enterprise SLA'}
+                  </span>
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-black hover:text-solar transition-colors"
+                  >
+                    <span>Request Technical Demo</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </section>
 
       {/* ── Infrastructure Stack Matrix ── */}

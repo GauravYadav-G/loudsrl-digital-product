@@ -480,65 +480,68 @@ export default function SeoLeadGenerationPage() {
         </div>
       </section>
 
-      {/* ── Category Filter Tabs ── */}
-      <section className="py-6 border-b border-black/8 bg-zinc-50/70 sticky top-[70px] sm:top-[78px] z-30 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-start sm:justify-center">
-          <div className="flex items-center gap-2 overflow-x-auto py-1">
-            <button
-              onClick={() => setActiveTab('all')}
-              style={activeTab === 'all' ? { backgroundColor: '#000000', color: '#FFFFFF' } : undefined}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
-                activeTab === 'all'
-                  ? '!bg-black !text-white shadow-sm'
-                  : '!bg-white !border !border-black/10 !text-zinc-600 hover:!text-black hover:!bg-zinc-100'
-              }`}
-            >
-              <span style={activeTab === 'all' ? { color: '#FFFFFF' } : undefined}>All Capabilities (23)</span>
-            </button>
-            <button
-              onClick={() => setActiveTab('organic')}
-              style={activeTab === 'organic' ? { backgroundColor: '#000000', color: '#FFFFFF' } : undefined}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
-                activeTab === 'organic'
-                  ? '!bg-black !text-white shadow-sm'
-                  : '!bg-white !border !border-black/10 !text-zinc-600 hover:!text-black hover:!bg-zinc-100'
-              }`}
-            >
-              <span style={activeTab === 'organic' ? { color: '#FFFFFF' } : undefined}>Organic Search (6)</span>
-            </button>
-            <button
-              onClick={() => setActiveTab('advertising')}
-              style={activeTab === 'advertising' ? { backgroundColor: '#000000', color: '#FFFFFF' } : undefined}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
-                activeTab === 'advertising'
-                  ? '!bg-black !text-white shadow-sm'
-                  : '!bg-white !border !border-black/10 !text-zinc-600 hover:!text-black hover:!bg-zinc-100'
-              }`}
-            >
-              <span style={activeTab === 'advertising' ? { color: '#FFFFFF' } : undefined}>Digital Advertising (6)</span>
-            </button>
-            <button
-              onClick={() => setActiveTab('social')}
-              style={activeTab === 'social' ? { backgroundColor: '#000000', color: '#FFFFFF' } : undefined}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
-                activeTab === 'social'
-                  ? '!bg-black !text-white shadow-sm'
-                  : '!bg-white !border !border-black/10 !text-zinc-600 hover:!text-black hover:!bg-zinc-100'
-              }`}
-            >
-              <span style={activeTab === 'social' ? { color: '#FFFFFF' } : undefined}>Social Media Marketing (5)</span>
-            </button>
-            <button
-              onClick={() => setActiveTab('learn')}
-              style={activeTab === 'learn' ? { backgroundColor: '#000000', color: '#FFFFFF' } : undefined}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
-                activeTab === 'learn'
-                  ? '!bg-black !text-white shadow-sm'
-                  : '!bg-white !border !border-black/10 !text-zinc-600 hover:!text-black hover:!bg-zinc-100'
-              }`}
-            >
-              <span style={activeTab === 'learn' ? { color: '#FFFFFF' } : undefined}>Learn &amp; SEO Insights (6)</span>
-            </button>
+      {/* ── Category Filter Tabs Segmented Dock with Spring Physics Animation ── */}
+      <section className="py-4 border-b border-black/5 bg-white/85 sticky top-[70px] sm:top-[78px] z-30 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-start sm:justify-center overflow-x-auto scrollbar-none py-1">
+          <div className="inline-flex items-center gap-1 sm:gap-1.5 p-1.5 rounded-full bg-zinc-100/90 border border-black/8 shadow-[inset_0_1px_2px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.04)] relative">
+            {[
+              { key: 'all' as CategoryType, label: 'All Capabilities', count: 23, icon: Layers },
+              { key: 'organic' as CategoryType, label: 'Organic Search', count: 6, icon: Search },
+              { key: 'advertising' as CategoryType, label: 'Digital Advertising', count: 6, icon: Target },
+              { key: 'social' as CategoryType, label: 'Social Media Marketing', count: 5, icon: Share2 },
+              { key: 'learn' as CategoryType, label: 'Learn & SEO Insights', count: 6, icon: BookOpen },
+            ].map((tab) => {
+              const active = activeTab === tab.key;
+              const Icon = tab.icon;
+              return (
+                <motion.button
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab.key)}
+                  whileTap={{ scale: 0.96 }}
+                  className="group relative px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 flex items-center gap-2 whitespace-nowrap focus:outline-none select-none cursor-pointer"
+                >
+                  {/* Sliding active background pill */}
+                  {active && (
+                    <motion.div
+                      layoutId="seoTabActiveIndicator"
+                      className="absolute inset-0 bg-black rounded-full shadow-md shadow-black/20"
+                      transition={{
+                        type: 'spring',
+                        stiffness: 450,
+                        damping: 35,
+                      }}
+                    />
+                  )}
+
+                  {/* Tab Icon */}
+                  <Icon
+                    className={`relative z-10 w-3.5 h-3.5 transition-colors duration-200 ${
+                      active ? 'text-white' : 'text-zinc-500 group-hover:text-black'
+                    }`}
+                  />
+
+                  {/* Tab Label */}
+                  <span
+                    className={`relative z-10 font-semibold tracking-tight transition-colors duration-200 ${
+                      active ? 'text-white' : 'text-zinc-600 group-hover:text-black'
+                    }`}
+                  >
+                    {tab.label}
+                  </span>
+
+                  {/* Tab Count Pill */}
+                  <span
+                    className={`relative z-10 px-2 py-0.5 rounded-full text-[10px] font-mono tracking-tight font-bold transition-colors duration-200 ${
+                      active
+                        ? 'bg-white/20 text-white'
+                        : 'bg-black/5 text-zinc-500 group-hover:bg-black/10 group-hover:text-black'
+                    }`}
+                  >
+                    {tab.count}
+                  </span>
+                </motion.button>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -557,67 +560,74 @@ export default function SeoLeadGenerationPage() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {filteredOfferings.map((service, idx) => (
-            <div
-              key={service.id}
-              id={service.id}
-              className="scroll-mt-36 p-8 sm:p-10 rounded-2xl bg-zinc-50 border border-black/8 hover:border-black/20 hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative"
-            >
-              {/* Alias anchors for seamless navbar deep linking */}
-              {service.aliasIds?.map((alias) => (
-                <span key={alias} id={alias} className="absolute -top-36 left-0" aria-hidden="true" />
-              ))}
+        <motion.div layout className="grid md:grid-cols-2 gap-8">
+          <AnimatePresence mode="popLayout">
+            {filteredOfferings.map((service, idx) => (
+              <motion.div
+                key={service.id}
+                layout
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ duration: 0.22, ease: 'easeOut' }}
+                id={service.id}
+                className="scroll-mt-36 p-8 sm:p-10 rounded-2xl bg-zinc-50 border border-black/8 hover:border-black/20 hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative"
+              >
+                {/* Alias anchors for seamless navbar deep linking */}
+                {service.aliasIds?.map((alias) => (
+                  <span key={alias} id={alias} className="absolute -top-36 left-0" aria-hidden="true" />
+                ))}
 
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs px-3 py-1 rounded-full bg-white border border-black/10 text-solar font-medium tracking-wide">
-                    {service.tag}
-                  </span>
-                  <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">
-                    #{String(idx + 1).padStart(2, '0')} · ARKA Standard
-                  </span>
-                </div>
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-xs px-3 py-1 rounded-full bg-white border border-black/10 text-solar font-medium tracking-wide">
+                      {service.tag}
+                    </span>
+                    <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">
+                      #{String(idx + 1).padStart(2, '0')} · ARKA Standard
+                    </span>
+                  </div>
 
-                <h3 className="text-2xl font-bold text-black mt-4 tracking-tight">
-                  {service.title}
-                </h3>
-                <p className="text-xs font-mono text-solar font-medium mt-1">
-                  {service.subtitle}
-                </p>
-
-                <p className="mt-4 text-sm text-zinc-600 leading-relaxed font-light">
-                  {service.desc}
-                </p>
-
-                <div className="mt-6 border-t border-black/8 pt-5">
-                  <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-3">
-                    Deliverables &amp; Technical Capabilities:
+                  <h3 className="text-2xl font-bold text-black mt-4 tracking-tight">
+                    {service.title}
+                  </h3>
+                  <p className="text-xs font-mono text-solar font-medium mt-1">
+                    {service.subtitle}
                   </p>
-                  <ul className="space-y-2.5">
-                    {service.highlights.map((pt, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 font-medium">
-                        <CheckCircle2 className="w-4 h-4 text-solar shrink-0 mt-0.5" />
-                        <span>{pt}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
 
-              <div className="mt-8 pt-4 border-t border-black/8 flex items-center justify-between">
-                <span className="text-xs font-mono text-zinc-500">100% In-House Delivery</span>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-black hover:text-solar transition-colors"
-                >
-                  <span>Request Custom Strategy</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
+                  <p className="mt-4 text-sm text-zinc-600 leading-relaxed font-light">
+                    {service.desc}
+                  </p>
+
+                  <div className="mt-6 border-t border-black/8 pt-5">
+                    <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-3">
+                      Deliverables &amp; Technical Capabilities:
+                    </p>
+                    <ul className="space-y-2.5">
+                      {service.highlights.map((pt, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 font-medium">
+                          <CheckCircle2 className="w-4 h-4 text-solar shrink-0 mt-0.5" />
+                          <span>{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="mt-8 pt-4 border-t border-black/8 flex items-center justify-between">
+                  <span className="text-xs font-mono text-zinc-500">100% In-House Delivery</span>
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-black hover:text-solar transition-colors"
+                  >
+                    <span>Request Custom Strategy</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </section>
 
       {/* ── Interactive FAQ Section ── */}

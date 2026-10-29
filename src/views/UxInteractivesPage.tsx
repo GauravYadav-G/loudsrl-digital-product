@@ -389,26 +389,66 @@ export default function UxInteractivesPage() {
         </div>
       </section>
 
-      {/* ── Category Filter Navigation Bar ── */}
-      <section className="py-6 border-b border-black/8 bg-zinc-50/70 sticky top-[70px] sm:top-[78px] z-30 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-start sm:justify-center">
-          <div className="flex items-center gap-2 overflow-x-auto py-1">
-            {categories.map((c) => {
-              const count = c === 'All' ? uxFeatures.length : uxFeatures.filter((f) => f.category === c).length;
-              const active = activeCategory === c;
+      {/* ── Category Filter Tabs Segmented Dock with Spring Physics Animation ── */}
+      <section className="py-4 border-b border-black/5 bg-white/85 sticky top-[70px] sm:top-[78px] z-30 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-start sm:justify-center overflow-x-auto scrollbar-none py-1">
+          <div className="inline-flex items-center gap-1 sm:gap-1.5 p-1.5 rounded-full bg-zinc-100/90 border border-black/8 shadow-[inset_0_1px_2px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.04)] relative">
+            {[
+              { label: 'All' as UXCategory, icon: Layers },
+              { label: 'Design & UX' as UXCategory, icon: PenTool },
+              { label: 'Content & Media' as UXCategory, icon: Video },
+              { label: 'Engineering & CMS' as UXCategory, icon: Code2 },
+              { label: 'Compliance & Voice' as UXCategory, icon: ShieldCheck },
+            ].map(({ label, icon: Icon }) => {
+              const count = label === 'All' ? uxFeatures.length : uxFeatures.filter((f) => f.category === label).length;
+              const active = activeCategory === label;
               return (
-                <button
-                  key={c}
-                  onClick={() => setActiveCategory(c)}
-                  style={active ? { backgroundColor: '#000000', color: '#FFFFFF' } : undefined}
-                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
-                    active
-                      ? '!bg-black !text-white shadow-sm'
-                      : '!bg-white !border !border-black/10 !text-zinc-600 hover:!text-black hover:!bg-zinc-100'
-                  }`}
+                <motion.button
+                  key={label}
+                  onClick={() => setActiveCategory(label)}
+                  whileTap={{ scale: 0.96 }}
+                  className="group relative px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 flex items-center gap-2 whitespace-nowrap focus:outline-none select-none cursor-pointer"
                 >
-                  <span style={active ? { color: '#FFFFFF' } : undefined}>{c} ({count})</span>
-                </button>
+                  {/* Sliding active background pill */}
+                  {active && (
+                    <motion.div
+                      layoutId="uxTabActiveIndicator"
+                      className="absolute inset-0 bg-black rounded-full shadow-md shadow-black/20"
+                      transition={{
+                        type: 'spring',
+                        stiffness: 450,
+                        damping: 35,
+                      }}
+                    />
+                  )}
+
+                  {/* Tab Icon */}
+                  <Icon
+                    className={`relative z-10 w-3.5 h-3.5 transition-colors duration-200 ${
+                      active ? 'text-white' : 'text-zinc-500 group-hover:text-black'
+                    }`}
+                  />
+
+                  {/* Tab Label */}
+                  <span
+                    className={`relative z-10 font-semibold tracking-tight transition-colors duration-200 ${
+                      active ? 'text-white' : 'text-zinc-600 group-hover:text-black'
+                    }`}
+                  >
+                    {label}
+                  </span>
+
+                  {/* Tab Count Pill */}
+                  <span
+                    className={`relative z-10 px-2 py-0.5 rounded-full text-[10px] font-mono tracking-tight font-bold transition-colors duration-200 ${
+                      active
+                        ? 'bg-white/20 text-white'
+                        : 'bg-black/5 text-zinc-500 group-hover:bg-black/10 group-hover:text-black'
+                    }`}
+                  >
+                    {count}
+                  </span>
+                </motion.button>
               );
             })}
           </div>
@@ -429,98 +469,105 @@ export default function UxInteractivesPage() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {filteredFeatures.map((item, idx) => {
-            const aliases: Record<string, string> = {
-              'infographics-motion': 'infographics',
-              'digital-experience-dev': 'digital-experience',
-            };
-            const aliasId = aliases[item.id];
+        <motion.div layout className="grid md:grid-cols-2 gap-8">
+          <AnimatePresence mode="popLayout">
+            {filteredFeatures.map((item, idx) => {
+              const aliases: Record<string, string> = {
+                'infographics-motion': 'infographics',
+                'digital-experience-dev': 'digital-experience',
+              };
+              const aliasId = aliases[item.id];
 
-            return (
-              <div
-                key={item.id}
-                id={item.id}
-                className="scroll-mt-36 p-8 sm:p-10 rounded-2xl bg-zinc-50 border border-black/8 hover:border-black/20 hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group"
-              >
-                {aliasId && (
-                  <span id={aliasId} className="absolute -top-36 left-0" aria-hidden="true" />
-                )}
+              return (
+                <motion.div
+                  key={item.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.97 }}
+                  transition={{ duration: 0.22, ease: 'easeOut' }}
+                  id={item.id}
+                  className="scroll-mt-36 p-8 sm:p-10 rounded-2xl bg-zinc-50 border border-black/8 hover:border-black/20 hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group"
+                >
+                  {aliasId && (
+                    <span id={aliasId} className="absolute -top-36 left-0" aria-hidden="true" />
+                  )}
 
-                <div>
-                  {/* Top Bar: Tag & Benchmark */}
-                  <div className="flex items-center justify-between mb-5">
-                    <span className="font-mono text-xs px-3 py-1 rounded-full bg-white border border-black/10 text-solar font-medium tracking-wide">
-                      {item.tag}
-                    </span>
-                    <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">
-                      #{String(idx + 1).padStart(2, '0')} · {item.category}
-                    </span>
-                  </div>
+                  <div>
+                    {/* Top Bar: Tag & Benchmark */}
+                    <div className="flex items-center justify-between mb-5">
+                      <span className="font-mono text-xs px-3 py-1 rounded-full bg-white border border-black/10 text-solar font-medium tracking-wide">
+                        {item.tag}
+                      </span>
+                      <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">
+                        #{String(idx + 1).padStart(2, '0')} · {item.category}
+                      </span>
+                    </div>
 
-                  {/* Title & Subtitle */}
-                  <h3 className="text-2xl font-bold text-black tracking-tight group-hover:text-zinc-900 transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs font-mono text-solar font-medium mt-1">
-                    {item.subtitle}
-                  </p>
-
-                  {/* Descriptive Paragraph */}
-                  <p className="mt-4 text-sm text-zinc-600 leading-relaxed font-light">
-                    {item.desc}
-                  </p>
-
-                  {/* Key Highlights */}
-                  <div className="mt-6 pt-5 border-t border-black/8">
-                    <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-3">
-                      Core Framework &amp; Highlights:
+                    {/* Title & Subtitle */}
+                    <h3 className="text-2xl font-bold text-black tracking-tight group-hover:text-zinc-900 transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs font-mono text-solar font-medium mt-1">
+                      {item.subtitle}
                     </p>
-                    <ul className="space-y-2.5">
-                      {item.highlights.map((point, pIdx) => (
-                        <li key={pIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 font-medium">
-                          <CheckCircle2 className="w-4 h-4 text-solar shrink-0 mt-0.5" />
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
 
-                  {/* Deliverables Pills */}
-                  <div className="mt-6 pt-5 border-t border-black/8">
-                    <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-3">
-                      Standard Deliverables:
+                    {/* Descriptive Paragraph */}
+                    <p className="mt-4 text-sm text-zinc-600 leading-relaxed font-light">
+                      {item.desc}
                     </p>
-                    <div className="flex flex-wrap gap-2">
-                      {item.deliverables.map((del, dIdx) => (
-                        <span
-                          key={dIdx}
-                          className="px-2.5 py-1 rounded-lg bg-white border border-black/8 text-xs text-zinc-700 font-normal"
-                        >
-                          {del}
-                        </span>
-                      ))}
+
+                    {/* Key Highlights */}
+                    <div className="mt-6 pt-5 border-t border-black/8">
+                      <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-3">
+                        Core Framework &amp; Highlights:
+                      </p>
+                      <ul className="space-y-2.5">
+                        {item.highlights.map((point, pIdx) => (
+                          <li key={pIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 font-medium">
+                            <CheckCircle2 className="w-4 h-4 text-solar shrink-0 mt-0.5" />
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Deliverables Pills */}
+                    <div className="mt-6 pt-5 border-t border-black/8">
+                      <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-3">
+                        Standard Deliverables:
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {item.deliverables.map((del, dIdx) => (
+                          <span
+                            key={dIdx}
+                            className="px-2.5 py-1 rounded-lg bg-white border border-black/8 text-xs text-zinc-700 font-normal"
+                          >
+                            {del}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Bottom Action Strip */}
-                <div className="mt-8 pt-4 border-t border-black/8 flex items-center justify-between">
-                  <span className="text-xs font-mono text-zinc-500 font-medium">
-                    In-House Design Pod · Sector 63, Noida
-                  </span>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-black hover:text-solar transition-colors"
-                  >
-                    <span>Request Audit</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+                  {/* Bottom Action Strip */}
+                  <div className="mt-8 pt-4 border-t border-black/8 flex items-center justify-between">
+                    <span className="text-xs font-mono text-zinc-500 font-medium">
+                      In-House Design Pod · Sector 63, Noida
+                    </span>
+                    <Link
+                      to="/contact"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-black hover:text-solar transition-colors"
+                    >
+                      <span>Request Audit</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </motion.div>
       </section>
 
       {/* ── Working Methodology Strip ── */}
