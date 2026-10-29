@@ -23,8 +23,10 @@ export default function PortfoliteLogosMarquee() {
               <img
                 src={logo.src}
                 alt={logo.alt}
-                loading="eager"
+                loading="lazy"
                 decoding="async"
+                width={120}
+                height={28}
                 className="h-full w-auto max-w-[120px] object-contain"
               />
             </div>

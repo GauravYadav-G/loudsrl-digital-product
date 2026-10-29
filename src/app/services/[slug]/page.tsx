@@ -10,9 +10,22 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const service = SERVICES.find((s) => s.slug === slug);
+  const title = service ? service.title : 'Service';
+  const description = service?.short || 'Enterprise digital engineering, search authority, and custom software.';
+  const url = `/services/${slug}`;
+
   return {
-    title: service ? `${service.title} | ARKA Technovation` : 'Service | ARKA Technovation',
-    description: service?.short || 'Enterprise digital engineering and growth.',
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: 'article',
+    },
   };
 }
 

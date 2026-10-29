@@ -6,6 +6,7 @@
 
 export const COMPANY = {
   name: 'ARKA Technovation',
+  legalName: 'ARKA Technovation Private Limited',
   short: 'ARKA.',
   logo: '/images/logo/arka-logo-black.png',
   logoWhite: '/images/logo/arka-logo-white.png',
@@ -15,11 +16,22 @@ export const COMPANY = {
   years: 17,
   email: 'info@arkatechnovation.com',
   careers: 'careers@arkatechnovation.com',
-  phones: ['+91 97114 87316', '+91 93109 07227', '0120-4200970'],
+  phone: '+91 97114 87316',
+  phones: ['+91 97114 87316'],
+  hq: 'Royace Business Park, Office No- 202, C-4, Sector 63, Noida, Uttar Pradesh 201301, India',
+  address: 'Royace Business Park, Office No- 202, C-4, Sector 63, Noida, Uttar Pradesh 201301, India',
 };
 
 export const OFFICES = [
-  { label: 'Corporate Office', city: 'Noida', lines: ['A-82, Sector 63', 'Noida, Uttar Pradesh 201301'], primary: true },
+  {
+    label: 'Corporate Office',
+    city: 'Noida',
+    lines: [
+      'Royace Business Park, Office No- 202, C-4',
+      'Sector 63, Noida, Uttar Pradesh 201301, India',
+    ],
+    primary: true,
+  },
 ];
 
 export const STATS = [
@@ -31,36 +43,90 @@ export const STATS = [
 
 /* ── NAVBAR NAVIGATION DATA ── */
 export type NavChild = { label: string; to: string; note?: string };
-export type NavGroup = { label: string; to: string; children?: NavChild[]; badge?: string };
+export type NavGroup = {
+  label: string;
+  shortLabel?: string;
+  to: string;
+  children?: NavChild[];
+  badge?: string;
+  hideOnDesktop?: boolean;
+};
 
 export const NAV: NavGroup[] = [
-  { label: 'Home', to: '/' },
+  { label: 'Home', to: '/', hideOnDesktop: true },
   {
-    label: 'Services', to: '/services', badge: '10', children: [
-      { label: 'SEO & Lead Generation', to: '/services/seo-lead-generation', note: 'Organic search · Keywords · Local SEO' },
-      { label: 'Digital Marketing', to: '/services/digital-marketing', note: 'Strategy · Social · Email & WhatsApp' },
-      { label: 'Digital Advertising', to: '/services/digital-advertising', note: 'PPC · Programmatic · Geofencing' },
-      { label: 'Development', to: '/services/development', note: 'Web · Shopify · CMS · Infrastructure' },
-      { label: 'CRM Software', to: '/services/crm-software', note: 'Custom CRM · ERP · SaaS' },
-      { label: 'Content Marketing', to: '/services/content-marketing', note: 'Editorial · Motion · Web video' },
-      { label: 'Film Making', to: '/services/film-making', note: 'Corporate films · Ad films · Shoots' },
-      { label: 'E-Commerce', to: '/services/e-commerce', note: 'Stores · Marketplace · SEO + PPC' },
-      { label: 'Analytics & Attribution', to: '/services/analytics-attribution', note: 'Forecasting · Call tracking · Due diligence' },
-      { label: 'UX & Interactive', to: '/services/ux-interactive', note: 'Research · UI/UX · Design systems' },
+    label: 'SEO & Lead Generation',
+    shortLabel: 'SEO & Leads',
+    to: '/seo-lead-generation',
+    children: [
+      { label: 'Organic Search & SEO', to: '/seo-lead-generation#organic-search', note: 'Keywords · Technical SEO · Authority building' },
+      { label: 'Enterprise SEO Services', to: '/seo-lead-generation#enterprise-seo', note: 'High-volume keyword strategy & technical architecture' },
+      { label: 'Local SEO & Google Guarantee', to: '/seo-lead-generation#local-seo', note: 'Noida & multi-location map dominance' },
+      { label: 'Page Speed & Core Web Vitals', to: '/seo-lead-generation#core-web-vitals', note: 'Sub-second LCP, INP & TTFB speed engineering' },
+      { label: 'PPC Management Services', to: '/seo-lead-generation#ppc', note: 'High-ROAS Google & Meta paid media campaigns' },
+      { label: 'Competitor & Addressable Geofencing', to: '/seo-lead-generation#geofencing', note: 'Hyper-targeted 1000 sq ft location fences' },
+      { label: 'Social Media Advertising', to: '/seo-lead-generation#social-ads', note: 'Meta, LinkedIn & YouTube video ads' },
+      { label: 'Online Review Acceleration', to: '/seo-lead-generation#reviews', note: 'Reputation acceleration & sentiment tracking' },
     ],
   },
-  { label: 'Who We Are', to: '/who-we-are', children: [
-    { label: 'Our Story', to: '/who-we-are#story' },
-    { label: 'Leadership', to: '/who-we-are#leadership' },
-    { label: 'Community Impact', to: '/who-we-are#impact' },
-  ] },
-  { label: 'Our Work', to: '/work' },
-  { label: 'Careers', to: '/careers' },
-  { label: 'Insights', to: '/insights', children: [
-    { label: 'Blog', to: '/insights#blog' },
-    { label: 'FAQ', to: '/insights#faq' },
-  ] },
-  { label: 'Contact', to: '/contact' },
+  {
+    label: 'Services',
+    to: '/services',
+    children: [
+      { label: 'CRM Software & SaaS', to: '/services/crm-software', note: 'Custom CRM · Contact management · Automated journeys' },
+      { label: 'ERP Enterprise Solutions', to: '/services/crm-software#erp', note: 'Finance, supply chain, inventory & operations' },
+      { label: 'Website Development', to: '/services/development', note: 'Full-stack Next.js, React, Node.js, PHP & .NET' },
+      { label: 'Lead Management Systems (LMS)', to: '/services/crm-software#lms', note: 'Automated lead distribution & scoring' },
+      { label: 'Mobile Application Development', to: '/services/development#mobile', note: 'iOS & Android mobile apps with real-time sync' },
+      { label: 'Digital Marketing & Growth', to: '/services/digital-marketing', note: 'Full-funnel strategy · Email, SMS & WhatsApp' },
+      { label: 'Search Engine Optimization', to: '/services/seo-lead-generation', note: 'Google SEO, on-page, off-page & technical audit' },
+      { label: 'E-Commerce Development & SEO', to: '/services/e-commerce', note: 'Shopify, Magento, marketplace SEO & shopping PPC' },
+      { label: 'Corporate Film Making', to: '/services/film-making', note: 'Commercials, factory shoots & product videos' },
+      { label: 'Content Marketing & Motion', to: '/services/content-marketing', note: 'SEO copywriting, explainers & visual storytelling' },
+    ],
+  },
+  {
+    label: 'UX Interactives',
+    to: '/ux-interactives',
+    children: [
+      { label: 'UX Website Design & Redesign', to: '/ux-interactives#website-design', note: 'Research-backed interfaces & brand experiences' },
+      { label: 'High-Converting Landing Pages', to: '/ux-interactives#landing-pages', note: 'Sales funnels & rapid conversion systems' },
+      { label: 'Conversion Rate Optimization (CRO)', to: '/ux-interactives#cro', note: 'Data-driven heatmaps & user flow refinement' },
+      { label: 'Content Marketing & SEO Copy', to: '/ux-interactives#content-marketing', note: 'High-converting editorial, blogs & sales guides' },
+      { label: 'Personalized Web Content', to: '/ux-interactives#personalized-content', note: 'Firmographic dynamic website experiences' },
+      { label: 'Infographics & Motion Graphics', to: '/ux-interactives#infographics', note: 'Data visualization & kinetic explainer graphics' },
+      { label: 'Digital Experience Development', to: '/ux-interactives#digital-experience', note: 'Custom full-stack web portals & Shopify stores' },
+      { label: 'ADA Web Compliance Services', to: '/ux-interactives#ada-compliance', note: 'WCAG 2.2 accessibility audits & inclusive UI' },
+    ],
+  },
+  {
+    label: 'Our Technology',
+    shortLabel: 'Technology',
+    to: '/our-technology',
+    children: [
+      { label: 'Revenue Acceleration Platform', to: '/our-technology#revenue-platform', note: 'AI-powered marketing & sales revenue engine' },
+      { label: 'Customer Data Platform (CDP)', to: '/our-technology#cdp', note: 'Unified customer profiles & segmentation' },
+      { label: 'CRM Retargeting & ETL Pipelines', to: '/our-technology#crm-retargeting', note: 'First-party CRM audience syncing & data lakes' },
+      { label: 'Web Channel Call Tracking', to: '/our-technology#call-tracking', note: 'Dynamic Number Insertion & campaign attribution' },
+      { label: 'Channel Partner Pipeline', to: '/our-technology#partner-pipeline', note: 'Multi-tier distributor & sales pipeline governance' },
+      { label: 'Marketing Automation & ABM', to: '/our-technology#marketing-automation', note: 'Salesforce, Dynamics 365 & account-based marketing' },
+    ],
+  },
+  {
+    label: 'Who We Are',
+    to: '/who-we-are',
+    children: [
+      { label: 'Our Story & Heritage', to: '/who-we-are#story', note: '17+ years of engineering craft in Sector 63, Noida' },
+      { label: 'Working Methodology', to: '/who-we-are#methodology', note: 'Zero outsourcing, agile delivery & dedicated teams' },
+      { label: 'Leadership & Specialist Pods', to: '/who-we-are#leadership', note: 'Direct access to engineers, designers & filmmakers' },
+      { label: 'Featured Client Work', to: '/work', note: 'Case studies, web applications & films' },
+      { label: 'Careers at ARKA', to: '/careers', note: 'Join our in-house engineering pods' },
+      { label: 'Pricing Transparency & ROI', to: '/who-we-are#pricing', note: 'Fixed scopes, written quotes & verified benchmarks' },
+    ],
+  },
+  { label: 'Our Work', to: '/work', hideOnDesktop: true },
+  { label: 'Careers', to: '/careers', hideOnDesktop: true },
+  { label: 'Contact', to: '/contact', hideOnDesktop: true },
 ];
 
 /* ── SERVICES — full taxonomy with sub-services from the source site ── */
@@ -327,7 +393,7 @@ export const ROLES = [
 export const FAQS = [
   { q: 'What does Arka Technovation do?', a: 'Ten services across three disciplines: marketing (SEO, digital marketing, digital advertising, content, analytics), technology (web development, CRM software, e-commerce) and creative (film making, UX and interactive design). One in-house team delivers all of it.' },
   { q: 'Who leads ARKA Technovation?', a: 'ARKA Technovation is founded and led by Mr. Kranti Parashar, an eminent leader with over 17 years of experience in enterprise technology, strategic finance, and corporate communication.' },
-  { q: 'Where are your offices?', a: 'Our corporate office is located at A-82, Sector 63, Noida, Uttar Pradesh (Delhi NCR).' },
+  { q: 'Where are your offices?', a: 'Our corporate office is located at Royace Business Park, Office No- 202, C-4, Sector 63, Noida, Uttar Pradesh 201301, India.' },
   { q: 'How long does a project take?', a: 'A corporate website ships in three to six weeks. E-commerce and mobile apps run eight to sixteen. Custom CRM depends on scope and is planned in milestones. Marketing engines show measurable movement in sixty to ninety days.' },
   { q: 'Do you provide reports after launch?', a: 'Yes. Monthly performance reports, a live dashboard, quarterly strategy reviews and a named account contact. Maintenance, hosting and iteration are available as retainers or per project.' },
   { q: 'What does it cost?', a: 'Focused websites and single campaigns start around ₹1 lakh. Retainers typically run ₹40,000 to ₹2,50,000 per month depending on scope. After the discovery call you receive a written proposal with a fixed number, not a range.' },
@@ -350,3 +416,302 @@ export const PROCESS = [
   { n: '05', t: 'Deploy', d: 'QA, launch, go-live support and team training.' },
   { n: '06', t: 'Grow', d: 'SEO, media and content, iterated and reported every month.' },
 ];
+
+/* ─────────────────────────────────────────────────────────────
+   DETAILED EXTRACTED ARCHITECTURE — ARKA TECHNOVATION
+   Comprehensive domain data aligned with full enterprise offerings
+   ───────────────────────────────────────────────────────────── */
+
+export const SEO_SERVICES_DATA = {
+  eyebrow: 'Organic Search & High-Velocity Lead Engines',
+  title: 'SEO & Lead Generation Services That Power Scalable Pipeline',
+  intro:
+    'Search engine optimization is the foundation of digital revenue. At ARKA Technovation, we handle custom end-to-end SEO campaigns from technical health, Core Web Vitals, and structured schemas to competitive enterprise search and hyper-targeted paid media.',
+  stats: [
+    { value: '+210%', label: 'Average Organic Traffic Lift' },
+    { value: '450+', label: 'In-House Tech & Growth Specialists' },
+    { value: '4.8×', label: 'Verified Client Pipeline ROAS' },
+    { value: '<1.2s', label: 'Average Core Web Vitals LCP' },
+  ],
+  pillars: [
+    {
+      id: 'organic-search',
+      title: 'Enterprise & Organic SEO Services',
+      tag: 'Organic Search',
+      desc: 'With over 90% of online journeys beginning on search engines, top rankings in competitive search results connect your company with buyers at the exact moment of intent. Our enterprise strategies dominate high-volume commercial keywords.',
+      points: [
+        'Enterprise Keyword Mapping & Commercial Intent Modeling',
+        'Deep Technical Crawlability, Sitemaps & Schema Architecture',
+        'High-Authority Domain Backlink Acquisition & Digital PR',
+        'Algorithmic Content Freshness & Topic Cluster Governance',
+      ],
+    },
+    {
+      id: 'local-seo',
+      title: 'Local SEO & Google Guarantee Ads',
+      tag: 'Local Dominance',
+      desc: 'More than half of online searchers visit a business within 24 hours of conducting a local query. We optimize your local profiles and manage Google Local Services Ads so you only pay for qualified inbound customer calls.',
+      points: [
+        'Google Business Profile Multi-Location Optimization',
+        'Google Guaranteed & Local Services Ads Verification Management',
+        'Localized Keyword Tracking for Inbound Calls & Quotes',
+        'Local Citation Building & Consistency Audits',
+      ],
+    },
+    {
+      id: 'core-web-vitals',
+      title: 'Page Speed & Core Web Vitals Optimization',
+      tag: 'Speed Engineering',
+      desc: 'Nearly half of web users abandon pages taking more than three seconds to load. We optimize Time to First Byte (TTFB), Largest Contentful Paint (LCP), and Interaction to Next Paint (INP) to unlock higher Google rankings and higher conversion.',
+      points: [
+        'Server Response & Edge CDN Caching Architecture',
+        'Resource Compression, Lazy-Loading & Zero-Layout Shifts',
+        'Third-Party Script Auditing & JavaScript Hydration Pruning',
+        'Mobile-First Google PageSpeed Score Benchmark Guarantees',
+      ],
+    },
+    {
+      id: 'ppc',
+      title: 'Data-Powered PPC Management Services',
+      tag: 'Paid Search',
+      desc: 'We combine 17+ years of search experience with millions of data points to launch smarter pay-per-click campaigns that reduce cost per acquisition (CPA) and maximize Return on Ad Spend (ROAS).',
+      points: [
+        'Google Ads Search, Display & Performance Max Campaigns',
+        'Competitor Ad Intelligence & Bid War Mitigation',
+        'Negative Keyword Library & Click Fraud Protection',
+        'Continuous Landing Page Split Testing & Conversion Tracking',
+      ],
+    },
+    {
+      id: 'geofencing',
+      title: 'Competitor & Addressable Geofencing',
+      tag: 'Hyper-Targeted Media',
+      desc: 'Target competitor locations, trade shows, and exact physical premises with 12-sided polygon fences down to 1,000 square feet. Deliver hyper-relevant ads directly to decision-makers based on physical location footprints.',
+      points: [
+        'Competitor Facility & Industrial Zone Geofences',
+        'Conference, Trade Show & Event Perimeter Targeting',
+        'Addressable Household & Corporate Premises Campaigns',
+        'Foot Traffic & In-Store Visit Attribution Reporting',
+      ],
+    },
+    {
+      id: 'social-ads',
+      title: 'Social Media Advertising & Video Reach',
+      tag: 'Social Media',
+      desc: 'With 75% of buyers using social channels in their evaluation cycle, our multi-channel social advertising builds brand authority and generates pipeline across Meta, LinkedIn, Instagram, and YouTube.',
+      points: [
+        'B2B Account Targeting on LinkedIn & Executive Audiences',
+        'Meta & Instagram Shopping Feeds and Conversion Campaigns',
+        'YouTube In-Stream Video Ads with Direct Response Tracking',
+        'AI Audience Lookalikes & Omni-Channel Retargeting Lists',
+      ],
+    },
+    {
+      id: 'reviews',
+      title: 'Online Review Acceleration & Reputation',
+      tag: 'Reputation Management',
+      desc: 'A proactive reputation engine that monitors, accelerates, and responds to reviews across Google, Yelp, and industry portals to turn social proof into a predictable conversion driver.',
+      points: [
+        'Automated Post-Purchase & Post-Service Review Requests',
+        'Multi-Platform Sentiment Tracking & Real-Time Alerts',
+        'Professional Response Strategy for Neutral and Critical Reviews',
+        'Verified Star Rating Rich Snippets in Search Engine Results',
+      ],
+    },
+  ],
+};
+
+export const UX_INTERACTIVES_DATA = {
+  eyebrow: 'Human-Centered Digital Craft & Conversion Engineering',
+  title: 'UX Interactives, Dynamic Experience Design & Content Systems',
+  intro:
+    'A great user interface drives an unforgettable user experience. At ARKA Technovation, our award-winning design and engineering pods build bespoke, high-converting digital interfaces, personalized content engines, and accessible web experiences.',
+  features: [
+    {
+      id: 'website-design',
+      title: 'UX Website Design & Full Redesign',
+      desc: 'We craft bespoke, mobile-optimized interfaces that capture your corporate brand identity, reduce bounce rates, and guide visitors smoothly through complex conversion funnels.',
+      deliverables: ['User journey mapping', 'Wireframing & interactive prototypes', 'Design systems & UI kits', 'Accessibility & visual audit'],
+    },
+    {
+      id: 'landing-pages',
+      title: 'High-Converting Landing Pages & Funnels',
+      desc: 'Laser-focused landing pages engineered for paid search and social campaigns. Built for rapid load speeds, psychological visual flow, and maximum lead capture rates.',
+      deliverables: ['Custom landing page design', 'A/B testing architecture', 'Mobile-first layout hierarchy', 'Form conversion optimization'],
+    },
+    {
+      id: 'cro',
+      title: 'Conversion Rate Optimization (CRO)',
+      desc: 'Using heatmaps, session replays, and statistical split-testing, we identify and fix friction points in your funnel to increase revenue from existing web traffic.',
+      deliverables: ['Friction analysis audit', 'Multivariate test hypotheses', 'Checkout & funnel rebuilds', 'Monthly CRO scorecards'],
+    },
+    {
+      id: 'content-marketing',
+      title: 'SEO Copywriting & Content Marketing',
+      desc: 'Persuasive, research-backed copywriting that resonates with human buyers while satisfying search engine crawl algorithms. From technical whitepapers to sales copy.',
+      deliverables: ['Full content audit', 'SEO copywriting guides', 'Editorial calendar management', 'Tone of voice documentation'],
+    },
+    {
+      id: 'personalized-content',
+      title: 'Personalized Web Content & Dynamic Messaging',
+      desc: 'Deliver tailored website experiences based on visitor firmographics, referral channels, company size, and on-site behavior in real-time.',
+      deliverables: ['Firmographic audience rules', 'Dynamic headline & hero swapping', 'Behavioral trigger workflows', 'Audience engagement telemetry'],
+    },
+    {
+      id: 'infographics',
+      title: 'Infographics & Motion Graphics Production',
+      desc: 'Transform complex technical concepts, industrial processes, and proprietary data into captivating infographics, 3D animations, and viral visual stories.',
+      deliverables: ['Data visualization design', '2D/3D kinetic motion graphics', 'Explainer video assets', 'Social visual packages'],
+    },
+    {
+      id: 'digital-experience',
+      title: 'Shopify & Digital Experience Engineering',
+      desc: 'Full-stack development across open-source (PHP, MySQL, Node.js) and enterprise frameworks (Next.js, React, Microsoft .NET, Shopify Plus, Magento).',
+      deliverables: ['Custom Shopify storefronts', 'Custom headless integrations', 'ERP & payment gateways', 'Speed & security hardening'],
+    },
+    {
+      id: 'ada-compliance',
+      title: 'ADA Web Compliance & Accessibility Services',
+      desc: 'Ensure barrier-free digital access for all users while maintaining compliance with international WCAG 2.2 and ADA accessibility standards.',
+      deliverables: ['Full WCAG 2.2 accessibility audit', 'Keyboard & screen-reader remediation', 'Color contrast validation', 'Compliance certification report'],
+    },
+  ],
+};
+
+export const TECHNOLOGY_PLATFORMS_DATA = {
+  eyebrow: 'Enterprise Architecture & Data Science',
+  title: 'Our Technology Stack — Accelerating Digital Transformation',
+  intro:
+    'ARKA Technovation develops proprietary software, revenue platforms, and data pipelines that turn raw customer signals into measurable enterprise revenue.',
+  platforms: [
+    {
+      id: 'revenue-platform',
+      name: 'Revenue Acceleration Platform',
+      tag: 'AI Intelligence',
+      desc: 'Our proprietary marketing and sales acceleration engine synthesizes millions of touchpoints to optimize budget allocation, automate pipeline scoring, and forecast revenue.',
+      capabilities: [
+        'AI-driven predictive deal scoring and pipeline velocity tracking',
+        'Automated omni-channel budget shifts toward top-performing campaigns',
+        'Direct synchronization with enterprise CRM and ERP platforms',
+        'Unified leadership reporting and attribution dashboard',
+      ],
+    },
+    {
+      id: 'cdp',
+      name: 'Customer Data Platform (CDP)',
+      tag: 'Unified Profiles',
+      desc: 'A single, persistent database that collects and normalizes customer interactions across web, email, CRM, and offline channels into unified 360-degree buyer profiles.',
+      capabilities: [
+        'First-party cookie identity resolution and cross-device mapping',
+        'Behavioral segmentation based on real-time browsing telemetry',
+        'Direct webhook integration into marketing automation engines',
+        'Full compliance with global data privacy and encryption standards',
+      ],
+    },
+    {
+      id: 'crm-retargeting',
+      name: 'CRM Retargeting & Data Warehousing (ETL)',
+      tag: 'Data Engineering',
+      desc: 'Bridge the gap between offline enterprise data and digital advertising. Push first-party CRM data into high-converting retargeting audiences and build custom data lakes.',
+      capabilities: [
+        'Automated ETL pipelines connecting CRM, billing, and web analytics',
+        'Offline customer purchase history synced to paid search audiences',
+        'Custom SQL analytics, data warehouse models, and BI reporting',
+        'Automated pipeline hygiene and duplicate record removal',
+      ],
+    },
+    {
+      id: 'call-tracking',
+      name: 'Web Channel Call Tracking & Attribution',
+      tag: 'Telephony Intelligence',
+      desc: 'Dynamic Number Insertion (DNI) places unique trackable phone numbers on your website, mapping inbound phone leads directly back to the exact keyword and ad source.',
+      capabilities: [
+        'Session-level Dynamic Number Insertion across all web channels',
+        'VOIP intelligent routing directly to sales department lines',
+        'Call recording, AI transcription, and lead quality qualification',
+        'Direct revenue attribution for high-value phone transactions',
+      ],
+    },
+    {
+      id: 'partner-pipeline',
+      name: 'Channel Partner Pipeline Governance',
+      tag: 'B2B Distribution',
+      desc: 'Multi-tier sales pipeline platform that coordinates leads across distributors, franchisees, and dealer networks with shared performance visibility.',
+      capabilities: [
+        'Automated lead distribution based on geographical dealer territories',
+        'Partner portal with real-time deal registration and pipeline tracking',
+        'Shared marketing collateral, co-op campaign asset distribution',
+        'Unified national vs regional sales attribution modeling',
+      ],
+    },
+    {
+      id: 'marketing-automation',
+      name: 'Marketing Automation & Enterprise ABM',
+      tag: 'Enterprise Workflows',
+      desc: 'End-to-end automation for complex sales cycles. Certified integration and workflow engineering for Salesforce Marketing Cloud, Microsoft Dynamics 365, and HubSpot.',
+      capabilities: [
+        'Account-Based Marketing (ABM) targeting high-value enterprise accounts',
+        'Behavioral drip email sequences triggered by whitepaper downloads',
+        'Lead scoring rules combining digital engagement with CRM data',
+        'Sales enablement alerts when target enterprise accounts visit your site',
+      ],
+    },
+  ],
+  techStack: [
+    { cat: 'Front-End & UI', tools: ['React', 'Next.js 15', 'TypeScript', 'Tailwind CSS', 'Three.js / WebGL', 'Framer Motion'] },
+    { cat: 'Back-End & API', tools: ['Node.js', 'Python', 'PHP 8', 'Microsoft .NET', 'PostgreSQL', 'Redis', 'Docker'] },
+    { cat: 'Data & Analytics', tools: ['Google Analytics 4', 'BigQuery', 'ETL Pipelines', 'Looker Studio', 'Ahrefs', 'Semrush'] },
+    { cat: 'Enterprise SaaS', tools: ['Salesforce', 'Microsoft Dynamics 365', 'HubSpot', 'Shopify Plus', 'Magento', 'Tally'] },
+  ],
+};
+
+export const WHO_WE_ARE_DATA = {
+  eyebrow: 'Our Heritage, Team & Working Culture',
+  title: 'Who We Are — ARKA Technovation',
+  intro:
+    'Founded and guided by Mr. Kranti Parashar, ARKA Technovation is a premier digital product, software engineering, and corporate growth company headquartered in Sector 63, Noida. We build serious software, deploy transformative marketing engines, and produce world-class film media under one roof.',
+  methodology: [
+    {
+      title: 'Zero Outsourcing Philosophy',
+      desc: 'Every line of code, every pixel of design, and every second of video is created by our in-house team in Noida. No middle-tier subcontractors, ensuring unbroken accountability and institutional craft.',
+    },
+    {
+      title: 'Agile Two-Week Sprints',
+      desc: 'We deliver working software milestones every two weeks. You participate in sprint reviews, test real code on staging servers, and see tangible progress instead of abstract slide decks.',
+    },
+    {
+      title: 'Direct Specialist Access',
+      desc: 'Our clients work directly with senior software architects, performance marketers, and creative directors—never junior account coordinators passing messages back and forth.',
+    },
+    {
+      title: 'Truthful Reporting & ROI Governance',
+      desc: 'We share the exact same dashboards and telemetry we see internally. Complete transparency on cost-per-acquisition, pipeline generated, and areas targeted for immediate optimization.',
+    },
+  ],
+  pricingGuides: [
+    {
+      discipline: 'Custom Web & Software Development',
+      range: 'From ₹1.2 Lakh (Fixed Scope)',
+      desc: 'High-performance responsive websites, web portals, and custom CRM platforms built with Next.js, React, Node.js, and cloud infrastructure.',
+      includes: ['Technical architecture specification', 'Bespoke UI/UX design system', 'Full-stack development & testing', 'Production deployment & source code handover'],
+    },
+    {
+      discipline: 'SEO & Inbound Lead Generation',
+      range: '₹40,000 – ₹1,80,000 / month',
+      desc: 'Full-service enterprise search engine optimization covering technical health, Core Web Vitals, authority links, and high-volume commercial ranking.',
+      includes: ['Technical & speed audits', 'Keyword intent map', 'Monthly on-page optimization', 'High-authority link building & rank tracking'],
+    },
+    {
+      discipline: 'PPC & Digital Advertising Management',
+      range: '10% – 15% of Ad Spend or Retainer',
+      desc: 'Data-driven paid media campaigns across Google Ads, Meta, LinkedIn, and geofencing networks focused on ROAS and pipeline growth.',
+      includes: ['Account structure setup', 'Competitor keyword research', 'Ad copy & creative variants', 'Conversion tracking & fraud monitoring'],
+    },
+    {
+      discipline: 'Corporate Film & Video Production',
+      range: 'Custom Quote by Production Scale',
+      desc: 'Broadcast-quality corporate documentaries, product demo films, TV commercial ads, and factory shoots produced by our in-house cinematography crew.',
+      includes: ['Concept & scriptwriting', 'Location shooting with cinema gear', 'Colour grading & sound design', 'Cut-downs for social reels & ads'],
+    },
+  ],
+};

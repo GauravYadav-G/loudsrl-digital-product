@@ -86,7 +86,7 @@ export default function PortfoliteAbout() {
               <img
                 src="/portfolite/kranti-parashar.jpg"
                 alt="Mr. Kranti Parashar — Founder & Director, ARKA Technovation"
-                loading="eager"
+                loading="lazy"
                 decoding="async"
                 width="768"
                 height="1024"

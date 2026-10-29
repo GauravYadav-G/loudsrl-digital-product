@@ -29,7 +29,7 @@ export default function PortfoliteProjectsGrid() {
       id: 'arka-1',
       title: 'Precision Engineering Co.',
       category: 'Manufacturing · Web & SEO',
-      image: '/portfolite/proj-1.png',
+      image: '/portfolite/proj-1.webp',
       client: 'Rajesh Verma, Director',
       year: '2025',
       description: 'A forty-year-old exporter with world-class machinery rebuilt around product-line intent. Fixed technical foundations, published sixty specification pages, and shot a factory film that proved capacity on camera.',
@@ -40,7 +40,7 @@ export default function PortfoliteProjectsGrid() {
       id: 'arka-2',
       title: 'Maison D2C Online Store',
       category: 'E-Commerce · Growth',
-      image: '/portfolite/proj-2.png',
+      image: '/portfolite/proj-2.webp',
       client: 'Priya Sharma, Founder',
       year: '2025',
       description: 'Rebuilt storefront to an ultra-fast 1.4s performance budget, restructured the checkout funnel with continuous testing, and shifted paid budget to full-funnel shopping and remarketing.',
@@ -51,7 +51,7 @@ export default function PortfoliteProjectsGrid() {
       id: 'arka-3',
       title: 'Northline Heavy Industries',
       category: 'Corporate Film & Campaigns',
-      image: '/portfolite/proj-3.png',
+      image: '/portfolite/proj-3.webp',
       client: 'Marketing Head, Northline',
       year: '2024',
       description: 'A four-minute cinematic brand film shot across two manufacturing plants, cut into eleven social assets, and distributed with an account-based campaign to 900 named institutional buyers.',
@@ -66,7 +66,7 @@ export default function PortfoliteProjectsGrid() {
       id: 'arka-4',
       title: 'Enterprise Multi-Branch CRM',
       category: 'Enterprise Software & ERP',
-      image: '/portfolite/proj-4.jpg',
+      image: '/portfolite/proj-4.webp',
       client: 'Amit Patel, CEO',
       year: '2025',
       description: 'Replaced six fragmented regional spreadsheets with a bespoke multi-tier CRM with role-based dashboards, automated approval matrices, WhatsApp and Tally accounting integrations, and executive pipeline views.',
@@ -77,7 +77,7 @@ export default function PortfoliteProjectsGrid() {
       id: 'arka-5',
       title: 'Industrial Plant Nationwide SEO',
       category: 'Manufacturing · Lead Gen',
-      image: '/portfolite/proj-5.png',
+      image: '/portfolite/proj-5.webp',
       client: 'Business Head, Industrial Plant',
       year: '2024',
       description: 'A modular city-page architecture, product specification schema, Google Business profile optimisation across nine manufacturing zones, and technical intent marketing.',
@@ -88,7 +88,7 @@ export default function PortfoliteProjectsGrid() {
       id: 'arka-6',
       title: 'Meridian Healthcare Network',
       category: 'UX / UI & Content Engine',
-      image: '/portfolite/proj-6.png',
+      image: '/portfolite/proj-6.webp',
       client: 'Sneha Kulkarni, CMO',
       year: '2025',
       description: 'A patient-first digital ecosystem featuring seamless doctor appointment scheduling, cross-city hospital information architecture, and an always-on content marketing engine producing thirty original assets monthly.',
@@ -103,7 +103,7 @@ export default function PortfoliteProjectsGrid() {
       id: 'arka-7',
       title: 'BotBlox Robotics Hardware',
       category: 'Hardware & Web Portal',
-      image: '/portfolite/proj-7.png',
+      image: '/portfolite/proj-7.webp',
       client: 'Engineering Team, BotBlox',
       year: '2024',
       description: 'High-performance interactive web experience for autonomous drone and robotics networking hardware, featuring technical datasheets and instant checkout.',
@@ -114,7 +114,7 @@ export default function PortfoliteProjectsGrid() {
       id: 'arka-8',
       title: 'Kestrix Thermal AI Systems',
       category: 'AI Software & Dashboard',
-      image: '/portfolite/proj-8.png',
+      image: '/portfolite/proj-8.webp',
       client: 'Product Lead, Kestrix',
       year: '2025',
       description: 'Clean spatial thermal analytics interface, interactive GIS mapping overlays, and building energy retrofitting dashboard built with Next.js and Three.js.',
@@ -125,7 +125,7 @@ export default function PortfoliteProjectsGrid() {
       id: 'arka-9',
       title: 'Skipper NDT Maritime Tech',
       category: 'Offshore Tech · 3D Visuals',
-      image: '/portfolite/proj-9.png',
+      image: '/portfolite/proj-9.webp',
       client: 'Managing Director, Skipper NDT',
       year: '2024',
       description: 'Cinematic brand presence and interactive digital showcase for magnetic drone inspection of buried subsea pipelines.',
@@ -162,8 +162,10 @@ export default function PortfoliteProjectsGrid() {
         <img
           src={proj.image}
           alt={proj.title}
-          loading="eager"
+          loading="lazy"
           decoding="async"
+          width={600}
+          height={690}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
         />
 

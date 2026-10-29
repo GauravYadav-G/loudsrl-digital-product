@@ -62,7 +62,7 @@ function ThemeTesterButton() {
       <button
         type="button"
         onClick={nextTheme}
-        className="w-8 h-8 rounded-full bg-paper/5 hover:bg-paper/15 border border-paper/15 hover:border-paper/30 flex items-center justify-center transition-all cursor-pointer group shadow-sm"
+        className="w-8 h-8 rounded-full bg-black/5 hover:bg-black/10 border border-black/15 hover:border-black/30 flex items-center justify-center transition-all cursor-pointer group shadow-sm"
         title={`Fluid theme: ${PRESET_NAMES[currentPreset]} (Click to test next)`}
         aria-label="Cycle theme"
       >
@@ -76,7 +76,7 @@ function ThemeTesterButton() {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-8 h-8 rounded-full bg-paper/5 hover:bg-paper/15 border border-paper/15 hover:border-paper/30 flex items-center justify-center text-paper/60 hover:text-white transition-colors cursor-pointer"
+        className="w-8 h-8 rounded-full bg-black/5 hover:bg-black/10 border border-black/15 hover:border-black/30 flex items-center justify-center text-zinc-600 hover:text-black transition-colors cursor-pointer"
         title="Open theme palette"
         aria-label="Toggle theme picker tray"
       >
@@ -85,9 +85,9 @@ function ThemeTesterButton() {
 
       {/* Popover Tray with All 12 Themes */}
       {isOpen && (
-        <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 w-[300px] sm:w-[340px] p-4 rounded-2xl bg-void/95 backdrop-blur-xl border border-paper/20 shadow-2xl z-50 text-left">
-          <div className="flex items-center justify-between pb-3 mb-3 border-b border-paper/10">
-            <span className="text-xs font-mono uppercase tracking-wider text-paper/80 font-semibold">
+        <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 w-[300px] sm:w-[340px] p-4 rounded-2xl bg-white/95 backdrop-blur-xl border border-zinc-200 shadow-2xl z-50 text-left text-zinc-900">
+          <div className="flex items-center justify-between pb-3 mb-3 border-b border-zinc-200">
+            <span className="text-xs font-mono uppercase tracking-wider text-zinc-800 font-semibold">
               Test Fluid Themes ({PRESETS.length})
             </span>
             <button
@@ -112,8 +112,8 @@ function ThemeTesterButton() {
                   }}
                   className={`flex items-center gap-2 px-2.5 py-2 rounded-lg text-left text-xs transition-all cursor-pointer ${
                     isSelected
-                      ? 'bg-solar/20 text-white border border-solar/40 font-medium'
-                      : 'hover:bg-paper/5 text-paper/70 hover:text-white border border-transparent'
+                      ? 'bg-solar/15 text-zinc-900 border border-solar/40 font-semibold'
+                      : 'hover:bg-zinc-100 text-zinc-700 hover:text-black border border-transparent'
                   }`}
                 >
                   <span
@@ -126,7 +126,7 @@ function ThemeTesterButton() {
             })}
           </div>
 
-          <div className="mt-3 pt-2.5 border-t border-paper/10 flex items-center justify-between text-[10px] font-mono text-paper/50">
+          <div className="mt-3 pt-2.5 border-t border-zinc-200 flex items-center justify-between text-[10px] font-mono text-zinc-500">
             <span>Defaults to Solar Fire</span>
             <button
               type="button"
@@ -155,46 +155,48 @@ export default function PortfoliteFooter() {
   ];
 
   return (
-    <footer className="relative bg-void text-paper border-t border-paper/12 overflow-hidden selection:bg-solar selection:text-white font-framer">
+    <footer className="relative bg-white text-[#09090B] border-t border-zinc-200 overflow-hidden font-framer">
       {/* ── Top CTA Band ── */}
-      <div className="border-b border-paper/12 relative overflow-hidden bg-coal/40">
-        <div className="absolute inset-0 bg-[radial-gradient(90%_140%_at_15%_130%,rgba(232,116,44,.12),transparent_65%)] pointer-events-none" />
+      <div className="border-b border-zinc-200 relative overflow-hidden bg-zinc-50/80">
+        <div className="absolute inset-0 bg-[radial-gradient(90%_140%_at_15%_130%,rgba(232,116,44,.10),transparent_65%)] pointer-events-none" />
         <div className="relative xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 py-14 lg:py-20 flex flex-col md:flex-row gap-8 justify-between md:items-end">
           <div>
-            <p className="mono text-[0.62rem] tracking-[0.26em] uppercase text-solar font-medium">
+            <p className="mono text-[0.62rem] tracking-[0.26em] uppercase text-solar font-semibold">
               Get in touch with us today
             </p>
-            <p className="mt-4 display text-[clamp(1.6rem,3.8vw,2.9rem)] leading-[1.12] max-w-[540px] text-paper">
+            <p className="mt-4 display text-[clamp(1.6rem,3.8vw,2.9rem)] leading-[1.12] max-w-[540px] text-[#09090B] font-bold">
               Let’s build something great together.
             </p>
           </div>
           <Link
             to="/contact"
-            className="group flex items-center gap-4 font-light text-lg md:text-2xl shrink-0 hover:text-solar transition-colors"
+            className="group flex items-center gap-4 font-normal text-lg md:text-2xl shrink-0 hover:text-solar transition-colors"
           >
-            <span className="hover-line text-paper group-hover:text-solar transition-colors">Start a project</span>
+            <span className="hover-line text-[#09090B] group-hover:text-solar transition-colors font-medium">Start a project</span>
             <CircleArrow className="text-solar transition-transform duration-500 group-hover:rotate-45" size={38} />
           </Link>
         </div>
       </div>
 
       {/* ── 5-Column Navigation Grid ── */}
-      <div className="xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 py-14 grid sm:grid-cols-2 lg:grid-cols-5 gap-10 text-[13.5px] font-light">
+      <div className="xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 py-14 grid sm:grid-cols-2 lg:grid-cols-5 gap-10 text-[13.5px]">
         {/* Col 1 & 2: Brand Heritage & Spin Logo */}
         <div className="lg:col-span-2 space-y-6">
           <Link to="/" className="inline-flex items-center group cursor-pointer" aria-label="ARKA Technovation">
             <img
               src="/images/logo/arka-logo-black.png"
               alt="ARKA Technovation"
-              className="h-20 sm:h-24 md:h-28 w-auto max-w-[340px] sm:max-w-[420px] object-contain transition-all duration-300 group-hover:scale-105 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]"
+              width={340}
+              height={112}
+              className="h-20 sm:h-24 md:h-28 w-auto max-w-[340px] sm:max-w-[420px] object-contain transition-all duration-300 group-hover:scale-105 drop-shadow-[0_4px_12px_rgba(0,0,0,0.06)]"
             />
           </Link>
 
-          <p className="max-w-sm text-paper/60 leading-[1.8] text-xs sm:text-sm">
+          <p className="max-w-sm text-zinc-600 leading-[1.8] text-xs sm:text-sm font-normal">
             Welcome to {COMPANY.name}. We utilise our experience and world-class knowledge to help businesses reach their full online and digital potential, and ensure steady growth.
           </p>
 
-          <p className="text-[12px] text-paper/40 font-mono">
+          <p className="text-[12px] text-zinc-500 font-mono">
             Carrying forward {COMPANY.years} years of craft from {COMPANY.legacy}.
           </p>
 
@@ -205,7 +207,7 @@ export default function PortfoliteFooter() {
                 key={s.label}
                 href={s.href}
                 aria-label={s.label}
-                className="grid h-9 w-9 place-items-center border border-paper/20 rounded-md mono text-[0.55rem] text-paper/70 hover:bg-paper hover:text-void hover:border-paper transition-all duration-300"
+                className="grid h-9 w-9 place-items-center border border-zinc-300 rounded-md mono text-[0.55rem] text-zinc-800 hover:bg-[#09090B] hover:text-white hover:border-[#09090B] transition-all duration-300 font-medium"
               >
                 {s.label}
               </a>
@@ -215,7 +217,7 @@ export default function PortfoliteFooter() {
 
         {/* Col 3: Useful Links */}
         <div>
-          <p className="mono text-[0.6rem] tracking-[0.24em] uppercase text-paper/40 mb-5 font-semibold">
+          <p className="mono text-[0.62rem] tracking-[0.24em] uppercase text-zinc-500 mb-5 font-semibold">
             Useful Links
           </p>
           <ul className="space-y-3">
@@ -229,7 +231,7 @@ export default function PortfoliteFooter() {
               <li key={label}>
                 <Link
                   to={to}
-                  className="text-paper/70 hover:text-solar transition-colors block text-xs sm:text-sm"
+                  className="text-zinc-700 hover:text-solar transition-colors block text-xs sm:text-sm font-medium"
                 >
                   {label}
                 </Link>
@@ -240,7 +242,7 @@ export default function PortfoliteFooter() {
 
         {/* Col 4: Services */}
         <div>
-          <p className="mono text-[0.6rem] tracking-[0.24em] uppercase text-paper/40 mb-5 font-semibold">
+          <p className="mono text-[0.62rem] tracking-[0.24em] uppercase text-zinc-500 mb-5 font-semibold">
             Services
           </p>
           <ul className="space-y-3">
@@ -248,7 +250,7 @@ export default function PortfoliteFooter() {
               <li key={s.slug}>
                 <Link
                   to={`/services/${s.slug}`}
-                  className="text-paper/70 hover:text-solar transition-colors block text-xs sm:text-sm truncate max-w-[200px]"
+                  className="text-zinc-700 hover:text-solar transition-colors block text-xs sm:text-sm truncate max-w-[200px] font-medium"
                 >
                   {s.title}
                 </Link>
@@ -259,16 +261,16 @@ export default function PortfoliteFooter() {
 
         {/* Col 5: Location & Contact */}
         <div>
-          <p className="mono text-[0.6rem] tracking-[0.24em] uppercase text-paper/40 mb-5 font-semibold">
+          <p className="mono text-[0.62rem] tracking-[0.24em] uppercase text-zinc-500 mb-5 font-semibold">
             Contact Details
           </p>
           <ul className="space-y-4 text-xs">
             {OFFICES.map((o) => (
               <li key={o.city}>
-                <p className="mono text-[0.55rem] tracking-[0.18em] uppercase text-solar font-medium">
+                <p className="mono text-[0.55rem] tracking-[0.18em] uppercase text-[#B84E12] font-semibold">
                   {o.label}
                 </p>
-                <p className="mt-1 text-paper/70 leading-relaxed font-light">
+                <p className="mt-1 text-zinc-700 leading-relaxed font-normal">
                   {o.lines.map((l) => (
                     <span key={l} className="block">{l}</span>
                   ))}
@@ -278,7 +280,7 @@ export default function PortfoliteFooter() {
             <li className="pt-1">
               <a
                 href={`mailto:${COMPANY.email}`}
-                className="text-paper/80 hover:text-solar transition-colors block font-mono text-xs break-all"
+                className="text-zinc-900 hover:text-solar transition-colors block font-mono text-xs break-all font-medium"
               >
                 {COMPANY.email}
               </a>
@@ -288,7 +290,7 @@ export default function PortfoliteFooter() {
                 <a
                   key={p}
                   href={`tel:${p.replace(/\s/g, '')}`}
-                  className="block text-paper/80 hover:text-solar transition-colors font-mono text-xs"
+                  className="block text-zinc-900 hover:text-solar transition-colors font-mono text-xs font-medium"
                 >
                   {p}
                 </a>
@@ -299,12 +301,12 @@ export default function PortfoliteFooter() {
       </div>
 
       {/* ── Legal Band & Interactive Theme Tester ── */}
-      <div className="border-t border-paper/10 relative z-20">
+      <div className="border-t border-zinc-200 relative z-20">
         <div className="xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 py-6 flex flex-col lg:flex-row justify-between items-center gap-4">
-          <div className="flex flex-col sm:flex-row items-center gap-3 mono text-[0.58rem] tracking-[0.14em] uppercase text-paper/40">
+          <div className="flex flex-col sm:flex-row items-center gap-3 mono text-[0.58rem] tracking-[0.14em] uppercase text-zinc-500 font-medium">
             <span>© 2026 {COMPANY.name} — Founded by Kranti</span>
-            <span className="hidden sm:inline text-paper/20">•</span>
-            <span className="text-paper/50">Sector 63, Noida (Delhi NCR)</span>
+            <span className="hidden sm:inline text-zinc-300">•</span>
+            <span className="text-zinc-600">Sector 63, Noida (Delhi NCR)</span>
           </div>
 
           {/* Theme Tester Button in the bottom of website */}
@@ -312,10 +314,10 @@ export default function PortfoliteFooter() {
             <ThemeTesterButton />
           </div>
 
-          <div className="flex items-center gap-5 mono text-[0.58rem] tracking-[0.14em] uppercase text-paper/40">
-            <Link to="/contact" className="hover:text-paper transition-colors">Support SLA</Link>
-            <a href="#" className="hover:text-paper transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-paper transition-colors">Terms</a>
+          <div className="flex items-center gap-5 mono text-[0.58rem] tracking-[0.14em] uppercase text-zinc-500 font-medium">
+            <Link to="/contact" className="hover:text-[#09090B] transition-colors">Support SLA</Link>
+            <a href="#" className="hover:text-[#09090B] transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-[#09090B] transition-colors">Terms</a>
           </div>
         </div>
       </div>
@@ -330,7 +332,7 @@ export default function PortfoliteFooter() {
           className="w-full text-center"
         >
           <p
-            className="select-none text-center display leading-[0.72] text-[clamp(4.5rem,19vw,16rem)] font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-paper/[0.14] via-paper/[0.05] to-transparent -mb-[0.11em] transition-all duration-700"
+            className="select-none text-center display leading-[0.72] text-[clamp(4.5rem,19vw,16rem)] font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-black/[0.12] via-black/[0.04] to-transparent -mb-[0.11em] transition-all duration-700"
           >
             ARKA
           </p>

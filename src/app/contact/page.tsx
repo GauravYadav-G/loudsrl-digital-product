@@ -1,8 +1,20 @@
+import type { Metadata } from 'next';
 import PortfoliteContact from '@/views/PortfoliteContact';
 
-export const metadata = {
-  title: 'Contact Us & Start a Project | ARKA Technovation',
-  description: 'Reach our direct engineering and creative leadership in Sector 63, Noida (Delhi NCR).',
+export const metadata: Metadata = {
+  title: 'Contact Us & Start a Project',
+  description:
+    'Schedule a technical consultation or project discovery with our craft directors in Sector 63, Noida. Fast proposals, SLA support, and dedicated delivery teams.',
+  alternates: {
+    canonical: '/contact',
+  },
+  openGraph: {
+    title: 'Contact Us & Start a Project | ARKA Technovation',
+    description:
+      'Direct communication with engineering, marketing, and film directors at ARKA Technovation Corporate HQ in Sector 63, Noida.',
+    url: '/contact',
+    type: 'website',
+  },
 };
 
 export default function ContactPage() {

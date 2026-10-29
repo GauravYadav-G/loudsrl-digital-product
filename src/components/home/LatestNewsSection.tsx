@@ -195,7 +195,6 @@ export default function LatestNewsSection() {
                 className="hn__card"
                 href={`/news/${article.slug}`}
                 data-morph
-                aria-label={`Read the article: ${article.title}`}
               >
                 <div className="hn__meta">
                   <span className="hn__cat"><span className="hn__pill">{article.category}</span></span>
@@ -207,6 +206,8 @@ export default function LatestNewsSection() {
                     alt={article.alt}
                     loading="lazy"
                     decoding="async"
+                    width={400}
+                    height={225}
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 </figure>

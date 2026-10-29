@@ -97,6 +97,11 @@ export default function ServicesStickySection() {
       );
     };
 
+    // Initial setup for wheel offsets
+    figures.forEach((f, n) => {
+      f.setAttribute('data-wheel-offset', String(n));
+    });
+
     // 2. Continuous Scroll Listener (Always active, NEVER detached by intersection observer)
     const handleScroll = () => {
       if (!track) return;
@@ -112,6 +117,7 @@ export default function ServicesStickySection() {
         });
         figures.forEach((f, n) => {
           f.classList.toggle('is-on', n <= idx);
+          f.setAttribute('data-wheel-offset', String(n - idx));
         });
         if (digits) {
           digits.style.setProperty('--a', String(idx));
@@ -303,7 +309,23 @@ export default function ServicesStickySection() {
                 <figure
                   className={`pf__fig z-20 ${idx === 0 ? 'is-on' : ''}`}
                   data-pf-fig
+                  data-wheel-offset={String(idx)}
                   style={{ '--i': String(idx) } as React.CSSProperties}
+                  onClick={(e) => {
+                    if (typeof window !== 'undefined' && window.innerWidth >= 1024 && pfTrackRef.current) {
+                      const track = pfTrackRef.current;
+                      const activeStep = track.querySelector('.pf__step.is-active');
+                      const allSteps = [...track.querySelectorAll('[data-pf-step]')];
+                      const activeIdx = activeStep ? allSteps.indexOf(activeStep as HTMLElement) : 0;
+                      if (activeIdx !== idx) {
+                        e.preventDefault();
+                        const stepH = window.innerHeight * 0.7;
+                        const rect = track.getBoundingClientRect();
+                        const targetY = window.scrollY + rect.top + idx * stepH + 20;
+                        window.scrollTo({ top: targetY, behavior: 'smooth' });
+                      }
+                    }
+                  }}
                 >
                   <Link
                     className="pf__figlink"

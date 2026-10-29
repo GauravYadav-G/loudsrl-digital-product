@@ -105,6 +105,80 @@ body::-webkit-scrollbar,
   text-wrap: balance;
 }
 
+/* Hero entrance animations (CSS-accelerated for instant LCP paint while preserving 100% exact visual motion) */
+@keyframes heroLineFade {
+  0% {
+    transform: translate3d(0, 16px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-line-1 {
+  animation: heroLineFade 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform;
+}
+
+.hero-line-2 {
+  animation: heroLineFade 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+  will-change: transform;
+}
+
+@keyframes heroWordFade {
+  0% {
+    transform: translate3d(0, 16px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-word {
+  display: inline-block;
+  animation: heroWordFade 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform;
+}
+
+@keyframes heroSubFade {
+  0% {
+    transform: translate3d(0, 18px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-sub-animate {
+  animation: heroSubFade 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
+  will-change: transform;
+}
+
+.hero-btn-animate {
+  animation: heroSubFade 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
+  will-change: transform;
+}
+
+.hero-scroll-animate {
+  animation: heroSubFade 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
+  will-change: transform;
+}
+
+@keyframes mouseWheelBounce {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  50% {
+    transform: translate3d(0, 8px, 0);
+    opacity: 0.3;
+  }
+}
+
+.hero-mouse-wheel {
+  animation: mouseWheelBounce 1.8s ease-in-out infinite;
+}
+
 .site-skip-link {
   position: fixed;
   z-index: 10000;
@@ -165,6 +239,14 @@ button.bg-black *,
 .site-button.text-black * {
   color: #000000 !important;
   fill: #000000 !important;
+}
+
+/* Explicitly preserve transparent/none fill for outline SVG icons */
+.site-button svg.fill-none,
+.site-button svg.fill-none *,
+svg.fill-none,
+svg.fill-none * {
+  fill: none !important;
 }
 
 .framer-btn-primary {
@@ -994,7 +1076,37 @@ img {
 .font-framer h4,
 .font-framer h5,
 .font-framer h6 {
-  color: #09090B;
+  color: inherit;
+}
+
+/* Ensure white text is applied on white-text utility */
+.text-white {
+  color: #FFFFFF !important;
+}
+
+/* Scoped dark container text contrast fallbacks */
+.bg-black,
+.bg-zinc-950,
+.bg-zinc-900,
+.bg-zinc-800 {
+  color: #FFFFFF;
+}
+
+.bg-black h1, .bg-black h2, .bg-black h3, .bg-black h4, .bg-black h5, .bg-black h6,
+.bg-zinc-950 h1, .bg-zinc-950 h2, .bg-zinc-950 h3, .bg-zinc-950 h4, .bg-zinc-950 h5, .bg-zinc-950 h6,
+.bg-zinc-900 h1, .bg-zinc-900 h2, .bg-zinc-900 h3, .bg-zinc-900 h4, .bg-zinc-900 h5, .bg-zinc-900 h6,
+.bg-zinc-800 h1, .bg-zinc-800 h2, .bg-zinc-800 h3, .bg-zinc-800 h4, .bg-zinc-800 h5, .bg-zinc-800 h6 {
+  color: #FFFFFF;
+}
+
+/* Maintain crisp dark headings and text on light surfaces */
+.text-black {
+  color: #09090B !important;
+}
+
+.bg-white .text-black,
+.bg-zinc-50 .text-black {
+  color: #09090B !important;
 }
 
 .ws__title,
@@ -1026,13 +1138,24 @@ img {
 }
 
 html.lenis,
-html.lenis body {
+html.lenis-smooth {
   height: auto;
 }
 
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
-  contain: layout;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 .lenis.lenis-smooth [data-lenis-prevent] {
@@ -1049,8 +1172,8 @@ img {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   SERVICES SECTION — ENLARGED PROMINENT CARDS
-   Expanded dimensions for desktop stage & elevated mobile cards
+   SERVICES SECTION — 3D ROTATING WHEEL CARDS (JITTER REMIX)
+   Authentic card shape & Three.js canvas preserved, with 3D wheel rotation
    ───────────────────────────────────────────────────────────── */
 
 @media (width >= 1024px) {
@@ -1058,6 +1181,9 @@ img {
     --mw: min(54vw, 84vh);
     --mh: calc(var(--mw) / 1.48);
     --mtop: calc(50% - var(--mh) / 2);
+    perspective: 1400px;
+    perspective-origin: 50% 50%;
+    transform-style: preserve-3d;
   }
 
   .pf__fig {
@@ -1067,7 +1193,80 @@ img {
     height: var(--mh);
     margin: 0 0 0 calc(var(--mw) / -2);
     border-radius: 14px;
-    box-shadow: 0 28px 70px -15px rgba(0, 0, 0, 0.24);
+    /* Authentic signature chamfered card shape without flat clip wipe */
+    clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, 0 100%) !important;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50%;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity, filter;
+  }
+
+  /* 3D Wheel Positions based on data-wheel-offset */
+  /* Center active card (front-facing, clear and prominent) */
+  .pf__fig[data-wheel-offset="0"] {
+    transform: translate3d(0, 0, 0) rotateY(0deg) rotateZ(0deg) scale(1);
+    opacity: 1;
+    filter: drop-shadow(0 28px 60px rgba(0, 0, 0, 0.32)) brightness(1);
+    z-index: 25;
+    pointer-events: auto;
+  }
+
+  /* Next card (+1) - Arched down and tilted along 3D cylindrical wheel */
+  .pf__fig[data-wheel-offset="1"] {
+    transform: translate3d(calc(var(--mw) * 0.06), 36px, -150px) rotateY(-22deg) rotateZ(3.2deg) scale(0.92);
+    opacity: 0.72;
+    filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.2)) brightness(0.82);
+    z-index: 20;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
+  /* Next-next card (+2) - Further down along wheel arc */
+  .pf__fig[data-wheel-offset="2"] {
+    transform: translate3d(calc(var(--mw) * 0.12), 84px, -290px) rotateY(-36deg) rotateZ(6.5deg) scale(0.84);
+    opacity: 0.35;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15)) brightness(0.68);
+    z-index: 15;
+    pointer-events: none;
+  }
+
+  /* Distant right cards (+3, +4) - Behind horizon */
+  .pf__fig[data-wheel-offset="3"],
+  .pf__fig[data-wheel-offset="4"] {
+    transform: translate3d(calc(var(--mw) * 0.18), 130px, -400px) rotateY(-46deg) rotateZ(9.5deg) scale(0.76);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* Previous card (-1) - Arched left along 3D cylinder */
+  .pf__fig[data-wheel-offset="-1"] {
+    transform: translate3d(calc(var(--mw) * -0.16), 36px, -150px) rotateY(22deg) rotateZ(-3.2deg) scale(0.92);
+    opacity: 0.85;
+    filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.22)) brightness(0.85);
+    z-index: 20;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
+  /* Previous-previous card (-2) - Further left along wheel arc */
+  .pf__fig[data-wheel-offset="-2"] {
+    transform: translate3d(calc(var(--mw) * -0.30), 84px, -290px) rotateY(36deg) rotateZ(-6.5deg) scale(0.84);
+    opacity: 0.48;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.18)) brightness(0.7);
+    z-index: 15;
+    pointer-events: none;
+  }
+
+  /* Distant left cards (-3, -4) - Behind horizon */
+  .pf__fig[data-wheel-offset="-3"],
+  .pf__fig[data-wheel-offset="-4"] {
+    transform: translate3d(calc(var(--mw) * -0.42), 130px, -400px) rotateY(46deg) rotateZ(-9.5deg) scale(0.76);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
   }
 
   .pf__info {
@@ -1366,6 +1565,17 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-line-1,
+  .hero-line-2,
+  .hero-word,
+  .hero-sub-animate,
+  .hero-btn-animate,
+  .hero-scroll-animate,
+  .hero-mouse-wheel {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
   .animate-marquee-showcase {
     animation: none !important;
   }

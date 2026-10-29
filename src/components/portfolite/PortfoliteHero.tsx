@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import LiquidBackground, { PRESETS } from '../LiquidBackground';
 
@@ -58,67 +57,47 @@ export default function PortfoliteHero() {
       />
 
       <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 flex flex-col items-center my-auto pt-6 sm:pt-10">
-        {/* Hero Title with Framer Word Blur-Fade-In Animation */}
+        {/* Hero Title with Smooth Line-Level Entrance (CSS-accelerated for instant, rock-solid LCP) */}
         <h1
           style={{ color: '#ffffff' }}
           className="text-4xl sm:text-6xl md:text-7xl lg:text-[88px] font-normal tracking-tight text-white leading-[1.05] sm:leading-[1.02] max-w-4xl drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]"
         >
-          <div className="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-4">
-            {line1Words.map((word, i) => (
-              <motion.span
+          <div className="hero-line-1 flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-4">
+            {line1Words.map((word) => (
+              <span
                 key={word}
                 style={{ color: '#ffffff' }}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.12 + i * 0.07,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
                 className="inline-block"
               >
                 {word}
-              </motion.span>
+              </span>
             ))}
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-4 mt-1 sm:mt-2">
-            {line2Words.map((word, i) => (
-              <motion.span
+          <div className="hero-line-2 flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-4 mt-1 sm:mt-2">
+            {line2Words.map((word) => (
+              <span
                 key={word}
-                style={{ color: word === 'Indeed' ? 'rgba(255, 255, 255, 0.75)' : '#ffffff' }}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.45 + i * 0.07,
-                  ease: [0.22, 1, 0.36, 1],
+                style={{
+                  color: word === 'Indeed' ? 'rgba(255, 255, 255, 0.75)' : '#ffffff',
                 }}
                 className={`inline-block ${word === 'Indeed' ? 'font-light' : ''}`}
               >
                 {word}
-              </motion.span>
+              </span>
             ))}
           </div>
         </h1>
 
         {/* Subtitle */}
-        <motion.p
+        <p
           style={{ color: 'rgba(255, 255, 255, 0.9)' }}
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 text-white text-sm sm:text-base md:text-lg font-light max-w-2xl leading-relaxed text-balance drop-shadow-md"
+          className="hero-sub-animate mt-6 text-white text-sm sm:text-base md:text-lg font-light max-w-2xl leading-relaxed text-balance drop-shadow-md"
         >
           We think, design and develop custom enterprise software, high-performance web platforms, and search engine dominance for forward-thinking brands.
-        </motion.p>
+        </p>
 
         {/* Action Buttons (Framer Authentic Glow + Outline) */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4"
-        >
+        <div className="hero-btn-animate mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4">
           {/* Primary Button with Radial Glow Backing */}
           <div className="relative group">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-white/20 via-white/40 to-white/20 rounded-full blur-md opacity-40 group-hover:opacity-80 transition duration-500" />
@@ -139,28 +118,19 @@ export default function PortfoliteHero() {
           >
             See Projects
           </button>
-        </motion.div>
+        </div>
       </div>
 
       {/* Scroll Down Mouse Indicator — Pure icon button, no text */}
-      <motion.div
-        initial={{ opacity: 0, y: 14 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-20 mt-10 flex items-center justify-center select-none"
-      >
+      <div className="hero-scroll-animate relative z-20 mt-10 flex items-center justify-center select-none">
         <button
           onClick={scrollToProjects}
           aria-label="Scroll down to projects"
           className="w-5 h-8 rounded-full border border-white/40 bg-white/15 hover:bg-white/25 hover:border-white transition-all backdrop-blur-sm flex justify-center pt-1.5 cursor-pointer shadow-sm group"
         >
-          <motion.div
-            animate={{ y: [0, 8, 0], opacity: [1, 0.3, 1] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-1 h-1.5 rounded-full bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)]"
-          />
+          <div className="hero-mouse-wheel w-1 h-1.5 rounded-full bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)]" />
         </button>
-      </motion.div>
+      </div>
     </section>
   );
 }

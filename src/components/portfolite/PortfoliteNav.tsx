@@ -103,15 +103,15 @@ export default function PortfoliteNav() {
             }}
           >
             <div
-              className={`xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 h-9 flex items-center justify-between font-mono text-[9.5px] tracking-[0.16em] uppercase border-b transition-colors duration-300 ${
+              className={`xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 h-9 flex items-center justify-between font-mono text-[9.5px] tracking-[0.08em] uppercase border-b transition-colors duration-300 ${
                 isOverHero ? 'text-white border-white/15' : 'text-zinc-500 border-black/[0.06]'
               }`}
             >
-              <span className="flex items-center gap-2">
-                <MapPin className={`h-3 w-3 ${isOverHero ? 'text-white' : 'text-solar'}`} />
-                <span>Corporate HQ · Sector 63, Noida</span>
+              <span className="flex items-center gap-2 min-w-0 pr-4">
+                <MapPin className={`h-3 w-3 shrink-0 ${isOverHero ? 'text-white' : 'text-solar'}`} />
+                <span className="truncate">Royace Business Park, Office No- 202, C-4, Sector 63, Noida, Uttar Pradesh 201301, India</span>
               </span>
-              <span className="flex items-center gap-6">
+              <span className="flex items-center gap-6 shrink-0">
                 <a
                   href={`tel:${COMPANY.phones[0].replace(/\s/g, '')}`}
                   className={`flex items-center gap-1.5 transition-colors ${
@@ -135,24 +135,29 @@ export default function PortfoliteNav() {
           </div>
 
           {/* ── Main Edge-to-Edge Navigation Bar ── */}
-          <div className="xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 h-[70px] sm:h-[80px] flex items-center justify-between gap-6">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-6 xl:px-8 h-[70px] sm:h-[78px] flex items-center justify-between gap-2 lg:gap-4 xl:gap-6">
             {/* Official ARKA Technovation Logo: Zero-lag preloaded crossfade between white and black logos */}
             <Link to="/" className="relative flex items-center group cursor-pointer shrink-0 py-1" aria-label="ARKA Technovation Home">
-              <div className="relative h-11 sm:h-14 lg:h-[62px] w-[180px] sm:w-[240px] lg:w-[280px]">
+              <div className="relative h-10 sm:h-12 lg:h-[46px] w-[150px] sm:w-[175px] lg:w-[190px] xl:w-[215px]">
                 <img
-                  src="/images/logo/arka-logo-white.png"
+                  src="/images/logo/arka-logo-white.webp"
                   alt="ARKA Technovation"
                   loading="eager"
-                  decoding="async"
+                  fetchPriority="high"
+                  decoding="sync"
+                  width={215}
+                  height={46}
                   className={`absolute inset-0 h-full w-auto max-w-full object-contain transition-opacity duration-300 group-hover:scale-105 ${
                     isOverHero ? 'opacity-100 drop-shadow-[0_0_14px_rgba(255,255,255,0.4)]' : 'opacity-0 pointer-events-none'
                   }`}
                 />
                 <img
-                  src="/images/logo/arka-logo-black.png"
+                  src="/images/logo/arka-logo-black.webp"
                   alt="ARKA Technovation"
-                  loading="eager"
+                  loading="lazy"
                   decoding="async"
+                  width={215}
+                  height={46}
                   className={`absolute inset-0 h-full w-auto max-w-full object-contain transition-opacity duration-300 group-hover:scale-105 ${
                     isOverHero ? 'opacity-0 pointer-events-none' : 'opacity-100 drop-shadow-[0_1px_3px_rgba(0,0,0,0.12)]'
                   }`}
@@ -162,16 +167,23 @@ export default function PortfoliteNav() {
 
           {/* Desktop Navigation Links with Full Height & Underline Indicator */}
           <nav
-            className="hidden lg:flex items-center h-full"
+            className="hidden xl:flex items-center h-full min-w-0"
             style={{ color: isOverHero ? '#ffffff' : undefined }}
             onMouseLeave={leave}
             onKeyDown={(event) => {
               if (event.key === 'Escape') setOpen(null);
             }}
           >
-            {NAV.map((item) => {
+            {NAV.filter((item) => !item.hideOnDesktop).map((item, idx, arr) => {
               const active = item.to === '/' ? pathname === '/' : pathname.startsWith(item.to);
               const isOpen = open === item.label;
+              const isFirst = idx === 0;
+              const isLastFew = idx >= arr.length - 2;
+              const alignClass = isFirst
+                ? 'left-0'
+                : isLastFew
+                ? 'right-0'
+                : 'left-1/2 -translate-x-1/2';
 
               return (
                 <div
@@ -188,7 +200,7 @@ export default function PortfoliteNav() {
                     aria-current={active ? 'page' : undefined}
                     aria-haspopup={item.children ? true : undefined}
                     aria-expanded={item.children ? isOpen : undefined}
-                    className={`group relative h-full flex items-center gap-2 px-3.5 text-sm tracking-[-0.01em] font-medium transition-colors duration-200 ${
+                    className={`group relative h-full flex items-center gap-1.5 px-2.5 xl:px-3.5 text-xs xl:text-[13px] 2xl:text-sm tracking-[-0.01em] font-medium transition-colors duration-200 whitespace-nowrap ${
                       isOverHero
                         ? active
                           ? 'text-white font-semibold'
@@ -198,7 +210,16 @@ export default function PortfoliteNav() {
                         : 'text-zinc-700 hover:text-black'
                     }`}
                   >
-                    <span>{item.label}</span>
+                    <span>
+                      {item.shortLabel ? (
+                        <>
+                          <span className="hidden xl:inline">{item.label}</span>
+                          <span className="xl:hidden">{item.shortLabel}</span>
+                        </>
+                      ) : (
+                        item.label
+                      )}
+                    </span>
                     {item.badge && (
                       <span
                         style={{
@@ -206,7 +227,7 @@ export default function PortfoliteNav() {
                           borderColor: isOverHero ? 'rgba(255,255,255,0.45)' : undefined,
                           backgroundColor: isOverHero ? 'rgba(255,255,255,0.18)' : undefined,
                         }}
-                        className={`font-mono text-[10px] px-2 py-0.5 rounded-full font-semibold tracking-normal ${
+                        className={`font-mono text-[9px] px-1.5 py-0.5 rounded-full font-semibold tracking-normal shrink-0 ${
                           isOverHero
                             ? 'text-white border'
                             : 'bg-solar/20 text-solar border border-solar/35'
@@ -218,7 +239,7 @@ export default function PortfoliteNav() {
                     {item.children && (
                       <ChevronDown
                         style={{ color: isOverHero ? '#ffffff' : undefined }}
-                        className={`w-4 h-4 transition-transform duration-300 ${
+                        className={`w-3.5 h-3.5 shrink-0 transition-transform duration-300 ${
                           isOpen ? 'rotate-180' : ''
                         } ${isOverHero ? 'text-white' : isOpen ? 'text-solar' : 'text-zinc-400 group-hover:text-black'}`}
                       />
@@ -228,13 +249,13 @@ export default function PortfoliteNav() {
                         backgroundColor: isOverHero ? '#ffffff' : undefined,
                         boxShadow: isOverHero ? '0 0 10px rgba(255,255,255,0.9)' : undefined,
                       }}
-                      className={`absolute bottom-0 left-3.5 right-3.5 h-0.5 origin-left transition-transform duration-300 ${
+                      className={`absolute bottom-0 left-2 right-2 h-0.5 origin-left transition-transform duration-300 ${
                         isOverHero ? 'bg-white' : 'bg-solar'
                       } ${active ? 'scale-x-100' : 'scale-x-0'}`}
                     />
                   </Link>
 
-                  {/* Mega Dropdown for Services or Submenu */}
+                  {/* Mega Dropdown for Multi-Child Menus */}
                   <AnimatePresence>
                     {item.children && isOpen && (
                       <motion.div
@@ -242,32 +263,32 @@ export default function PortfoliteNav() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 8, scale: 0.99 }}
                         transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                        className={`absolute left-1/2 -translate-x-1/2 top-full pt-1.5 z-50 ${
-                          item.label === 'Services' ? 'w-[680px]' : 'w-[280px]'
+                        className={`absolute ${alignClass} top-full pt-1.5 z-50 ${
+                          item.children.length > 5 ? 'w-[520px] xl:w-[580px]' : 'w-[280px] xl:w-[310px]'
                         }`}
                       >
-                        <div className="bg-white/65 backdrop-blur-2xl border border-white/60 shadow-[0_18px_50px_rgba(0,0,0,0.14)] rounded-2xl overflow-hidden text-black">
-                          {item.label === 'Services' ? (
+                        <div className="bg-white/95 backdrop-blur-2xl border border-white/60 shadow-[0_18px_50px_rgba(0,0,0,0.14)] rounded-2xl overflow-hidden text-black">
+                          {item.children.length > 5 ? (
                             <>
                               <div className="grid grid-cols-2 p-2 gap-1">
                                 <div className="space-y-0.5">
-                                  {item.children.slice(0, 5).map((c, i) => (
+                                  {item.children.slice(0, Math.ceil(item.children.length / 2)).map((c, i) => (
                                     <DropLink key={c.to} c={c} i={i} onGo={() => setOpen(null)} />
                                   ))}
                                 </div>
                                 <div className="space-y-0.5 border-l border-black/[0.06] pl-2">
-                                  {item.children.slice(5).map((c, i) => (
-                                    <DropLink key={c.to} c={c} i={i + 5} onGo={() => setOpen(null)} />
+                                  {item.children.slice(Math.ceil(item.children.length / 2)).map((c, i) => (
+                                    <DropLink key={c.to} c={c} i={i + Math.ceil(item.children.length / 2)} onGo={() => setOpen(null)} />
                                   ))}
                                 </div>
                               </div>
-                              <div className="border-t border-black/[0.06] px-4 py-2.5 flex justify-end bg-white/25">
+                              <div className="border-t border-black/[0.06] px-4 py-2.5 flex justify-end bg-white/40">
                                 <Link
-                                  to="/services"
+                                  to={item.to}
                                   onClick={() => setOpen(null)}
                                   className="font-sans text-xs tracking-[-0.01em] text-solar hover:text-[#c65a19] inline-flex items-center gap-1.5 font-semibold transition-colors"
                                 >
-                                  <span>View all services</span>
+                                  <span>Explore all {item.label}</span>
                                   <ChevronRight className="w-3.5 h-3.5" />
                                 </Link>
                               </div>
@@ -292,7 +313,7 @@ export default function PortfoliteNav() {
           <div className="flex items-center gap-3 shrink-0">
             <Link
               to="/contact"
-              className={`site-button hidden sm:inline-flex font-sans text-xs tracking-[0.08em] uppercase h-[36px] px-5 items-center gap-2 rounded-full font-semibold shadow-sm group transition-all duration-300 ${
+              className={`site-button hidden sm:inline-flex font-sans text-xs tracking-[0.06em] uppercase h-[36px] px-4 xl:px-5 items-center gap-2 rounded-full font-semibold shadow-sm group transition-all duration-300 whitespace-nowrap shrink-0 ${
                 isOverHero
                   ? 'bg-white !text-black hover:bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.2)]'
                   : 'bg-black !text-white hover:bg-zinc-800 shadow-[0_2px_10px_rgba(0,0,0,0.18)]'
@@ -322,7 +343,7 @@ export default function PortfoliteNav() {
 
             <button
               onClick={() => setMobile(true)}
-              className={`lg:hidden grid h-11 w-11 place-items-center rounded-lg border transition-colors ${
+              className={`xl:hidden grid h-11 w-11 place-items-center rounded-lg border transition-colors ${
                 isOverHero
                   ? 'border-white/30 text-white hover:bg-white/10'
                   : 'border-black/15 text-zinc-800 hover:text-black hover:bg-black/5'
@@ -348,7 +369,7 @@ export default function PortfoliteNav() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobile(false)}
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[940] lg:hidden"
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[940] xl:hidden"
             />
 
             <motion.div
@@ -357,13 +378,15 @@ export default function PortfoliteNav() {
               exit={{ x: '100%' }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               id="mobile-navigation"
-              className="fixed inset-y-0 right-0 w-full max-w-sm bg-white/98 backdrop-blur-2xl z-[950] border-l border-black/[0.08] shadow-2xl flex flex-col lg:hidden text-black font-sans"
+              className="fixed inset-y-0 right-0 w-full max-w-sm bg-white/98 backdrop-blur-2xl z-[950] border-l border-black/[0.08] shadow-2xl flex flex-col xl:hidden text-black font-sans"
             >
               <div className="h-[70px] sm:h-[80px] px-5 flex items-center justify-between border-b border-black/8">
                 <Link to="/" onClick={() => setMobile(false)} className="flex items-center" aria-label="ARKA Technovation">
                   <img
                     src="/images/logo/arka-logo-black.png"
                     alt="ARKA Technovation"
+                    width={240}
+                    height={48}
                     className="h-11 sm:h-13 w-auto max-w-[240px] object-contain"
                   />
                 </Link>
@@ -434,14 +457,9 @@ export default function PortfoliteNav() {
                                 key={c.to}
                                 to={c.to}
                                 onClick={() => setMobile(false)}
-                                className="block py-2.5 px-3 text-sm tracking-[-0.01em] text-zinc-700 hover:text-solar transition-colors rounded-lg hover:bg-white"
+                                className="block py-2 px-3 text-sm tracking-[-0.01em] text-zinc-800 hover:text-solar transition-colors rounded-lg hover:bg-white font-medium"
                               >
-                                <div className="font-medium">{c.label}</div>
-                                {c.note && (
-                                  <div className="font-mono text-[10px] leading-relaxed text-zinc-500 uppercase tracking-[0.06em] mt-1">
-                                    {c.note}
-                                  </div>
-                                )}
+                                {c.label}
                               </Link>
                             ))}
                           </motion.div>
@@ -465,7 +483,7 @@ export default function PortfoliteNav() {
                 <div className="font-mono text-[9px] tracking-[0.16em] uppercase text-zinc-500 space-y-1 text-center">
                   <p>{COMPANY.phones[0]}</p>
                   <p>{COMPANY.email}</p>
-                  <p>Sector 63, Noida · Delhi NCR</p>
+                  <p>Royace Business Park, Office No- 202, C-4, Sector 63, Noida, Uttar Pradesh 201301, India</p>
                 </div>
               </div>
             </motion.div>
@@ -489,21 +507,14 @@ function DropLink({
     <Link
       to={c.to}
       onClick={onGo}
-      className="group flex items-start gap-3 p-2.5 rounded-xl hover:bg-zinc-100/90 focus-visible:bg-zinc-100/90 transition-colors duration-200"
+      className="group flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-zinc-100/90 focus-visible:bg-zinc-100/90 transition-all duration-150"
     >
-      <span className="font-mono text-[10px] text-solar/80 mt-0.5 w-4 shrink-0 font-medium">
+      <span className="font-mono text-[11px] text-solar/80 w-5 shrink-0 font-medium">
         {String(i + 1).padStart(2, '0')}
       </span>
-      <div className="min-w-0">
-        <span className="block text-[13px] font-medium text-black group-hover:text-solar transition-colors leading-snug truncate">
-          {c.label}
-        </span>
-        {c.note && (
-          <span className="block font-mono text-[9px] tracking-[0.08em] uppercase text-zinc-400 mt-0.5 truncate">
-            {c.note}
-          </span>
-        )}
-      </div>
+      <span className="text-[13.5px] font-medium text-black group-hover:text-solar group-hover:translate-x-0.5 transition-all truncate">
+        {c.label}
+      </span>
     </Link>
   );
 }
@@ -523,15 +534,15 @@ function CircleArrow({
       viewBox="0 0 50 50"
       width={size}
       height={size}
-      style={style}
+      style={{ ...style, fill: 'none' }}
       className={`fill-none stroke-current shrink-0 ${className}`}
       aria-hidden="true"
     >
-      <circle cx="25" cy="25" r="24" strokeWidth="2.5" />
+      <circle cx="25" cy="25" r="24" strokeWidth="2.5" style={{ fill: 'none' }} />
       <g transform="rotate(-45 25 25) translate(7 10)">
-        <path d="M 9 15 L 27.45 15" strokeWidth="2.5" />
-        <path d="M 27 15 L 21 9" strokeWidth="2.5" />
-        <path d="M 27 15 L 21 21" strokeWidth="2.5" />
+        <path d="M 9 15 L 27.45 15" strokeWidth="2.5" style={{ fill: 'none' }} />
+        <path d="M 27 15 L 21 9" strokeWidth="2.5" style={{ fill: 'none' }} />
+        <path d="M 27 15 L 21 21" strokeWidth="2.5" style={{ fill: 'none' }} />
       </g>
     </svg>
   );

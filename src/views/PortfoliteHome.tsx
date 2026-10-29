@@ -2,13 +2,20 @@ import dynamic from 'next/dynamic';
 import PortfoliteNav from '../components/portfolite/PortfoliteNav';
 import PortfoliteHero from '../components/portfolite/PortfoliteHero';
 import PortfoliteLogosMarquee from '../components/portfolite/PortfoliteLogosMarquee';
-import PortfoliteProjectsGrid from '../components/portfolite/PortfoliteProjectsGrid';
-import PortfoliteAbout from '../components/portfolite/PortfoliteAbout';
-import PortfoliteRecentWorksCarousel from '../components/portfolite/PortfoliteRecentWorksCarousel';
-import PortfoliteProcess from '../components/portfolite/PortfoliteProcess';
-import PortfoliteFooter from '../components/portfolite/PortfoliteFooter';
 
-// Code-split heavy interactive and particle sections for instant first paint and smooth scrolling
+// Code-split below-the-fold sections with SSR enabled to preserve full HTML content & SEO indexability
+const PortfoliteProjectsGrid = dynamic(() => import('../components/portfolite/PortfoliteProjectsGrid'), {
+  ssr: true,
+});
+const PortfoliteAbout = dynamic(() => import('../components/portfolite/PortfoliteAbout'), {
+  ssr: true,
+});
+const PortfoliteRecentWorksCarousel = dynamic(() => import('../components/portfolite/PortfoliteRecentWorksCarousel'), {
+  ssr: true,
+});
+const PortfoliteProcess = dynamic(() => import('../components/portfolite/PortfoliteProcess'), {
+  ssr: true,
+});
 const ServicesStickySection = dynamic(() => import('../components/home/ServicesStickySection'), {
   ssr: true,
 });
@@ -16,6 +23,9 @@ const WhyUsSection = dynamic(() => import('../components/home/WhyUsSection'), {
   ssr: true,
 });
 const LatestNewsSection = dynamic(() => import('../components/home/LatestNewsSection'), {
+  ssr: true,
+});
+const PortfoliteFooter = dynamic(() => import('../components/portfolite/PortfoliteFooter'), {
   ssr: true,
 });
 

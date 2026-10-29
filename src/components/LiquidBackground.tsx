@@ -272,8 +272,9 @@ export default function LiquidBackground({ preset }: { preset: number }) {
       frame = requestAnimationFrame(render);
     };
 
+    let readyToRender = false;
     const start = () => {
-      if (frame || !isVisible || document.hidden) return;
+      if (!readyToRender || frame || !isVisible || document.hidden) return;
       last = 0;
       frame = requestAnimationFrame(render);
     };
@@ -309,7 +310,24 @@ export default function LiquidBackground({ preset }: { preset: number }) {
     const onVisibilityChange = () => document.hidden ? stop() : start();
     document.addEventListener('visibilitychange', onVisibilityChange);
 
+    let deferTimer: number | ReturnType<typeof setTimeout> | null = null;
+    const enableRender = () => {
+      readyToRender = true;
+      if (isVisible) start();
+    };
+
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      deferTimer = (window as unknown as { requestIdleCallback: (cb: () => void, opt?: { timeout: number }) => number }).requestIdleCallback(enableRender, { timeout: 350 });
+    } else {
+      deferTimer = setTimeout(enableRender, 150);
+    }
+
     return () => {
+      if (typeof window !== 'undefined' && 'cancelIdleCallback' in window && typeof deferTimer === 'number') {
+        (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(deferTimer);
+      } else if (deferTimer) {
+        clearTimeout(deferTimer as ReturnType<typeof setTimeout>);
+      }
       stop();
       observer.disconnect();
       resizeObserver?.disconnect();
