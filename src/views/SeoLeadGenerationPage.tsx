@@ -224,29 +224,50 @@ export default function SeoLeadGenerationPage() {
       <section className="relative pt-36 sm:pt-44 pb-20 sm:pb-28 overflow-hidden border-b border-black/10">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-[radial-gradient(ellipse_at_center,rgba(232,116,44,0.08)_0%,rgba(255,255,255,0)_70%)] pointer-events-none blur-3xl" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center">
-          {/* Breadcrumb */}
-          <div className="flex items-center justify-center gap-2 text-xs font-mono text-zinc-500 mb-6">
-            <Link to="/" className="hover:text-black transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-solar">SEO &amp; Lead Generation</span>
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl text-left">
+            {/* Breadcrumb */}
+            <div className="flex items-center gap-2 text-xs font-mono text-zinc-500 mb-6">
+              <Link to="/" className="hover:text-black transition-colors">Home</Link>
+              <span>/</span>
+              <span className="text-solar font-semibold">SEO &amp; Lead Generation</span>
+            </div>
+
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 border border-black/10 text-xs font-medium text-zinc-700 mb-6">
+              <span className="w-2 h-2 rounded-full bg-solar" />
+              <span>Organic Search, Digital Advertising &amp; Lead Engine</span>
+            </div>
+
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-black leading-[1.08] text-left">
+              SEO &amp; Lead Generation Services That Generate High Quality Leads.
+            </h1>
+
+            <p className="mt-6 text-lg sm:text-xl text-zinc-600 max-w-3xl leading-relaxed font-light text-left">
+              With over 90% of online journeys beginning on search engines, top rankings in competitive search results connect your enterprise with ready-to-buy customers and procurement leaders. At {COMPANY.name}, our data-powered SEO campaigns provide an all-in-one revenue acceleration solution covering technical health, Core Web Vitals, hyper-targeted PPC, addressable geofencing, and review acceleration.
+            </p>
+
+            {/* Action CTAs */}
+            <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
+              <Link
+                to="/contact"
+                className="site-button px-7 py-3.5 rounded-full !bg-black !text-white text-sm font-semibold flex items-center justify-center gap-2 hover:!bg-zinc-800 transition-colors shadow-lg active:scale-[0.98]"
+                style={{ color: '#FFFFFF', backgroundColor: '#000000' }}
+              >
+                <span style={{ color: '#FFFFFF' }}>Request SEO Audit &amp; Proposal</span>
+                <ArrowRight className="w-4 h-4 !text-white" style={{ color: '#FFFFFF', stroke: '#FFFFFF' }} />
+              </Link>
+              <a
+                href={`tel:${COMPANY.phones[0].replace(/\s/g, '')}`}
+                className="px-7 py-3.5 rounded-full bg-zinc-100 border border-black/10 text-zinc-800 text-sm font-medium flex items-center justify-center gap-2 hover:bg-zinc-200 transition-colors"
+              >
+                <Phone className="w-4 h-4 text-solar" />
+                <span>Speak with SEO Strategist</span>
+              </a>
+            </div>
           </div>
-
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 border border-black/10 text-xs font-medium text-zinc-700 mb-6">
-            <span className="w-2 h-2 rounded-full bg-solar" />
-            <span>Organic Search, Digital Advertising &amp; Lead Engine</span>
-          </div>
-
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-black leading-[1.08] max-w-4xl mx-auto">
-            SEO &amp; Lead Generation Services That Generate High Quality Leads.
-          </h1>
-
-          <p className="mt-6 text-base sm:text-xl text-zinc-600 max-w-3xl mx-auto leading-relaxed font-light">
-            With over 90% of online journeys beginning on search engines, top rankings in competitive search results connect your enterprise with ready-to-buy customers and procurement leaders. At {COMPANY.name}, our data-powered SEO campaigns provide an all-in-one revenue acceleration solution covering technical health, Core Web Vitals, hyper-targeted PPC, addressable geofencing, and review acceleration.
-          </p>
 
           {/* Quick Metrics Strip */}
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-black/10 pt-8 max-w-4xl mx-auto">
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-black/10 pt-8">
             {stats.map((s, idx) => (
               <div key={idx} className="p-4 rounded-xl bg-zinc-50 border border-black/5 text-left">
                 <p className="text-2xl sm:text-4xl font-bold text-black tracking-tight">{s.value}</p>
@@ -311,14 +332,14 @@ export default function SeoLeadGenerationPage() {
 
       {/* ── Core Service Offerings Grid ── */}
       <section className="py-20 sm:py-28 max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div id="full-scope" className="scroll-mt-36 text-left max-w-3xl mb-14">
           <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
             Full Service Scope
           </span>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-black mt-3">
             Search, Paid Advertising &amp; Growth Intelligence
           </h2>
-          <p className="mt-4 text-zinc-600 text-sm sm:text-base leading-relaxed font-light">
+          <p className="mt-4 text-zinc-600 text-base sm:text-lg leading-relaxed font-light">
             Every campaign is tailored to your commercial objectives, combining technical speed engineering, competitive telemetry, and multi-channel marketing automation to build an unshakeable digital footprint.
           </p>
         </div>
@@ -393,14 +414,14 @@ export default function SeoLeadGenerationPage() {
       {/* ── Knowledge & Strategic Guidance Strip ── */}
       <section className="py-20 sm:py-28 bg-zinc-950 text-white border-t border-b border-black">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-left max-w-3xl mb-14">
             <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
               Executive Guidance
             </span>
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mt-3">
               The Search &amp; Growth Playbook
             </h2>
-            <p className="mt-4 text-zinc-400 text-sm sm:text-base leading-relaxed font-light">
+            <p className="mt-4 text-zinc-400 text-base sm:text-lg leading-relaxed font-light">
               Clear, honest analysis of how modern search algorithms operate and how ambitious companies outmaneuver legacy competitors.
             </p>
           </div>
@@ -427,13 +448,16 @@ export default function SeoLeadGenerationPage() {
 
       {/* ── Interactive FAQ Section ── */}
       <section className="py-20 sm:py-28 max-w-4xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16">
+        <div className="text-left mb-12">
           <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
             Frequently Asked Questions
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-black mt-3">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black mt-3">
             Common Inquiries on Search &amp; Lead Generation
           </h2>
+          <p className="mt-3 text-base sm:text-lg text-zinc-600 font-light leading-relaxed">
+            Everything you need to know about our SEO contracts, reporting cadences, and Noida HQ engineering.
+          </p>
         </div>
 
         <div className="space-y-4">

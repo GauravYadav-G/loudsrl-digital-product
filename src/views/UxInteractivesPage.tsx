@@ -14,6 +14,7 @@ import {
   ShieldCheck,
   CheckCircle2,
   ArrowRight,
+  Phone,
   Eye,
   MousePointerClick,
   Layers,
@@ -363,29 +364,50 @@ export default function UxInteractivesPage() {
       <section className="relative pt-36 sm:pt-44 pb-16 sm:pb-24 overflow-hidden border-b border-black/10">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-[radial-gradient(ellipse_at_center,rgba(232,116,44,0.08)_0%,rgba(255,255,255,0)_70%)] pointer-events-none blur-3xl" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center">
-          {/* Breadcrumb */}
-          <div className="flex items-center justify-center gap-2 text-xs font-mono text-zinc-500 mb-6">
-            <Link to="/" className="hover:text-black transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-solar">UX Interactives</span>
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl text-left">
+            {/* Breadcrumb */}
+            <div className="flex items-center gap-2 text-xs font-mono text-zinc-500 mb-6">
+              <Link to="/" className="hover:text-black transition-colors">Home</Link>
+              <span>/</span>
+              <span className="text-solar font-semibold">UX Interactives</span>
+            </div>
+
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 border border-black/10 text-xs font-medium text-zinc-700 mb-6">
+              <span className="w-2 h-2 rounded-full bg-solar" />
+              <span>Human-Centered Digital Craft &amp; Experience Design</span>
+            </div>
+
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-black leading-[1.08] text-left">
+              UX Interactives, Dynamic Experience Design &amp; Content Systems.
+            </h1>
+
+            <p className="mt-6 text-lg sm:text-xl text-zinc-600 max-w-3xl leading-relaxed font-light text-left">
+              A great user interface drives an unforgettable digital brand. At {COMPANY.name}, our in-house engineering and visual design pods craft bespoke, high-converting digital interfaces, personalized content engines, voice search solutions, and fully accessible web applications.
+            </p>
+
+            {/* Action CTAs */}
+            <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
+              <Link
+                to="/contact"
+                className="site-button px-7 py-3.5 rounded-full !bg-black !text-white text-sm font-semibold flex items-center justify-center gap-2 hover:!bg-zinc-800 transition-colors shadow-lg active:scale-[0.98]"
+                style={{ color: '#FFFFFF', backgroundColor: '#000000' }}
+              >
+                <span style={{ color: '#FFFFFF' }}>Request UX Consultation</span>
+                <ArrowRight className="w-4 h-4 !text-white" style={{ color: '#FFFFFF', stroke: '#FFFFFF' }} />
+              </Link>
+              <a
+                href={`tel:${COMPANY.phones[0].replace(/\s/g, '')}`}
+                className="px-7 py-3.5 rounded-full bg-zinc-100 border border-black/10 text-zinc-800 text-sm font-medium flex items-center justify-center gap-2 hover:bg-zinc-200 transition-colors"
+              >
+                <Phone className="w-4 h-4 text-solar" />
+                <span>Speak with Design Lead</span>
+              </a>
+            </div>
           </div>
-
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 border border-black/10 text-xs font-medium text-zinc-700 mb-6">
-            <span className="w-2 h-2 rounded-full bg-solar" />
-            <span>Human-Centered Digital Craft &amp; Experience Design</span>
-          </div>
-
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-black leading-[1.08] max-w-4xl mx-auto">
-            UX Interactives, Dynamic Experience Design &amp; Content Systems.
-          </h1>
-
-          <p className="mt-6 text-base sm:text-xl text-zinc-600 max-w-3xl mx-auto leading-relaxed font-light">
-            A great user interface drives an unforgettable digital brand. At {COMPANY.name}, our in-house engineering and visual design pods craft bespoke, high-converting digital interfaces, personalized content engines, voice search solutions, and fully accessible web applications.
-          </p>
 
           {/* Quick Metrics Strip */}
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-black/10 pt-8 max-w-4xl mx-auto">
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-black/10 pt-8">
             {stats.map((s, idx) => (
               <div key={idx} className="p-4 rounded-xl bg-zinc-50 border border-black/5 text-left">
                 <p className="text-2xl sm:text-4xl font-bold text-black tracking-tight">{s.value}</p>
@@ -395,7 +417,7 @@ export default function UxInteractivesPage() {
           </div>
 
           {/* Category Filter Pills */}
-          <div className="mt-12 flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
+          <div className="mt-10 flex flex-wrap gap-2">
             {categories.map((c) => {
               const count = c === 'All' ? uxFeatures.length : uxFeatures.filter((f) => f.category === c).length;
               const active = activeCategory === c;
@@ -531,14 +553,14 @@ export default function UxInteractivesPage() {
       {/* ── Working Methodology Strip ── */}
       <section className="py-20 bg-zinc-900 text-white border-t border-b border-black">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="text-left max-w-3xl mb-14">
             <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
               The ARKA Standard
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mt-3">
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mt-3">
               How Our UX &amp; Engineering Teams Deliver
             </h2>
-            <p className="mt-3 text-zinc-400 text-sm sm:text-base leading-relaxed font-light">
+            <p className="mt-3 text-zinc-400 text-base sm:text-lg leading-relaxed font-light">
               No generic templates or outsourced code. Every interface is built iteratively by dedicated specialists working under one roof in Sector 63, Noida.
             </p>
           </div>
@@ -559,13 +581,16 @@ export default function UxInteractivesPage() {
 
       {/* ── Educational Guides & Playbooks ── */}
       <section className="py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        <div className="text-left max-w-3xl mb-12">
           <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold block mb-2">
             Design &amp; Experience Guides
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-black">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black leading-tight">
             Strategic Playbooks for Digital Leaders
           </h2>
+          <p className="mt-3 text-base sm:text-lg text-zinc-600 font-light leading-relaxed">
+            In-depth guides on user research, UI architecture, accessibility compliance, and interaction performance.
+          </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -596,13 +621,16 @@ export default function UxInteractivesPage() {
 
       {/* ── Interactive FAQ Accordion ── */}
       <section className="py-16 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6 border-t border-black/10">
-        <div className="text-center mb-12">
+        <div className="text-left mb-12">
           <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold block mb-2">
             Frequently Asked Questions
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-black">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black leading-tight">
             Answers on UX, CMS &amp; Compliance
           </h2>
+          <p className="mt-3 text-base sm:text-lg text-zinc-600 font-light leading-relaxed">
+            Everything you need to know about our UX design sprints, Figma deliverables, and code handoff.
+          </p>
         </div>
 
         <div className="space-y-4">

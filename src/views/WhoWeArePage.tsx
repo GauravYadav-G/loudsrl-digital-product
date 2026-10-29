@@ -198,29 +198,50 @@ export default function WhoWeArePage() {
       <section className="relative pt-36 sm:pt-44 pb-16 sm:pb-24 overflow-hidden border-b border-black/10">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-[radial-gradient(ellipse_at_center,rgba(232,116,44,0.08)_0%,rgba(255,255,255,0)_70%)] pointer-events-none blur-3xl" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center">
-          {/* Breadcrumb */}
-          <div className="flex items-center justify-center gap-2 text-xs font-mono text-zinc-500 mb-6">
-            <Link to="/" className="hover:text-black transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-solar">Who We Are</span>
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl text-left">
+            {/* Breadcrumb */}
+            <div className="flex items-center gap-2 text-xs font-mono text-zinc-500 mb-6">
+              <Link to="/" className="hover:text-black transition-colors">Home</Link>
+              <span>/</span>
+              <span className="text-solar font-semibold">Who We Are</span>
+            </div>
+
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 border border-black/10 text-xs font-medium text-zinc-700 mb-6">
+              <span className="w-2 h-2 rounded-full bg-solar" />
+              <span>Founded &amp; Guided by Mr. Kranti Parashar · Headquartered in Sector 63, Noida</span>
+            </div>
+
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-black leading-[1.08] text-left">
+              Who We Are — ARKA Technovation.
+            </h1>
+
+            <p className="mt-6 text-lg sm:text-xl text-zinc-600 max-w-3xl leading-relaxed font-light text-left">
+              Welcome to {COMPANY.legalName}, a renowned company in the fields of enterprise web development, digital marketing, and corporate filmmaking. Guided by Mr. Kranti Parashar, our dedicated team of full-stack developers, cinematographers, and digital marketing strategists helps businesses unlock their full digital potential and achieve sustainable, compounding market growth.
+            </p>
+
+            {/* Action CTAs */}
+            <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
+              <Link
+                to="/contact"
+                className="site-button px-7 py-3.5 rounded-full !bg-black !text-white text-sm font-semibold flex items-center justify-center gap-2 hover:!bg-zinc-800 transition-colors shadow-lg active:scale-[0.98]"
+                style={{ color: '#FFFFFF', backgroundColor: '#000000' }}
+              >
+                <span style={{ color: '#FFFFFF' }}>Get in Touch with Leadership</span>
+                <ArrowRight className="w-4 h-4 !text-white" style={{ color: '#FFFFFF', stroke: '#FFFFFF' }} />
+              </Link>
+              <a
+                href={`tel:${COMPANY.phones[0].replace(/\s/g, '')}`}
+                className="px-7 py-3.5 rounded-full bg-zinc-100 border border-black/10 text-zinc-800 text-sm font-medium flex items-center justify-center gap-2 hover:bg-zinc-200 transition-colors"
+              >
+                <Phone className="w-4 h-4 text-solar" />
+                <span>Call Noida Headquarters</span>
+              </a>
+            </div>
           </div>
-
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 border border-black/10 text-xs font-medium text-zinc-700 mb-6">
-            <span className="w-2 h-2 rounded-full bg-solar" />
-            <span>Founded &amp; Guided by Mr. Kranti Parashar · Headquartered in Sector 63, Noida</span>
-          </div>
-
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-black leading-[1.08] max-w-4xl mx-auto">
-            Who We Are — ARKA Technovation.
-          </h1>
-
-          <p className="mt-6 text-base sm:text-xl text-zinc-600 max-w-3xl mx-auto leading-relaxed font-light">
-            Welcome to {COMPANY.legalName}, a renowned company in the fields of enterprise web development, digital marketing, and corporate filmmaking. Guided by Mr. Kranti Parashar, our dedicated team of full-stack developers, cinematographers, and digital marketing strategists helps businesses unlock their full digital potential and achieve sustainable, compounding market growth.
-          </p>
 
           {/* Quick Metrics Strip */}
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-black/10 pt-8 max-w-4xl mx-auto">
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-black/10 pt-8">
             {stats.map((s, idx) => (
               <div key={idx} className="p-4 rounded-xl bg-zinc-50 border border-black/5 text-left">
                 <p className="text-2xl sm:text-4xl font-bold text-black tracking-tight">{s.value}</p>
@@ -273,14 +294,14 @@ export default function WhoWeArePage() {
       {/* ── Working Methodology Pillars ── */}
       <section id="methodology" className="scroll-mt-36 py-20 sm:py-28 bg-zinc-50 border-y border-black/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-left max-w-3xl mb-14">
             <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
               Our Working Culture
             </span>
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-black mt-3">
               How Ambitious Companies Work With ARKA
             </h2>
-            <p className="mt-4 text-zinc-600 text-sm sm:text-base leading-relaxed font-light">
+            <p className="mt-4 text-zinc-600 text-base sm:text-lg leading-relaxed font-light">
               We operate with the discipline of an engineering firm and the creative standards of a boutique studio.
             </p>
           </div>
@@ -418,14 +439,14 @@ export default function WhoWeArePage() {
       {/* ── Transparent Pricing Guides ── */}
       <section id="pricing" className="scroll-mt-36 py-20 sm:py-28 bg-zinc-50 border-t border-black/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-left max-w-3xl mb-14">
             <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
               Honest Commercials
             </span>
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-black mt-3">
               Transparent Pricing Guides
             </h2>
-            <p className="mt-4 text-zinc-600 text-sm sm:text-base leading-relaxed font-light">
+            <p className="mt-4 text-zinc-600 text-base sm:text-lg leading-relaxed font-light">
               We believe in upfront commercial clarity. No hidden fees, no opaque contracts—just fixed scopes and measurable ROI.
             </p>
           </div>
@@ -483,13 +504,16 @@ export default function WhoWeArePage() {
 
       {/* ── Educational Guides & Playbooks ── */}
       <section className="py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        <div className="text-left max-w-3xl mb-12">
           <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold block mb-2">
             Company Culture &amp; Strategy
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-black">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black leading-tight">
             Strategic Playbooks on Enterprise Execution
           </h2>
+          <p className="mt-3 text-base sm:text-lg text-zinc-600 font-light leading-relaxed">
+            Institutional methodologies, reporting ethics, and engineering principles from our executive leadership.
+          </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -575,13 +599,16 @@ export default function WhoWeArePage() {
 
       {/* ── Interactive FAQ Accordion ── */}
       <section className="py-16 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6 border-t border-black/10">
-        <div className="text-center mb-12">
+        <div className="text-left mb-12">
           <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold block mb-2">
             Frequently Asked Questions
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-black">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black leading-tight">
             Answers on Culture, Governance &amp; Location
           </h2>
+          <p className="mt-3 text-base sm:text-lg text-zinc-600 font-light leading-relaxed">
+            Direct answers regarding our ownership, headquarters, in-house team, and CSR initiatives.
+          </p>
         </div>
 
         <div className="space-y-4">

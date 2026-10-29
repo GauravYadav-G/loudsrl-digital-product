@@ -27,6 +27,7 @@ import {
   ChevronDown,
   PlayCircle,
   TrendingUp,
+  Phone,
 } from 'lucide-react';
 import PortfoliteNav from '../components/portfolite/PortfoliteNav';
 import PortfoliteFooter from '../components/portfolite/PortfoliteFooter';
@@ -471,29 +472,50 @@ export default function PortfoliteServicesPage() {
       <section className="relative pt-36 sm:pt-44 pb-16 sm:pb-24 overflow-hidden border-b border-black/10">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-[radial-gradient(ellipse_at_center,rgba(232,116,44,0.08)_0%,rgba(255,255,255,0)_70%)] pointer-events-none blur-3xl" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center">
-          {/* Breadcrumb */}
-          <div className="flex items-center justify-center gap-2 text-xs font-mono text-zinc-500 mb-6">
-            <Link to="/" className="hover:text-black transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-solar">Services &amp; Capabilities</span>
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl text-left">
+            {/* Breadcrumb */}
+            <div className="flex items-center gap-2 text-xs font-mono text-zinc-500 mb-6">
+              <Link to="/" className="hover:text-black transition-colors">Home</Link>
+              <span>/</span>
+              <span className="text-solar font-semibold">Services &amp; Capabilities</span>
+            </div>
+
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 border border-black/10 text-xs font-medium text-zinc-700 mb-6">
+              <span className="w-2 h-2 rounded-full bg-solar" />
+              <span>Setting the Standard as the Best Digital Marketing &amp; Engineering Company in Noida</span>
+            </div>
+
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-black leading-[1.08] text-left">
+              Comprehensive Capabilities Engineered for Enterprise Scale.
+            </h1>
+
+            <p className="mt-6 text-lg sm:text-xl text-zinc-600 max-w-3xl leading-relaxed font-light text-left">
+              In the rapidly evolving digital landscape, staying ahead requires constant innovation. {COMPANY.name} stands at the forefront of digital trends—integrating AI in advertising, high-throughput software architectures, page-one search engine dominance, and broadcast cinema production under one roof.
+            </p>
+
+            {/* Action CTAs */}
+            <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
+              <Link
+                to="/contact"
+                className="site-button px-7 py-3.5 rounded-full !bg-black !text-white text-sm font-semibold flex items-center justify-center gap-2 hover:!bg-zinc-800 transition-colors shadow-lg active:scale-[0.98]"
+                style={{ color: '#FFFFFF', backgroundColor: '#000000' }}
+              >
+                <span style={{ color: '#FFFFFF' }}>Request Project Proposal</span>
+                <ArrowRight className="w-4 h-4 !text-white" style={{ color: '#FFFFFF', stroke: '#FFFFFF' }} />
+              </Link>
+              <a
+                href={`tel:${COMPANY.phones[0].replace(/\s/g, '')}`}
+                className="px-7 py-3.5 rounded-full bg-zinc-100 border border-black/10 text-zinc-800 text-sm font-medium flex items-center justify-center gap-2 hover:bg-zinc-200 transition-colors"
+              >
+                <Phone className="w-4 h-4 text-solar" />
+                <span>Speak with Practice Lead</span>
+              </a>
+            </div>
           </div>
-
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 border border-black/10 text-xs font-medium text-zinc-700 mb-6">
-            <span className="w-2 h-2 rounded-full bg-solar" />
-            <span>Setting the Standard as the Best Digital Marketing &amp; Engineering Company in Noida</span>
-          </div>
-
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-black leading-[1.08] max-w-4xl mx-auto">
-            Comprehensive Capabilities Engineered for Enterprise Scale.
-          </h1>
-
-          <p className="mt-6 text-base sm:text-xl text-zinc-600 max-w-3xl mx-auto leading-relaxed font-light">
-            In the rapidly evolving digital landscape, staying ahead requires constant innovation. {COMPANY.name} stands at the forefront of digital trends—integrating AI in advertising, high-throughput software architectures, page-one search engine dominance, and broadcast cinema production under one roof.
-          </p>
 
           {/* Quick Stats Strip */}
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-black/10 pt-8 max-w-4xl mx-auto">
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-black/10 pt-8">
             <div className="p-4 rounded-xl bg-zinc-50 border border-black/5 text-left">
               <p className="text-2xl sm:text-4xl font-bold text-black tracking-tight">15+</p>
               <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">Years Domain Craft</p>
@@ -513,7 +535,7 @@ export default function PortfoliteServicesPage() {
           </div>
 
           {/* Category Filter Pills */}
-          <div className="mt-12 flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
+          <div className="mt-10 flex flex-wrap gap-2">
             {categories.map((c) => {
               const count = c === 'All' ? disciplines.length : disciplines.filter((d) => d.category === c).length;
               const active = selectedCat === c;
@@ -665,14 +687,14 @@ export default function PortfoliteServicesPage() {
 
       {/* ── Educational Guides & Strategic Playbooks ── */}
       <section className="py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        <div className="text-left max-w-3xl mb-12">
           <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold block mb-2">
             Industry Insights
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-black">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black leading-tight">
             Strategic Playbooks for Enterprise Leaders
           </h2>
-          <p className="mt-3 text-zinc-600 text-sm font-light leading-relaxed">
+          <p className="mt-3 text-base sm:text-lg text-zinc-600 font-light leading-relaxed">
             In-depth guides authored by our engineering, SEO, and visual production directors to guide executive decision-making.
           </p>
         </div>
@@ -707,14 +729,14 @@ export default function PortfoliteServicesPage() {
       {/* ── 6-Step Delivery Framework ── */}
       <section className="py-16 sm:py-24 bg-zinc-50 border-y border-black/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-left max-w-3xl mb-14">
             <span className="text-xs font-mono uppercase tracking-widest text-zinc-500 font-semibold block mb-2">
               Execution Standard
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-black">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black leading-tight">
               Six steps. Zero surprises.
             </h2>
-            <p className="mt-4 text-zinc-600 text-sm font-light leading-relaxed">
+            <p className="mt-4 text-zinc-600 text-base sm:text-lg font-light leading-relaxed">
               The same disciplined delivery lifecycle runs across every client engagement, ensuring full code ownership and transparent milestones.
             </p>
           </div>
@@ -743,13 +765,16 @@ export default function PortfoliteServicesPage() {
 
       {/* ── Interactive FAQ Accordion ── */}
       <section className="py-16 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12">
+        <div className="text-left mb-12">
           <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold block mb-2">
             Frequently Asked Questions
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-black">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black leading-tight">
             Answers to Common Queries
           </h2>
+          <p className="mt-3 text-base sm:text-lg text-zinc-600 font-light leading-relaxed">
+            Clear answers about our service agreements, technology stack, and Noida engineering pod.
+          </p>
         </div>
 
         <div className="space-y-4">
