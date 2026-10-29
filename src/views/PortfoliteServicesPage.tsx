@@ -33,7 +33,20 @@ import PortfoliteNav from '../components/portfolite/PortfoliteNav';
 import PortfoliteFooter from '../components/portfolite/PortfoliteFooter';
 import { COMPANY, PROCESS } from '../lib/data';
 
-type CategoryFilter = 'All' | 'Digital Marketing' | 'Software Development' | 'Search Engine Optimization' | 'Corporate Film Making';
+type CategoryFilter = 'All' | 'Digital Marketing' | 'Software Development' | 'Search Engine Optimization' | 'Film Making';
+
+interface DisciplineItem {
+  id: string;
+  aliasIds?: string[];
+  category: 'Digital Marketing' | 'Software Development' | 'Search Engine Optimization' | 'Film Making';
+  tag: string;
+  title: string;
+  subtitle: string;
+  desc: string;
+  highlights: string[];
+  metric: string;
+  metricLabel: string;
+}
 
 export default function PortfoliteServicesPage() {
   const [selectedCat, setSelectedCat] = useState<CategoryFilter>('All');
@@ -44,20 +57,21 @@ export default function PortfoliteServicesPage() {
     'Digital Marketing',
     'Software Development',
     'Search Engine Optimization',
-    'Corporate Film Making',
+    'Film Making',
   ];
 
-  const disciplines = [
+  const disciplines: DisciplineItem[] = [
     // ─────────────────────────────────────────────────────────────
     // 1. DIGITAL MARKETING
     // ─────────────────────────────────────────────────────────────
     {
-      id: 'social-media-handling',
+      id: 'social-media-handling-and-promotion',
+      aliasIds: ['social-media-handling'],
       category: 'Digital Marketing',
       tag: 'Social Media & SMO',
-      title: 'Social Media Handling & Brand Promotion',
+      title: 'Social Media Handling and promotion',
       subtitle: 'Strategic SMO, demographic Facebook & Meta advertising, and multi-channel authority',
-      desc: 'In today’s business scenario, social media plays a pivotal role in promoting and handling business growth across Facebook, Instagram, LinkedIn, and X. Social Media Optimization (SMO) improves the online visibility and reach of your brand through planned, strategic distribution rather than sporadic updates. Our targeted Facebook ads pinpoint exact geographic and demographic parameters, driving higher engagement and qualified inbound leads at a lower cost of acquisition.',
+      desc: 'In the current business scenario, social media plays a pivotal role in promoting and handling business growth. Strategic Social Media Optimization (SMO) improves the online visibility and reach of your brand through planned distribution rather than sporadic updates. Our targeted Facebook and Instagram ad campaigns pinpoint exact geographic and demographic parameters, driving higher engagement and qualified inbound leads at a lower cost of acquisition.',
       highlights: [
         'Strategic Social Media Optimization (SMO) across Meta, LinkedIn, Instagram, and X',
         'Targeted Facebook and Instagram advertising with precise geographic and demographic parameters',
@@ -68,12 +82,13 @@ export default function PortfoliteServicesPage() {
       metricLabel: 'Social Engagement Lift',
     },
     {
-      id: 'ecommerce-seo-ppc',
+      id: 'ecommerce-seo-and-ppc-services',
+      aliasIds: ['ecommerce-seo-ppc'],
       category: 'Digital Marketing',
       tag: 'Ecommerce Performance',
-      title: 'E-Commerce SEO & Shopping PPC Services',
+      title: 'Ecommerce SEO and PPC Services',
       subtitle: 'Accelerated Mobile Pages (AMP), personalized shopping, and visual image search',
-      desc: 'The e-commerce search and paid advertising landscape is constantly evolving. Modern online retail requires three essential technological advantages: Accelerated Mobile Pages (AMP) for sub-second mobile loading prioritized by Google, Personalized Shopping Experiences with tailored recommendations and AI chatbots, and Visual Search integration that allows shoppers to search your catalog using smartphone photos rather than keywords.',
+      desc: 'The e-commerce search and paid advertising landscape is constantly evolving. Modern online retail requires three essential technological advantages: Accelerated Mobile Pages (AMP) for sub-second mobile loading prioritized by Google, Personalized Shopping Experiences with tailored recommendations and automated support, and Visual Search integration that allows shoppers to search your catalog using smartphone photos rather than typed keywords.',
       highlights: [
         'AMP (Accelerated Mobile Pages) open-source framework implementation for lightning mobile checkout',
         'Personalized shopping experiences with automated recommendation engines and chatbot support',
@@ -84,28 +99,30 @@ export default function PortfoliteServicesPage() {
       metricLabel: 'Mobile Conversion Lift',
     },
     {
-      id: 'ecommerce-social-ads',
+      id: 'ecomerce_social_media_advertising',
+      aliasIds: ['ecommerce-social-ads', 'ecommerce-social-media-advertising'],
       category: 'Digital Marketing',
       tag: 'Paid Social Funnels',
-      title: 'E-Commerce Social Media Advertising',
-      subtitle: 'High-intent catalog ads connecting search demand with social targeting',
-      desc: 'Marrying e-commerce search engine marketing with paid social campaigns creates a high-velocity customer acquisition loop. Search marketing captures existing intent when customers look for your products, while targeted social advertising introduces your catalog to high-probability buyers. We optimize product feeds, run dynamic catalog ads, and engineer re-engagement sequences that dramatically lower acquisition costs.',
+      title: 'Ecommerce Social Media Advertising',
+      subtitle: 'High-intent catalog ads connecting search demand with social targeting and dynamic product feeds',
+      desc: 'E-commerce social media advertising is a powerful way to reach prospective customers and promote your brand or products. Marrying e-commerce search engine marketing with paid social campaigns creates a high-velocity customer acquisition loop. Search marketing captures existing intent when customers look for your products, while targeted social advertising introduces your catalog to high-probability buyers with dynamic product ads.',
       highlights: [
         'Dynamic Product Ads (DPA) synced with real-time inventory and pricing catalogs',
         'Omni-channel retargeting sequences re-engaging shoppers who viewed specific SKUs',
-        'Creative split-testing of video hooks, carousel carousels, and offer architectures',
-        'Direct integration with Shopify Plus, Magento, and custom e-commerce checkouts',
+        'Creative split-testing of video hooks, carousel cards, and offer architectures',
+        'Direct integration with Shopify Plus, Magento, WooCommerce, and custom checkouts',
       ],
       metric: '4.8×',
       metricLabel: 'Average Social ROAS',
     },
     {
-      id: 'email-sms-whatsapp',
+      id: 'email_sms_whatsapp_marketing',
+      aliasIds: ['email-sms-whatsapp', 'email-sms-and-whatsapp-marketing'],
       category: 'Digital Marketing',
       tag: 'Direct Messaging',
-      title: 'Email, SMS & WhatsApp Business Marketing',
-      subtitle: 'Permission-based text marketing, high-open rate WhatsApp automation, and lifecycle retention',
-      desc: 'SMS and WhatsApp marketing represent the highest-engagement communication channels available to modern businesses. With 98% open rates and immediate mobile delivery, automated WhatsApp notifications and targeted SMS campaigns re-activate inactive buyers and drive repeat orders. Combined with intelligent lifecycle email newsletters, we build automated retention workflows that generate predictable recurring revenue.',
+      title: 'Email & SMS and WhatsApp Marketing',
+      subtitle: 'Permission-based text marketing, high-open rate WhatsApp automation, and lifecycle retention workflows',
+      desc: 'SMS marketing and WhatsApp marketing are two popular text-based communication options for modern businesses. With 98% open rates and immediate mobile delivery, automated WhatsApp notifications and targeted SMS campaigns re-activate inactive buyers and drive repeat orders. Combined with intelligent lifecycle email newsletters, we build automated retention workflows that generate predictable recurring revenue.',
       highlights: [
         'Official WhatsApp Business API integration with automated order updates and support flows',
         'Permission-based SMS broadcasts with high-speed delivery gateways and link tracking',
@@ -116,12 +133,13 @@ export default function PortfoliteServicesPage() {
       metricLabel: 'WhatsApp Open Rate',
     },
     {
-      id: 'google-social-ads',
+      id: 'google_social_media_ads_compaign',
+      aliasIds: ['google-social-ads', 'google-social-media-ads-campaign'],
       category: 'Digital Marketing',
       tag: 'Multi-Channel Media',
-      title: 'Google & Social Media Ads Campaigns',
+      title: 'Google & Social Media Ads Campaign',
       subtitle: 'Search intent capture paired with demographic social awareness for maximum market share',
-      desc: 'Our campaigns are built around the truth that your company is not just a vendor, but an authority. Potential clients search for your services every day on Google, while spending hours discovering brands on social feeds. Our media specialists design coordinated campaigns that capture active search intent on Google Ads while building undeniable familiarity on Meta and LinkedIn, driving down cost per lead across the entire funnel.',
+      desc: 'Our campaigns are built around the truth that your company is not just a business, but an industry authority. Potential clients search for your services every day on Google, while spending hours discovering brands on social feeds. Our media specialists design coordinated campaigns that capture active search intent on Google Ads while building undeniable familiarity on Meta and LinkedIn, driving down cost per lead across the entire funnel.',
       highlights: [
         'Google Search, Display, and Performance Max (PMax) campaign management',
         'Cross-platform demographic targeting matching ideal customer profiles (ICPs)',
@@ -136,12 +154,13 @@ export default function PortfoliteServicesPage() {
     // 2. SOFTWARE DEVELOPMENT
     // ─────────────────────────────────────────────────────────────
     {
-      id: 'custom-crm-software',
+      id: 'crm_software',
+      aliasIds: ['custom-crm-software', 'crm-software'],
       category: 'Software Development',
       tag: 'Cloud CRM',
-      title: 'Custom CRM Software Development',
+      title: 'CRM Software',
       subtitle: 'Unified sales, marketing, and customer support with 1-to-1 personalized journeys',
-      desc: 'A custom CRM connects all your departments—from marketing and sales to customer fulfillment—and unifies notes, deals, phone logs, and metrics into one cohesive system. Built on modern cloud and SaaS architectures, our CRM software gives your team direct real-time client data from any device. We eliminate legacy analog spreadsheets and deliver personalized one-to-one customer journeys that scale infinitely with your business.',
+      desc: 'CRM software connects your different departments, from marketing to sales to customer service, and organizes notes, deals, phone logs, and metrics into one cohesive system. Built on modern cloud and SaaS architectures, our custom CRM software gives your team direct real-time client data from any device. We eliminate legacy analog spreadsheets and deliver personalized one-to-one customer journeys that scale infinitely with your business.',
       highlights: [
         'Departmental synchronization: Marketing lead capture, sales pipelines, and support tickets in one hub',
         'Cloud-native SaaS architecture accessible via secure web and mobile applications anywhere',
@@ -152,12 +171,13 @@ export default function PortfoliteServicesPage() {
       metricLabel: 'Saved Per Team Weekly',
     },
     {
-      id: 'erp-enterprise-solutions',
+      id: 'erp_solution',
+      aliasIds: ['erp-enterprise-solutions', 'erp-solution'],
       category: 'Software Development',
       tag: 'Enterprise ERP',
-      title: 'Enterprise Resource Planning (ERP) Solutions',
+      title: 'ERP Solution',
       subtitle: 'Centralizing finance, HR, global supply chain, and inventory management',
-      desc: 'ERP is the operational foundation of modern business, designed to manage and integrate core processes including finance, human resources, supply chain logistics, procurement, and warehouse inventory in a single system. In an increasingly complex global economy, streamlining operations and accessing accurate unified data is mission-critical. Our custom ERP engineering replaces fragmented departmental software with one reliable source of truth.',
+      desc: 'Enterprise Resource Planning or ERP is software meant to manage and integrate core business processes: finance, human resources, supply chain logistics, procurement, and warehouse inventory in a single system. In an increasingly complex global economy, streamlining operations and accessing accurate unified data is mission-critical. Our custom ERP engineering replaces fragmented departmental software with one reliable source of truth.',
       highlights: [
         'End-to-end supply chain tracking, purchase order workflows, and real-time inventory management',
         'Integrated financial ledger, automated invoicing, multi-currency accounting, and tax compliance',
@@ -168,12 +188,13 @@ export default function PortfoliteServicesPage() {
       metricLabel: 'Data Synchronization',
     },
     {
-      id: 'website-development',
+      id: 'website_development',
+      aliasIds: ['website-development'],
       category: 'Software Development',
       tag: 'Full-Stack Web',
-      title: 'Bespoke Website & Web Portal Development',
+      title: 'Website Development',
       subtitle: 'Systematic technical engineering using Next.js, React, Node.js, PHP, and Microsoft .NET',
-      desc: 'True software advancement requires the systematic application of specialized engineering knowledge to meet explicit commercial goals. We build high-throughput corporate websites, customer portals, and web applications engineered for speed, security, and scalability. Our engineering team possesses deep mastery of open-source stacks (PHP 8, MySQL, Node.js, Next.js 15) and enterprise Microsoft technologies (ASP.NET, C#, SQL Server).',
+      desc: 'Advancement can be characterized as the efficient utilization of logical and specialized information to meet explicit tasks. We build high-throughput corporate websites, customer portals, and web applications engineered for speed, security, and scalability. Our engineering team possesses deep mastery of open-source stacks (PHP 8, MySQL, Node.js, Next.js 15) and enterprise Microsoft technologies (ASP.NET, C#, SQL Server).',
       highlights: [
         'Modern frontend engineering with Next.js 15, React, TypeScript, and Tailwind CSS',
         'Robust backend architectures across Node.js, Python, PHP, and Microsoft ASP.NET',
@@ -184,10 +205,11 @@ export default function PortfoliteServicesPage() {
       metricLabel: 'Average Page Load',
     },
     {
-      id: 'lead-management-system',
+      id: 'lead_management_system',
+      aliasIds: ['lead-management-system', 'lms-solutions'],
       category: 'Software Development',
       tag: 'LMS Solutions',
-      title: 'Lead Management & Learning Systems (LMS)',
+      title: 'Lead Management System',
       subtitle: 'Automated lead ingestion, intelligent scoring, routing, and institutional learning platforms',
       desc: 'Our LMS platforms fulfill dual enterprise requirements: high-velocity lead distribution systems that capture, validate, and route sales leads in real time, and enterprise Learning Management Systems for corporate training and certification. We build software that manages administration, tracking, automated reporting, and delivery of training modules to thousands of concurrent users across web and mobile devices.',
       highlights: [
@@ -200,12 +222,13 @@ export default function PortfoliteServicesPage() {
       metricLabel: 'Lead Route Velocity',
     },
     {
-      id: 'mobile-applications',
+      id: 'mobile_application',
+      aliasIds: ['mobile-applications', 'mobile-application'],
       category: 'Software Development',
       tag: 'iOS & Android',
-      title: 'Mobile Application Engineering',
+      title: 'Mobile Application',
       subtitle: 'Native and hybrid mobile apps leveraging cloud backends and device hardware',
-      desc: 'Mobile applications connect your business directly to your users wherever they go. With global mobile app downloads reaching hundreds of billions, a well-structured mobile application allows your enterprise to leverage native device features—push notifications, offline storage, biometrics, camera scanning, and geolocation. We engineer secure, intuitive mobile bundles for iOS and Android balanced for speed and cost.',
+      desc: 'Mobile application development is the process of creating specific software applications that run on a mobile device (smartphones and tablets). A well-structured mobile application allows your enterprise to leverage native device features—push notifications, offline storage, biometrics, camera scanning, and geolocation. We engineer secure, intuitive mobile bundles for iOS and Android balanced for speed and cost.',
       highlights: [
         'Cross-platform React Native and native Swift / Kotlin mobile app engineering',
         'Real-time cloud database synchronization and offline-first operational capability',
@@ -221,11 +244,12 @@ export default function PortfoliteServicesPage() {
     // ─────────────────────────────────────────────────────────────
     {
       id: 'google-seo-services',
+      aliasIds: ['google-seo'],
       category: 'Search Engine Optimization',
       tag: 'Google Search Dominance',
-      title: 'Google SEO Services & Page-One Ranking',
+      title: 'Google SEO Services',
       subtitle: 'Algorithmic alignment with Google search standards to capture high-intent commercial traffic',
-      desc: 'Google handles more than 90 percent of all global searches. Optimizing for Google requires deep understanding of how its crawling spiders interpret page content, structure, image assets, and semantic relationships. Instead of languishing on page three or four, our proven Google SEO frameworks place your enterprise firmly on page one, generating steady streams of organic commercial inquiries and long-term market dominance.',
+      desc: 'Google SEO services from ARKA Technovation are absolutely imperative for any business looking to sharpen its online presence and drive organic traffic. Google handles more than 90 percent of all global searches. Optimizing for Google requires deep understanding of how its crawling spiders interpret page content, structure, image assets, and semantic relationships. Instead of languishing on page three or four, our proven Google SEO frameworks place your enterprise firmly on page one.',
       highlights: [
         'Comprehensive keyword intent mapping focusing on high-converting transactional queries',
         'Entity-based semantic optimization and structured schema markup for Google rich snippets',
@@ -237,11 +261,12 @@ export default function PortfoliteServicesPage() {
     },
     {
       id: 'search-engine-marketing',
+      aliasIds: ['sem', 'paid-search-sem'],
       category: 'Search Engine Optimization',
       tag: 'Paid Search (SEM)',
-      title: 'Search Engine Marketing (SEM & PPC)',
+      title: 'Search Engine Marketing',
       subtitle: 'Keyword bidding, visual Product Listing Ads (PLAs), and high-intent paid conversion',
-      desc: 'Search Engine Marketing places your commercial offerings at the top of search result pages precisely when active buyers are searching for solutions. We bid strategically on high-intent search queries across Google and Bing. Our campaigns encompass text ads, call-only formats, and visual Product Listing Ads (PLAs) that showcase product imagery, live prices, and customer reviews right on the search results page.',
+      desc: 'Search Engine Marketing is considered an efficient means of elevating the visibility of a brand considerably, placing your commercial offerings at the top of search result pages precisely when active buyers are searching for solutions. We bid strategically on high-intent search queries across Google and Bing. Our campaigns encompass text ads, call-only formats, and visual Product Listing Ads (PLAs) that showcase product imagery, live prices, and customer reviews.',
       highlights: [
         'Strategic keyword bidding and query management with real-time automated bid adjustments',
         'Google Shopping / PLA management with rich product reviews, shipping annotations, and badges',
@@ -252,12 +277,13 @@ export default function PortfoliteServicesPage() {
       metricLabel: 'Campaign ROAS Lift',
     },
     {
-      id: 'on-off-page-seo',
+      id: 'on-page-seo',
+      aliasIds: ['on-off-page-seo', 'on-page-and-off-page-seo'],
       category: 'Search Engine Optimization',
       tag: 'Technical Health',
-      title: 'On-Page & Off-Page SEO Architecture',
+      title: 'On Page & OFF Page SEO',
       subtitle: 'HTML tags, page speed delight, high-authority backlink building, and technical crawl health',
-      desc: 'On-page SEO ensures your website is crawlable, understandable, and delightful for human visitors—from optimized HTML headings, meta tags, and URL hierarchies to sub-second load times. Off-page SEO builds the undeniable external authority of your domain through high-quality editorial backlinks, brand mentions, and digital PR that establish lasting search engine trust.',
+      desc: 'There are two elements of a good search engine optimization strategy: on-page and off-page SEO. On-page SEO ensures your website is crawlable, understandable, and delightful for human visitors—from optimized HTML headings, meta tags, and URL hierarchies to sub-second load times. Off-page SEO builds the undeniable external authority of your domain through high-quality editorial backlinks, brand mentions, and digital PR that establish lasting search engine trust.',
       highlights: [
         'Meticulous on-page optimization: Title tags, meta descriptions, alt attributes, and clean semantic markup',
         'High-quality authority backlink acquisition through ethical digital PR and guest editorial placements',
@@ -268,12 +294,30 @@ export default function PortfoliteServicesPage() {
       metricLabel: 'Average Domain Authority',
     },
     {
-      id: 'local-seo-services',
+      id: 'ecommerce-seo',
+      aliasIds: ['e-commerce-seo', 'ecommerce-seo-architecture'],
+      category: 'Search Engine Optimization',
+      tag: 'E-Commerce Authority',
+      title: 'E-Commerce SEO',
+      subtitle: 'Product taxonomy structuring, category page authority, rich product schema & shopping visibility',
+      desc: 'E-commerce SEO is crucial to marketing success. It refers to methodically organizing website pages, architecture, and addresses so search engine bots can easily crawl and index every SKU in your store. When online shoppers search for specific brands, specifications, or product categories, e-commerce SEO ensures your product pages outrank marketplaces and competitors, driving direct organic sales without paying third-party commissions.',
+      highlights: [
+        'Product page optimization: Unique title tags, keyword-rich product copy, and high-resolution media',
+        'Category page architecture and breadcrumb hierarchy channeling authority to individual SKUs',
+        'Product, Offer, AggregateRating, and InStock Schema.org JSON-LD structured data',
+        'Faceted navigation indexing controls preventing duplicate content penalties on filter combinations',
+      ],
+      metric: '+185%',
+      metricLabel: 'Organic Catalog Traffic',
+    },
+    {
+      id: 'local-seo',
+      aliasIds: ['local-seo-services', 'local-seo-dominance'],
       category: 'Search Engine Optimization',
       tag: 'Local Citations',
-      title: 'Local SEO & Google Business Optimization',
+      title: 'Local SEO',
       subtitle: 'Dominating Google Maps 3-Pack and capturing the 46% of searches with local intent',
-      desc: 'With 46 percent of all Google searches seeking products, services, or companies in their local area, local search visibility is a primary revenue engine. We optimize your Google Business Profile (GBP), manage localized citations across 70+ business directories, and implement local schema so your business dominates the Google 3-pack and captures local consumers looking to visit or call immediately.',
+      desc: 'Local SEO plays a significant role in any business that wants to bring in more clients from an area or areas of preference. With 46 percent of all Google searches seeking products, services, or companies in their local area, local search visibility is a primary revenue engine. We optimize your Google Business Profile (GBP), manage localized citations across 70+ business directories, and implement local schema so your business dominates the Google 3-pack.',
       highlights: [
         'Complete Google Business Profile (GBP) audit, claim verification, and weekly optimization',
         'Consistent NAP (Name, Address, Phone) citations across Google, Bing, Justdial, and industry directories',
@@ -285,63 +329,33 @@ export default function PortfoliteServicesPage() {
     },
 
     // ─────────────────────────────────────────────────────────────
-    // 4. CORPORATE FILM MAKING & VIDEO PRODUCTION
+    // 4. FILM MAKING
     // ─────────────────────────────────────────────────────────────
     {
-      id: 'corporate-films-docs',
-      category: 'Corporate Film Making',
+      id: 'commercial_presentation_video',
+      aliasIds: ['corporate-presentation-videos', 'corporate-films-docs'],
+      category: 'Film Making',
       tag: 'Brand Cinema',
-      title: 'Corporate Films & CSR Documentaries',
-      subtitle: 'Cinematic corporate storytelling, leadership vision, and Corporate Social Responsibility films',
-      desc: 'Corporate films are the single most efficient medium for enterprises to convey their corporate culture, manufacturing scale, and strategic objectives. Our in-house production crew—including award-winning scriptwriters, cinematographers, directors, and DaVinci colorists—shoots broadcast-grade films with cinema cameras. We also specialize in CSR documentaries highlighting social impact, community development, and sustainable operations.',
+      title: 'Corporate Presentation Videos',
+      subtitle: 'Cinematic corporate storytelling, leadership vision, and company presentation films',
+      desc: 'A corporate video is a video that corporations use to build awareness for their brand, company, or products. They are one of the most effective ways for businesses to communicate and convey their brand message to teams, partners, colleagues, and customers. A corporate film tells your company\'s story, communicates your values, mission, and vision in an engaging format, and acts as your company\'s most persuasive visual brand ambassador.',
       highlights: [
         'Full in-house production crew: Scriptwriter, director, cinematographer, sound engineer, and editor',
         'Shot on high-end 4K/8K cinema camera systems with professional drone aerial cinematography',
-        'CSR and sustainability documentaries highlighting community initiatives and employee welfare',
-        'Turnkey post-production: Editing, color grading, licensed original score, and motion titles',
+        'Executive leadership interviews and facility tours highlighting operational scale',
+        'Turnkey post-production: Editing, DaVinci color grading, licensed original score, and motion titles',
       ],
       metric: '8K/4K',
       metricLabel: 'Broadcast Resolution',
     },
     {
-      id: 'product-demo-videos',
-      category: 'Corporate Film Making',
-      tag: 'Conversion Video',
-      title: 'Product & Service Demo Videos',
-      subtitle: 'Showcasing product USPs on camera to drive the 73% of viewers who purchase after watching',
-      desc: 'Video demonstrations help prospective buyers instantly understand the real-world value of your products and software. Studies show that 73 percent of visitors who watch a product video make a purchase, and video content contributes to a 49 percent increase in year-over-year revenue. Rather than expecting buyers to read dense manuals or static spec sheets, our product demo films showcase physical build quality and software UI in action.',
-      highlights: [
-        'Studio lighting and macro lens capture of physical machinery, industrial components, and consumer products',
-        'Slick screen-capture animation and UI walkthroughs for SaaS platforms and software workflows',
-        'Clear, benefit-driven scriptwriting highlighting competitive differentiators and real-world results',
-        'Optimized video cut-downs tailored for landing pages, trade show displays, and sales reps',
-      ],
-      metric: '73%',
-      metricLabel: 'Viewer Purchase Rate',
-    },
-    {
-      id: 'explainer-videos',
-      category: 'Corporate Film Making',
-      tag: 'Explainer Animations',
-      title: 'High-Impact Explainer Videos',
-      subtitle: 'Short, engaging marketing videos boosting landing page conversion rates by up to 144%',
-      desc: 'Explainer videos distill complex enterprise technologies, B2B workflows, or specialized products into clear, captivating 60-to-90-second visual narratives. Placed prominently on your home page, landing pages, or product portals, explainer videos have been documented to increase conversion rates by up to 144 percent. We blend live-action cinematography, 2D/3D motion graphics, and professional voiceover talent.',
-      highlights: [
-        'Psychological script architecture designed to hook attention in the first five seconds',
-        'Hybrid animation combining live footage with 2D motion graphics and 3D kinetic typography',
-        'Professional studio voiceover recorded in multiple languages for domestic and international markets',
-        'Engineered for maximum retention and rapid comprehension on mobile screens',
-      ],
-      metric: '+144%',
-      metricLabel: 'Landing Page Conversion',
-    },
-    {
-      id: 'tv-commercials-analysis',
-      category: 'Corporate Film Making',
+      id: 'tv_ads',
+      aliasIds: ['tv-commercial-ads', 'tv-commercials-analysis'],
+      category: 'Film Making',
       tag: 'TVCs & Video Ads',
-      title: 'TV Commercial Ads & Performance Video',
+      title: 'TV Commercial Ads',
       subtitle: 'Broadcast-quality TV commercials paired with multi-touch attribution and data analytics',
-      desc: 'In today’s multi-touchpoint media world, TV advertising and digital video must work hand in hand. We write, direct, and produce broadcast-standard television commercials and digital ad films. Furthermore, our data-driven TV ad analysis breaks down siloed marketing data to evaluate how on-air broadcasts drive concurrent spikes in Google search traffic, website visits, and direct lead generation.',
+      desc: 'TV commercial ads have come a long way since their inception, evolving from simple product pitches to sophisticated multi-channel campaigns. We write, direct, and produce broadcast-standard television commercials and digital ad films. Furthermore, our data-driven TV ad analysis breaks down siloed marketing data to evaluate how on-air broadcasts drive concurrent spikes in Google search traffic, website visits, and direct lead generation.',
       highlights: [
         'Concept development, storyboard creation, cast auditioning, and location permits handled in-house',
         'Cinema-grade lighting, multi-cam shooting, and sound design meeting national broadcast specs',
@@ -352,12 +366,47 @@ export default function PortfoliteServicesPage() {
       metricLabel: 'Broadcast Compliant',
     },
     {
-      id: 'customer-testimonials-events',
-      category: 'Corporate Film Making',
+      id: 'products_demo_videos',
+      aliasIds: ['product-demo-videos', 'product-or-service-demo-videos'],
+      category: 'Film Making',
+      tag: 'Conversion Video',
+      title: "Product Or Service Demo Video's",
+      subtitle: 'Showcasing product USPs on camera to drive the 73% of viewers who purchase after watching',
+      desc: 'A product demo video is the best way to showcase products or services. It is similar to app demo videos or software walkthroughs, but applies across physical and digital goods. Studies show that 73 percent of visitors who watch a product video make a purchase, and video content contributes to a 49 percent increase in year-over-year revenue. Our product demo films showcase physical build quality and software UI in action.',
+      highlights: [
+        'Studio lighting and macro lens capture of physical machinery, industrial components, and consumer products',
+        'Slick screen-capture animation and UI walkthroughs for SaaS platforms and software workflows',
+        'Clear, benefit-driven scriptwriting highlighting competitive differentiators and real-world results',
+        'Optimized video cut-downs tailored for landing pages, trade show displays, and sales reps',
+      ],
+      metric: '73%',
+      metricLabel: 'Viewer Purchase Rate',
+    },
+    {
+      id: 'product_explantory',
+      aliasIds: ['product-explanatory-videos', 'explainer-videos'],
+      category: 'Film Making',
+      tag: 'Explainer Animations',
+      title: "Product Explanatory Video's",
+      subtitle: 'Short, engaging marketing videos boosting landing page conversion rates by up to 144%',
+      desc: 'Explainer videos are short online marketing videos used to explain your company\'s product or service. Placed prominently on your home page, landing pages, or product portals, explainer videos have been documented to increase conversion rates by up to 144 percent. We blend live-action cinematography, 2D/3D motion graphics, and professional voiceover talent to distill complex enterprise workflows into captivating 60-to-90-second narratives.',
+      highlights: [
+        'Psychological script architecture designed to hook attention in the first five seconds',
+        'Hybrid animation combining live footage with 2D motion graphics and 3D kinetic typography',
+        'Professional studio voiceover recorded in multiple languages for domestic and international markets',
+        'Engineered for maximum retention and rapid comprehension on mobile screens',
+      ],
+      metric: '+144%',
+      metricLabel: 'Landing Page Conversion',
+    },
+    {
+      id: 'customer_testimonial',
+      aliasIds: ['customer-testimonial-videos', 'customer-testimonials'],
+      category: 'Film Making',
       tag: 'Authentic Proof',
-      title: 'Customer Testimonial Videos & Event Coverage',
+      title: "Customer Testimonial Video's",
       subtitle: 'Supercharging word-of-mouth social proof to boost website conversions by 34% or more',
-      desc: 'Authentic customer testimonials tap into the most powerful advertising force in business: word of mouth. Case studies prove that placing authentic customer video reviews front and center lifts conversions by over 34 percent. We also provide large-format event video coverage for corporate summits, product launches, factory inaugurations, and trade exhibitions, delivering high-energy event highlight reels.',
+      desc: 'Short, written testimonials work, but customer testimonial videos are transformative. They are great for sales pages and your home page, and have been proven to increase conversions by 34 percent or more. We capture authentic, unscripted client advocates discussing their tangible business outcomes, giving prospective buyers the ultimate proof and confidence required to sign high-value contracts.',
       highlights: [
         'On-location filming of real client advocates, capturing unscripted, credible enterprise success stories',
         'Multi-camera coverage of corporate conferences, exhibitions, panel discussions, and keynotes',
@@ -366,22 +415,6 @@ export default function PortfoliteServicesPage() {
       ],
       metric: '+34%',
       metricLabel: 'Conversion Lift on Reviews',
-    },
-    {
-      id: 'training-videos',
-      category: 'Corporate Film Making',
-      tag: 'Corporate Training',
-      title: 'Interactive Corporate Training Videos',
-      subtitle: 'Engaging, repeatable video training modules for employees, channel partners, and customers',
-      desc: 'Replacing dense paper binders and repetitive in-person onboarding with high-definition training videos saves hundreds of organizational hours. We film interactive instructional videos that guide employees through standard operating procedures (SOPs), machine operations, workplace safety protocols, and customer service standards with clarity and engagement.',
-      highlights: [
-        'Step-by-step SOP and factory machinery training filmed on-site with running production lines',
-        'Interactive chaptering, screen graphics, and text callouts emphasizing critical safety steps',
-        'Repeatable digital training assets hosted on your internal LMS or company portal',
-        'Dramatically reduced employee onboarding times and consistent operational execution',
-      ],
-      metric: '65%',
-      metricLabel: 'Onboarding Time Saved',
     },
   ];
 
@@ -410,30 +443,6 @@ export default function PortfoliteServicesPage() {
       domain: 'Governance & Security',
       icon: ShieldCheck,
       stack: ['Role-Based Access Control', 'SSL / TLS Hardening', 'Automated Daily Backups', 'Audit Trails & Logs', 'GDPR / DPDP Compliance', '24/7 SLA Guarantee'],
-    },
-  ];
-
-  const guides = [
-    {
-      title: 'Modern ERP & Custom CRM Selection Guide for Growing Enterprises',
-      cat: 'Software Architecture',
-      readTime: '6 min read',
-      desc: 'Why off-the-shelf software packages fail complex workflows. An engineering breakdown of custom cloud CRM vs legacy analogue spreadsheets, integrating finance, supply chain, and customer journeys into a single database.',
-      linkText: 'Read Architectural Playbook',
-    },
-    {
-      title: 'Why Corporate Film & Video Marketing Outperform Static Copy',
-      cat: 'Creative Production',
-      readTime: '5 min read',
-      desc: 'Analyzing the commercial impact of product demos and explainer videos. How video content drives 82% of internet traffic, achieves 73% purchase intent, and lifts landing page conversion rates by up to 144%.',
-      linkText: 'Explore Video Production ROI',
-    },
-    {
-      title: 'The Multi-Channel Growth Flywheel: Aligning Google SEO, Paid Ads & Direct Messaging',
-      cat: 'Growth Strategy',
-      readTime: '7 min read',
-      desc: 'How leading Indian enterprises synthesize Google page-one search rankings with targeted Meta advertising, WhatsApp Business automation, and permission-based SMS campaigns for sustainable market dominance.',
-      linkText: 'View Growth Playbook',
     },
   ];
 
@@ -479,7 +488,7 @@ export default function PortfoliteServicesPage() {
             </h1>
 
             <p className="mt-6 text-lg sm:text-xl text-zinc-600 max-w-3xl leading-relaxed font-light text-left">
-              In the rapidly evolving digital landscape, staying ahead requires constant innovation. {COMPANY.name} stands at the forefront of digital trends—integrating AI in advertising, high-throughput software architectures, page-one search engine dominance, and broadcast cinema production under one roof.
+              In the rapidly evolving digital landscape, staying ahead requires constant innovation. {COMPANY.name} stands at the forefront of digital trends—integrating AI in advertising, high-throughput software architectures, page-one search engine dominance, and broadcast cinema production under one roof in Sector 63, Noida.
             </p>
 
             {/* Action CTAs */}
@@ -552,20 +561,26 @@ export default function PortfoliteServicesPage() {
         </div>
       </section>
 
-      {/* ── Detailed Services & Capabilities Grid ── */}
-      <section className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ── Detailed Services & Capabilities Grid (20 Offerings) ── */}
+      <section id="services-grid" className="scroll-mt-36 py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
           <AnimatePresence mode="popLayout">
             {filteredDisciplines.map((item, idx) => (
               <motion.div
                 key={item.id}
+                id={item.id}
                 layout
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.35, delay: idx * 0.04 }}
-                className="group relative flex flex-col justify-between p-8 sm:p-10 rounded-[28px] sm:rounded-[32px] bg-white border border-black/10 hover:border-black/25 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] shadow-sm"
+                transition={{ duration: 0.35, delay: idx * 0.03 }}
+                className="group relative flex flex-col justify-between p-8 sm:p-10 rounded-[28px] sm:rounded-[32px] bg-white border border-black/10 hover:border-black/25 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] shadow-sm scroll-mt-36"
               >
+                {/* Alias anchors for deep linking */}
+                {item.aliasIds?.map((alias) => (
+                  <span key={alias} id={alias} className="absolute -top-36 left-0" aria-hidden="true" />
+                ))}
+
                 {/* Top ambient hover glow */}
                 <div className="absolute top-0 right-0 w-72 h-72 bg-radial-gradient from-black/[0.03] to-transparent rounded-full blur-3xl pointer-events-none group-hover:from-solar/10 transition-colors duration-500" />
 
@@ -650,17 +665,17 @@ export default function PortfoliteServicesPage() {
               return (
                 <div
                   key={cap.domain}
-                  className="p-6 rounded-2xl bg-white border border-black/10 flex flex-col justify-between shadow-sm"
+                  className="p-6 rounded-2xl bg-white border border-black/8 hover:border-black/20 transition-all shadow-sm flex flex-col justify-between"
                 >
                   <div>
-                    <div className="w-10 h-10 rounded-xl bg-zinc-100 border border-black/10 flex items-center justify-center text-solar mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-zinc-100 flex items-center justify-center text-solar mb-4">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="text-lg font-semibold text-black tracking-tight">{cap.domain}</h3>
-                    <ul className="mt-4 space-y-2">
-                      {cap.stack.map((item) => (
-                        <li key={item} className="text-xs text-zinc-600 font-light flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-zinc-400" />
+                    <h3 className="font-bold text-base text-black mb-3">{cap.domain}</h3>
+                    <ul className="space-y-1.5">
+                      {cap.stack.map((item, i) => (
+                        <li key={i} className="text-xs text-zinc-600 font-mono flex items-center gap-2">
+                          <span className="w-1 h-1 rounded-full bg-zinc-400" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -673,165 +688,85 @@ export default function PortfoliteServicesPage() {
         </div>
       </section>
 
-      {/* ── Educational Guides & Strategic Playbooks ── */}
-      <section className="py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-left max-w-3xl mb-12">
+      {/* ── Frequently Asked Questions ── */}
+      <section className="py-16 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6">
+        <div className="text-left mb-12">
           <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold block mb-2">
-            Industry Insights
+            Clear Answers
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black leading-tight">
-            Strategic Playbooks for Enterprise Leaders
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black">
+            Frequently Asked Questions
           </h2>
-          <p className="mt-3 text-base sm:text-lg text-zinc-600 font-light leading-relaxed">
-            In-depth guides authored by our engineering, SEO, and visual production directors to guide executive decision-making.
+          <p className="mt-3 text-base text-zinc-600 font-light">
+            Everything you need to know about our engineering standards, turnaround times, and billing transparency.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {guides.map((g, idx) => (
+        <div className="space-y-4">
+          {faqs.map((faq, idx) => (
             <div
               key={idx}
-              className="p-7 rounded-2xl bg-white border border-black/10 flex flex-col justify-between hover:border-black/25 transition-all shadow-sm group"
+              className="border border-black/10 rounded-2xl overflow-hidden bg-zinc-50/50 transition-colors"
             >
-              <div>
-                <div className="flex items-center justify-between text-xs font-mono text-zinc-500 mb-4">
-                  <span className="text-solar uppercase tracking-wider font-medium">{g.cat}</span>
-                  <span>{g.readTime}</span>
-                </div>
-                <h3 className="text-xl font-bold text-black tracking-tight group-hover:text-zinc-800 transition-colors leading-snug">
-                  {g.title}
-                </h3>
-                <p className="mt-3 text-xs sm:text-sm text-zinc-600 font-light leading-relaxed">
-                  {g.desc}
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-black/8 flex items-center gap-1.5 text-xs font-semibold text-black group-hover:text-solar transition-colors">
-                <span>{g.linkText}</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </div>
+              <button
+                onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                className="w-full text-left p-6 flex items-center justify-between gap-4 font-bold text-base sm:text-lg text-black hover:text-solar transition-colors"
+              >
+                <span>{faq.q}</span>
+                <ChevronDown
+                  className={`w-5 h-5 shrink-0 transition-transform duration-200 ${
+                    openFaq === idx ? 'rotate-180 text-solar' : 'text-zinc-400'
+                  }`}
+                />
+              </button>
+              <AnimatePresence>
+                {openFaq === idx && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 pb-6 text-sm text-zinc-600 leading-relaxed font-light border-t border-black/5 pt-4">
+                      {faq.a}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── 6-Step Delivery Framework ── */}
-      <section className="py-16 sm:py-24 bg-zinc-50 border-y border-black/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-left max-w-3xl mb-14">
-            <span className="text-xs font-mono uppercase tracking-widest text-zinc-500 font-semibold block mb-2">
-              Execution Standard
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black leading-tight">
-              Six steps. Zero surprises.
-            </h2>
-            <p className="mt-4 text-zinc-600 text-base sm:text-lg font-light leading-relaxed">
-              The same disciplined delivery lifecycle runs across every client engagement, ensuring full code ownership and transparent milestones.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PROCESS.map((step) => (
-              <div
-                key={step.n}
-                className="p-7 rounded-2xl bg-white border border-black/10 flex flex-col justify-between hover:border-black/20 transition-colors shadow-sm"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-mono text-solar">{step.n}</span>
-                  <span className="w-2 h-2 rounded-full bg-black/20" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-black tracking-tight">{step.t}</h3>
-                  <p className="mt-2 text-xs sm:text-sm text-zinc-600 font-light leading-relaxed">
-                    {step.d}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Interactive FAQ Accordion ── */}
-      <section className="py-16 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6">
-        <div className="text-left mb-12">
-          <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold block mb-2">
-            Frequently Asked Questions
+      {/* ── Footer CTA Banner ── */}
+      <section className="py-20 bg-zinc-950 text-white border-t border-black">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+          <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
+            Start a Conversation
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black leading-tight">
-            Answers to Common Queries
+          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mt-4 max-w-3xl mx-auto">
+            Ready to engineer sustainable digital growth?
           </h2>
-          <p className="mt-3 text-base sm:text-lg text-zinc-600 font-light leading-relaxed">
-            Clear answers about our service agreements, technology stack, and Noida engineering pod.
-          </p>
-        </div>
-
-        <div className="space-y-4">
-          {faqs.map((faq, idx) => {
-            const isOpen = openFaq === idx;
-            return (
-              <div
-                key={idx}
-                className="border border-black/10 rounded-2xl overflow-hidden bg-white shadow-sm transition-colors"
-              >
-                <button
-                  onClick={() => setOpenFaq(isOpen ? null : idx)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 hover:bg-zinc-50 transition-colors"
-                >
-                  <span className="text-base sm:text-lg font-semibold text-black leading-snug">
-                    {faq.q}
-                  </span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-zinc-500 shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 text-solar' : ''
-                    }`}
-                  />
-                </button>
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-5 pb-6 sm:px-6 text-sm text-zinc-600 font-light leading-relaxed border-t border-black/5 pt-4">
-                        {faq.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* ── Bottom CTA ── */}
-      <section className="py-20 sm:py-28 relative overflow-hidden border-t border-black/10 text-center">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(232,116,44,0.08)_0%,rgba(0,0,0,0)_70%)] pointer-events-none" />
-        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-black leading-tight">
-            Ready to upgrade your enterprise capabilities?
-          </h2>
-          <p className="mt-5 text-zinc-600 text-sm sm:text-base font-light leading-relaxed">
-            Schedule a direct technical consultation with our engineering and growth directors in Sector 63, Noida. We will review your current architecture and provide an actionable strategy roadmap.
+          <p className="mt-4 text-zinc-400 max-w-2xl mx-auto text-base sm:text-lg font-light leading-relaxed">
+            Schedule a confidential discovery meeting at our corporate headquarters in Sector 63, Noida, or connect with our leadership team online.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/contact"
-              className="site-button px-7 py-3 rounded-full !bg-black !text-white text-sm font-semibold hover:!bg-zinc-800 transition-colors flex items-center gap-2 shadow-[0_4px_16px_rgba(0,0,0,0.15)]"
-              style={{ color: '#FFFFFF', backgroundColor: '#000000' }}
+              className="site-button px-8 py-4 rounded-full !bg-white !text-black text-sm font-semibold flex items-center gap-2 hover:!bg-zinc-200 transition-colors shadow-xl"
+              style={{ color: '#000000', backgroundColor: '#FFFFFF' }}
             >
-              <span style={{ color: '#FFFFFF' }}>Start a Project</span>
-              <ArrowRight className="w-4 h-4 !text-white" style={{ color: '#FFFFFF', stroke: '#FFFFFF' }} />
+              <span style={{ color: '#000000' }}>Schedule Discovery Call</span>
+              <ArrowRight className="w-4 h-4 !text-black" style={{ color: '#000000', stroke: '#000000' }} />
             </Link>
-            <Link
-              to="/work"
-              className="px-7 py-3 rounded-full bg-zinc-100 border border-black/10 text-black text-sm font-medium hover:bg-zinc-200 transition-colors"
+            <a
+              href={`tel:${COMPANY.phones[0].replace(/\s/g, '')}`}
+              className="px-8 py-4 rounded-full bg-zinc-900 border border-white/15 text-white text-sm font-medium flex items-center gap-2 hover:bg-zinc-800 transition-colors"
             >
-              Inspect Case Studies
-            </Link>
+              <Phone className="w-4 h-4 text-solar" />
+              <span>{COMPANY.phones[0]}</span>
+            </a>
           </div>
         </div>
       </section>
