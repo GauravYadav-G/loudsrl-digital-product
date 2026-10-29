@@ -304,9 +304,7 @@ export default function PortfoliteFooter() {
       <div className="border-t border-zinc-200 relative z-20">
         <div className="xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 py-6 flex flex-col lg:flex-row justify-between items-center gap-4">
           <div className="flex flex-col sm:flex-row items-center gap-3 mono text-[0.58rem] tracking-[0.14em] uppercase text-zinc-500 font-medium">
-            <span>© 2026 {COMPANY.name} — Founded by Kranti</span>
-            <span className="hidden sm:inline text-zinc-300">•</span>
-            <span className="text-zinc-600">Sector 63, Noida (Delhi NCR)</span>
+            <span>© 2026 {COMPANY.name}. All rights reserved.</span>
           </div>
 
           {/* Theme Tester Button in the bottom of website */}

@@ -45,13 +45,6 @@ export default function UxInteractivesPage() {
     'Compliance & Voice',
   ];
 
-  const stats = [
-    { value: '+68%', label: 'Average CRO Lift Post-Redesign' },
-    { value: '100%', label: 'WCAG 2.2 AA Compliant Delivery' },
-    { value: '<90ms', label: 'Average Interaction Latency' },
-    { value: '140+', label: 'Digital Products & Portals Shipped' },
-  ];
-
   const uxFeatures = [
     // ─────────────────────────────────────────────────────────────
     // DESIGN & UX
@@ -393,19 +386,13 @@ export default function UxInteractivesPage() {
               </a>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Quick Metrics Strip */}
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-black/10 pt-8">
-            {stats.map((s, idx) => (
-              <div key={idx} className="p-4 rounded-xl bg-zinc-50 border border-black/5 text-left">
-                <p className="text-2xl sm:text-4xl font-bold text-black tracking-tight">{s.value}</p>
-                <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">{s.label}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Category Filter Pills */}
-          <div className="mt-10 flex flex-wrap gap-2">
+      {/* ── Category Filter Navigation Bar ── */}
+      <section className="py-6 border-b border-black/8 bg-zinc-50/70 sticky top-[70px] sm:top-[78px] z-30 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-2 overflow-x-auto py-1">
             {categories.map((c) => {
               const count = c === 'All' ? uxFeatures.length : uxFeatures.filter((f) => f.category === c).length;
               const active = activeCategory === c;
@@ -413,103 +400,106 @@ export default function UxInteractivesPage() {
                 <button
                   key={c}
                   onClick={() => setActiveCategory(c)}
-                  className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 ${
+                  style={active ? { backgroundColor: '#000000', color: '#FFFFFF' } : undefined}
+                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
                     active
-                      ? '!bg-black !text-white shadow-lg shadow-black/20'
-                      : '!bg-zinc-100 !text-zinc-700 hover:!text-black hover:!bg-zinc-200 !border !border-black/10'
+                      ? '!bg-black !text-white shadow-sm'
+                      : '!bg-white !border !border-black/10 !text-zinc-600 hover:!text-black hover:!bg-zinc-100'
                   }`}
                 >
-                  <span>{c}</span>
-                  <span
-                    className={`px-1.5 py-0.2 rounded-full text-[10px] ${
-                      active ? '!bg-white/20 !text-white font-bold' : '!bg-black/10 !text-zinc-600'
-                    }`}
-                  >
-                    {count}
-                  </span>
+                  <span style={active ? { color: '#FFFFFF' } : undefined}>{c} ({count})</span>
                 </button>
               );
             })}
+          </div>
+
+          <div className="text-xs font-mono text-zinc-500 hidden md:block">
+            Noida HQ Interaction Studio
           </div>
         </div>
       </section>
 
       {/* ── Comprehensive Features Grid ── */}
-      <section className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
-          <AnimatePresence mode="popLayout">
-            {filteredFeatures.map((item, idx) => {
-              const aliases: Record<string, string> = {
-                'infographics-motion': 'infographics',
-                'digital-experience-dev': 'digital-experience',
-              };
-              const aliasId = aliases[item.id];
+      <section className="py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="max-w-3xl mb-12 text-left">
+          <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
+            Interactive Systems &amp; Experience Engineering
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-black mt-3">
+            Human-Centered UI/UX, Dynamic Content &amp; Design Systems
+          </h2>
+          <p className="mt-4 text-zinc-600 text-base sm:text-lg leading-relaxed font-light">
+            Explore our specialized interactive design capabilities, atomic design tokens, accessibility protocols, and headless CMS implementations. Filter by category above to review full deliverable scopes.
+          </p>
+        </div>
 
-              return (
-                <motion.div
-                  key={item.id}
-                  id={item.id}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.35, delay: idx * 0.04 }}
-                  className="scroll-mt-36 group relative flex flex-col justify-between p-8 sm:p-10 rounded-[28px] sm:rounded-[32px] bg-white border border-black/10 hover:border-black/25 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] shadow-sm"
-                >
-                  {aliasId && (
-                    <span id={aliasId} className="absolute -top-36 left-0" aria-hidden="true" />
-                  )}
-                {/* Top ambient hover glow */}
-                <div className="absolute top-0 right-0 w-72 h-72 bg-radial-gradient from-black/[0.03] to-transparent rounded-full blur-3xl pointer-events-none group-hover:from-solar/10 transition-colors duration-500" />
+        <div className="grid md:grid-cols-2 gap-8">
+          {filteredFeatures.map((item, idx) => {
+            const aliases: Record<string, string> = {
+              'infographics-motion': 'infographics',
+              'digital-experience-dev': 'digital-experience',
+            };
+            const aliasId = aliases[item.id];
+
+            return (
+              <div
+                key={item.id}
+                id={item.id}
+                className="scroll-mt-36 p-8 sm:p-10 rounded-2xl bg-zinc-50 border border-black/8 hover:border-black/20 hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group"
+              >
+                {aliasId && (
+                  <span id={aliasId} className="absolute -top-36 left-0" aria-hidden="true" />
+                )}
 
                 <div>
-                  {/* Top Bar: Tag & Category */}
-                  <div className="flex items-center justify-between text-xs font-mono text-zinc-600 mb-5">
-                    <span className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-solar" />
-                      <span className="uppercase tracking-widest font-semibold">{item.tag}</span>
+                  {/* Top Bar: Tag & Benchmark */}
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="font-mono text-xs px-3 py-1 rounded-full bg-white border border-black/10 text-solar font-medium tracking-wide">
+                      {item.tag}
                     </span>
-                    <span className="px-3 py-1 rounded-full bg-zinc-100 border border-black/8 text-zinc-700 font-medium">
-                      {item.category}
+                    <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">
+                      #{String(idx + 1).padStart(2, '0')} · {item.category}
                     </span>
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-black group-hover:text-zinc-900 transition-colors">
+                  <h3 className="text-2xl font-bold text-black tracking-tight group-hover:text-zinc-900 transition-colors">
                     {item.title}
-                  </h2>
-                  <p className="mt-1 text-xs font-mono uppercase tracking-wider text-solar font-medium">
+                  </h3>
+                  <p className="text-xs font-mono text-solar font-medium mt-1">
                     {item.subtitle}
                   </p>
 
                   {/* Descriptive Paragraph */}
-                  <p className="mt-4 text-zinc-600 text-sm sm:text-base font-light leading-relaxed">
+                  <p className="mt-4 text-sm text-zinc-600 leading-relaxed font-light">
                     {item.desc}
                   </p>
 
                   {/* Key Highlights */}
-                  <div className="mt-6 pt-6 border-t border-black/8 space-y-2.5">
-                    <span className="text-xs font-mono uppercase tracking-wider text-zinc-500 block mb-2 font-medium">
+                  <div className="mt-6 pt-5 border-t border-black/8">
+                    <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-3">
                       Core Framework &amp; Highlights:
-                    </span>
-                    {item.highlights.map((point, pIdx) => (
-                      <div key={pIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 font-light">
-                        <CheckCircle2 className="w-4 h-4 text-solar shrink-0 mt-0.5" />
-                        <span>{point}</span>
-                      </div>
-                    ))}
+                    </p>
+                    <ul className="space-y-2.5">
+                      {item.highlights.map((point, pIdx) => (
+                        <li key={pIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 font-medium">
+                          <CheckCircle2 className="w-4 h-4 text-solar shrink-0 mt-0.5" />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
                   {/* Deliverables Pills */}
                   <div className="mt-6 pt-5 border-t border-black/8">
-                    <span className="text-xs font-mono uppercase tracking-wider text-zinc-500 block mb-2 font-medium">
+                    <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-3">
                       Standard Deliverables:
-                    </span>
+                    </p>
                     <div className="flex flex-wrap gap-2">
                       {item.deliverables.map((del, dIdx) => (
                         <span
                           key={dIdx}
-                          className="px-2.5 py-1 rounded-lg bg-zinc-100 text-xs text-zinc-700 font-normal"
+                          className="px-2.5 py-1 rounded-lg bg-white border border-black/8 text-xs text-zinc-700 font-normal"
                         >
                           {del}
                         </span>
@@ -519,22 +509,21 @@ export default function UxInteractivesPage() {
                 </div>
 
                 {/* Bottom Action Strip */}
-                <div className="mt-8 pt-6 border-t border-black/8 flex items-center justify-between">
+                <div className="mt-8 pt-4 border-t border-black/8 flex items-center justify-between">
                   <span className="text-xs font-mono text-zinc-500 font-medium">
                     In-House Design Pod · Sector 63, Noida
                   </span>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-black group-hover:text-solar transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-black hover:text-solar transition-colors"
                   >
                     <span>Request Audit</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
-          </AnimatePresence>
         </div>
       </section>
 

@@ -187,36 +187,6 @@ export default function PortfoliteServiceDetail({ initialSlug }: { initialSlug?:
             </motion.div>
           </div>
 
-          {/* Balanced Metrics & Benchmark Strip */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-black/10 pt-8"
-          >
-            <div className="p-5 rounded-2xl bg-zinc-50 border border-black/10 shadow-sm text-left">
-              <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 block mb-1">
-                Verified Benchmark
-              </span>
-              <p className="text-3xl font-bold text-black tracking-tight">{service.stat}</p>
-              <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">{service.statLabel}</p>
-            </div>
-            <div className="p-5 rounded-2xl bg-zinc-50 border border-black/10 shadow-sm text-left">
-              <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 block mb-1">
-                Engineering Pod
-              </span>
-              <p className="text-3xl font-bold text-black tracking-tight">100% In-House</p>
-              <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">Sector 63, Noida HQ</p>
-            </div>
-            <div className="p-5 rounded-2xl bg-zinc-50 border border-black/10 shadow-sm text-left">
-              <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 block mb-1">
-                Delivery Cadence
-              </span>
-              <p className="text-3xl font-bold text-black tracking-tight">2-Wk Sprints</p>
-              <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">Staging Review Cycle</p>
-            </div>
-          </motion.div>
-
           {/* Tech Ecosystem Strip */}
           <div className="mt-8 pt-6 border-t border-black/10 text-left">
             <span className="text-xs font-mono uppercase tracking-wider text-zinc-500 block mb-3 font-medium">

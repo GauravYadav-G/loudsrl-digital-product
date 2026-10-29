@@ -29,120 +29,112 @@ import {
   Target,
   ChevronDown,
   Terminal,
+  SlidersHorizontal,
+  Compass,
+  FileText,
+  PieChart,
 } from 'lucide-react';
 import PortfoliteNav from '@/components/portfolite/PortfoliteNav';
 import PortfoliteFooter from '@/components/portfolite/PortfoliteFooter';
 import { COMPANY } from '@/lib/data';
 
-type TechCategory = 'All' | 'Data & Analytics' | 'Revenue & CRM' | 'Attribution & Automation' | 'Intelligence & Due Diligence';
+type TechTab = 'All' | 'Revenue Acceleration' | 'Analytic & Attribution' | 'Marketing Automation' | 'Learn';
+
+interface TechItem {
+  id: string;
+  aliasIds?: string[];
+  category: 'Revenue Acceleration' | 'Analytic & Attribution' | 'Marketing Automation' | 'Learn';
+  tag: string;
+  name: string;
+  subtitle: string;
+  desc: string;
+  capabilities: string[];
+  metric?: string;
+  metricLabel?: string;
+}
 
 export default function OurTechnologyPage() {
-  const [activeCategory, setActiveCategory] = useState<TechCategory>('All');
+  const [activeTab, setActiveTab] = useState<TechTab>('All');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const categories: TechCategory[] = [
-    'All',
-    'Data & Analytics',
-    'Revenue & CRM',
-    'Attribution & Automation',
-    'Intelligence & Due Diligence',
-  ];
-
-  const stats = [
-    { value: '99.99%', label: 'Platform Availability SLA' },
-    { value: '2.5M+', label: 'Daily Telemetry & Attribution Events' },
-    { value: '<100ms', label: 'Average Query Execution Latency' },
-    { value: '100%', label: 'In-House Noida Engineering Pods' },
-  ];
-
-  const platforms = [
-    // ─────────────────────────────────────────────────────────────
-    // DATA & ANALYTICS
-    // ─────────────────────────────────────────────────────────────
+  const platforms: TechItem[] = [
+    // ══════════════════════════════════════════════════════════════
+    // 1. REVENUE ACCELERATION PLATFORM (6 Items)
+    // ══════════════════════════════════════════════════════════════
     {
-      id: 'customer-data-platform',
-      category: 'Data & Analytics',
-      tag: 'Unified CDP',
-      name: 'Customer Data Platform (CDP) & Identity Resolution',
-      subtitle: 'First-party cookie resolution, 360-degree buyer profiles, and real-time omnichannel sync',
-      desc: 'At ARKA Technovation, we help enterprises make the most of their first-party data. Our AI-powered Customer Data Platform (CDP) integrates more than ten specialized telemetry tools that work in unison to normalize customer interactions across web, email, CRM, and offline channels. In the post-pandemic digital economy and amid third-party cookie deprecation, our persistent CDP database establishes a true single view of your buyer.',
-      capabilities: [
-        'Collects, cleanses, and unifies fragmented customer interactions from web, apps, and POS into 360° buyer profiles',
-        'First-party cookie identity resolution and cross-device visitor tracking without third-party reliance',
-        'Real-time behavioral segmentation triggering personalized on-site content and marketing automation journeys',
-        'Firmographic B2B enrichment mapping visitor IP addresses to company name, revenue, and location',
-      ],
-      deliverables: ['CDP schema architecture', 'First-party tracking script setup', 'Cross-channel identity graph', 'Live audience segment sync'],
-    },
-    {
-      id: 'data-warehouse-etl',
-      category: 'Data & Analytics',
-      tag: 'Data Engineering',
-      name: 'Enterprise Data Warehouse & ETL Pipelines',
-      subtitle: 'The digital brain of your organization: Single source of truth with automated data pipelines',
-      desc: 'Digital enterprise stacks are bursting at the seams with disjointed data. Having a single source of truth for your digital assets is paramount. We engineer centralized cloud data warehouses (BigQuery, Snowflake, PostgreSQL) paired with automated ETL (Extract, Transform, Load) pipelines that pull data from your CRM, email platforms, ERP, and web analytics, execute deep SQL transformations, and make clean business intelligence accessible across your leadership team.',
-      capabilities: [
-        'Automated ETL pipelines connecting CRM, billing ledgers, web telemetry, and advertising networks',
-        'Custom SQL analytics, automated data cleansing, deduplication, and transformation routines',
-        'Deep data lake storage designed for complex cohort analysis and predictive customer lifetime value (LTV)',
-        'Looker Studio, PowerBI, and custom executive dashboards delivering automated daily performance digests',
-      ],
-      deliverables: ['Cloud data warehouse provisioning', 'Custom ETL pipeline scripts', 'Data normalization models', 'Executive BI dashboard suite'],
-    },
-    {
-      id: 'seo-reporting-forecasting',
-      category: 'Data & Analytics',
-      tag: 'Custom Reporting',
-      name: 'Advanced SEO Reporting & Attribution Forecasting',
-      subtitle: 'Monthly custom telemetry, multi-channel revenue breakdown, and pipeline projections',
-      desc: 'Digital marketing is only as strong as its measurement. We deliver advanced, custom telemetry reports that cover everything from organic search traffic and PPC cost-per-lead to phone call attribution and e-commerce transactions. We build custom GA4 events, goals, and Looker dashboards that track exactly which marketing channels and search queries contribute to bottom-line enterprise revenue.',
-      capabilities: [
-        'Granular traffic and revenue reporting broken down by organic search, paid search, social, and direct channels',
-        'Custom GA4 event schemas, conversion goals, and cross-domain tracking implementations',
-        'Cost-per-acquisition (CPA) and customer lifetime value (LTV) attribution models',
-        'Algorithmic pipeline forecasting predicting next-quarter organic traffic and lead volumes based on historical run rates',
-      ],
-      deliverables: ['Live Looker Studio dashboard', 'Monthly executive PDF summaries', 'Attribution weight model', 'Quarterly growth forecast deck'],
-    },
-
-    // ─────────────────────────────────────────────────────────────
-    // REVENUE & CRM
-    // ─────────────────────────────────────────────────────────────
-    {
-      id: 'marketing-cloud-revenue',
-      category: 'Revenue & CRM',
+      id: 'marketing_cloud_revenue_platform',
+      aliasIds: ['marketing-cloud-revenue', 'revenue-platform'],
+      category: 'Revenue Acceleration',
       tag: 'Revenue Engine',
       name: 'Marketing Cloud Revenue Platform',
-      subtitle: 'Automating, streamlining, and monitoring marketing functions across multi-channel suites',
-      desc: 'A Marketing Cloud platform unifies enterprise marketing suites (such as Salesforce Marketing Cloud, Adobe Experience Cloud, Oracle CX, and SAP Marketing Cloud) across channels. While ordinary CRM software is typically focused on relationship records and sales contacts, a Marketing Cloud automates, streamlines, and monitors cross-channel marketing operations. We architect and implement unified marketing clouds integrated with VoIP telephony like RingCentral for end-to-end customer lifecycle management.',
+      subtitle: 'Cross-channel marketing suite automation, journey building & VoIP telephony integration',
+      desc: 'Marketing cloud is a suite of cloud-based marketing tools that unify enterprise marketing functions. While a standard CRM system focuses on relationship records and sales contacts, a Marketing Cloud automates, streamlines, and monitors cross-channel marketing operations across email, social, SMS, push notifications, and paid media. At ARKA Technovation, we implement unified marketing clouds integrated with RingCentral and Twilio VoIP telephony for complete customer lifecycle management.',
       capabilities: [
         'Cross-channel journey builder coordinating email, SMS, push notifications, and paid retargeting',
         'RingCentral and Twilio VoIP telephony integration for automated call routing, recording, and CRM logging',
         'Clear architectural separation between marketing automation engines and sales CRM pipelines',
         'Real-time revenue attribution connecting initial marketing touches to signed enterprise contracts',
       ],
-      deliverables: ['Marketing cloud architecture plan', 'VoIP telephony bridge', 'Cross-channel journey workflows', 'Revenue telemetry dashboard'],
+      metric: '100%',
+      metricLabel: 'Lifecycle Visibility',
     },
     {
-      id: 'lead-management-solutions',
-      category: 'Revenue & CRM',
+      id: 'crm_roi',
+      aliasIds: ['crm-roi-platform', 'crm-roi'],
+      category: 'Revenue Acceleration',
+      tag: 'ROI Measurement',
+      name: 'CRM ROI',
+      subtitle: 'Fostering long-term customer loyalties and maximizing return on investment across sales cycles',
+      desc: 'Customer relationship management (CRM) aims to foster long-term customer loyalties and maximize the financial return on your sales efforts. A high-performing CRM is not just an address book—it tracks the velocity of your pipeline, measures sales rep performance, automates follow-ups, and prevents qualified opportunities from slipping through the cracks, generating measurable gains in average deal size and lifetime customer value.',
+      capabilities: [
+        'Dynamic pipeline deal velocity tracking and sales conversion stage reporting',
+        'Automated deal probability scoring based on prospect engagement and firmographic fit',
+        'Sales rep productivity dashboards measuring call volume, proposal delivery, and close rates',
+        'Direct integration with financial accounting tools to measure exact customer lifetime value (LTV)',
+      ],
+      metric: '4.8×',
+      metricLabel: 'Average Pipeline ROAS',
+    },
+    {
+      id: 'customer_data_platform',
+      aliasIds: ['customer-data-platform', 'cdp'],
+      category: 'Revenue Acceleration',
+      tag: 'Unified CDP',
+      name: 'Customer Data Platform (CDP)',
+      subtitle: 'First-party cookie resolution, 360-degree buyer profiles & real-time omnichannel sync',
+      desc: 'At ARKA Technovation, we help enterprises make the most of their first-party data. Our AI-powered Customer Data Platform (CDP) integrates specialized telemetry tools that work in unison to normalize customer interactions across web, email, CRM, and offline channels. Amid third-party cookie deprecation, our persistent CDP database establishes a single, authoritative 360-degree view of your buyer.',
+      capabilities: [
+        'Collects, cleanses, and unifies fragmented interactions from web, apps, and POS into 360° buyer profiles',
+        'First-party cookie identity resolution and cross-device visitor tracking without third-party reliance',
+        'Real-time behavioral segmentation triggering personalized on-site content and marketing automation journeys',
+        'Firmographic B2B enrichment mapping visitor IP addresses to company name, revenue, and location',
+      ],
+      metric: '360°',
+      metricLabel: 'Customer Profiles',
+    },
+    {
+      id: 'lead_management_solutions',
+      aliasIds: ['lead-management-solutions', 'lead-management'],
+      category: 'Revenue Acceleration',
       tag: 'Lead Velocity',
-      name: 'Lead Management & Automated Scheduling (CRMROI)',
-      subtitle: 'Purpose-built for growing businesses: Instant lead routing, scoring, and automated calendar sync',
-      desc: 'Speed to lead determines conversion rates. Our proprietary CRMROI lead management software captures leads across website forms, Google Ads, Meta campaigns, and inbound calls, validates contact data, applies algorithmic scoring rules, and automatically routes prospects to the appropriate regional sales executive. Integrated calendar scheduling eliminates back-and-forth emails, locking in meetings while buyer intent is at its peak.',
+      name: 'Lead Management & Scheduling Solutions',
+      subtitle: 'Sub-60-second lead routing, automated validation, and embedded calendar appointment sync',
+      desc: 'Speed to lead determines conversion rates. Our proprietary lead management and scheduling solutions capture leads across website forms, Google Ads, Meta campaigns, and inbound calls, validate contact data, apply algorithmic scoring rules, and automatically route prospects to regional sales executives. Integrated calendar scheduling eliminates back-and-forth emails, locking in meetings while buyer intent is at its peak.',
       capabilities: [
         'Sub-60-second lead ingestion and automated routing based on geography, deal size, or product category',
         'Dynamic lead scoring combining firmographic data with on-site engagement telemetry',
         'Automated calendar scheduling embedded directly in thank-you pages and email follow-ups',
         'Real-time WhatsApp and SMS sales rep alerts with direct one-click dialer functionality',
       ],
-      deliverables: ['CRMROI software deployment', 'Round-robin routing rules', 'Calendar booking integration', 'Sales rep mobile notification setup'],
+      metric: '<60s',
+      metricLabel: 'Lead Route Speed',
     },
     {
-      id: 'crm-retargeting-tech',
-      category: 'Revenue & CRM',
-      tag: 'CRM Remarketing',
-      name: 'CRM Retargeting & First-Party Remarketing',
+      id: 'crm_retargeting_technology',
+      aliasIds: ['crm-retargeting-tech', 'crm-retargeting'],
+      category: 'Revenue Acceleration',
+      tag: 'First-Party Remarketing',
+      name: 'CRM Retargeting Technology',
       subtitle: 'Syncing offline CRM data, purchase histories, and deal stages with paid advertising networks',
       desc: 'CRM retargeting is fundamentally different from standard web pixel retargeting because it allows you to leverage all the rich historical data stored inside your CRM. We sync offline customer purchase records, quote values, and lifecycle stages with Google Ads Customer Match, Meta Custom Audiences, and LinkedIn Matched Audiences, serving hyper-relevant ads that re-activate past buyers and accelerate stalled pipeline deals.',
       capabilities: [
@@ -151,32 +143,36 @@ export default function OurTechnologyPage() {
         'Exclusion lists preventing ad spend waste on existing satisfied customers or active support tickets',
         'Custom lookalike modeling finding high-value prospects matching your top 10% highest-margin clients',
       ],
-      deliverables: ['Hashed API sync pipeline', 'Custom audience segmentation logic', 'Suppression rule matrix', 'Retargeting ROAS reports'],
+      metric: '+45%',
+      metricLabel: 'Re-activation Lift',
     },
     {
-      id: 'salesforce-dynamics-automation',
-      category: 'Revenue & CRM',
-      tag: 'Enterprise CRM Sync',
-      name: 'Salesforce & Microsoft Dynamics 365 Automation',
-      subtitle: 'Eliminating manual admin tasks so sales professionals spend their time closing deals',
-      desc: 'Did you know sales professionals today spend only 34 percent of their time actually selling? The remainder is consumed by manual data entry, meeting notes, and status updates. We configure and customize Salesforce and Microsoft Dynamics 365, automating administrative workflows, syncing omnichannel marketing touchpoints, and providing your sales and customer service teams with a shared, real-time view of every customer.',
+      id: 'data_warehouse_pipelines',
+      aliasIds: ['data-warehouse-etl', 'data-warehouse'],
+      category: 'Revenue Acceleration',
+      tag: 'Data Engineering',
+      name: 'Data Warehouse & ETL Pipelines',
+      subtitle: 'The digital brain of your organization: Single source of truth with automated data pipelines',
+      desc: 'Digital enterprise stacks are bursting at the seams with disjointed data. Having a single source of truth for your digital assets is paramount. We engineer centralized cloud data warehouses (BigQuery, Snowflake, PostgreSQL) paired with automated ETL (Extract, Transform, Load) pipelines that pull data from your CRM, email platforms, ERP, and web analytics, execute deep SQL transformations, and make clean business intelligence accessible across your leadership team.',
       capabilities: [
-        'Salesforce Sales Cloud, Service Cloud, and Marketing Cloud custom workflow and trigger automation',
-        'Microsoft Dynamics 365 Customer Insights and Sales omnichannel journey engineering',
-        'Automated stage progression, task generation, quote calculation, and approval routing',
-        'Elimination of manual data entry, giving sales reps hours back each week to engage high-value prospects',
+        'Automated ETL pipelines connecting CRM, billing ledgers, web telemetry, and advertising networks',
+        'Custom SQL analytics, automated data cleansing, deduplication, and transformation routines',
+        'Deep data lake storage designed for complex cohort analysis and predictive customer lifetime value (LTV)',
+        'Looker Studio, PowerBI, and custom executive dashboards delivering automated daily performance digests',
       ],
-      deliverables: ['CRM workflow audit & roadmap', 'Custom Apex/Power Automate triggers', 'Pipeline stage rules', 'User training & documentation'],
+      metric: '100%',
+      metricLabel: 'Single Truth Source',
     },
 
-    // ─────────────────────────────────────────────────────────────
-    // ATTRIBUTION & AUTOMATION
-    // ─────────────────────────────────────────────────────────────
+    // ══════════════════════════════════════════════════════════════
+    // 2. ANALYTIC & ATTRIBUTION (6 Items)
+    // ══════════════════════════════════════════════════════════════
     {
-      id: 'call-tracking-telephony',
-      category: 'Attribution & Automation',
+      id: 'web_channel_call_tracking',
+      aliasIds: ['call-tracking-telephony', 'call-tracking'],
+      category: 'Analytic & Attribution',
       tag: 'Dynamic Number Insertion',
-      name: 'Web Channel Call Tracking & Telephony Intelligence',
+      name: 'Web Channel Call Tracking',
       subtitle: 'Dynamic Number Insertion (DNI) mapping phone leads directly to keywords and sessions',
       desc: 'Website call tracking is a cloud-based SaaS solution operating via Dynamic Number Insertion (DNI). A lightweight JavaScript snippet replaces the static phone numbers on your site with a unique trackable number for each website visitor. When the prospect dials, the system records the call, attributes the exact traffic source, ad group, and search keyword, and forwards the call seamlessly via VoIP to your sales lines.',
       capabilities: [
@@ -185,11 +181,13 @@ export default function OurTechnologyPage() {
         'Call recording, automated AI transcription, and keyword sentiment analysis',
         'Direct offline conversion import into Google Ads, unlocking automated Smart Bidding on high-value calls',
       ],
-      deliverables: ['DNI script deployment', 'VoIP forwarding pool configuration', 'Call recording & transcription setup', 'Google Ads offline conversion import'],
+      metric: '100%',
+      metricLabel: 'Call Source Match',
     },
     {
-      id: 'channel-partner-pipeline',
-      category: 'Attribution & Automation',
+      id: 'channel_partner_sales_pipeline_management',
+      aliasIds: ['channel-partner-pipeline', 'partner-pipeline'],
+      category: 'Analytic & Attribution',
       tag: 'B2B Distribution',
       name: 'Channel Partner Sales Pipeline Management',
       subtitle: 'Multi-tier distributor portals, territorial lead governance, and co-op marketing tracking',
@@ -200,13 +198,32 @@ export default function OurTechnologyPage() {
         'Consolidated national reporting tracking distributor sales performance against regional quotas',
         'Automated conflict prevention ensuring direct sales reps and distributors do not compete on identical accounts',
       ],
-      deliverables: ['Channel partner portal build', 'Territory routing configuration', 'Asset library repository', 'Consolidated leadership dashboard'],
+      metric: 'Zero',
+      metricLabel: 'Channel Conflict',
     },
     {
-      id: 'channel-attribution-forecasting',
-      category: 'Attribution & Automation',
+      id: 'seo_reporting_forecasting',
+      aliasIds: ['seo-reporting-forecasting', 'seo-reporting'],
+      category: 'Analytic & Attribution',
+      tag: 'Custom Telemetry',
+      name: 'SEO Reporting & Forecasting',
+      subtitle: 'Monthly custom telemetry, multi-channel revenue breakdown, and pipeline projections',
+      desc: 'Digital marketing is only as strong as its measurement. We deliver advanced, custom telemetry reports that cover everything from organic search traffic and PPC cost-per-lead to phone call attribution and e-commerce transactions. We build custom GA4 events, goals, and Looker dashboards that track exactly which marketing channels and search queries contribute to bottom-line enterprise revenue.',
+      capabilities: [
+        'Granular traffic and revenue reporting broken down by organic search, paid search, social, and direct channels',
+        'Custom GA4 event schemas, conversion goals, and cross-domain tracking implementations',
+        'Cost-per-acquisition (CPA) and customer lifetime value (LTV) attribution models',
+        'Algorithmic pipeline forecasting predicting next-quarter organic traffic and lead volumes based on historical run rates',
+      ],
+      metric: '98%',
+      metricLabel: 'Forecast Accuracy',
+    },
+    {
+      id: 'channel_attribution_forecasting',
+      aliasIds: ['channel-attribution-forecasting', 'channel-attribution'],
+      category: 'Analytic & Attribution',
       tag: 'Multi-Touch Attribution',
-      name: 'Channel Attribution Modeling & Pipeline Forecasting',
+      name: 'Channel Attribution & Forecasting',
       subtitle: 'Making sense of billions of data points to predict sales and optimize marketing budgets',
       desc: 'Modern enterprise buyers interact with dozens of marketing touchpoints before signing a contract. First-click or last-click models fail to capture the full buyer journey. Our multi-touch channel attribution models process billions of data points across paid search, organic content, video, social, and email, calculating the true incremental revenue contribution of each channel and forecasting future sales with statistical confidence.',
       capabilities: [
@@ -215,32 +232,15 @@ export default function OurTechnologyPage() {
         'Predictive sales forecasting algorithms helping leadership allocate next-quarter marketing capital with confidence',
         'Identification of top-performing mid-funnel channels that traditional analytics undervalue',
       ],
-      deliverables: ['Attribution modeling framework', 'Data-driven weight calibration', 'Forecast projection algorithms', 'Executive budget allocation guide'],
+      metric: 'Multi-Touch',
+      metricLabel: 'Full-Funnel Model',
     },
     {
-      id: 'lead-nurture-email-testing',
-      category: 'Attribution & Automation',
-      tag: 'Lifecycle Automation',
-      name: 'Lead Nurture Lifecycle Email Marketing & Design',
-      subtitle: 'Intelligent event-driven emails triggered by page visits and custom template engineering',
-      desc: 'Enterprise purchasing decisions often take weeks or months. Lead nurturing ensures your brand remains top of mind throughout that evaluation window. We design and execute automated lifecycle email workflows triggered by specific user behaviors—such as visiting a pricing page or downloading a whitepaper. Combined with modern, tested email templates, our campaigns deliver high open rates and consistent pipeline acceleration.',
-      highlights: [
-        'Behavioral email triggers deploying personalized messages based on specific URLs viewed and documents downloaded',
-        'Custom responsive email newsletter templates rigorously tested across 40+ email clients and dark-mode settings',
-        'A/B testing of subject lines, sender names, content length, and CTA buttons to maximize click-to-open rates (CTOR)',
-        'Automated list hygiene routines removing unengaged subscribers and maintaining 99%+ deliverability rates',
-      ],
-      deliverables: ['Drip workflow sequence blueprints', 'Bespoke HTML/CSS email templates', 'A/B testing roadmap', 'Deliverability & inbox placement audit'],
-    },
-
-    // ─────────────────────────────────────────────────────────────
-    // INTELLIGENCE & DUE DILIGENCE
-    // ─────────────────────────────────────────────────────────────
-    {
-      id: 'competitor-analysis-engine',
-      category: 'Intelligence & Due Diligence',
+      id: 'digital_marketing_competitor_analysis',
+      aliasIds: ['competitor-analysis-engine', 'competitor-analysis'],
+      category: 'Analytic & Attribution',
       tag: 'Competitive Intelligence',
-      name: 'Digital Marketing Competitor Analysis Engine',
+      name: 'Digital Marketing Competitor Analysis',
       subtitle: 'Reverse-engineering competitor campaigns, keyword bidding, ad spend, and positioning gaps',
       desc: 'If you want to outperform your competitors, you need to understand their strategy. Our competitor analysis services reverse-engineer your industry rivals’ digital presence—uncovering their highest-performing organic search keywords, estimated paid search spend, active social ad creatives, backlink acquisition velocity, and website conversion funnels. We identify their vulnerabilities and build strategies to capture their market share.',
       capabilities: [
@@ -249,96 +249,284 @@ export default function OurTechnologyPage() {
         'Backlink profile inspection identifying referring domains, digital PR opportunities, and link velocity',
         'Quarterly competitive benchmarking scorecards tracking your brand’s digital share of voice (SOV)',
       ],
-      deliverables: ['Competitor intelligence dossier', 'Keyword conquesting list', 'Ad copy reverse-engineering review', 'Market share gap roadmap'],
+      metric: '360°',
+      metricLabel: 'Rival Intel',
     },
     {
-      id: 'digital-due-diligence',
-      category: 'Intelligence & Due Diligence',
-      tag: 'M&A Asset Audit',
-      name: 'Digital Due Diligence & M&A Technology Audits',
-      subtitle: 'De-risking private equity and enterprise acquisitions with comprehensive digital asset evaluations',
-      desc: 'Your next enterprise acquisition does not have to be a gamble. With our digital due diligence services, private equity firms and acquiring corporations receive complete transparency into a target company’s digital status. We evaluate website codebase health, organic search sustainability, paid media unit economics, customer data privacy compliance, digital vendor contracts, and post-acquisition growth potential.',
+      id: 'digital_due_diligence',
+      aliasIds: ['digital-due-diligence', 'due-diligence'],
+      category: 'Analytic & Attribution',
+      tag: 'M&A Intelligence',
+      name: 'Digital Due Diligence',
+      subtitle: 'Auditing digital infrastructure, traffic authenticity, code quality, and cybersecurity for M&A',
+      desc: 'Your next acquisition doesn’t have to be a gamble. With digital due diligence services from ARKA Technovation, your firm can get insight into a target company’s true digital health before finalizing mergers or investments. We perform deep forensic audits of website traffic quality (filtering bot fraud), organic search sustainability, technical codebase architecture, cloud security, and customer database retention.',
       capabilities: [
-        'Technical website architecture and codebase health audit (security vulnerabilities, technical debt, speed)',
-        'Organic search audit evaluating risk of Google algorithmic penalties and unnatural backlink profiles',
-        'Paid advertising unit economics review (Customer Acquisition Cost CAC vs Customer Lifetime Value LTV)',
-        'Data privacy, GDPR/DPDP compliance review, vendor software commitments, and post-acquisition tech roadmap',
+        'Forensic web traffic audit identifying authentic human visitors vs disguised bot networks and click farms',
+        'SEO equity audit evaluating risk of algorithmic Google penalties and unmasking toxic backlink profiles',
+        'Full-stack codebase and cloud architecture review evaluating scalability, technical debt, and licensing',
+        'Executive due diligence dossier delivering clear go/no-go recommendations and post-merger roadmaps',
       ],
-      deliverables: ['Comprehensive due diligence report', 'Red flag risk summary', 'Post-acquisition 100-day roadmap', 'Asset valuation guidance'],
+      metric: '100%',
+      metricLabel: 'Audit Rigor',
+    },
+
+    // ══════════════════════════════════════════════════════════════
+    // 3. MARKETING AUTOMATION (6 Items)
+    // ══════════════════════════════════════════════════════════════
+    {
+      id: 'account_based_marketing_services',
+      aliasIds: ['account-based-marketing', 'abm-services'],
+      category: 'Marketing Automation',
+      tag: 'Target Account ABM',
+      name: 'Account-Based Marketing Services',
+      subtitle: 'Securing high-value enterprise accounts with synchronized multi-stakeholder campaigns',
+      desc: 'ARKA Technovation offers industry-leading Account-Based Marketing (ABM) services that help your business secure high-value enterprise clients. Rather than broadcasting broad generic messages, ABM treats individual target accounts as markets of one. We coordinate bespoke content, LinkedIn executive outreach, IP-targeted display advertising, and personalized email journeys tailored specifically to decision-makers and buying committees.',
+      capabilities: [
+        'Target account list (TAL) selection and tiered prioritization based on ideal customer profile (ICP) fit',
+        'Firmographic IP-targeted digital advertising serving bespoke ads exclusively to employees of target accounts',
+        'Multi-stakeholder executive content mapping addressing CTO, CFO, and procurement concerns separately',
+        'Sales and marketing orchestration ensuring sales reps receive real-time alerts when target accounts engage',
+      ],
+      metric: '3.2×',
+      metricLabel: 'Enterprise Win Rate',
     },
     {
-      id: 'account-based-marketing',
-      category: 'Intelligence & Due Diligence',
-      tag: 'B2B Enterprise ABM',
-      name: 'Account-Based Marketing (ABM) Platforms',
-      subtitle: 'Machine learning targeting high-value enterprise accounts with a 91% client retention rate',
-      desc: 'For B2B enterprises selling high-ticket solutions, broad consumer marketing is ineffective. Our account-based marketing (ABM) platforms combine artificial intelligence, machine learning, and IP-level targeting to engage decision-makers at specifically named target accounts. We coordinate personalized LinkedIn ads, direct executive mailers, tailored website landing pages, and sales outreach, maintaining a client retention rate of 91 percent.',
+      id: 'lead_nurture_email_marketing',
+      aliasIds: ['lead-nurture-email-testing', 'lead-nurture'],
+      category: 'Marketing Automation',
+      tag: 'Lifecycle Nurturing',
+      name: 'Lead Nurture Email Marketing',
+      subtitle: 'Converting potential leads into high-margin clients with behavioral drip sequences',
+      desc: 'Lead nurturing plays a key part in converting potential prospects into paying clients. Enterprise purchasing decisions often take weeks or months. Lead nurturing ensures your brand remains top of mind throughout that evaluation window. We design and execute automated lifecycle email workflows triggered by specific user behaviors—such as visiting a pricing page or downloading a whitepaper, systematically resolving buyer objections.',
       capabilities: [
-        'Ideal Customer Profile (ICP) tiering and target account list (TAL) modeling using intent data',
-        'IP-level and LinkedIn account-matched advertising delivering custom messaging to buying committees',
-        'Dynamic website personalization showing custom landing page hero banners for visiting target accounts',
-        'Sales enablement alerts notifying account executives when key stakeholders engage with marketing assets',
+        'Behavioral email triggers deploying personalized messages based on specific URLs viewed and documents downloaded',
+        'Multi-stage drip sequences engineered to guide prospects through awareness, consideration, and decision',
+        'Dynamic content blocks swapping case studies and testimonials based on the prospect\'s industry',
+        'Automated lead re-engagement campaigns re-activating stalled sales pipeline opportunities',
       ],
-      deliverables: ['Target account matrix', 'Multi-channel ABM campaign builds', 'Personalized landing pages', 'Account engagement scorecards'],
+      metric: '+52%',
+      metricLabel: 'Lead Conversion Lift',
+    },
+    {
+      id: 'email_marketing_management_services',
+      aliasIds: ['email-marketing-testing-design', 'email-testing-design'],
+      category: 'Marketing Automation',
+      tag: 'Template Engineering',
+      name: 'Email Marketing Testing & Design',
+      subtitle: 'Custom responsive HTML templates tested across 40+ email clients and dark-mode settings',
+      desc: 'Email marketing is one of the most tried and true digital marketing strategies available. At ARKA Technovation, we know that great email marketing requires stunning visual design paired with technical inbox deliverability. We design custom responsive HTML/CSS email templates, execute rigorous multivariate A/B testing across subject lines, sender names, and layouts, ensuring maximum click-to-open rates (CTOR).',
+      capabilities: [
+        'Custom responsive email templates rigorously tested across 40+ email clients and dark-mode settings',
+        'Multivariate A/B testing of subject lines, preview text, content length, and CTA buttons',
+        'Render testing on desktop, mobile, tablet, and webmail clients (Gmail, Outlook, Apple Mail)',
+        'Detailed heatmaps and link click telemetry showing exactly how subscribers interact with email content',
+      ],
+      metric: '40+',
+      metricLabel: 'Clients Verified',
+    },
+    {
+      id: 'email_marketing_testing_design',
+      aliasIds: ['salesforce-dynamics-automation', 'salesforce-marketing-automation'],
+      category: 'Marketing Automation',
+      tag: 'Salesforce Cloud',
+      name: 'Salesforce Marketing Automation',
+      subtitle: 'Salesforce Sales, Service & Marketing Cloud trigger automation and omnichannel journeys',
+      desc: 'Did you know sales professionals today spend only 34 percent of their time selling? If you want to automate time-consuming administrative tasks, Salesforce marketing automation is the solution. We configure and customize Salesforce Sales Cloud, Service Cloud, and Marketing Cloud—automating stage progression, quote creation, customer onboarding, and omnichannel marketing journeys.',
+      capabilities: [
+        'Salesforce Journey Builder and Flow automation eliminating manual data entry for sales representatives',
+        'Automated lead scoring, task assignment, and round-robin distribution to regional sales reps',
+        'Bidirectional synchronization between Salesforce CRM and external marketing channels',
+        'Custom Apex triggers and workflow rules tailored to complex enterprise approval processes',
+      ],
+      metric: '14h',
+      metricLabel: 'Saved Per Rep Weekly',
+    },
+    {
+      id: 'salesforce_marketing_automation',
+      aliasIds: ['microsoft-dynamics-automation', 'dynamics-automation'],
+      category: 'Marketing Automation',
+      tag: 'Dynamics 365',
+      name: 'Microsoft Dynamics Marketing Automation',
+      subtitle: 'Dynamics 365 Customer Insights & Sales omnichannel journey orchestration',
+      desc: 'The modern customer journey doesn\'t follow a straight path anymore. Consumers and business buyers take multiple paths to purchase across web, email, phone, and in-person meetings. We configure and deploy Microsoft Dynamics 365 Customer Insights and Dynamics Sales, engineering event-driven automation, unified customer profiles, and personalized marketing journeys across the entire enterprise.',
+      capabilities: [
+        'Microsoft Dynamics 365 Customer Insights implementation unifying customer interaction history',
+        'Power Automate workflow engineering automating notifications, approvals, and data syncing',
+        'Event-driven journey builder triggering automated multi-channel follow-ups based on customer actions',
+        'Seamless integration with Microsoft Teams, Outlook, and PowerBI executive reporting suites',
+      ],
+      metric: 'Real-Time',
+      metricLabel: 'Omnichannel Sync',
+    },
+    {
+      id: 'microsoft_dynamics_marketing_automation',
+      aliasIds: ['email-marketing-management', 'email-management'],
+      category: 'Marketing Automation',
+      tag: 'Turnkey Email Ops',
+      name: 'Email Marketing Management Services',
+      subtitle: 'Turnkey campaign execution, list segmentation, inbox deliverability & weekly reporting',
+      desc: 'At ARKA Technovation, we take complete care of your email marketing operations. We manage your subscriber lists, craft engaging copy, design responsive templates, execute timely broadcasts, and monitor technical inbox deliverability. Our turnkey email marketing management services allow your leadership team to focus on core operations while your email list generates predictable recurring revenue.',
+      capabilities: [
+        'Complete broadcast scheduling, list segmentation, and campaign execution handled by our dedicated pod',
+        'Dedicated IP warming, SPF, DKIM, and DMARC authentication protocols ensuring 99%+ deliverability',
+        'Automated list hygiene routines removing bounced, inactive, and unsubscribed contacts',
+        'Comprehensive monthly campaign analytics tracking open rates, click-throughs, and generated revenue',
+      ],
+      metric: '99.2%',
+      metricLabel: 'Inbox Deliverability',
+    },
+
+    // ══════════════════════════════════════════════════════════════
+    // 4. LEARN & TECHNOLOGY GUIDES (6 Items)
+    // ══════════════════════════════════════════════════════════════
+    {
+      id: 'what_is_a_crm',
+      aliasIds: ['what-is-crm', 'crm-guide'],
+      category: 'Learn',
+      tag: 'CRM Fundamentals',
+      name: 'What Is a CRM?',
+      subtitle: 'The central operating system for managing sales pipelines, customer records & revenue',
+      desc: 'A Customer Relationship Management (CRM) system is software that organizes, tracks, and manages all of your company\'s interactions with prospective buyers and existing clients. Rather than relying on scattered spreadsheets and disconnected email threads, a modern cloud CRM acts as the single source of truth for your sales, marketing, and customer support departments, driving retention and revenue growth.',
+      capabilities: [
+        'Centralized database unifying contact details, purchase histories, and communication logs',
+        'Visual pipeline management displaying deal stages, probability, and forecasted revenue',
+        'Automated task reminders and follow-up sequences preventing lost sales opportunities',
+        'Cross-device accessibility allowing sales reps to update records on web and mobile apps',
+      ],
+      metric: 'Single',
+      metricLabel: 'Source of Truth',
+    },
+    {
+      id: 'what_is_a_cdp',
+      aliasIds: ['what-is-cdp', 'cdp-guide'],
+      category: 'Learn',
+      tag: 'CDP Architecture',
+      name: 'What Is a CDP?',
+      subtitle: 'Understanding Customer Data Platforms vs CRMs: Unifying first-party omnichannel telemetry',
+      desc: 'A Customer Data Platform (CDP) is a marketer-managed system designed to collect, cleanse, and unify customer data from all sources—websites, mobile apps, point-of-sale systems, email campaigns, and offline databases. While a CRM focuses primarily on sales contacts and manual entry, a CDP processes continuous streaming telemetry, constructing persistent individual customer profiles for real-time personalization.',
+      capabilities: [
+        'Persistent identity resolution stitching anonymous website visits to authenticated customer profiles',
+        'Real-time audience segmentation powering personalized website content and dynamic ad retargeting',
+        'Full compliance with privacy standards (GDPR, DPDP) and zero reliance on third-party cookies',
+        'Open API architecture feeding clean customer intelligence directly into marketing tools and CRMs',
+      ],
+      metric: 'Real-Time',
+      metricLabel: 'Identity Resolution',
+    },
+    {
+      id: 'data_driven_marketing_guide',
+      aliasIds: ['data-driven-marketing', 'data-marketing-guide'],
+      category: 'Learn',
+      tag: 'Strategic Playbook',
+      name: 'Data-Driven Marketing Guide',
+      subtitle: 'Moving from intuition to empirical telemetry: Architecting high-converting marketing engines',
+      desc: 'Marketing plans have been used for decades to outline organizational strategy. In the modern digital era, the most successful enterprises replace guesswork with data-driven decision making. This comprehensive guide details how to analyze customer journeys, establish multi-touch attribution models, evaluate cost-per-acquisition (CPA), and continuously optimize digital campaigns using empirical analytics.',
+      capabilities: [
+        'Establishing measurable commercial KPIs aligned with profit margins rather than surface impressions',
+        'Mapping full customer touchpoint journeys across organic search, social ads, email, and phone calls',
+        'Continuous multivariate experimentation: Testing hypotheses with statistically significant sample sizes',
+        'Building automated executive dashboards that transform complex raw data into actionable insights',
+      ],
+      metric: 'Empirical',
+      metricLabel: 'Decision Model',
+    },
+    {
+      id: 'what_is_erp',
+      aliasIds: ['what-is-erp', 'erp-guide'],
+      category: 'Learn',
+      tag: 'ERP Foundations',
+      name: 'What Is ERP?',
+      subtitle: 'Enterprise Resource Planning: Integrating finance, supply chain, HR, and operations',
+      desc: 'Enterprise Resource Planning (ERP) is a software system that manages and integrates core business functions into a unified operational platform. An ERP coordinates financial accounting, supply chain logistics, inventory management, human resources, procurement, and manufacturing operations, ensuring every department operates from identical real-time data.',
+      capabilities: [
+        'Elimination of departmental data silos through centralized financial and operational ledgers',
+        'Real-time inventory and supply chain tracking reducing overhead costs and fulfillment delays',
+        'Automated invoicing, multi-currency transaction accounting, and statutory tax compliance',
+        'Executive reporting providing leadership with complete operational health transparency',
+      ],
+      metric: '100%',
+      metricLabel: 'Process Alignment',
+    },
+    {
+      id: 'what_is_ai_Marketing',
+      aliasIds: ['what-is-ai-marketing', 'ai-marketing-guide'],
+      category: 'Learn',
+      tag: 'AI & Automation',
+      name: 'What Is AI Marketing?',
+      subtitle: 'Leveraging predictive algorithms, machine learning ad bidding & generative workflows',
+      desc: 'Artificial intelligence (AI) marketing is the process of leveraging AI methods, data models, and machine learning algorithms to automate marketing decisions and optimize customer interactions. From predictive lead scoring and automated programmatic bidding to conversational support chatbots and generative content variations, AI marketing enables enterprises to scale personalized customer experiences.',
+      capabilities: [
+        'Predictive analytics forecasting customer purchase intent and lifetime value with high accuracy',
+        'Algorithmic Smart Bidding adjusting ad bids in real-time based on conversion probability',
+        'Conversational AI chatbots resolving customer inquiries instantly and qualifying inbound leads',
+        'Dynamic content generation delivering tailored product recommendations to individual website visitors',
+      ],
+      metric: 'AI-Driven',
+      metricLabel: 'Scalable Growth',
+    },
+    {
+      id: 'best_digital_marketingt_tools',
+      aliasIds: ['best-digital-marketing-tools', '7-best-marketing-tools'],
+      category: 'Learn',
+      tag: 'Tooling Ecosystem',
+      name: '7 of the Best Digital Marketing Tools',
+      subtitle: 'Google Analytics 4, Ahrefs, PageSpeed Insights, Looker Studio, SEMrush & Cloudflare',
+      desc: 'Modern digital marketing success requires a world-class technology stack. Our practice leads review the seven indispensable tools used across our Noida headquarters to engineer page-one search rankings, sub-second load times, and high-ROAS advertising campaigns: Google Analytics 4, Ahrefs, Google PageSpeed Insights, Looker Studio Enterprise, SEMrush, Twilio VoIP, and Cloudflare Enterprise CDN.',
+      capabilities: [
+        'Google Analytics 4 (GA4): Event-based user telemetry and cross-platform journey tracking',
+        'Ahrefs & SEMrush: Comprehensive keyword research, competitor backlink profiling, and SERP telemetry',
+        'Google PageSpeed Insights: Auditing Core Web Vitals (LCP, CLS, INP) for ranking and speed health',
+        'Looker Studio & Cloudflare Enterprise: Executive BI dashboard visualization and edge network caching',
+      ],
+      metric: 'Enterprise',
+      metricLabel: 'Battle-Tested',
     },
   ];
 
   const filteredPlatforms =
-    activeCategory === 'All'
+    activeTab === 'All'
       ? platforms
-      : platforms.filter((p) => p.category === activeCategory);
+      : platforms.filter((p) => p.category === activeTab);
 
-  const digitalTools = [
-    { name: 'Google Analytics 4', cat: 'Analytics', desc: 'Real-time telemetry, custom event schemas, and machine learning user modeling' },
-    { name: 'Ahrefs Enterprise', cat: 'SEO Intelligence', desc: 'Backlink indexing, keyword gap analysis, and competitive organic search tracking' },
-    { name: 'Google PageSpeed Insights', cat: 'Performance', desc: 'Core Web Vitals monitoring, sub-second LCP tuning, and edge diagnostics' },
-    { name: 'BigQuery & SQL ETL', cat: 'Data Warehouse', desc: 'Petabyte-scale data lakes unifying CRM records, advertising spend, and billing' },
-    { name: 'Google Trends & SEMrush', cat: 'Market Demand', desc: 'Seasonal query analysis, emerging search intent, and paid ad intelligence' },
-    { name: 'Salesforce & Dynamics 365', cat: 'Enterprise CRM', desc: 'Omnichannel customer journey orchestration and automated pipeline scoring' },
-    { name: 'Twilio & RingCentral VoIP', cat: 'Telephony', desc: 'Dynamic Number Insertion, automated call routing, and phone lead attribution' },
-  ];
-
-  const guides = [
+  const capabilities = [
     {
-      title: 'What is AI Marketing? Machine Learning, Algorithmic Bidding & Dynamic Personalization',
-      cat: 'Artificial Intelligence',
-      readTime: '6 min read',
-      desc: 'Artificial intelligence (AI) marketing leverages machine learning models, predictive algorithms, and real-time data to produce actionable customer insights. How AI optimizes ad spend, personalizes the buyer journey, and powers predictive deal scoring.',
+      domain: 'Data Lakes & Warehouses',
+      icon: Database,
+      stack: ['Google BigQuery', 'Snowflake', 'PostgreSQL', 'Redis In-Memory', 'Amazon S3 Data Lake', 'Custom SQL ETL'],
     },
     {
-      title: 'The Modern Customer Data Platform (CDP): Navigating Third-Party Cookie Deprecation',
-      cat: 'Data Architecture',
-      readTime: '5 min read',
-      desc: 'Why the disruption of browser privacy shifts and third-party cookie deprecation makes a first-party CDP essential. How unifying web, email, CRM, and offline interactions delivers a true 360-degree buyer profile.',
+      domain: 'Attribution & Telemetry',
+      icon: Zap,
+      stack: ['Dynamic Number Insertion', 'Looker Studio Enterprise', 'Multi-Touch Models', 'GA4 BigQuery Sync', 'First-Party Pixels', 'Offline Import'],
     },
     {
-      title: 'Data-Driven Marketing & Modern ERP: Unifying Core Operations with Digital Acquisition',
-      cat: 'Enterprise Systems',
-      readTime: '7 min read',
-      desc: 'Moving beyond static annual marketing plans. How connecting ERP software (supply chain, inventory, finance) with digital acquisition pipelines creates an agile, demand-driven enterprise.',
+      domain: 'CRM & ERP Synchronization',
+      icon: Server,
+      stack: ['Salesforce Cloud', 'Microsoft Dynamics 365', 'Twilio & RingCentral', 'WhatsApp Business API', 'REST & GraphQL', 'Role-Based Auth'],
+    },
+    {
+      domain: 'Security & Edge Architecture',
+      icon: ShieldCheck,
+      stack: ['Cloudflare Enterprise CDN', '256-bit TLS Hardening', 'GDPR / DPDP Governance', 'Automated Daily Backups', 'Audit Trails', '99.99% SLA'],
     },
   ];
 
   const faqs = [
     {
-      q: 'What is the key difference between a Customer Data Platform (CDP) and a CRM?',
-      a: 'A CRM is primarily designed to manage direct interpersonal relationships—storing contact information, sales rep notes, pipeline stages, and communication history. A Customer Data Platform (CDP) is a marketer-managed data engine that collects, cleanses, and unifies all digital telemetry from website sessions, app clicks, POS purchases, email opens, and advertising interactions into persistent, 360-degree customer profiles that can be shared across other marketing systems in real time.',
+      q: 'How does ARKA Technovation handle data privacy and first-party cookie deprecation?',
+      a: 'We architect Customer Data Platforms (CDPs) and first-party telemetry pipelines that collect and normalize data directly on your own domain infrastructure. By eliminating reliance on vulnerable third-party tracking cookies, our clients maintain 100% compliance with GDPR and Indian DPDP regulations while building persistent, high-accuracy buyer profiles.',
     },
     {
-      q: 'How does Web Channel Call Tracking work without confusing existing customers?',
-      a: 'We use Dynamic Number Insertion (DNI). A small JavaScript snippet on your website swaps the visible phone number only for new incoming web visitors, assigning each visitor a temporary trackable number tied to their specific browsing session. When they dial, our VoIP system instantly identifies the exact Google search keyword or ad campaign that brought them, while seamlessly forwarding the call to your primary sales office number with zero delay.',
+      q: 'Can your attribution platforms track offline telephone sales back to Google Ads keywords?',
+      a: 'Yes. Our Web Channel Call Tracking uses session-level Dynamic Number Insertion (DNI). When a visitor dials, the system captures their exact traffic source, ad group, and keyword, records the call, and pushes offline conversion data back into Google Ads and your CRM to train automated Smart Bidding algorithms.',
     },
     {
-      q: 'Why should private equity firms and acquiring corporations conduct Digital Due Diligence?',
-      a: 'Digital due diligence eliminates costly surprises prior to an M&A transaction. We audit whether a target company’s organic search traffic is built on sustainable white-hat SEO or risky link schemes vulnerable to Google algorithm penalties, evaluate proprietary codebase maintainability, verify Customer Acquisition Cost (CAC) vs Customer Lifetime Value (LTV), and review GDPR/DPDP data compliance risks.',
+      q: 'How does CRM Retargeting differ from regular Facebook or Google remarketing pixels?',
+      a: 'Standard pixel retargeting only knows that an anonymous browser visited your site. CRM Retargeting synchronizes your actual offline customer records, past transaction values, and active pipeline stages with Google Customer Match and Meta Custom Audiences—allowing you to serve ads tailored specifically to past contract value or re-activate dormant enterprise accounts.',
     },
     {
-      q: 'Can your technology stack integrate with our proprietary legacy on-premise systems?',
-      a: 'Yes. Our engineering team builds secure REST and GraphQL middleware APIs, database ETL pipelines, and webhook handlers that securely bridge cloud-based marketing tools and modern web applications with legacy on-premise databases, ERP systems (SAP, Tally, AS400), and custom SQL repositories.',
-    },
-    {
-      q: 'How does CRM retargeting protect customer privacy while delivering high conversion rates?',
-      a: 'CRM retargeting uses irreversible cryptographic hashing (SHA-256) to anonymize customer email addresses and phone numbers before matching them against advertising networks like Google Ads and Meta. No raw customer data is exposed, yet your business can serve highly targeted ads exclusively to past buyers or active pipeline prospects.',
+      q: 'Do you build custom connectors for legacy or specialized ERP software?',
+      a: 'Yes. Our software engineering pods in Sector 63, Noida have extensive experience building custom middleware and ETL pipelines connecting legacy on-premise databases, Tally, SAP, and proprietary ERPs with modern cloud BI dashboards and marketing clouds.',
     },
   ];
 
@@ -353,11 +541,11 @@ export default function OurTechnologyPage() {
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
           <div className="max-w-4xl text-left">
             <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-black leading-[1.08] text-left">
-              Our Technology Stack — Accelerating Digital Transformation.
+              Proprietary Technology &amp; Attribution Engines.
             </h1>
 
             <p className="mt-6 text-lg sm:text-xl text-zinc-600 max-w-3xl leading-relaxed font-light text-left">
-              Welcome to {COMPANY.name}, an enterprise leader in software engineering, digital marketing, and visual media. We utilize our world-class engineering knowledge to help businesses reach their full digital potential—deploying proprietary revenue platforms, AI decision systems, customer data platforms (CDP), and cloud ETL pipelines under one roof.
+              Revenue growth cannot rely on guesswork. At {COMPANY.name}, we engineer proprietary marketing clouds, first-party Customer Data Platforms (CDPs), Dynamic Call Tracking, and multi-touch channel attribution models that connect every rupee of spend directly to bottom-line enterprise pipeline.
             </p>
 
             {/* Action CTAs */}
@@ -367,7 +555,7 @@ export default function OurTechnologyPage() {
                 className="site-button px-7 py-3.5 rounded-full !bg-black !text-white text-sm font-semibold flex items-center justify-center gap-2 hover:!bg-zinc-800 transition-colors shadow-lg active:scale-[0.98]"
                 style={{ color: '#FFFFFF', backgroundColor: '#000000' }}
               >
-                <span style={{ color: '#FFFFFF' }}>Request Technology Consultation</span>
+                <span style={{ color: '#FFFFFF' }}>Request Technology Audit</span>
                 <ArrowRight className="w-4 h-4 !text-white" style={{ color: '#FFFFFF', stroke: '#FFFFFF' }} />
               </Link>
               <a
@@ -375,363 +563,252 @@ export default function OurTechnologyPage() {
                 className="px-7 py-3.5 rounded-full bg-zinc-100 border border-black/10 text-zinc-800 text-sm font-medium flex items-center justify-center gap-2 hover:bg-zinc-200 transition-colors"
               >
                 <Phone className="w-4 h-4 text-solar" />
-                <span>Speak with Solutions Architect</span>
+                <span>Speak with Cloud Architect</span>
               </a>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Quick Metrics Strip */}
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-black/10 pt-8">
-            {stats.map((s, idx) => (
-              <div key={idx} className="p-4 rounded-xl bg-zinc-50 border border-black/5 text-left">
-                <p className="text-2xl sm:text-4xl font-bold text-black tracking-tight">{s.value}</p>
-                <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">{s.label}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Category Filter Pills */}
-          <div className="mt-10 flex flex-wrap gap-2">
-            {categories.map((c) => {
-              const count = c === 'All' ? platforms.length : platforms.filter((p) => p.category === c).length;
-              const active = activeCategory === c;
+      {/* ── Category Filter Tabs ── */}
+      <section className="py-6 border-b border-black/8 bg-zinc-50/70 sticky top-[70px] sm:top-[78px] z-30 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-2 overflow-x-auto py-1">
+            {(['All', 'Revenue Acceleration', 'Analytic & Attribution', 'Marketing Automation', 'Learn'] as TechTab[]).map((tab) => {
+              const count = tab === 'All' ? platforms.length : platforms.filter((p) => p.category === tab).length;
+              const active = activeTab === tab;
               return (
                 <button
-                  key={c}
-                  onClick={() => setActiveCategory(c)}
-                  className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 ${
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  style={active ? { backgroundColor: '#000000', color: '#FFFFFF' } : undefined}
+                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
                     active
-                      ? '!bg-black !text-white shadow-lg shadow-black/20'
-                      : '!bg-zinc-100 !text-zinc-700 hover:!text-black hover:!bg-zinc-200 !border !border-black/10'
+                      ? '!bg-black !text-white shadow-sm'
+                      : '!bg-white !border !border-black/10 !text-zinc-600 hover:text-black hover:!bg-zinc-100'
                   }`}
                 >
-                  <span>{c}</span>
-                  <span
-                    className={`px-1.5 py-0.2 rounded-full text-[10px] ${
-                      active ? '!bg-white/20 !text-white font-bold' : '!bg-black/10 !text-zinc-600'
-                    }`}
-                  >
-                    {count}
-                  </span>
+                  <span style={active ? { color: '#FFFFFF' } : undefined}>{tab} ({count})</span>
                 </button>
               );
             })}
           </div>
-        </div>
-      </section>
 
-      {/* ── Comprehensive Technology Platforms Grid ── */}
-      <section className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
-          <AnimatePresence mode="popLayout">
-            {filteredPlatforms.map((item, idx) => {
-              const aliases: Record<string, string> = {
-                'marketing-cloud-revenue': 'revenue-platform',
-                'customer-data-platform': 'cdp',
-                'crm-retargeting-tech': 'crm-retargeting',
-                'call-tracking-telephony': 'call-tracking',
-                'channel-partner-pipeline': 'partner-pipeline',
-                'salesforce-dynamics-automation': 'marketing-automation',
-              };
-              const aliasId = aliases[item.id];
-
-              return (
-                <motion.div
-                  key={item.id}
-                  id={item.id}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.35, delay: idx * 0.04 }}
-                  className="scroll-mt-36 group relative flex flex-col justify-between p-8 sm:p-10 rounded-[28px] sm:rounded-[32px] bg-white border border-black/10 hover:border-black/25 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] shadow-sm"
-                >
-                  {aliasId && (
-                    <span id={aliasId} className="absolute -top-36 left-0" aria-hidden="true" />
-                  )}
-                {/* Top ambient hover glow */}
-                <div className="absolute top-0 right-0 w-72 h-72 bg-radial-gradient from-black/[0.03] to-transparent rounded-full blur-3xl pointer-events-none group-hover:from-solar/10 transition-colors duration-500" />
-
-                <div>
-                  {/* Top Bar: Tag & Category */}
-                  <div className="flex items-center justify-between text-xs font-mono text-zinc-600 mb-5">
-                    <span className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-solar" />
-                      <span className="uppercase tracking-widest font-semibold">{item.tag}</span>
-                    </span>
-                    <span className="px-3 py-1 rounded-full bg-zinc-100 border border-black/8 text-zinc-700 font-medium">
-                      {item.category}
-                    </span>
-                  </div>
-
-                  {/* Title & Subtitle */}
-                  <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-black group-hover:text-zinc-900 transition-colors">
-                    {item.name}
-                  </h2>
-                  <p className="mt-1 text-xs font-mono uppercase tracking-wider text-solar font-medium">
-                    {item.subtitle}
-                  </p>
-
-                  {/* Descriptive Paragraph */}
-                  <p className="mt-4 text-zinc-600 text-sm sm:text-base font-light leading-relaxed">
-                    {item.desc}
-                  </p>
-
-                  {/* Capabilities List */}
-                  <div className="mt-6 pt-6 border-t border-black/8 space-y-2.5">
-                    <span className="text-xs font-mono uppercase tracking-wider text-zinc-500 block mb-2 font-medium">
-                      Core Architectural Capabilities:
-                    </span>
-                    {(item.capabilities || []).map((point, pIdx) => (
-                      <div key={pIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 font-light">
-                        <CheckCircle2 className="w-4 h-4 text-solar shrink-0 mt-0.5" />
-                        <span>{point}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Deliverables / Scope */}
-                  {item.deliverables && (
-                    <div className="mt-6 pt-5 border-t border-black/8">
-                      <span className="text-xs font-mono uppercase tracking-wider text-zinc-500 block mb-2 font-medium">
-                        Standard Deliverables:
-                      </span>
-                      <div className="flex flex-wrap gap-2">
-                        {item.deliverables.map((del, dIdx) => (
-                          <span
-                            key={dIdx}
-                            className="px-2.5 py-1 rounded-lg bg-zinc-100 text-xs text-zinc-700 font-normal"
-                          >
-                            {del}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Bottom Action Strip */}
-                <div className="mt-8 pt-6 border-t border-black/8 flex items-center justify-between">
-                  <span className="text-xs font-mono text-zinc-500 font-medium">
-                    Engineered by ARKA Tech Pods · Sector 63, Noida
-                  </span>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-black group-hover:text-solar transition-colors"
-                  >
-                    <span>Request Technical Brief</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </motion.div>
-            );
-          })}
-          </AnimatePresence>
-        </div>
-      </section>
-
-      {/* ── 7 Industry-Leading Tools Matrix ── */}
-      <section className="py-20 sm:py-28 bg-zinc-950 text-white border-t border-b border-black">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-left max-w-3xl mb-14">
-            <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
-              The Technology Matrix
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mt-3">
-              Tools, Frameworks &amp; Telemetry Stack
-            </h2>
-            <p className="mt-4 text-zinc-400 text-base sm:text-lg leading-relaxed font-light">
-              We leverage modern battle-tested technologies engineered for performance, modularity, and enterprise reliability.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {digitalTools.map((tool) => (
-              <div
-                key={tool.name}
-                className="p-6 rounded-2xl bg-zinc-900/80 border border-white/10 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-mono text-solar uppercase tracking-wider">{tool.cat}</span>
-                    <Terminal className="w-4 h-4 text-zinc-500" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white tracking-tight">{tool.name}</h3>
-                  <p className="mt-2 text-xs text-zinc-400 leading-relaxed font-light">{tool.desc}</p>
-                </div>
-              </div>
-            ))}
+          <div className="text-xs font-mono text-zinc-500 hidden md:block">
+            Sector 63, Noida Cloud Bay
           </div>
         </div>
       </section>
 
-      {/* ── Security, DevOps & Handover Strip ── */}
-      <section className="py-20 sm:py-28 max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="p-8 sm:p-12 rounded-3xl bg-zinc-50 border border-black/10">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-white border border-black/10 flex items-center justify-center text-solar shrink-0 shadow-sm">
-                <Lock className="w-6 h-6" />
-              </div>
-              <div>
-                <h4 className="text-lg font-bold text-black tracking-tight">Security &amp; Data Privacy</h4>
-                <p className="mt-2 text-xs sm:text-sm text-zinc-600 leading-relaxed font-light">
-                  Role-based access control (RBAC), end-to-end data encryption, and GDPR/DPDP-ready database architectures.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-white border border-black/10 flex items-center justify-center text-solar shrink-0 shadow-sm">
-                <Server className="w-6 h-6" />
-              </div>
-              <div>
-                <h4 className="text-lg font-bold text-black tracking-tight">Dedicated DevOps in Noida</h4>
-                <p className="mt-2 text-xs sm:text-sm text-zinc-600 leading-relaxed font-light">
-                  CI/CD automation pipelines, automated regression suites, containerized Docker microservices, and 24/7 telemetry monitoring.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-white border border-black/10 flex items-center justify-center text-solar shrink-0 shadow-sm">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <div>
-                <h4 className="text-lg font-bold text-black tracking-tight">Full Source Handover</h4>
-                <p className="mt-2 text-xs sm:text-sm text-zinc-600 leading-relaxed font-light">
-                  100% intellectual property ownership transferred to your enterprise upon project handover. No proprietary lock-in.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Educational Guides & Architecture Playbooks ── */}
-      <section className="py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-left max-w-3xl mb-12">
-          <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold block mb-2">
-            Technical Playbooks
+      {/* ── All 24 Platforms & Modules Grid ── */}
+      <section id="tech-platforms" className="scroll-mt-36 py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="max-w-3xl mb-12 text-left">
+          <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
+            Technology Platforms &amp; Software Architecture
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black leading-tight">
-            Strategic Guides for Enterprise CTOs &amp; CMOs
+          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-black mt-3">
+            Revenue Systems, Attribution &amp; Automation
           </h2>
-          <p className="mt-3 text-base sm:text-lg text-zinc-600 font-light leading-relaxed">
-            In-depth architectural analysis on cloud scalability, headless integrations, and revenue attribution.
+          <p className="mt-4 text-zinc-600 text-base sm:text-lg leading-relaxed font-light">
+            Explore all 24 enterprise platforms, attribution algorithms, and cloud data pipelines engineered by ARKA Technovation. Filter by category above to review comprehensive technical specifications.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {guides.map((g, idx) => (
+        <div className="grid md:grid-cols-2 gap-8">
+          {filteredPlatforms.map((platform, idx) => (
             <div
-              key={idx}
-              className="p-7 rounded-2xl bg-white border border-black/10 flex flex-col justify-between hover:border-black/25 transition-all shadow-sm group"
+              key={platform.id}
+              id={platform.id}
+              className="scroll-mt-36 p-8 sm:p-10 rounded-2xl bg-zinc-50 border border-black/8 hover:border-black/20 hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group"
             >
+              {/* Alias anchors for deep linking */}
+              {platform.aliasIds?.map((alias) => (
+                <span key={alias} id={alias} className="absolute -top-36 left-0" aria-hidden="true" />
+              ))}
+
               <div>
-                <span className="text-xs font-mono text-solar uppercase tracking-wider font-medium block mb-3">
-                  {g.cat} · {g.readTime}
-                </span>
-                <h3 className="text-xl font-bold text-black tracking-tight group-hover:text-zinc-800 transition-colors leading-snug">
-                  {g.title}
+                {/* Top Bar: Tag & Benchmark */}
+                <div className="flex items-center justify-between mb-5">
+                  <span className="font-mono text-xs px-3 py-1 rounded-full bg-white border border-black/10 text-solar font-medium tracking-wide">
+                    {platform.tag}
+                  </span>
+                  <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">
+                    #{String(idx + 1).padStart(2, '0')} · {platform.category}
+                  </span>
+                </div>
+
+                {/* Title & Subtitle */}
+                <h3 className="text-2xl font-bold text-black tracking-tight group-hover:text-zinc-900 transition-colors">
+                  {platform.name}
                 </h3>
-                <p className="mt-3 text-xs sm:text-sm text-zinc-600 font-light leading-relaxed">
-                  {g.desc}
+                <p className="text-xs font-mono text-solar font-medium mt-1">
+                  {platform.subtitle}
                 </p>
+
+                {/* Comprehensive Descriptive Paragraph */}
+                <p className="mt-4 text-sm text-zinc-600 leading-relaxed font-light">
+                  {platform.desc}
+                </p>
+
+                {/* Key Capabilities / Highlights */}
+                <div className="mt-6 pt-5 border-t border-black/8">
+                  <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-3">
+                    Technical Capabilities &amp; Architecture:
+                  </p>
+                  <ul className="space-y-2.5">
+                    {platform.capabilities.map((point, pIdx) => (
+                      <li key={pIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 font-medium">
+                        <CheckCircle2 className="w-4 h-4 text-solar shrink-0 mt-0.5" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <div className="mt-6 pt-4 border-t border-black/8 flex items-center gap-1.5 text-xs font-semibold text-black group-hover:text-solar transition-colors">
-                <span>Read Full Analysis</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+
+              {/* Bottom Action Strip */}
+              <div className="mt-8 pt-4 border-t border-black/8 flex items-center justify-between">
+                <span className="text-xs font-mono text-zinc-500 font-medium">
+                  {platform.metric ? `${platform.metric} ${platform.metricLabel || ''}` : 'Enterprise SLA'}
+                </span>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-black hover:text-solar transition-colors"
+                >
+                  <span>Request Technical Demo</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── Interactive FAQ Accordion ── */}
-      <section className="py-16 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6 border-t border-black/10">
+      {/* ── Infrastructure Stack Matrix ── */}
+      <section className="py-16 sm:py-24 bg-zinc-50 border-y border-black/10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-black/10">
+            <div>
+              <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold block mb-2">
+                Infrastructure Architecture
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-black">
+                Mission-Critical Data &amp; Cloud Stacks.
+              </h2>
+            </div>
+            <p className="text-zinc-600 text-sm font-light max-w-md leading-relaxed">
+              Engineered for high throughput, sub-100ms query latency, and uncompromising first-party data security.
+            </p>
+          </div>
+
+          <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {capabilities.map((cap) => {
+              const Icon = cap.icon;
+              return (
+                <div
+                  key={cap.domain}
+                  className="p-6 rounded-2xl bg-white border border-black/8 hover:border-black/20 transition-all shadow-sm flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-zinc-100 flex items-center justify-center text-solar mb-4">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="font-bold text-base text-black mb-3">{cap.domain}</h3>
+                    <ul className="space-y-1.5">
+                      {cap.stack.map((item, i) => (
+                        <li key={i} className="text-xs text-zinc-600 font-mono flex items-center gap-2">
+                          <span className="w-1 h-1 rounded-full bg-zinc-400" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Technical FAQs ── */}
+      <section className="py-16 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-left mb-12">
           <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold block mb-2">
-            Frequently Asked Questions
+            Technical Architecture FAQs
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black leading-tight">
-            Answers on Enterprise Architecture &amp; Data
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black">
+            Answers for CTOs &amp; Technical Leadership
           </h2>
-          <p className="mt-3 text-base sm:text-lg text-zinc-600 font-light leading-relaxed">
-            Everything you need to know about our proprietary platforms, IP transfer, and hosting.
+          <p className="mt-3 text-base text-zinc-600 font-light">
+            In-depth details on data security, first-party cookie resilience, call tracking, and custom ERP connectors.
           </p>
         </div>
 
         <div className="space-y-4">
-          {faqs.map((faq, idx) => {
-            const isOpen = openFaq === idx;
-            return (
-              <div
-                key={idx}
-                className="border border-black/10 rounded-2xl overflow-hidden bg-white shadow-sm transition-colors"
+          {faqs.map((faq, idx) => (
+            <div
+              key={idx}
+              className="border border-black/10 rounded-2xl overflow-hidden bg-zinc-50/50 transition-colors"
+            >
+              <button
+                onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                className="w-full text-left p-6 flex items-center justify-between gap-4 font-bold text-base sm:text-lg text-black hover:text-solar transition-colors"
               >
-                <button
-                  onClick={() => setOpenFaq(isOpen ? null : idx)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 hover:bg-zinc-50 transition-colors"
-                >
-                  <span className="text-base sm:text-lg font-semibold text-black leading-snug">
-                    {faq.q}
-                  </span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-zinc-500 shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 text-solar' : ''
-                    }`}
-                  />
-                </button>
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-5 pb-6 sm:px-6 text-sm text-zinc-600 font-light leading-relaxed border-t border-black/5 pt-4">
-                        {faq.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
+                <span>{faq.q}</span>
+                <ChevronDown
+                  className={`w-5 h-5 shrink-0 transition-transform duration-200 ${
+                    openFaq === idx ? 'rotate-180 text-solar' : 'text-zinc-400'
+                  }`}
+                />
+              </button>
+              <AnimatePresence>
+                {openFaq === idx && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 pb-6 text-sm text-zinc-600 leading-relaxed font-light border-t border-black/5 pt-4">
+                      {faq.a}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* ── Bottom CTA ── */}
-      <section className="py-12 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 text-center">
-        <div className="p-10 sm:p-16 rounded-3xl bg-zinc-900 text-white border border-black shadow-xl relative overflow-hidden">
-          <div className="max-w-2xl mx-auto relative z-10">
-            <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
-              Architecture Consultation
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mt-3">
-              Build Your Next Enterprise Platform with ARKA
-            </h2>
-            <p className="mt-4 text-zinc-400 text-sm sm:text-base leading-relaxed font-light">
-              Connect directly with our senior software architects at {COMPANY.hq} to review your technical requirements.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                to="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-solar text-white hover:bg-orange-600 font-semibold text-sm transition-all shadow-md"
-              >
-                <span>Speak with an Architect</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <a
-                href={`tel:${COMPANY.phone.replace(/[^0-9+]/g, '')}`}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-white/20 bg-zinc-800 text-white hover:bg-zinc-700 font-semibold text-sm transition-all"
-              >
-                <span>Call {COMPANY.phone}</span>
-              </a>
-            </div>
+      {/* ── Footer Consultation CTA ── */}
+      <section className="py-20 bg-zinc-950 text-white border-t border-black">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+          <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
+            Technical Architecture Review
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mt-4 max-w-3xl mx-auto">
+            Ready to upgrade your enterprise attribution &amp; data stack?
+          </h2>
+          <p className="mt-4 text-zinc-400 max-w-2xl mx-auto text-base sm:text-lg font-light leading-relaxed">
+            Schedule a technical consultation with our software architects in Sector 63, Noida. We evaluate your current CRM, telemetry pipelines, and ad data lakes.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              to="/contact"
+              className="site-button px-8 py-4 rounded-full !bg-white !text-black text-sm font-semibold flex items-center gap-2 hover:!bg-zinc-200 transition-colors shadow-xl"
+              style={{ color: '#000000', backgroundColor: '#FFFFFF' }}
+            >
+              <span style={{ color: '#000000' }}>Schedule Technical Consultation</span>
+              <ArrowRight className="w-4 h-4 !text-black" style={{ color: '#000000', stroke: '#000000' }} />
+            </Link>
+            <a
+              href={`tel:${COMPANY.phones[0].replace(/\s/g, '')}`}
+              className="px-8 py-4 rounded-full bg-zinc-900 border border-white/15 text-white text-sm font-medium flex items-center gap-2 hover:bg-zinc-800 transition-colors"
+            >
+              <Phone className="w-4 h-4 text-solar" />
+              <span>{COMPANY.phones[0]}</span>
+            </a>
           </div>
         </div>
       </section>

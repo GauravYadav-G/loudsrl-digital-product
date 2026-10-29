@@ -34,13 +34,6 @@ import { COMPANY } from '@/lib/data';
 export default function WhoWeArePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const stats = [
-    { value: '15+', label: 'Years Enterprise Heritage' },
-    { value: '1,500+', label: 'Clients Served Globally' },
-    { value: '100%', label: 'In-House Noida Team' },
-    { value: 'Zero', label: 'Outsourced Contractors' },
-  ];
-
   const teamPods = [
     {
       role: 'Full-Stack Software & Cloud Architecture',
@@ -226,16 +219,6 @@ export default function WhoWeArePage() {
                 <span>Call Noida Headquarters</span>
               </a>
             </div>
-          </div>
-
-          {/* Quick Metrics Strip */}
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-black/10 pt-8">
-            {stats.map((s, idx) => (
-              <div key={idx} className="p-4 rounded-xl bg-zinc-50 border border-black/5 text-left">
-                <p className="text-2xl sm:text-4xl font-bold text-black tracking-tight">{s.value}</p>
-                <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">{s.label}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>

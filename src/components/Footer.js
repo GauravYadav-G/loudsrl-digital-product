@@ -66,7 +66,7 @@ export function renderFooter() {
           <div class="px-4 py-8 md:p-8">
             <p class="!font-mono text-xs text-white/50 mb-4 tracking-wider uppercase">LEADERSHIP & TRACK RECORD</p>
             <p class="text-xs text-white/80 leading-relaxed mb-4">
-              Led by <strong>Kranti Parashar</strong> (CEO & Founder). Delivering over 6,256+ software, SEO, growth marketing, and corporate film projects with 12,000+ client leads generated.
+              Delivering over 6,256+ software, SEO, growth marketing, and corporate film projects with 12,000+ client leads generated.
             </p>
             <div class="flex flex-col gap-1.5 text-xs font-mono text-white/70">
               <p>Noida, Delhi NCR, India</p>

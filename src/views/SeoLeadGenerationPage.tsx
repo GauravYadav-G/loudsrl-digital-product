@@ -53,13 +53,6 @@ export default function SeoLeadGenerationPage() {
   const [activeTab, setActiveTab] = useState<CategoryType>('all');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const stats = [
-    { value: '+210%', label: 'Average Organic Traffic Lift' },
-    { value: '450+', label: 'In-House Tech & Growth Specialists' },
-    { value: '4.8×', label: 'Verified Client Pipeline ROAS' },
-    { value: '<1.2s', label: 'Average Core Web Vitals LCP' },
-  ];
-
   const allOfferings: ServiceItem[] = [
     // ══════════════════════════════════════════════════════════════
     // 1. ORGANIC SEARCH
@@ -484,16 +477,6 @@ export default function SeoLeadGenerationPage() {
               </a>
             </div>
           </div>
-
-          {/* Quick Metrics Strip */}
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-black/10 pt-8">
-            {stats.map((s, idx) => (
-              <div key={idx} className="p-4 rounded-xl bg-zinc-50 border border-black/5 text-left">
-                <p className="text-2xl sm:text-4xl font-bold text-black tracking-tight">{s.value}</p>
-                <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">{s.label}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -503,53 +486,58 @@ export default function SeoLeadGenerationPage() {
           <div className="flex items-center gap-2 overflow-x-auto py-1">
             <button
               onClick={() => setActiveTab('all')}
+              style={activeTab === 'all' ? { backgroundColor: '#000000', color: '#FFFFFF' } : undefined}
               className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
                 activeTab === 'all'
-                  ? 'bg-black text-white shadow-sm'
-                  : 'bg-white border border-black/10 text-zinc-600 hover:text-black'
+                  ? '!bg-black !text-white shadow-sm'
+                  : '!bg-white !border !border-black/10 !text-zinc-600 hover:!text-black hover:!bg-zinc-100'
               }`}
             >
-              All Capabilities (23)
+              <span style={activeTab === 'all' ? { color: '#FFFFFF' } : undefined}>All Capabilities (23)</span>
             </button>
             <button
               onClick={() => setActiveTab('organic')}
+              style={activeTab === 'organic' ? { backgroundColor: '#000000', color: '#FFFFFF' } : undefined}
               className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
                 activeTab === 'organic'
-                  ? 'bg-black text-white shadow-sm'
-                  : 'bg-white border border-black/10 text-zinc-600 hover:text-black'
+                  ? '!bg-black !text-white shadow-sm'
+                  : '!bg-white !border !border-black/10 !text-zinc-600 hover:!text-black hover:!bg-zinc-100'
               }`}
             >
-              Organic Search (6)
+              <span style={activeTab === 'organic' ? { color: '#FFFFFF' } : undefined}>Organic Search (6)</span>
             </button>
             <button
               onClick={() => setActiveTab('advertising')}
+              style={activeTab === 'advertising' ? { backgroundColor: '#000000', color: '#FFFFFF' } : undefined}
               className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
                 activeTab === 'advertising'
-                  ? 'bg-black text-white shadow-sm'
-                  : 'bg-white border border-black/10 text-zinc-600 hover:text-black'
+                  ? '!bg-black !text-white shadow-sm'
+                  : '!bg-white !border !border-black/10 !text-zinc-600 hover:!text-black hover:!bg-zinc-100'
               }`}
             >
-              Digital Advertising (6)
+              <span style={activeTab === 'advertising' ? { color: '#FFFFFF' } : undefined}>Digital Advertising (6)</span>
             </button>
             <button
               onClick={() => setActiveTab('social')}
+              style={activeTab === 'social' ? { backgroundColor: '#000000', color: '#FFFFFF' } : undefined}
               className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
                 activeTab === 'social'
-                  ? 'bg-black text-white shadow-sm'
-                  : 'bg-white border border-black/10 text-zinc-600 hover:text-black'
+                  ? '!bg-black !text-white shadow-sm'
+                  : '!bg-white !border !border-black/10 !text-zinc-600 hover:!text-black hover:!bg-zinc-100'
               }`}
             >
-              Social Media Marketing (5)
+              <span style={activeTab === 'social' ? { color: '#FFFFFF' } : undefined}>Social Media Marketing (5)</span>
             </button>
             <button
               onClick={() => setActiveTab('learn')}
+              style={activeTab === 'learn' ? { backgroundColor: '#000000', color: '#FFFFFF' } : undefined}
               className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
                 activeTab === 'learn'
-                  ? 'bg-black text-white shadow-sm'
-                  : 'bg-white border border-black/10 text-zinc-600 hover:text-black'
+                  ? '!bg-black !text-white shadow-sm'
+                  : '!bg-white !border !border-black/10 !text-zinc-600 hover:!text-black hover:!bg-zinc-100'
               }`}
             >
-              Learn &amp; SEO Insights (6)
+              <span style={activeTab === 'learn' ? { color: '#FFFFFF' } : undefined}>Learn &amp; SEO Insights (6)</span>
             </button>
           </div>
 

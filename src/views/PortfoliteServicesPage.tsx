@@ -510,29 +510,13 @@ export default function PortfoliteServicesPage() {
               </a>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Quick Stats Strip */}
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-black/10 pt-8">
-            <div className="p-4 rounded-xl bg-zinc-50 border border-black/5 text-left">
-              <p className="text-2xl sm:text-4xl font-bold text-black tracking-tight">15+</p>
-              <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">Years Domain Craft</p>
-            </div>
-            <div className="p-4 rounded-xl bg-zinc-50 border border-black/5 text-left">
-              <p className="text-2xl sm:text-4xl font-bold text-black tracking-tight">1,500+</p>
-              <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">Clients Worldwide</p>
-            </div>
-            <div className="p-4 rounded-xl bg-zinc-50 border border-black/5 text-left">
-              <p className="text-2xl sm:text-4xl font-bold text-black tracking-tight">100%</p>
-              <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">In-House Noida Team</p>
-            </div>
-            <div className="p-4 rounded-xl bg-zinc-50 border border-black/5 text-left">
-              <p className="text-2xl sm:text-4xl font-bold text-black tracking-tight">4.8×</p>
-              <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">Average Client ROAS</p>
-            </div>
-          </div>
-
-          {/* Category Filter Pills */}
-          <div className="mt-10 flex flex-wrap gap-2">
+      {/* ── Category Filter Navigation Bar ── */}
+      <section className="py-6 border-b border-black/8 bg-zinc-50/70 sticky top-[70px] sm:top-[78px] z-30 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-2 overflow-x-auto py-1">
             {categories.map((c) => {
               const count = c === 'All' ? disciplines.length : disciplines.filter((d) => d.category === c).length;
               const active = selectedCat === c;
@@ -540,105 +524,106 @@ export default function PortfoliteServicesPage() {
                 <button
                   key={c}
                   onClick={() => setSelectedCat(c)}
-                  className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 ${
+                  style={active ? { backgroundColor: '#000000', color: '#FFFFFF' } : undefined}
+                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
                     active
-                      ? '!bg-black !text-white shadow-lg shadow-black/20'
-                      : '!bg-zinc-100 !text-zinc-700 hover:!text-black hover:!bg-zinc-200 !border !border-black/10'
+                      ? '!bg-black !text-white shadow-sm'
+                      : '!bg-white !border !border-black/10 !text-zinc-600 hover:!text-black hover:!bg-zinc-100'
                   }`}
                 >
-                  <span>{c}</span>
-                  <span
-                    className={`px-1.5 py-0.2 rounded-full text-[10px] ${
-                      active ? '!bg-white/20 !text-white font-bold' : '!bg-black/10 !text-zinc-600'
-                    }`}
-                  >
-                    {count}
-                  </span>
+                  <span style={active ? { color: '#FFFFFF' } : undefined}>{c} ({count})</span>
                 </button>
               );
             })}
+          </div>
+
+          <div className="text-xs font-mono text-zinc-500 hidden md:block">
+            Noida HQ 20 Disciplines Directory
           </div>
         </div>
       </section>
 
       {/* ── Detailed Services & Capabilities Grid (20 Offerings) ── */}
-      <section id="services-grid" className="scroll-mt-36 py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
-          <AnimatePresence mode="popLayout">
-            {filteredDisciplines.map((item, idx) => (
-              <motion.div
-                key={item.id}
-                id={item.id}
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.35, delay: idx * 0.03 }}
-                className="group relative flex flex-col justify-between p-8 sm:p-10 rounded-[28px] sm:rounded-[32px] bg-white border border-black/10 hover:border-black/25 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] shadow-sm scroll-mt-36"
-              >
-                {/* Alias anchors for deep linking */}
-                {item.aliasIds?.map((alias) => (
-                  <span key={alias} id={alias} className="absolute -top-36 left-0" aria-hidden="true" />
-                ))}
+      <section id="services-grid" className="scroll-mt-36 py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="max-w-3xl mb-12 text-left">
+          <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
+            Service Catalog &amp; Enterprise Disciplines
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-black mt-3">
+            Digital Marketing, Software Engineering &amp; Cinema Production
+          </h2>
+          <p className="mt-4 text-zinc-600 text-base sm:text-lg leading-relaxed font-light">
+            Explore all 20 specialized service disciplines engineered in-house at our Sector 63, Noida corporate headquarters. Filter by discipline above to review technical scope, deliverables, and performance benchmarks.
+          </p>
+        </div>
 
-                {/* Top ambient hover glow */}
-                <div className="absolute top-0 right-0 w-72 h-72 bg-radial-gradient from-black/[0.03] to-transparent rounded-full blur-3xl pointer-events-none group-hover:from-solar/10 transition-colors duration-500" />
+        <div className="grid md:grid-cols-2 gap-8">
+          {filteredDisciplines.map((item, idx) => (
+            <div
+              key={item.id}
+              id={item.id}
+              className="scroll-mt-36 p-8 sm:p-10 rounded-2xl bg-zinc-50 border border-black/8 hover:border-black/20 hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group"
+            >
+              {/* Alias anchors for deep linking */}
+              {item.aliasIds?.map((alias) => (
+                <span key={alias} id={alias} className="absolute -top-36 left-0" aria-hidden="true" />
+              ))}
 
-                <div>
-                  {/* Top Bar: Tag & Metric */}
-                  <div className="flex items-center justify-between text-xs font-mono text-zinc-600 mb-5">
-                    <span className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-solar" />
-                      <span className="uppercase tracking-widest font-semibold">{item.tag}</span>
-                    </span>
-                    <span className="px-3 py-1 rounded-full bg-zinc-100 border border-black/8 text-zinc-800 font-medium">
-                      {item.metric} <span className="text-zinc-500 font-sans text-[11px]">{item.metricLabel}</span>
-                    </span>
-                  </div>
+              <div>
+                {/* Top Bar: Tag & Benchmark */}
+                <div className="flex items-center justify-between mb-5">
+                  <span className="font-mono text-xs px-3 py-1 rounded-full bg-white border border-black/10 text-solar font-medium tracking-wide">
+                    {item.tag}
+                  </span>
+                  <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-widest">
+                    #{String(idx + 1).padStart(2, '0')} · {item.category}
+                  </span>
+                </div>
 
-                  {/* Title & Subtitle */}
-                  <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-black group-hover:text-zinc-900 transition-colors">
-                    {item.title}
-                  </h2>
-                  <p className="mt-1 text-xs font-mono uppercase tracking-wider text-solar font-medium">
-                    {item.subtitle}
+                {/* Title & Subtitle */}
+                <h3 className="text-2xl font-bold text-black tracking-tight group-hover:text-zinc-900 transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-xs font-mono text-solar font-medium mt-1">
+                  {item.subtitle}
+                </p>
+
+                {/* Comprehensive Descriptive Paragraph */}
+                <p className="mt-4 text-sm text-zinc-600 leading-relaxed font-light">
+                  {item.desc}
+                </p>
+
+                {/* Key Highlights / Deliverables */}
+                <div className="mt-6 pt-5 border-t border-black/8">
+                  <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-3">
+                    Deliverables &amp; Technical Capabilities:
                   </p>
-
-                  {/* Comprehensive Descriptive Paragraph */}
-                  <p className="mt-4 text-zinc-600 text-sm sm:text-base font-light leading-relaxed">
-                    {item.desc}
-                  </p>
-
-                  {/* Key Highlights / Deliverables */}
-                  <div className="mt-6 pt-6 border-t border-black/8 space-y-2.5">
-                    <span className="text-xs font-mono uppercase tracking-wider text-zinc-500 block mb-2 font-medium">
-                      Key Highlights &amp; Scope:
-                    </span>
+                  <ul className="space-y-2.5">
                     {item.highlights.map((point, pIdx) => (
-                      <div key={pIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 font-light">
+                      <li key={pIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 font-medium">
                         <CheckCircle2 className="w-4 h-4 text-solar shrink-0 mt-0.5" />
                         <span>{point}</span>
-                      </div>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
+              </div>
 
-                {/* Bottom Action Strip */}
-                <div className="mt-8 pt-6 border-t border-black/8 flex items-center justify-between">
-                  <span className="text-xs font-mono uppercase tracking-wider text-zinc-500 font-medium">
-                    {item.category}
-                  </span>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-black group-hover:text-solar transition-colors"
-                  >
-                    <span>Request Proposal</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+              {/* Bottom Action Strip */}
+              <div className="mt-8 pt-4 border-t border-black/8 flex items-center justify-between">
+                <span className="text-xs font-mono text-zinc-500 font-medium">
+                  {item.metric} {item.metricLabel}
+                </span>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-black hover:text-solar transition-colors"
+                >
+                  <span>Request Custom Strategy</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
