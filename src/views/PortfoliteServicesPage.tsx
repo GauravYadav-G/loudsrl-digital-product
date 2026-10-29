@@ -474,18 +474,6 @@ export default function PortfoliteServicesPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
           <div className="max-w-4xl text-left">
-            {/* Breadcrumb */}
-            <div className="flex items-center gap-2 text-xs font-mono text-zinc-500 mb-6">
-              <Link to="/" className="hover:text-black transition-colors">Home</Link>
-              <span>/</span>
-              <span className="text-solar font-semibold">Services &amp; Capabilities</span>
-            </div>
-
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 border border-black/10 text-xs font-medium text-zinc-700 mb-6">
-              <span className="w-2 h-2 rounded-full bg-solar" />
-              <span>Setting the Standard as the Best Digital Marketing &amp; Engineering Company in Noida</span>
-            </div>
-
             <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-black leading-[1.08] text-left">
               Comprehensive Capabilities Engineered for Enterprise Scale.
             </h1>

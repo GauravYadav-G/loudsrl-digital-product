@@ -142,36 +142,11 @@ export default function PortfoliteServiceDetail({ initialSlug }: { initialSlug?:
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
           <div className="max-w-4xl text-left">
-            {/* Breadcrumb */}
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="flex items-center gap-2 text-xs font-mono text-zinc-500 mb-6"
-            >
-              <Link to="/" className="hover:text-black transition-colors">Home</Link>
-              <span>/</span>
-              <Link to="/services" className="hover:text-black transition-colors">Services</Link>
-              <span>/</span>
-              <span className="text-solar font-semibold">{service.title}</span>
-            </motion.div>
-
-            {/* Kicker Pill */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 border border-black/10 text-xs font-medium text-zinc-700 mb-6"
-            >
-              <span className="w-2 h-2 rounded-full bg-solar" />
-              <span>{service.cat} Discipline · {service.kicker}</span>
-            </motion.div>
-
             {/* Title */}
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6 }}
               className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-black leading-[1.08] text-left"
             >
               {service.title}

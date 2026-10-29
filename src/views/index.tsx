@@ -27,10 +27,6 @@ export function PageHero({ eyebrow, title, intro, img, crumb }: { eyebrow: strin
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_20%,rgba(232,116,44,.18),transparent_58%)]" />
 
       <motion.div style={{ opacity: fade }} className="relative w-full xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 pb-14 lg:pb-20">
-        <nav className="mono text-[0.58rem] tracking-[0.2em] uppercase text-paper/40 flex items-center gap-2">
-          <Link to="/" className="hover:text-solar transition-colors">Home</Link><span>/</span><span className="text-paper/70">{crumb}</span>
-        </nav>
-        <Label className="mt-7">{eyebrow}</Label>
         <h1 className="mt-5 display text-[clamp(2rem,6vw,4.8rem)] leading-[1.02] max-w-4xl"><Words text={title} /></h1>
         {intro && <Fade delay={.25}><p className="mt-7 text-[15px] md:text-[17px] font-light text-paper/70 leading-[1.8] max-w-2xl">{intro}</p></Fade>}
       </motion.div>
