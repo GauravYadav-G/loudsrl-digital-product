@@ -481,8 +481,8 @@ export default function SeoLeadGenerationPage() {
       </section>
 
       {/* ── Category Filter Tabs ── */}
-      <section className="py-8 border-b border-black/8 bg-zinc-50/70 sticky top-[70px] sm:top-[78px] z-30 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-4">
+      <section className="py-6 border-b border-black/8 bg-zinc-50/70 sticky top-[70px] sm:top-[78px] z-30 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-start sm:justify-center">
           <div className="flex items-center gap-2 overflow-x-auto py-1">
             <button
               onClick={() => setActiveTab('all')}
@@ -539,10 +539,6 @@ export default function SeoLeadGenerationPage() {
             >
               <span style={activeTab === 'learn' ? { color: '#FFFFFF' } : undefined}>Learn &amp; SEO Insights (6)</span>
             </button>
-          </div>
-
-          <div className="text-xs font-mono text-zinc-500 hidden md:block">
-            Noida HQ In-House Growth Pods
           </div>
         </div>
       </section>
