@@ -390,9 +390,9 @@ export default function UxInteractivesPage() {
       </section>
 
       {/* ── Category Filter Tabs Segmented Dock with Spring Physics Animation ── */}
-      <section className="py-4 border-b border-black/5 bg-white/85 sticky top-[70px] sm:top-[78px] z-30 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-start sm:justify-center overflow-x-auto scrollbar-none py-1">
-          <div className="inline-flex items-center gap-1 sm:gap-1.5 p-1.5 rounded-full bg-zinc-100/90 border border-black/8 shadow-[inset_0_1px_2px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.04)] relative">
+      <section className="py-2.5 sm:py-4 border-b border-black/5 bg-white/90 sticky top-[64px] sm:top-[78px] z-30 backdrop-blur-md">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-start md:justify-center overflow-x-auto scrollbar-none py-1">
+          <div className="inline-flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-full bg-zinc-100/90 border border-black/8 shadow-[inset_0_1px_2px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.04)] relative shrink-0">
             {[
               { label: 'All' as UXCategory, icon: Layers },
               { label: 'Design & UX' as UXCategory, icon: PenTool },
@@ -407,7 +407,7 @@ export default function UxInteractivesPage() {
                   key={label}
                   onClick={() => setActiveCategory(label)}
                   whileTap={{ scale: 0.96 }}
-                  className="group relative px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 flex items-center gap-2 whitespace-nowrap focus:outline-none select-none cursor-pointer"
+                  className="group relative shrink-0 pl-3.5 sm:pl-4.5 pr-3 sm:pr-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 flex items-center gap-2 whitespace-nowrap focus:outline-none select-none cursor-pointer"
                 >
                   {/* Sliding active background pill */}
                   {active && (
@@ -424,7 +424,7 @@ export default function UxInteractivesPage() {
 
                   {/* Tab Icon */}
                   <Icon
-                    className={`relative z-10 w-3.5 h-3.5 transition-colors duration-200 ${
+                    className={`relative z-10 w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 transition-colors duration-200 ${
                       active ? 'text-white' : 'text-zinc-500 group-hover:text-black'
                     }`}
                   />
@@ -440,7 +440,7 @@ export default function UxInteractivesPage() {
 
                   {/* Tab Count Pill */}
                   <span
-                    className={`relative z-10 px-2 py-0.5 rounded-full text-[10px] font-mono tracking-tight font-bold transition-colors duration-200 ${
+                    className={`relative z-10 px-2 py-0.5 rounded-full text-[10px] font-mono tracking-tight font-bold shrink-0 transition-colors duration-200 ${
                       active
                         ? 'bg-white/20 text-white'
                         : 'bg-black/5 text-zinc-500 group-hover:bg-black/10 group-hover:text-black'
