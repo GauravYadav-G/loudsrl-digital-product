@@ -434,10 +434,10 @@ export default function OurTechnologyPage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.35, delay: idx * 0.04 }}
-                  className="scroll-mt-28 group relative flex flex-col justify-between p-8 sm:p-10 rounded-[28px] sm:rounded-[32px] bg-white border border-black/10 hover:border-black/25 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] shadow-sm"
+                  className="scroll-mt-36 group relative flex flex-col justify-between p-8 sm:p-10 rounded-[28px] sm:rounded-[32px] bg-white border border-black/10 hover:border-black/25 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] shadow-sm"
                 >
                   {aliasId && (
-                    <span id={aliasId} className="absolute -top-28 left-0" aria-hidden="true" />
+                    <span id={aliasId} className="absolute -top-36 left-0" aria-hidden="true" />
                   )}
                 {/* Top ambient hover glow */}
                 <div className="absolute top-0 right-0 w-72 h-72 bg-radial-gradient from-black/[0.03] to-transparent rounded-full blur-3xl pointer-events-none group-hover:from-solar/10 transition-colors duration-500" />
@@ -523,7 +523,7 @@ export default function OurTechnologyPage() {
       {/* ── 7 Industry-Leading Tools Matrix ── */}
       <section className="py-20 sm:py-28 bg-zinc-950 text-white border-t border-b border-black">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="max-w-2xl mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
               The Technology Matrix
             </span>

@@ -140,13 +140,13 @@ export default function PortfoliteServiceDetail({ initialSlug }: { initialSlug?:
         {/* Subtle Ambient Radial Glow */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-[radial-gradient(ellipse_at_center,rgba(232,116,44,0.08)_0%,rgba(255,255,255,0)_70%)] pointer-events-none blur-3xl" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center">
           {/* Breadcrumb */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="flex items-center gap-2 text-xs font-mono text-zinc-500 mb-8"
+            className="flex items-center justify-center gap-2 text-xs font-mono text-zinc-500 mb-6"
           >
             <Link to="/" className="hover:text-black transition-colors">Home</Link>
             <span>/</span>
@@ -166,66 +166,86 @@ export default function PortfoliteServiceDetail({ initialSlug }: { initialSlug?:
             <span>{service.cat} Discipline · {service.kicker}</span>
           </motion.div>
 
-          {/* Title & Benchmark Split */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-black leading-[1.08] max-w-3xl"
-            >
-              {service.title}
-            </motion.h1>
+          {/* Title */}
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-black leading-[1.08] max-w-4xl mx-auto"
+          >
+            {service.title}
+          </motion.h1>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="p-6 rounded-2xl bg-zinc-50 border border-black/10 shrink-0 self-start lg:self-auto min-w-[220px] shadow-sm"
-            >
-              <span className="text-xs font-mono uppercase tracking-widest text-zinc-500 block mb-1">
-                Verified Benchmark
-              </span>
-              <p className="text-3xl sm:text-4xl font-bold text-black tracking-tight">{service.stat}</p>
-              <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">{service.statLabel}</p>
-            </motion.div>
-          </div>
+          {/* Deep Overview Paragraph */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="mt-6 text-base sm:text-xl text-zinc-600 max-w-3xl mx-auto leading-relaxed font-light"
+          >
+            {service.desc}
+          </motion.p>
 
-          {/* Deep Overview Paragraph & CTA Group */}
+          {/* Balanced Metrics & Benchmark Strip */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-8 pt-8 border-t border-black/10 grid md:grid-cols-12 gap-8 items-start"
+            className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto text-left"
           >
-            <p className="md:col-span-8 text-base sm:text-lg text-zinc-600 font-light leading-relaxed">
-              {service.desc}
-            </p>
-            <div className="md:col-span-4 flex flex-col gap-3">
-              <Link
-                to="/contact"
-                className="site-button w-full py-3.5 rounded-full !bg-black !text-white text-sm font-semibold flex items-center justify-center gap-2 hover:!bg-zinc-800 transition-colors shadow-lg active:scale-[0.98]"
-                style={{ color: '#FFFFFF', backgroundColor: '#000000' }}
-              >
-                <span style={{ color: '#FFFFFF' }}>Request Project Proposal</span>
-                <ArrowRight className="w-4 h-4 !text-white" style={{ color: '#FFFFFF', stroke: '#FFFFFF' }} />
-              </Link>
-              <a
-                href={`tel:${COMPANY.phones[0].replace(/\s/g, '')}`}
-                className="w-full py-3.5 rounded-full bg-zinc-100 border border-black/10 text-zinc-800 text-sm font-medium flex items-center justify-center gap-2 hover:bg-zinc-200 transition-colors"
-              >
-                <Phone className="w-4 h-4 text-solar" />
-                <span>Speak with Lead Engineer</span>
-              </a>
+            <div className="p-5 rounded-2xl bg-zinc-50 border border-black/10 shadow-sm">
+              <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 block mb-1">
+                Verified Benchmark
+              </span>
+              <p className="text-3xl font-bold text-black tracking-tight">{service.stat}</p>
+              <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">{service.statLabel}</p>
+            </div>
+            <div className="p-5 rounded-2xl bg-zinc-50 border border-black/10 shadow-sm">
+              <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 block mb-1">
+                Engineering Pod
+              </span>
+              <p className="text-3xl font-bold text-black tracking-tight">100% In-House</p>
+              <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">Sector 63, Noida HQ</p>
+            </div>
+            <div className="p-5 rounded-2xl bg-zinc-50 border border-black/10 shadow-sm">
+              <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 block mb-1">
+                Delivery Cadence
+              </span>
+              <p className="text-3xl font-bold text-black tracking-tight">2-Wk Sprints</p>
+              <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">Staging Review Cycle</p>
             </div>
           </motion.div>
 
+          {/* Action CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
+          >
+            <Link
+              to="/contact"
+              className="site-button px-7 py-3.5 rounded-full !bg-black !text-white text-sm font-semibold flex items-center justify-center gap-2 hover:!bg-zinc-800 transition-colors shadow-lg active:scale-[0.98]"
+              style={{ color: '#FFFFFF', backgroundColor: '#000000' }}
+            >
+              <span style={{ color: '#FFFFFF' }}>Request Project Proposal</span>
+              <ArrowRight className="w-4 h-4 !text-white" style={{ color: '#FFFFFF', stroke: '#FFFFFF' }} />
+            </Link>
+            <a
+              href={`tel:${COMPANY.phones[0].replace(/\s/g, '')}`}
+              className="px-7 py-3.5 rounded-full bg-zinc-100 border border-black/10 text-zinc-800 text-sm font-medium flex items-center justify-center gap-2 hover:bg-zinc-200 transition-colors"
+            >
+              <Phone className="w-4 h-4 text-solar" />
+              <span>Speak with Lead Engineer</span>
+            </a>
+          </motion.div>
+
           {/* Tech Ecosystem Strip */}
-          <div className="mt-12 pt-8 border-t border-black/10">
+          <div className="mt-12 pt-8 border-t border-black/10 max-w-4xl mx-auto">
             <span className="text-xs font-mono uppercase tracking-wider text-zinc-500 block mb-3 font-medium">
               Technologies &amp; Frameworks Deployed:
             </span>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap justify-center gap-2">
               {techStack.map((tech) => (
                 <span
                   key={tech}
@@ -241,7 +261,10 @@ export default function PortfoliteServiceDetail({ initialSlug }: { initialSlug?:
 
       {/* ── Scope of Work: Sub-services Bento Grid ── */}
       <section className="py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="max-w-2xl mb-14">
+        <div id="scope" className="scroll-mt-32 text-center max-w-2xl mx-auto mb-14">
+          <span id="erp" className="block scroll-mt-32" />
+          <span id="lms" className="block scroll-mt-32" />
+          <span id="mobile" className="block scroll-mt-32" />
           <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold block mb-2">
             Scope of Engagement
           </span>
@@ -257,18 +280,18 @@ export default function PortfoliteServiceDetail({ initialSlug }: { initialSlug?:
           {service.subs.map((sub, i) => {
             const subLower = sub.name.toLowerCase();
             const cardId = subLower.includes('erp')
-              ? 'erp'
+              ? 'erp-module'
               : subLower.includes('lead management') || subLower.includes('lms') || subLower.includes('sales pipeline')
-              ? 'lms'
+              ? 'lms-module'
               : subLower.includes('mobile') || subLower.includes('responsive web design')
-              ? 'mobile'
+              ? 'mobile-module'
               : subLower.replace(/[^a-z0-9]+/g, '-');
 
             return (
               <div
                 key={sub.name}
                 id={cardId}
-                className="scroll-mt-28 p-7 sm:p-8 rounded-2xl bg-white border border-black/10 flex flex-col justify-between hover:border-black/25 transition-all group shadow-sm hover:shadow-md"
+                className="p-7 sm:p-8 rounded-2xl bg-white border border-black/10 flex flex-col justify-between hover:border-black/25 transition-all group shadow-sm hover:shadow-md"
               >
                 <div>
                   <div className="flex items-center justify-between text-xs font-mono text-zinc-500 mb-4">
@@ -296,7 +319,7 @@ export default function PortfoliteServiceDetail({ initialSlug }: { initialSlug?:
       {/* ── High-Contrast Strategic Benefits Matrix (Theming Focus) ── */}
       <section className="py-20 sm:py-28 bg-zinc-950 text-white border-t border-b border-black">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="max-w-2xl mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold block mb-2">
               Strategic Commercial Advantage
             </span>
@@ -339,22 +362,22 @@ export default function PortfoliteServiceDetail({ initialSlug }: { initialSlug?:
       {/* ── Execution Roadmap & Deliverables Split ── */}
       <section className="py-16 sm:py-24 bg-zinc-50 border-b border-black/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold block mb-2">
+              Delivery Framework
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-black">
+              Step-by-Step Engineering Roadmap
+            </h2>
+            <p className="mt-3 text-sm text-zinc-600 font-light leading-relaxed">
+              A disciplined, staged engineering lifecycle ensuring predictable delivery milestones.
+            </p>
+          </div>
+
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             {/* Left: Execution Roadmap */}
-            <div className="lg:col-span-7 space-y-8">
-              <div>
-                <span className="text-xs font-mono uppercase tracking-widest text-zinc-500 font-semibold block mb-2">
-                  Delivery Framework
-                </span>
-                <h2 className="text-3xl font-bold tracking-tight text-black">
-                  Step-by-step roadmap.
-                </h2>
-                <p className="mt-2 text-sm text-zinc-600 font-light">
-                  A disciplined, staged engineering lifecycle ensuring predictable delivery milestones.
-                </p>
-              </div>
-
-              <div className="space-y-4 pt-2">
+            <div className="lg:col-span-7 space-y-4">
+              <div className="space-y-4">
                 {service.process.map(([phase, desc], i) => (
                   <div
                     key={phase}

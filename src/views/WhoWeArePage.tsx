@@ -232,7 +232,7 @@ export default function WhoWeArePage() {
       </section>
 
       {/* ── 15-Year Heritage & The Unified In-House Advantage ── */}
-      <section id="story" className="scroll-mt-24 py-20 sm:py-28 max-w-6xl mx-auto px-4 sm:px-6">
+      <section id="story" className="scroll-mt-36 py-20 sm:py-28 max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold block mb-2">
@@ -271,9 +271,9 @@ export default function WhoWeArePage() {
       </section>
 
       {/* ── Working Methodology Pillars ── */}
-      <section id="methodology" className="scroll-mt-24 py-20 sm:py-28 bg-zinc-50 border-y border-black/10">
+      <section id="methodology" className="scroll-mt-36 py-20 sm:py-28 bg-zinc-50 border-y border-black/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="max-w-2xl mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
               Our Working Culture
             </span>
@@ -416,9 +416,9 @@ export default function WhoWeArePage() {
       </section>
 
       {/* ── Transparent Pricing Guides ── */}
-      <section id="pricing" className="scroll-mt-24 py-20 sm:py-28 bg-zinc-50 border-t border-black/10">
+      <section id="pricing" className="scroll-mt-36 py-20 sm:py-28 bg-zinc-50 border-t border-black/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="max-w-2xl mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
               Honest Commercials
             </span>
@@ -519,7 +519,7 @@ export default function WhoWeArePage() {
       </section>
 
       {/* ── Corporate Headquarters & Contact Information ── */}
-      <section id="leadership" className="scroll-mt-24 py-16 bg-zinc-50 border-t border-black/10">
+      <section id="leadership" className="scroll-mt-36 py-16 bg-zinc-50 border-t border-black/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>

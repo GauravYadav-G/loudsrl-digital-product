@@ -224,9 +224,9 @@ export default function SeoLeadGenerationPage() {
       <section className="relative pt-36 sm:pt-44 pb-20 sm:pb-28 overflow-hidden border-b border-black/10">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-[radial-gradient(ellipse_at_center,rgba(232,116,44,0.08)_0%,rgba(255,255,255,0)_70%)] pointer-events-none blur-3xl" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-xs font-mono text-zinc-500 mb-6">
+          <div className="flex items-center justify-center gap-2 text-xs font-mono text-zinc-500 mb-6">
             <Link to="/" className="hover:text-black transition-colors">Home</Link>
             <span>/</span>
             <span className="text-solar">SEO &amp; Lead Generation</span>
@@ -237,18 +237,18 @@ export default function SeoLeadGenerationPage() {
             <span>Organic Search, Digital Advertising &amp; Lead Engine</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-black leading-[1.08] max-w-4xl">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-black leading-[1.08] max-w-4xl mx-auto">
             SEO &amp; Lead Generation Services That Generate High Quality Leads.
           </h1>
 
-          <p className="mt-6 text-base sm:text-xl text-zinc-600 max-w-3xl leading-relaxed font-light">
+          <p className="mt-6 text-base sm:text-xl text-zinc-600 max-w-3xl mx-auto leading-relaxed font-light">
             With over 90% of online journeys beginning on search engines, top rankings in competitive search results connect your enterprise with ready-to-buy customers and procurement leaders. At {COMPANY.name}, our data-powered SEO campaigns provide an all-in-one revenue acceleration solution covering technical health, Core Web Vitals, hyper-targeted PPC, addressable geofencing, and review acceleration.
           </p>
 
           {/* Quick Metrics Strip */}
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-black/10 pt-8">
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 border-t border-black/10 pt-8 max-w-4xl mx-auto">
             {stats.map((s, idx) => (
-              <div key={idx} className="p-4 rounded-xl bg-zinc-50 border border-black/5">
+              <div key={idx} className="p-4 rounded-xl bg-zinc-50 border border-black/5 text-left">
                 <p className="text-2xl sm:text-4xl font-bold text-black tracking-tight">{s.value}</p>
                 <p className="text-xs text-zinc-500 mt-1 font-mono uppercase tracking-wider">{s.label}</p>
               </div>
@@ -311,7 +311,7 @@ export default function SeoLeadGenerationPage() {
 
       {/* ── Core Service Offerings Grid ── */}
       <section className="py-20 sm:py-28 max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="max-w-2xl mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
             Full Service Scope
           </span>
@@ -328,16 +328,16 @@ export default function SeoLeadGenerationPage() {
             <div
               key={service.id}
               id={service.id}
-              className="scroll-mt-28 p-8 sm:p-10 rounded-2xl bg-zinc-50 border border-black/8 hover:border-black/20 hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative"
+              className="scroll-mt-36 p-8 sm:p-10 rounded-2xl bg-zinc-50 border border-black/8 hover:border-black/20 hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative"
             >
               {service.id === 'enterprise-seo' && (
-                <span id="organic-search" className="absolute -top-28 left-0" aria-hidden="true" />
+                <span id="organic-search" className="absolute -top-36 left-0" aria-hidden="true" />
               )}
               {service.id === 'ppc-management' && (
-                <span id="ppc" className="absolute -top-28 left-0" aria-hidden="true" />
+                <span id="ppc" className="absolute -top-36 left-0" aria-hidden="true" />
               )}
               {service.id === 'review-acceleration' && (
-                <span id="reviews" className="absolute -top-28 left-0" aria-hidden="true" />
+                <span id="reviews" className="absolute -top-36 left-0" aria-hidden="true" />
               )}
               <div>
                 <div className="flex items-center justify-between">
@@ -393,7 +393,7 @@ export default function SeoLeadGenerationPage() {
       {/* ── Knowledge & Strategic Guidance Strip ── */}
       <section className="py-20 sm:py-28 bg-zinc-950 text-white border-t border-b border-black">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="max-w-2xl mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
               Executive Guidance
             </span>
