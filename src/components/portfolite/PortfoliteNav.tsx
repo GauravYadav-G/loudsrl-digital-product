@@ -3,17 +3,165 @@
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from '@/components/Link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronRight, Menu, X, Phone, Mail, MapPin } from 'lucide-react';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
+import {
+  ChevronDown,
+  ChevronRight,
+  Menu,
+  X,
+  Phone,
+  Mail,
+  MapPin,
+  Search,
+  Layers,
+  Zap,
+  Target,
+  Crosshair,
+  Share2,
+  Star,
+  Database,
+  Code2,
+  GitBranch,
+  Smartphone,
+  TrendingUp,
+  ShoppingBag,
+  Film,
+  Sparkles,
+  Layout,
+  Rocket,
+  BarChart3,
+  FileText,
+  SlidersHorizontal,
+  PieChart,
+  Globe,
+  ShieldCheck,
+  RefreshCw,
+  PhoneCall,
+  GitMerge,
+  Workflow,
+  Award,
+  Compass,
+  Users,
+  Briefcase,
+  HeartHandshake,
+  CircleDollarSign,
+  ArrowUpRight,
+} from 'lucide-react';
 import { NAV, COMPANY } from '../../lib/data';
+
+const getNavIcon = (label: string) => {
+  switch (label) {
+    case 'Organic Search & SEO': return Search;
+    case 'Enterprise SEO Services': return Layers;
+    case 'Local SEO & Google Guarantee': return MapPin;
+    case 'Page Speed & Core Web Vitals': return Zap;
+    case 'PPC Management Services': return Target;
+    case 'Competitor & Addressable Geofencing': return Crosshair;
+    case 'Social Media Advertising': return Share2;
+    case 'Online Review Acceleration': return Star;
+    case 'CRM Software & SaaS': return Database;
+    case 'ERP Enterprise Solutions': return Layers;
+    case 'Website Development': return Code2;
+    case 'Lead Management Systems (LMS)': return GitBranch;
+    case 'Mobile Application Development': return Smartphone;
+    case 'Digital Marketing & Growth': return TrendingUp;
+    case 'Search Engine Optimization': return Search;
+    case 'E-Commerce Development & SEO': return ShoppingBag;
+    case 'Corporate Film Making': return Film;
+    case 'Content Marketing & Motion': return Sparkles;
+    case 'UX Website Design & Redesign': return Layout;
+    case 'High-Converting Landing Pages': return Rocket;
+    case 'Conversion Rate Optimization (CRO)': return BarChart3;
+    case 'Content Marketing & SEO Copy': return FileText;
+    case 'Personalized Web Content': return SlidersHorizontal;
+    case 'Infographics & Motion Graphics': return PieChart;
+    case 'Digital Experience Development': return Globe;
+    case 'ADA Web Compliance Services': return ShieldCheck;
+    case 'Revenue Acceleration Platform': return Zap;
+    case 'Customer Data Platform (CDP)': return Database;
+    case 'CRM Retargeting & ETL Pipelines': return RefreshCw;
+    case 'Web Channel Call Tracking': return PhoneCall;
+    case 'Channel Partner Pipeline': return GitMerge;
+    case 'Marketing Automation & ABM': return Workflow;
+    case 'Our Story & Heritage': return Award;
+    case 'Working Methodology': return Compass;
+    case 'Leadership & Specialist Pods': return Users;
+    case 'Featured Client Work': return Briefcase;
+    case 'Careers at ARKA': return HeartHandshake;
+    case 'Pricing Transparency & ROI': return CircleDollarSign;
+    default: return ArrowUpRight;
+  }
+};
+
+const contentVariants: Variants = {
+  enter: (dir: number) => ({
+    x: dir === 0 ? 0 : dir > 0 ? 28 : -28,
+    opacity: 0,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      x: { type: 'spring', stiffness: 380, damping: 32 },
+      opacity: { duration: 0.18 },
+    },
+  },
+  exit: (dir: number) => ({
+    x: dir === 0 ? 0 : dir > 0 ? -28 : 28,
+    opacity: 0,
+    transition: {
+      x: { type: 'spring', stiffness: 380, damping: 32 },
+      opacity: { duration: 0.14 },
+    },
+  }),
+};
 
 export default function PortfoliteNav() {
   const [open, setOpen] = useState<string | null>(null);
+  const [prevOpen, setPrevOpen] = useState<string | null>(null);
   const [mobile, setMobile] = useState(false);
   const [solid, setSolid] = useState(false);
   const [mobGroup, setMobGroup] = useState<string | null>('Services');
   const closeTimer = useRef<number | null>(null);
   const pathname = usePathname() || '/';
+
+  const navRef = useRef<HTMLElement | null>(null);
+  const itemRefs = useRef<Record<string, HTMLElement | null>>({});
+  const [coords, setCoords] = useState<{ left: number; width: number }>({
+    left: 0,
+    width: 710,
+  });
+
+  const calculateCoords = (label: string) => {
+    const navEl = navRef.current;
+    const itemEl = itemRefs.current[label];
+    if (!navEl || !itemEl) return;
+
+    const navRect = navEl.getBoundingClientRect();
+    const itemRect = itemEl.getBoundingClientRect();
+
+    const itemCenter = itemRect.left - navRect.left + itemRect.width / 2;
+
+    const targetWidth =
+      label === 'Services'
+        ? 710
+        : label === 'SEO & Lead Generation' || label === 'UX Interactives'
+        ? 710
+        : label === 'Our Technology'
+        ? 580
+        : 560;
+
+    const idealLeft = itemCenter - targetWidth / 2;
+    const padding = 12;
+    const minLeft = -padding;
+    const maxLeft = navRect.width - targetWidth + padding;
+    const clampedLeft = Math.max(minLeft, Math.min(idealLeft, maxLeft));
+
+    setCoords({
+      left: clampedLeft,
+      width: targetWidth,
+    });
+  };
 
   // Throttled scroll listener to avoid redundant re-renders (120 FPS optimized)
   useEffect(() => {
@@ -62,14 +210,25 @@ export default function PortfoliteNav() {
 
   const enter = (k: string) => {
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    setPrevOpen(open);
     setOpen(k);
+    calculateCoords(k);
   };
 
   const leave = () => {
     closeTimer.current = window.setTimeout(() => {
       setOpen(null);
+      setPrevOpen(null);
     }, 180);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (open) calculateCoords(open);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [open]);
 
   // Above the hero section on the home page: completely transparent with pure white text
   const isHome = pathname === '/';
@@ -167,27 +326,24 @@ export default function PortfoliteNav() {
 
           {/* Desktop Navigation Links with Full Height & Underline Indicator */}
           <nav
-            className="hidden xl:flex items-center h-full min-w-0"
+            ref={navRef}
+            className="relative hidden xl:flex items-center h-full min-w-0"
             style={{ color: isOverHero ? '#ffffff' : undefined }}
             onMouseLeave={leave}
             onKeyDown={(event) => {
               if (event.key === 'Escape') setOpen(null);
             }}
           >
-            {NAV.filter((item) => !item.hideOnDesktop).map((item, idx, arr) => {
+            {NAV.filter((item) => !item.hideOnDesktop).map((item) => {
               const active = item.to === '/' ? pathname === '/' : pathname.startsWith(item.to);
               const isOpen = open === item.label;
-              const isFirst = idx === 0;
-              const isLastFew = idx >= arr.length - 2;
-              const alignClass = isFirst
-                ? 'left-0'
-                : isLastFew
-                ? 'right-0'
-                : 'left-1/2 -translate-x-1/2';
 
               return (
                 <div
                   key={item.label}
+                  ref={(el) => {
+                    itemRefs.current[item.label] = el;
+                  }}
                   className="relative h-full flex items-center"
                   onMouseEnter={() => item.children && enter(item.label)}
                   onFocus={() => item.children && enter(item.label)}
@@ -220,22 +376,6 @@ export default function PortfoliteNav() {
                         item.label
                       )}
                     </span>
-                    {item.badge && (
-                      <span
-                        style={{
-                          color: isOverHero ? '#ffffff' : undefined,
-                          borderColor: isOverHero ? 'rgba(255,255,255,0.45)' : undefined,
-                          backgroundColor: isOverHero ? 'rgba(255,255,255,0.18)' : undefined,
-                        }}
-                        className={`font-mono text-[9px] px-1.5 py-0.5 rounded-full font-semibold tracking-normal shrink-0 ${
-                          isOverHero
-                            ? 'text-white border'
-                            : 'bg-solar/20 text-solar border border-solar/35'
-                        }`}
-                      >
-                        {item.badge}
-                      </span>
-                    )}
                     {item.children && (
                       <ChevronDown
                         style={{ color: isOverHero ? '#ffffff' : undefined }}
@@ -254,59 +394,114 @@ export default function PortfoliteNav() {
                       } ${active ? 'scale-x-100' : 'scale-x-0'}`}
                     />
                   </Link>
-
-                  {/* Mega Dropdown for Multi-Child Menus */}
-                  <AnimatePresence>
-                    {item.children && isOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 8, scale: 0.99 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 8, scale: 0.99 }}
-                        transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                        className={`absolute ${alignClass} top-full pt-1.5 z-50 ${
-                          item.children.length > 5 ? 'w-[520px] xl:w-[580px]' : 'w-[280px] xl:w-[310px]'
-                        }`}
-                      >
-                        <div className="bg-white/95 backdrop-blur-2xl border border-white/60 shadow-[0_18px_50px_rgba(0,0,0,0.14)] rounded-2xl overflow-hidden text-black">
-                          {item.children.length > 5 ? (
-                            <>
-                              <div className="grid grid-cols-2 p-2 gap-1">
-                                <div className="space-y-0.5">
-                                  {item.children.slice(0, Math.ceil(item.children.length / 2)).map((c, i) => (
-                                    <DropLink key={c.to} c={c} i={i} onGo={() => setOpen(null)} />
-                                  ))}
-                                </div>
-                                <div className="space-y-0.5 border-l border-black/[0.06] pl-2">
-                                  {item.children.slice(Math.ceil(item.children.length / 2)).map((c, i) => (
-                                    <DropLink key={c.to} c={c} i={i + Math.ceil(item.children.length / 2)} onGo={() => setOpen(null)} />
-                                  ))}
-                                </div>
-                              </div>
-                              <div className="border-t border-black/[0.06] px-4 py-2.5 flex justify-end bg-white/40">
-                                <Link
-                                  to={item.to}
-                                  onClick={() => setOpen(null)}
-                                  className="font-sans text-xs tracking-[-0.01em] text-solar hover:text-[#c65a19] inline-flex items-center gap-1.5 font-semibold transition-colors"
-                                >
-                                  <span>Explore all {item.label}</span>
-                                  <ChevronRight className="w-3.5 h-3.5" />
-                                </Link>
-                              </div>
-                            </>
-                          ) : (
-                            <div className="p-2 space-y-0.5">
-                              {item.children.map((c, i) => (
-                                <DropLink key={c.to} c={c} i={i} onGo={() => setOpen(null)} />
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
                 </div>
               );
             })}
+
+            {/* ── Stripe-Style Morphing Floating Dropdown ── */}
+            {(() => {
+              const desktopNav = NAV.filter((item) => !item.hideOnDesktop);
+              const navWithChildren = desktopNav.filter((item) => Boolean(item.children));
+              const prevIdx = navWithChildren.findIndex((i) => i.label === prevOpen);
+              const curIdx = navWithChildren.findIndex((i) => i.label === open);
+              const direction = prevIdx !== -1 && curIdx !== -1 ? (curIdx > prevIdx ? 1 : -1) : 0;
+              const activeNav = navWithChildren.find((i) => i.label === open);
+
+              return (
+                <AnimatePresence>
+                  {open && activeNav && (
+                    <motion.div
+                      key="stripe-dropdown-panel"
+                      initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                      animate={{
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        x: coords.left,
+                      }}
+                      exit={{
+                        opacity: 0,
+                        y: 6,
+                        scale: 0.98,
+                        transition: { duration: 0.16 },
+                      }}
+                      transition={{
+                        x: { type: 'spring', stiffness: 380, damping: 34 },
+                        opacity: { duration: 0.18 },
+                        scale: { duration: 0.18 },
+                        y: { duration: 0.18 },
+                      }}
+                      className="absolute top-full pt-2 z-50 pointer-events-auto"
+                      style={{ left: 0 }}
+                      onMouseEnter={() => {
+                        if (closeTimer.current) window.clearTimeout(closeTimer.current);
+                      }}
+                      onMouseLeave={leave}
+                    >
+                      {/* Invisible hover bridge to eliminate gaps between navbar and panel */}
+                      <div className="absolute -top-3.5 inset-x-0 h-4 pointer-events-auto" />
+
+                      {/* Morphing Background Card */}
+                      <motion.div
+                        animate={{ width: coords.width }}
+                        transition={{ type: 'spring', stiffness: 380, damping: 34 }}
+                        className="relative z-20 overflow-hidden bg-white/98 backdrop-blur-2xl border border-black/10 shadow-[0_24px_70px_-15px_rgba(0,0,0,0.18),0_0_1px_1px_rgba(0,0,0,0.06)] rounded-2xl text-black"
+                      >
+                        {/* Direction-Aware Crossfading Content Pane */}
+                        <AnimatePresence mode="popLayout" custom={direction} initial={false}>
+                          <motion.div
+                            key={activeNav.label}
+                            custom={direction}
+                            variants={contentVariants}
+                            initial="enter"
+                            animate="center"
+                            exit="exit"
+                            className="w-full"
+                          >
+                            {(() => {
+                              const half = Math.ceil(activeNav.children!.length / 2);
+                              const col1 = activeNav.children!.slice(0, half);
+                              const col2 = activeNav.children!.slice(half);
+
+                              return (
+                                <>
+                                  <div className="p-3.5 sm:p-4">
+                                    <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+                                      <div className="space-y-1">
+                                        {col1.map((c) => (
+                                          <DropLink key={c.to} c={c} onGo={() => setOpen(null)} />
+                                        ))}
+                                      </div>
+                                      <div className="space-y-1">
+                                        {col2.map((c) => (
+                                          <DropLink key={c.to} c={c} onGo={() => setOpen(null)} />
+                                        ))}
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  {/* Stripe Tinted Bottom Bar */}
+                                  <div className="border-t border-black/[0.06] px-5 py-2.5 flex items-center justify-end bg-zinc-50/80">
+                                    <Link
+                                      to={activeNav.to}
+                                      onClick={() => setOpen(null)}
+                                      className="font-sans text-xs tracking-[-0.01em] text-solar hover:text-[#c65a19] inline-flex items-center gap-1.5 font-semibold transition-colors group"
+                                    >
+                                      <span>Explore all {activeNav.label}</span>
+                                      <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                                    </Link>
+                                  </div>
+                                </>
+                              );
+                            })()}
+                          </motion.div>
+                        </AnimatePresence>
+                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              );
+            })()}
           </nav>
 
           {/* Right Action CTA & Mobile Toggle */}
@@ -496,25 +691,28 @@ export default function PortfoliteNav() {
 
 function DropLink({
   c,
-  i,
   onGo,
 }: {
   c: { label: string; to: string; note?: string };
-  i: number;
   onGo: () => void;
 }) {
+  const Icon = getNavIcon(c.label);
+
   return (
     <Link
       to={c.to}
       onClick={onGo}
-      className="group flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-zinc-100/90 focus-visible:bg-zinc-100/90 transition-all duration-150"
+      className="group flex items-center justify-between gap-2.5 p-2 rounded-xl hover:bg-zinc-100/80 focus-visible:bg-zinc-100/80 transition-all duration-150"
     >
-      <span className="font-mono text-[11px] text-solar/80 w-5 shrink-0 font-medium">
-        {String(i + 1).padStart(2, '0')}
-      </span>
-      <span className="text-[13.5px] font-medium text-black group-hover:text-solar group-hover:translate-x-0.5 transition-all truncate">
-        {c.label}
-      </span>
+      <div className="flex items-center gap-2.5 min-w-0">
+        <div className="w-8 h-8 rounded-lg bg-zinc-100/90 border border-black/5 group-hover:bg-solar/15 group-hover:border-solar/30 text-zinc-700 group-hover:text-solar flex items-center justify-center transition-all duration-200 shrink-0">
+          <Icon className="w-4 h-4 transition-transform group-hover:scale-110" />
+        </div>
+        <span className="text-[13px] xl:text-[13.5px] font-semibold text-zinc-900 group-hover:text-solar transition-colors truncate">
+          {c.label}
+        </span>
+      </div>
+      <ChevronRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-solar group-hover:translate-x-0.5 transition-all opacity-0 group-hover:opacity-100 shrink-0" />
     </Link>
   );
 }

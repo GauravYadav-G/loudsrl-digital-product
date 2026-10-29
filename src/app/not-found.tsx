@@ -1,3 +1,5 @@
+'use client';
+
 import Link from '@/components/Link';
 import PortfoliteNav from '@/components/portfolite/PortfoliteNav';
 import PortfoliteFooter from '@/components/portfolite/PortfoliteFooter';

@@ -16,9 +16,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  experimental: {
-    optimizePackageImports: ['lucide-react'],
-  },
   headers: async () => [
     {
       source: '/fonts/(.*)',
