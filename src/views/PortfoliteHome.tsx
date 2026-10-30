@@ -44,10 +44,10 @@ export default function PortfoliteHome() {
       {/* Marquee of Enterprise & Industrial Clients */}
       <PortfoliteLogosMarquee />
 
-      {/* 3-Column Parallax Featured Case Studies Grid */}
-      <div className="cv-auto">
+      {/* 3-Column Parallax Featured Case Studies Grid (Hidden per user request) */}
+      {/* <div className="cv-auto">
         <PortfoliteProjectsGrid />
-      </div>
+      </div> */}
 
       {/* Services Bento Grid (Reference 6-Card Layout: Web Dev, Software Dev, SEO, Film, SMM, Digital Marketing) */}
       <div className="cv-auto">
