@@ -9,8 +9,8 @@ const WHY_US_ITEMS = [
     title: 'Direct access to specialist pods',
     sub: 'No sales gatekeepers, no runaround.',
     text: 'At ARKA, you collaborate directly with senior full-stack developers, UI architects, and technical SEO specialists. Decisions happen in minutes, not across email threads.',
-    img: '/_astro/why-direct-access.DJj_3vDy_2ilzqR.webp',
-    alt: 'Direct access to senior specialist engineering pods',
+    img: '/images/why-us/why-01-direct-access.webp',
+    alt: 'Direct access to senior specialist engineering pods collaborating on custom software development',
   },
   {
     num: '02',
@@ -18,8 +18,8 @@ const WHY_US_ITEMS = [
     title: '100% In-house engineering craft',
     sub: 'Zero outsourcing, 17+ years heritage.',
     text: 'Every line of code, UI system, CRM workflow, and cinematic asset is built under one roof in Sector 63, Noida. Over 850 executed projects and 600+ industrial clients delivered.',
-    img: '/_astro/why-portail-junca.C3vy8lcq_Z1IoLuu.webp',
-    alt: '100% in-house engineering and production craft',
+    img: '/images/why-us/why-02-in-house-craft.webp',
+    alt: '100% in-house engineering and production craft in modern Noida tech studio',
   },
   {
     num: '03',
@@ -27,8 +27,8 @@ const WHY_US_ITEMS = [
     title: 'High-performance architecture',
     sub: 'Sub-second speeds & headless freedom.',
     text: 'We engineer Next.js 15 platforms with 99+ Core Web Vitals, enterprise headless CMS integrations, and robust CRM/ERP pipelines with zero technical debt.',
-    img: '/_astro/why-no-code.CD2pE0cx_ZupfLj.webp',
-    alt: 'Modern high-performance enterprise architecture',
+    img: '/images/why-us/why-03-high-performance.webp',
+    alt: 'Modern high-performance enterprise Next.js software architecture and clean code',
   },
   {
     num: '04',
@@ -37,8 +37,8 @@ const WHY_US_ITEMS = [
     title: 'Transparent written ROI & SLAs',
     sub: 'Fixed scopes, verified milestones.',
     text: 'Clear deliverables, written timelines, and transparent ROI benchmarks before kick-off. No surprise invoices, no lock-in fees, and verified performance outcomes.',
-    img: '/_astro/why-responsive-team.CUOm7YkS_2rEQPE.webp',
-    alt: 'Transparent written ROI and verified milestone delivery',
+    img: '/images/why-us/why-04-roi-slas.webp',
+    alt: 'Transparent written ROI analytics, live performance tracking and verified milestone delivery',
   },
 ];
 
@@ -158,8 +158,8 @@ export default function WhyUsSection() {
                       alt={item.alt}
                       loading="lazy"
                       decoding="async"
-                      width="1400"
-                      height="897"
+                      width="1600"
+                      height="1000"
                     />
                   </figure>
                 </div>
