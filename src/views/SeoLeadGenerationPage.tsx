@@ -64,7 +64,7 @@ export default function SeoLeadGenerationPage() {
       tag: 'Organic Search & SEO',
       title: 'SEO Services',
       subtitle: 'Keyword cluster mapping, search intent analysis & high-authority white-hat link acquisition',
-      desc: 'Are you looking to grow your business? If so, then SEO (search engine optimization) should be an integral part of your marketing strategy. SEO is a process that helps your website rank higher in relevant search results on search engines like Google. This, in turn, increases the amount of qualified traffic that your website receives. At ARKA Technovation, we offer custom SEO campaigns that provide an all-in-one solution to SEO. When you partner with us for an SEO campaign, our full-time in-house team handles all aspects of SEO for you, from on-page optimization to off-page optimization to technical SEO, ensuring your most valuable audience can find you online with ease.',
+      desc: 'Are you looking to grow your business? If so, then SEO (search engine optimization) should be an integral part of your marketing strategy. SEO is a process that helps your website rank higher in relevant search results on search engines like Google. This, in turn, increases the amount of qualified traffic that your website receives. At ARKA Technovation Private Limited, we offer custom SEO campaigns that provide an all-in-one solution to SEO. When you partner with us for an SEO campaign, our full-time in-house team handles all aspects of SEO for you, from on-page optimization to off-page optimization to technical SEO, ensuring your most valuable audience can find you online with ease.',
       highlights: [
         'Comprehensive keyword research identifying high-intent commercial and transactional queries',
         'Full on-page optimization: titles, meta descriptions, H1/H2 header hierarchies, and internal linking',
@@ -94,7 +94,7 @@ export default function SeoLeadGenerationPage() {
       tag: 'Local Dominance',
       title: 'Local SEO Services',
       subtitle: 'Capturing high-intent local buyers in Noida, Delhi NCR & nationwide across Google 3-Pack',
-      desc: 'Here at ARKA Technovation, we are neighborhood search engine optimization experts. Over 46% of all Google searches have local intent, and we help your business appear at the exact moment nearby customers search for your products or services. Get an all-in-one local search solution with our fully-managed local SEO services: custom local SEO strategy, professional campaign implementation, Google Business Profile management, and consistent directory citations that power calls and qualified store visits.',
+      desc: 'Here at ARKA Technovation Private Limited, we are neighborhood search engine optimization experts. Over 46% of all Google searches have local intent, and we help your business appear at the exact moment nearby customers search for your products or services. Get an all-in-one local search solution with our fully-managed local SEO services: custom local SEO strategy, professional campaign implementation, Google Business Profile management, and consistent directory citations that power calls and qualified store visits.',
       highlights: [
         'Google Business Profile (GBP) complete verification, weekly geotagged updates, and Category optimization',
         'Consistent NAP (Name, Address, Phone) citations across 70+ verified local and industry directories',
@@ -109,7 +109,7 @@ export default function SeoLeadGenerationPage() {
       tag: 'Google Guaranteed (LSA)',
       title: 'Google Local Services Ads Management',
       subtitle: 'Pay-per-qualified-lead model with green Google Guaranteed trust badge at the top of search',
-      desc: 'More than half of online searchers visit a business within 24 hours of conducting a local search. With Google Local Services Ads (LSA), you can show up at the very top of Google search results—even above standard PPC ads—with the green Google Guaranteed badge. You only pay for valid phone calls and inquiries from real prospective customers. ARKA Technovation guides your team through the entire Google Guaranteed verification process, license checks, and background reviews from start to finish.',
+      desc: 'More than half of online searchers visit a business within 24 hours of conducting a local search. With Google Local Services Ads (LSA), you can show up at the very top of Google search results—even above standard PPC ads—with the green Google Guaranteed badge. You only pay for valid phone calls and inquiries from real prospective customers. ARKA Technovation Private Limited guides your team through the entire Google Guaranteed verification process, license checks, and background reviews from start to finish.',
       highlights: [
         'Complete Google Guaranteed application, background check guidance, and badge approval',
         'Ad setup, service area zoning, and category configuration tailored to your target markets',
@@ -124,7 +124,7 @@ export default function SeoLeadGenerationPage() {
       tag: 'Technical Health',
       title: 'SEO Audits',
       subtitle: 'Deep 150+ point architectural diagnosis to eliminate crawl traps and indexation blocks',
-      desc: 'Our website SEO audit services begin with an overall analysis of your website codebase and analytics telemetry to assess what action is needed to best optimize for search engines. Based on this 150+ point diagnostic analysis, ARKA Technovation provides actionable recommendations and direct technical implementations to eliminate crawl traps, fix broken links, resolve duplicate content, and ensure search engine spiders index your commercial pages without friction.',
+      desc: 'Our website SEO audit services begin with an overall analysis of your website codebase and analytics telemetry to assess what action is needed to best optimize for search engines. Based on this 150+ point diagnostic analysis, ARKA Technovation Private Limited provides actionable recommendations and direct technical implementations to eliminate crawl traps, fix broken links, resolve duplicate content, and ensure search engine spiders index your commercial pages without friction.',
       highlights: [
         'Detection and resolution of duplicate content, thin pages, and canonical tag conflicts',
         'Meta title, description, and OpenGraph audit across every indexed URL',
@@ -158,7 +158,7 @@ export default function SeoLeadGenerationPage() {
       tag: 'Search Engine Advertising',
       title: 'PPC Management Services',
       subtitle: 'High-ROAS Google Search, Display, and Performance Max campaigns with negative keyword harvesting',
-      desc: 'At ARKA Technovation, we believe that our technology-powered PPC services are the key to unlocking a powerful advertising duo: deep technical experience and real-time bid data. With our dedicated in-house performance marketing specialists and billions of data points that power our marketing efforts, your business can launch smarter, higher-ROAS Google Search, Display, and Performance Max campaigns that turn clicks into paying clients.',
+      desc: 'At ARKA Technovation Private Limited, we believe that our technology-powered PPC services are the key to unlocking a powerful advertising duo: deep technical experience and real-time bid data. With our dedicated in-house performance marketing specialists and billions of data points that power our marketing efforts, your business can launch smarter, higher-ROAS Google Search, Display, and Performance Max campaigns that turn clicks into paying clients.',
       highlights: [
         'Granular single-keyword ad groups (SKAGs) and intent-tiered campaign structure for maximum Quality Score',
         'Continuous negative keyword harvesting to eliminate wasted ad spend on irrelevant searches',
@@ -188,7 +188,7 @@ export default function SeoLeadGenerationPage() {
       tag: 'Real-Time Bidding',
       title: 'Programmatic Advertising Services',
       subtitle: 'Automated machine-learning ad exchanges, lookalike modeling & fraud-free impressions',
-      desc: 'Online advertising shouldn\'t be a painful, fragmented process. ARKA Technovation offers programmatic advertising services to take the hassle out of digital media buying. Harness machine-learning ad exchanges to buy premium impressions in real-time across thousands of authoritative publisher websites, targeting your most profitable audience segments with custom lookalike modeling, strict brand-safety controls, and click-fraud elimination.',
+      desc: 'Online advertising shouldn\'t be a painful, fragmented process. ARKA Technovation Private Limited offers programmatic advertising services to take the hassle out of digital media buying. Harness machine-learning ad exchanges to buy premium impressions in real-time across thousands of authoritative publisher websites, targeting your most profitable audience segments with custom lookalike modeling, strict brand-safety controls, and click-fraud elimination.',
       highlights: [
         'Real-time bidding (RTB) across Google Ad Manager, AppNexus, OpenX, and premium ad exchanges',
         'Audience lookalike modeling based on your highest-value customer segments and buying patterns',
@@ -203,7 +203,7 @@ export default function SeoLeadGenerationPage() {
       tag: 'Precision Geofencing',
       title: 'Competitor Geofencing Services',
       subtitle: 'Hyper-targeted mobile advertising down to 1,000 square foot boundaries around rival locations',
-      desc: 'Precision is key for successful digital advertising campaigns. By using geofencing technology, ARKA Technovation targets custom audiences and physical locations with pinpoint accuracy. Draw razor-sharp virtual boundaries down to 1,000 square feet around competitor locations, industry trade shows, and commercial hubs to deliver ads directly to prospects visiting those premises, capturing high-intent footfall and driving higher ROI.',
+      desc: 'Precision is key for successful digital advertising campaigns. By using geofencing technology, ARKA Technovation Private Limited targets custom audiences and physical locations with pinpoint accuracy. Draw razor-sharp virtual boundaries down to 1,000 square feet around competitor locations, industry trade shows, and commercial hubs to deliver ads directly to prospects visiting those premises, capturing high-intent footfall and driving higher ROI.',
       highlights: [
         '1,000 sq ft precision geofences drawn around competitor facilities, showrooms, and commercial centers',
         'Event geofencing targeting attendees at national industry conferences and trade exhibitions',
@@ -233,7 +233,7 @@ export default function SeoLeadGenerationPage() {
       tag: 'Talent Acquisition',
       title: 'Employment & Recruiting Marketing',
       subtitle: 'Attracting top-tier passive executives, engineers, and specialists via digital recruitment ads',
-      desc: 'If you want to recruit the best candidates for your open positions, you need to use digital recruitment marketing services. Potential candidates rely heavily on digital platforms to find their dream jobs. ARKA Technovation crafts digital recruitment marketing campaigns that shape your employer brand, target passive skilled engineers, executives, and specialists on LinkedIn and niche portals, and fill critical hiring pipelines with top-tier talent.',
+      desc: 'If you want to recruit the best candidates for your open positions, you need to use digital recruitment marketing services. Potential candidates rely heavily on digital platforms to find their dream jobs. ARKA Technovation Private Limited crafts digital recruitment marketing campaigns that shape your employer brand, target passive skilled engineers, executives, and specialists on LinkedIn and niche portals, and fill critical hiring pipelines with top-tier talent.',
       highlights: [
         'Targeted recruitment advertising on LinkedIn, Google Search, and specialized industry job boards',
         'Employer branding video production and career portal landing page optimization',
@@ -252,7 +252,7 @@ export default function SeoLeadGenerationPage() {
       tag: 'Paid Social Funnels',
       title: 'Social Media Advertising',
       subtitle: 'High-impact paid campaigns across Meta, LinkedIn, and X with native lead capture',
-      desc: 'Social media advertising services are a key part of any modern marketing strategy. With ever-changing algorithms, businesses need diversified strategies to reach the right buyers at the right time. ARKA Technovation designs, launches, and manages high-converting paid social campaigns across Meta (Facebook & Instagram), LinkedIn, and X, leveraging demographic, firmographic, and behavioral targeting to drive qualified leads.',
+      desc: 'Social media advertising services are a key part of any modern marketing strategy. With ever-changing algorithms, businesses need diversified strategies to reach the right buyers at the right time. ARKA Technovation Private Limited designs, launches, and manages high-converting paid social campaigns across Meta (Facebook & Instagram), LinkedIn, and X, leveraging demographic, firmographic, and behavioral targeting to drive qualified leads.',
       highlights: [
         'Granular demographic and behavioral targeting connecting with active buyers and decision-makers',
         'Lead Generation forms embedded natively within social apps for frictionless contact capture',
@@ -297,7 +297,7 @@ export default function SeoLeadGenerationPage() {
       tag: 'YouTube Cinema Ads',
       title: 'YouTube Social Media Advertising',
       subtitle: 'Broadcast-quality video production, in-stream skippable ads & search attribution',
-      desc: 'YouTube is the world\'s second-largest search engine, with billions of hours of video watched daily. As a full-service YouTube advertising agency with in-house cinema production capabilities, ARKA Technovation provides everything your business needs to advertise on YouTube—from scripting and filming commercial-grade video ads to building targeted campaigns that capture ready-to-buy prospects.',
+      desc: 'YouTube is the world\'s second-largest search engine, with billions of hours of video watched daily. As a full-service YouTube advertising agency with in-house cinema production capabilities, ARKA Technovation Private Limited provides everything your business needs to advertise on YouTube—from scripting and filming commercial-grade video ads to building targeted campaigns that capture ready-to-buy prospects.',
       highlights: [
         'Skippable in-stream, non-skippable, bumper, and YouTube Shorts video ad campaign management',
         'Precision contextual targeting placing ads before relevant industry tutorials and competitor reviews',
@@ -312,7 +312,7 @@ export default function SeoLeadGenerationPage() {
       tag: 'Reputation Engineering',
       title: 'Online Review Acceleration',
       subtitle: 'Building overwhelming digital trust, 5-star customer proof, and SERP review schema',
-      desc: 'Our review acceleration and reputation management packages help you build overwhelming social proof. Over 92% of buyers read online reviews before purchasing, making customer feedback critical to your commercial success. ARKA Technovation deploys automated review request workflows via SMS and email, captures client feedback post-transaction, and showcases verified 5-star ratings on Google Maps, Trustpilot, and Clutch.',
+      desc: 'Our review acceleration and reputation management packages help you build overwhelming social proof. Over 92% of buyers read online reviews before purchasing, making customer feedback critical to your commercial success. ARKA Technovation Private Limited deploys automated review request workflows via SMS and email, captures client feedback post-transaction, and showcases verified 5-star ratings on Google Maps, Trustpilot, and Clutch.',
       highlights: [
         'Automated SMS and email review requests triggered following client milestone completions',
         'Smart review funnels directing satisfied clients to Google Maps, Clutch, and industry review sites',
@@ -331,7 +331,7 @@ export default function SeoLeadGenerationPage() {
       tag: 'Performance Benchmarks',
       title: 'Our SEO Results',
       subtitle: 'Computing confirmed client income from qualified leads, calls, and organic transactions',
-      desc: 'At ARKA Technovation, we compute client income generated from confirmed qualified leads, inbound phone calls, and e-commerce transactions across the search and advertising campaigns we manage. Our data-driven results deliver measurable pipeline expansion, lower cost-per-acquisition (CPA), and sustainable commercial growth that compounds over months and years.',
+      desc: 'At ARKA Technovation Private Limited, we compute client income generated from confirmed qualified leads, inbound phone calls, and e-commerce transactions across the search and advertising campaigns we manage. Our data-driven results deliver measurable pipeline expansion, lower cost-per-acquisition (CPA), and sustainable commercial growth that compounds over months and years.',
       highlights: [
         '+210% average organic traffic lift across enterprise client portfolios within 6 months',
         '4.8× verified client pipeline return on advertising spend (ROAS) across paid search and social',
@@ -431,11 +431,11 @@ export default function SeoLeadGenerationPage() {
       a: 'Standard radius targeting casts a wide net around an entire city or postal code. Competitor Geofencing draws razor-sharp virtual boundaries down to 1,000 square feet around specific competitor buildings or convention halls. Addressable Geofencing takes a street-level list of client addresses and matches mobile advertising IDs to deliver ads directly to those exact households.',
     },
     {
-      q: 'How does ARKA Technovation handle Google Guaranteed and Local Services Ads?',
+      q: 'How does ARKA Technovation Private Limited handle Google Guaranteed and Local Services Ads?',
       a: 'We guide your company through the entire Google Guaranteed verification process, including background checks, license verification, and insurance compliance. Once approved, your business displays the green Google Guaranteed badge at the very top of local search results, and you only pay for valid phone inquiries.',
     },
     {
-      q: 'Does ARKA Technovation outsource any SEO, paid media, or content development?',
+      q: 'Does ARKA Technovation Private Limited outsource any SEO, paid media, or content development?',
       a: 'No. Every technical audit, schema implementation, keyword strategy, and copywriting piece is executed by our full-time, in-house team located at our Corporate Headquarters in Sector 63, Noida. We believe in 100% direct accountability.',
     },
   ];
@@ -481,9 +481,9 @@ export default function SeoLeadGenerationPage() {
       </section>
 
       {/* ── Category Filter Tabs Segmented Dock with Spring Physics Animation ── */}
-      <section className="py-2.5 sm:py-4 border-b border-black/5 bg-white/90 sticky top-[64px] sm:top-[78px] z-30 backdrop-blur-md">
-        <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-start md:justify-center overflow-x-auto scrollbar-none py-1">
-          <div className="inline-flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-full bg-zinc-100/90 border border-black/8 shadow-[inset_0_1px_2px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.04)] relative shrink-0">
+      <section className="py-2 border-b border-black/5 bg-white/90 sticky top-[64px] sm:top-[78px] z-30 backdrop-blur-md">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-start md:justify-center overflow-x-auto scrollbar-none py-0.5">
+          <div className="segmented-dock inline-flex items-center gap-1 p-1 rounded-full bg-zinc-100/90 border border-black/8 shadow-[inset_0_1px_2px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.04)] relative shrink-0">
             {[
               { key: 'all' as CategoryType, label: 'All Capabilities', count: 23, icon: Layers },
               { key: 'organic' as CategoryType, label: 'Organic Search', count: 6, icon: Search },
@@ -498,13 +498,14 @@ export default function SeoLeadGenerationPage() {
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
                   whileTap={{ scale: 0.96 }}
-                  className="group relative shrink-0 pl-3.5 sm:pl-4.5 pr-3 sm:pr-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 flex items-center gap-2 whitespace-nowrap focus:outline-none select-none cursor-pointer"
+                  data-dock-btn
+                  className="segmented-dock-btn group relative shrink-0 pl-3 pr-2.5 py-1.5 rounded-full text-xs font-medium transition-colors duration-200 flex items-center gap-1.5 whitespace-nowrap focus:outline-none select-none cursor-pointer"
                 >
                   {/* Sliding active background pill */}
                   {active && (
                     <motion.div
                       layoutId="seoTabActiveIndicator"
-                      className="absolute inset-0 bg-black rounded-full shadow-md shadow-black/20"
+                      className="absolute inset-0 bg-black rounded-full shadow-sm shadow-black/20"
                       transition={{
                         type: 'spring',
                         stiffness: 450,
@@ -515,14 +516,14 @@ export default function SeoLeadGenerationPage() {
 
                   {/* Tab Icon */}
                   <Icon
-                    className={`relative z-10 w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 transition-colors duration-200 ${
+                    className={`relative z-10 w-3.5 h-3.5 shrink-0 transition-colors duration-200 ${
                       active ? 'text-white' : 'text-zinc-500 group-hover:text-black'
                     }`}
                   />
 
                   {/* Tab Label */}
                   <span
-                    className={`relative z-10 font-semibold tracking-tight transition-colors duration-200 ${
+                    className={`relative z-10 font-semibold tracking-tight transition-colors duration-200 text-xs sm:text-[13px] ${
                       active ? 'text-white' : 'text-zinc-600 group-hover:text-black'
                     }`}
                   >
@@ -531,7 +532,7 @@ export default function SeoLeadGenerationPage() {
 
                   {/* Tab Count Pill */}
                   <span
-                    className={`relative z-10 px-2 py-0.5 rounded-full text-[10px] font-mono tracking-tight font-bold shrink-0 transition-colors duration-200 ${
+                    className={`relative z-10 px-1.5 py-0.2 min-w-[18px] rounded-full text-[10px] font-mono tracking-tight font-bold shrink-0 transition-colors duration-200 inline-flex items-center justify-center ${
                       active
                         ? 'bg-white/20 text-white'
                         : 'bg-black/5 text-zinc-500 group-hover:bg-black/10 group-hover:text-black'
@@ -683,14 +684,14 @@ export default function SeoLeadGenerationPage() {
 
       {/* ── Consultation CTA Strip ── */}
       <section className="py-20 bg-zinc-950 text-white border-t border-black">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
+          <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold text-center">
             Schedule a Confidential Consultation
           </span>
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mt-4 max-w-3xl mx-auto">
+          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mt-4 max-w-3xl !mx-auto text-center" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
             Ready to Dominate Search &amp; Accelerate Pipeline Revenue?
           </h2>
-          <p className="mt-4 text-zinc-400 max-w-2xl mx-auto text-base sm:text-lg font-light leading-relaxed">
+          <p className="mt-4 text-zinc-400 max-w-2xl !mx-auto text-base sm:text-lg font-light leading-relaxed text-center" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
             Connect directly with senior SEO architects and performance media specialists at our Noida Headquarters. We review your existing domain telemetry and deliver a transparent proposal within 48 hours.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">

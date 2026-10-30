@@ -22,7 +22,7 @@ export function renderHeader(currentPath = '/') {
   const leftHtml = isHome
     ? `
       <a href="/" class="brand-wrapper cursor-link" id="brand-logo-link" data-cursor="ARKA HOME" style="display:flex;align-items:center;">
-        <img src="/images/logo/arka-logo-black.png" alt="ARKA Technovation" style="height:64px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.5));" />
+        <img src="/images/logo/arka-logo-black.png" alt="ARKA Technovation Private Limited" style="height:64px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.5));" />
       </a>
     `
     : `

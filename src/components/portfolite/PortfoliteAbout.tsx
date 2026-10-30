@@ -36,14 +36,8 @@ export default function PortfoliteAbout() {
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Left Column (Clean Framer Editorial Layout) */}
           <div className="lg:col-span-7 flex flex-col items-start">
-            {/* Pill Tag */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 border border-black/10 text-xs font-medium text-zinc-700 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-solar" />
-              <span>Who We Are · Founded by Kranti Parashar</span>
-            </div>
-
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-black leading-[1.08]">
-              Meet ARKA
+              Meet Founder
             </h2>
 
             <p className="mt-6 text-zinc-600 text-sm sm:text-base font-light leading-relaxed max-w-xl">
@@ -84,8 +78,8 @@ export default function PortfoliteAbout() {
           <div className="lg:col-span-5">
             <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-black/12 bg-zinc-100 aspect-[4/4.8] sm:aspect-[4/5] shadow-xl group">
               <img
-                src="/portfolite/kranti-parashar.jpg"
-                alt="Mr. Kranti Parashar — Founder & Director, ARKA Technovation"
+                src="/portfolite/kranti-parashar.webp"
+                alt="Mr. Kranti Parashar — Founder & Director, ARKA Technovation Private Limited"
                 loading="lazy"
                 decoding="async"
                 width="768"
@@ -97,7 +91,7 @@ export default function PortfoliteAbout() {
               <div className="absolute bottom-6 inset-x-6 flex items-end justify-between z-10">
                 <div>
                   <p className="text-white font-bold text-base sm:text-lg">Mr. Kranti Parashar</p>
-                  <p className="text-zinc-300 text-xs">Founder &amp; Director · ARKA Technovation</p>
+                  <p className="text-zinc-300 text-xs">Founder &amp; Director · ARKA Technovation Private Limited</p>
                   <p className="text-zinc-400 text-[11px] mt-0.5">Sector 63, Noida (Delhi NCR)</p>
                 </div>
                 <div className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-[11px] font-semibold">

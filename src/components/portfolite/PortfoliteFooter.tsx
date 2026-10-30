@@ -16,6 +16,7 @@ import { PRESETS, PRESET_NAMES, PRESET_ACCENTS } from '../LiquidBackground';
 function ThemeTesterButton() {
   const [currentPreset, setCurrentPreset] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -34,10 +35,24 @@ function ThemeTesterButton() {
         }
       };
 
+      const handleKeyDown = (e: KeyboardEvent) => {
+        // Toggle theme tester visibility with Shift + 0
+        if (e.shiftKey && (e.key === '0' || e.code === 'Digit0' || e.code === 'Numpad0' || e.key === ')')) {
+          e.preventDefault();
+          setIsVisible((prev) => !prev);
+        }
+      };
+
+      window.addEventListener('keydown', handleKeyDown);
       window.addEventListener('arka:theme-change', handleThemeChange);
-      return () => window.removeEventListener('arka:theme-change', handleThemeChange);
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+        window.removeEventListener('arka:theme-change', handleThemeChange);
+      };
     }
   }, []);
+
+  if (!isVisible) return null;
 
   const selectTheme = (index: number) => {
     setCurrentPreset(index);
@@ -178,17 +193,19 @@ export default function PortfoliteFooter() {
         </div>
       </div>
 
-      {/* ── 5-Column Navigation Grid ── */}
-      <div className="xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 py-14 grid sm:grid-cols-2 lg:grid-cols-5 gap-10 text-[13.5px]">
+      {/* ── 5-Column Navigation Grid (2x Grid on Mobile, 5-Column on Desktop) ── */}
+      <div className="xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 py-10 sm:py-14 grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-10 sm:gap-10 text-[13.5px]">
         {/* Col 1 & 2: Brand Heritage & Spin Logo */}
-        <div className="lg:col-span-2 space-y-6">
-          <Link to="/" className="inline-flex items-center group cursor-pointer" aria-label="ARKA Technovation">
+        <div className="col-span-2 lg:col-span-2 space-y-6">
+          <Link to="/" className="inline-flex items-center group cursor-pointer" aria-label="ARKA Technovation Private Limited">
             <img
-              src="/images/logo/arka-logo-black.png"
-              alt="ARKA Technovation"
+              src="/images/logo/arka-logo-black.webp"
+              alt="ARKA Technovation Private Limited"
+              loading="lazy"
+              decoding="async"
               width={340}
               height={112}
-              className="h-20 sm:h-24 md:h-28 w-auto max-w-[340px] sm:max-w-[420px] object-contain transition-all duration-300 group-hover:scale-105 drop-shadow-[0_4px_12px_rgba(0,0,0,0.06)]"
+              className="h-16 sm:h-24 md:h-28 w-auto max-w-[280px] sm:max-w-[420px] object-contain transition-all duration-300 group-hover:scale-105 drop-shadow-[0_4px_12px_rgba(0,0,0,0.06)]"
             />
           </Link>
 
@@ -216,7 +233,7 @@ export default function PortfoliteFooter() {
         </div>
 
         {/* Col 3: Useful Links */}
-        <div>
+        <div className="col-span-1">
           <p className="mono text-[0.62rem] tracking-[0.24em] uppercase text-zinc-500 mb-5 font-semibold">
             Useful Links
           </p>
@@ -241,7 +258,7 @@ export default function PortfoliteFooter() {
         </div>
 
         {/* Col 4: Services */}
-        <div>
+        <div className="col-span-1 pl-5 sm:pl-8 lg:pl-0">
           <p className="mono text-[0.62rem] tracking-[0.24em] uppercase text-zinc-500 mb-5 font-semibold">
             Services
           </p>
@@ -260,50 +277,52 @@ export default function PortfoliteFooter() {
         </div>
 
         {/* Col 5: Location & Contact */}
-        <div>
+        <div className="col-span-2 sm:col-span-1 lg:col-span-1">
           <p className="mono text-[0.62rem] tracking-[0.24em] uppercase text-zinc-500 mb-5 font-semibold">
             Contact Details
           </p>
-          <ul className="space-y-4 text-xs">
-            {OFFICES.map((o) => (
-              <li key={o.city}>
-                <p className="mono text-[0.55rem] tracking-[0.18em] uppercase text-[#B84E12] font-semibold">
-                  {o.label}
-                </p>
-                <p className="mt-1 text-zinc-700 leading-relaxed font-normal">
-                  {o.lines.map((l) => (
-                    <span key={l} className="block">{l}</span>
-                  ))}
-                </p>
-              </li>
-            ))}
-            <li className="pt-1">
+          <div className="grid grid-cols-2 sm:grid-cols-1 gap-6 sm:gap-4 text-xs">
+            <div>
+              {OFFICES.map((o) => (
+                <div key={o.city}>
+                  <p className="mono text-[0.55rem] tracking-[0.18em] uppercase text-[#B84E12] font-semibold">
+                    {o.label}
+                  </p>
+                  <p className="mt-1 text-zinc-700 leading-relaxed font-normal">
+                    {o.lines.map((l) => (
+                      <span key={l} className="block">{l}</span>
+                    ))}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="space-y-2">
               <a
                 href={`mailto:${COMPANY.email}`}
                 className="text-zinc-900 hover:text-solar transition-colors block font-mono text-xs break-all font-medium"
               >
                 {COMPANY.email}
               </a>
-            </li>
-            <li className="space-y-1">
-              {COMPANY.phones.slice(0, 2).map((p) => (
-                <a
-                  key={p}
-                  href={`tel:${p.replace(/\s/g, '')}`}
-                  className="block text-zinc-900 hover:text-solar transition-colors font-mono text-xs font-medium"
-                >
-                  {p}
-                </a>
-              ))}
-            </li>
-          </ul>
+              <div className="space-y-1">
+                {COMPANY.phones.slice(0, 2).map((p) => (
+                  <a
+                    key={p}
+                    href={`tel:${p.replace(/\s/g, '')}`}
+                    className="block text-zinc-900 hover:text-solar transition-colors font-mono text-xs font-medium"
+                  >
+                    {p}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* ── Legal Band & Interactive Theme Tester ── */}
-      <div className="border-t border-zinc-200 relative z-20">
+      <div className="border-t border-zinc-200 relative z-20 bg-white">
         <div className="xl:max-w-[1280px] xl:mx-auto px-4 lg:px-10 py-6 flex flex-col lg:flex-row justify-between items-center gap-4">
-          <div className="flex flex-col sm:flex-row items-center gap-3 mono text-[0.58rem] tracking-[0.14em] uppercase text-zinc-500 font-medium">
+          <div className="flex flex-col sm:flex-row items-center gap-3 mono text-[0.58rem] tracking-[0.14em] uppercase text-zinc-600 font-medium">
             <span>© 2026 {COMPANY.name}. All rights reserved.</span>
           </div>
 
@@ -312,7 +331,7 @@ export default function PortfoliteFooter() {
             <ThemeTesterButton />
           </div>
 
-          <div className="flex items-center gap-5 mono text-[0.58rem] tracking-[0.14em] uppercase text-zinc-500 font-medium">
+          <div className="flex items-center gap-5 mono text-[0.58rem] tracking-[0.14em] uppercase text-zinc-600 font-medium">
             <Link to="/contact" className="hover:text-[#09090B] transition-colors">Support SLA</Link>
             <a href="#" className="hover:text-[#09090B] transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-[#09090B] transition-colors">Terms</a>

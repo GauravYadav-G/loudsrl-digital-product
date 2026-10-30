@@ -44,7 +44,6 @@ import {
   Users,
   Briefcase,
   HeartHandshake,
-  CircleDollarSign,
   ArrowUpRight,
 } from 'lucide-react';
 import { NAV, COMPANY } from '../../lib/data';
@@ -88,7 +87,6 @@ const getNavIcon = (label: string) => {
     case 'Leadership & Specialist Pods': return Users;
     case 'Featured Client Work': return Briefcase;
     case 'Careers at ARKA': return HeartHandshake;
-    case 'Pricing Transparency & ROI': return CircleDollarSign;
     default: return ArrowUpRight;
   }
 };
@@ -296,11 +294,11 @@ export default function PortfoliteNav() {
           {/* ── Main Edge-to-Edge Navigation Bar ── */}
           <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-6 xl:px-8 h-[70px] sm:h-[78px] flex items-center justify-between gap-2 lg:gap-4 xl:gap-6">
             {/* Official ARKA Technovation Logo: Zero-lag preloaded crossfade between white and black logos */}
-            <Link to="/" className="relative flex items-center group cursor-pointer shrink-0 py-1" aria-label="ARKA Technovation Home">
+            <Link to="/" className="relative flex items-center group cursor-pointer shrink-0 py-1" aria-label="ARKA Technovation Private Limited Home">
               <div className="relative h-10 sm:h-12 lg:h-[46px] w-[150px] sm:w-[175px] lg:w-[190px] xl:w-[215px]">
                 <img
                   src="/images/logo/arka-logo-white.webp"
-                  alt="ARKA Technovation"
+                  alt="ARKA Technovation Private Limited"
                   loading="eager"
                   fetchPriority="high"
                   decoding="sync"
@@ -312,7 +310,7 @@ export default function PortfoliteNav() {
                 />
                 <img
                   src="/images/logo/arka-logo-black.webp"
-                  alt="ARKA Technovation"
+                  alt="ARKA Technovation Private Limited"
                   loading="lazy"
                   decoding="async"
                   width={215}
@@ -576,10 +574,12 @@ export default function PortfoliteNav() {
               className="fixed inset-y-0 right-0 w-full max-w-sm bg-white/98 backdrop-blur-2xl z-[950] border-l border-black/[0.08] shadow-2xl flex flex-col xl:hidden text-black font-sans"
             >
               <div className="h-[70px] sm:h-[80px] px-5 flex items-center justify-between border-b border-black/8">
-                <Link to="/" onClick={() => setMobile(false)} className="flex items-center" aria-label="ARKA Technovation">
+                <Link to="/" onClick={() => setMobile(false)} className="flex items-center" aria-label="ARKA Technovation Private Limited">
                   <img
-                    src="/images/logo/arka-logo-black.png"
-                    alt="ARKA Technovation"
+                    src="/images/logo/arka-logo-black.webp"
+                    alt="ARKA Technovation Private Limited"
+                    loading="lazy"
+                    decoding="async"
                     width={240}
                     height={48}
                     className="h-11 sm:h-13 w-auto max-w-[240px] object-contain"

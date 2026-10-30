@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     canonical: '/who-we-are',
   },
   openGraph: {
-    title: 'Who We Are — Heritage & Leadership | ARKA Technovation',
+    title: 'Who We Are — Heritage & Leadership | ARKA Technovation Private Limited',
     description:
       'Learn about our 15+ year history, founder Mr. Kranti Parashar, our Centralized Content Library, and our 100% in-house execution pods in Sector 63, Noida.',
     url: '/who-we-are',

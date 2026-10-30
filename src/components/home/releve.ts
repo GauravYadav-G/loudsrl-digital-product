@@ -117,16 +117,16 @@ void main() {
   gl_Position = uProj * view;
   float d = max(1.0, -view.z);
 
-  float on = smoothstep(aGrid.z, aGrid.z + 0.06, uDensity);
+  float on = smoothstep(aGrid.z, aGrid.z + 0.03, uDensity);
   float bande = exp(-pow((aGrid.y - uScan) * 22.0, 2.0));
   float niv = fract(h * 1.4);
   float courbe = smoothstep(0.07, 0.0, min(niv, 1.0 - niv));
 
   vRed = bande;
-  vAlpha = clamp(on * (0.42 + 0.45 * ombre + 0.65 * courbe) + bande * 0.85, 0.22, 1.0);
+  vAlpha = clamp(on * (0.50 + 0.50 * ombre + 0.70 * courbe) + bande * 0.85, 0.30, 1.0);
   
-  // High-visibility crisp particle dot size calibrated for 120 FPS
-  gl_PointSize = clamp(uDpr * 19.5 / d, 3.2, 6.0) * (1.0 + bande * 0.5);
+  // High-visibility crisp particle dot size calibrated for ultra-dense topography
+  gl_PointSize = clamp(uDpr * 17.5 / d, 2.4, 5.0) * (1.0 + bande * 0.5);
 }`;
 
   const fragShaderSrc = `#version 300 es
@@ -137,7 +137,7 @@ uniform vec3 uInk, uRed;
 out vec4 o;
 void main() {
   float r = length(gl_PointCoord - 0.5);
-  float a = smoothstep(0.5, 0.15, r) * vAlpha;
+  float a = smoothstep(0.5, 0.12, r) * vAlpha;
   if (a < 0.01) discard;
   vec3 c = mix(uInk, uRed, clamp(vRed * 1.8, 0.0, 1.0));
   o = vec4(c, a);
@@ -153,9 +153,9 @@ void main() {
   gl.linkProgram(prog);
   if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return null;
 
-  // High-performance calibrated particle grid (18,700 particles for smooth 60/120 FPS on all laptops)
-  const rows = 110;
-  const cols = 170;
+  // Ultra-dense particle grid (138,000 points for exceptionally rich, detailed wave topography)
+  const rows = 300;
+  const cols = 460;
   const numPoints = rows * cols;
   const gridData = new Float32Array(numPoints * 3);
   let fIdx = 0;
@@ -168,7 +168,7 @@ void main() {
   for (let e = 0; e < rows; e++) {
     for (let t = 0; t < cols; t++) {
       gridData[fIdx++] = -1 + 2 * (t + rand()) / cols;
-      gridData[fIdx++] = ((e + rand()) / rows) ** 1.2;
+      gridData[fIdx++] = ((e + rand()) / rows) ** 1.15;
       gridData[fIdx++] = rand();
     }
   }
@@ -200,11 +200,11 @@ void main() {
   gl.enable(gl.BLEND);
   gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
-  const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
   const viewMatrix = makeView([0, 6.2, 0], [0, 0.4, -18]);
 
-  let curDensity = 0.7;
-  let targetDensity = 0.7;
+  let curDensity = 1.0;
+  let targetDensity = 1.0;
   let scanPos = -1;
   let scanDir = 1;
   let curTime = 0;
@@ -281,7 +281,7 @@ void main() {
       if (step === activeStep) return;
       const prev = activeStep;
       activeStep = step;
-      targetDensity = 0.65 + (0.35 * step) / Math.max(1, total - 1);
+      targetDensity = 0.95 + (0.05 * step) / Math.max(1, total - 1);
 
       if (reduce) {
         curDensity = targetDensity;

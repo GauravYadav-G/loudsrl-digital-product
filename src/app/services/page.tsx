@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     canonical: '/services',
   },
   openGraph: {
-    title: 'Enterprise Services & Capabilities | ARKA Technovation',
+    title: 'Enterprise Services & Capabilities | ARKA Technovation Private Limited',
     description:
       'Explore our full suite of digital engineering, search authority, software development, and media production services.',
     url: '/services',

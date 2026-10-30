@@ -7,15 +7,16 @@ const BASE_URL = 'https://arkatechnovation.com';
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'ARKA Technovation — Digital Products, Software & Growth',
-    template: '%s | ARKA Technovation',
+    default: 'ARKA Technovation Private Limited — Digital Products, Software & Growth',
+    template: '%s | ARKA Technovation Private Limited',
   },
   description:
-    'ARKA Technovation designs and builds enterprise software, high-performance web platforms, and growth systems for ambitious brands. Corporate HQ in Sector 63, Noida.',
+    'ARKA Technovation Private Limited designs and builds enterprise software, high-performance web platforms, and growth systems for ambitious brands. Corporate HQ in Sector 63, Noida.',
   alternates: {
     canonical: '/',
   },
   keywords: [
+    'ARKA Technovation Private Limited',
     'ARKA Technovation',
     'Enterprise Software Development',
     'SEO & Lead Generation',
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     'Next.js Web Applications',
     'Mr. Kranti Parashar',
   ],
-  authors: [{ name: 'ARKA Technovation', url: BASE_URL }],
+  authors: [{ name: 'ARKA Technovation Private Limited', url: BASE_URL }],
   creator: 'ARKA Technovation Private Limited',
   publisher: 'ARKA Technovation Private Limited',
   formatDetection: {
@@ -57,11 +58,11 @@ export const metadata: Metadata = {
     shortcut: '/favicon.ico',
   },
   openGraph: {
-    title: 'ARKA Technovation — Digital Products, Software & Growth',
+    title: 'ARKA Technovation Private Limited — Digital Products, Software & Growth',
     description:
       'Enterprise software, high-performance web platforms, and growth systems for ambitious brands. Headquartered in Sector 63, Noida.',
     url: BASE_URL,
-    siteName: 'ARKA Technovation',
+    siteName: 'ARKA Technovation Private Limited',
     locale: 'en_IN',
     type: 'website',
     images: [
@@ -69,13 +70,13 @@ export const metadata: Metadata = {
         url: '/images/logo/arka-logo-black.png',
         width: 800,
         height: 600,
-        alt: 'ARKA Technovation Corporate Logo',
+        alt: 'ARKA Technovation Private Limited Corporate Logo',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ARKA Technovation — Digital Products, Software & Growth',
+    title: 'ARKA Technovation Private Limited — Digital Products, Software & Growth',
     description:
       'Enterprise software, high-performance web platforms, and growth systems for ambitious brands.',
     images: ['/images/logo/arka-logo-black.png'],
@@ -88,7 +89,7 @@ const jsonLdSchema = {
     {
       '@type': 'ProfessionalService',
       '@id': `${BASE_URL}/#organization`,
-      name: 'ARKA Technovation',
+      name: 'ARKA Technovation Private Limited',
       legalName: 'ARKA Technovation Private Limited',
       url: BASE_URL,
       logo: `${BASE_URL}/images/logo/arka-logo-black.png`,
@@ -133,7 +134,7 @@ const jsonLdSchema = {
       '@type': 'WebSite',
       '@id': `${BASE_URL}/#website`,
       url: BASE_URL,
-      name: 'ARKA Technovation',
+      name: 'ARKA Technovation Private Limited',
       description: 'Enterprise software engineering, search authority, performance marketing, and corporate cinema.',
       publisher: {
         '@id': `${BASE_URL}/#organization`,
@@ -158,7 +159,7 @@ export default function RootLayout({
       <head>
         <meta
           name="description"
-          content="ARKA Technovation designs and builds enterprise software, high-performance web platforms, and growth systems for ambitious brands. Corporate HQ in Sector 63, Noida."
+          content="ARKA Technovation Private Limited designs and builds enterprise software, high-performance web platforms, and growth systems for ambitious brands. Corporate HQ in Sector 63, Noida."
         />
         <link
           rel="preload"

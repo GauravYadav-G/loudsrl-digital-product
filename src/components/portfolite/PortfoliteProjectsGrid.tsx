@@ -3,7 +3,6 @@
 import { useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight, ArrowRight, Sparkles, TrendingUp } from 'lucide-react';
 import type { ProjectData } from './ProjectModal';
 
 const ProjectModal = dynamic(() => import('./ProjectModal'), { ssr: false });
@@ -134,6 +133,45 @@ export default function PortfoliteProjectsGrid() {
     },
   ];
 
+  // Curated sequence for mobile 2-column layout
+  const mobileProjects: ProjectData[] = [
+    projectsCol5[0], // Enterprise Multi-Branch CRM
+    projectsCol1[0], // Precision Engineering Co.
+    projectsCol6[0], // BotBlox Robotics Hardware
+    projectsCol1[1], // Maison D2C Online Store
+    projectsCol5[1], // Industrial Plant Nationwide SEO
+    projectsCol6[1], // Kestrix Thermal AI Systems
+    projectsCol1[2], // Northline Heavy Industries
+    projectsCol5[2], // Meridian Healthcare Network
+    projectsCol6[2], // Skipper Cloud Architecture (Full-width bottom banner)
+  ];
+
+  // Mobile Compact 2-Column Card Renderer (Static, Clean, Zero Scroll Jitter)
+  const renderMobileCompactCard = (proj: ProjectData, isFullWidth = false) => {
+    return (
+      <div
+        key={`m-${proj.id}`}
+        onClick={() => setSelectedProject(proj)}
+        className={`group relative overflow-hidden rounded-xl bg-white border border-black/10 hover:border-black/25 active:scale-[0.98] transition-all duration-200 cursor-pointer shadow-[0_2px_10px_rgba(0,0,0,0.05)] ${
+          isFullWidth ? 'col-span-2' : 'col-span-1'
+        }`}
+      >
+        {/* Image Container with native aspect ratio */}
+        <div className={`relative w-full overflow-hidden bg-zinc-100 ${isFullWidth ? 'aspect-[16/9]' : 'aspect-[4/4.5]'}`}>
+          <img
+            src={proj.image}
+            alt={proj.title}
+            loading="lazy"
+            decoding="async"
+            width={600}
+            height={690}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+          />
+        </div>
+      </div>
+    );
+  };
+
   const renderProjectCard = (proj: ProjectData, featured = false) => (
     <div
       key={proj.id}
@@ -142,21 +180,6 @@ export default function PortfoliteProjectsGrid() {
         featured ? 'ring-1 ring-black/15' : ''
       }`}
     >
-      {/* Category Pill Tag (Top Left) */}
-      <div className="absolute top-3.5 left-3.5 z-20 pointer-events-none flex items-center gap-2">
-        <span className="px-2.5 py-1 rounded-full text-[10.5px] font-medium tracking-wide bg-white/95 border border-black/12 text-zinc-800 shadow-sm">
-          {proj.category}
-        </span>
-      </div>
-
-      {/* Result Metric Tag (Top Right) */}
-      <div className="absolute top-3.5 right-3.5 z-20 pointer-events-none">
-        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wide bg-solar/15 border border-solar/35 text-solar flex items-center gap-1 shadow-sm">
-          <TrendingUp className="w-2.5 h-2.5" />
-          <span>{proj.results.split(' ')[0]}</span>
-        </span>
-      </div>
-
       {/* Image Container with Framer-like Grayscale to Color & Subtle Scale */}
       <div className="relative w-full aspect-[4/4.2] sm:aspect-[4/4.6] overflow-hidden bg-zinc-100">
         <img
@@ -168,17 +191,6 @@ export default function PortfoliteProjectsGrid() {
           height={690}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
         />
-
-        {/* Subtle Dark Vignette at Bottom for Frosted Pill Contrast */}
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
-
-        {/* Permanent Glass "View Casestudy" Button (Authentic Framer Component) */}
-        <div className="absolute bottom-3 sm:bottom-3.5 inset-x-3 sm:inset-x-3.5 z-20">
-          <div className="w-full h-10 sm:h-11 rounded-full border border-black/15 bg-white/95 hover:bg-white group-hover:border-black/35 flex items-center justify-center gap-2 text-black text-xs sm:text-[13px] font-medium tracking-wide transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.12)]">
-            <span>View Casestudy</span>
-            <ArrowUpRight className="w-3.5 h-3.5 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </div>
-        </div>
       </div>
     </div>
   );
@@ -198,8 +210,15 @@ export default function PortfoliteProjectsGrid() {
         <div className="pointer-events-none absolute inset-x-3 sm:inset-x-6 bottom-16 sm:bottom-20 h-12 bg-gradient-to-t from-white via-white/80 to-transparent z-20" />
 
         <div className="py-2">
-          {/* Outer Parallax Flex Columns (Gap 10px-12px exactly like Framer) */}
-          <div className="flex flex-col md:flex-row items-start justify-center gap-2.5 sm:gap-3">
+          {/* Mobile View: Clean, Static 2-Column Grid (Zero Scroll Animation / Zero Jitter, Cuts Height by 70%) */}
+          <div className="grid grid-cols-2 gap-2 sm:gap-2.5 md:hidden">
+            {mobileProjects.map((p, idx) =>
+              renderMobileCompactCard(p, idx === mobileProjects.length - 1)
+            )}
+          </div>
+
+          {/* Desktop Parallax Columns (100% UNTOUCHED) */}
+          <div className="hidden md:flex flex-row items-start justify-center gap-2.5 sm:gap-3">
             {/* Column 1 (Left Column) */}
             <motion.div
               style={{ y: scrollYCol1 }}
@@ -243,10 +262,9 @@ export default function PortfoliteProjectsGrid() {
 
           <a
             href="#contact"
-            className="px-6 py-2.5 bg-black text-white text-xs sm:text-sm font-semibold rounded-full inline-flex items-center gap-2 framer-btn-primary shadow-[0_4px_16px_rgba(0,0,0,0.15)]"
+            className="px-6 py-2.5 bg-black text-white text-xs sm:text-sm font-semibold rounded-full inline-flex items-center justify-center framer-btn-primary shadow-[0_4px_16px_rgba(0,0,0,0.15)]"
           >
             <span>Book a Free Call</span>
-            <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </div>
       </div>

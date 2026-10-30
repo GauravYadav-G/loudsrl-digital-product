@@ -5,7 +5,7 @@
    ───────────────────────────────────────────────────────────── */
 
 export const COMPANY = {
-  name: 'ARKA Technovation',
+  name: 'ARKA Technovation Private Limited',
   legalName: 'ARKA Technovation Private Limited',
   short: 'ARKA.',
   logo: '/images/logo/arka-logo-black.png',
@@ -121,7 +121,6 @@ export const NAV: NavGroup[] = [
       { label: 'Leadership & Specialist Pods', to: '/who-we-are#leadership', note: 'Direct access to engineers, designers & filmmakers' },
       { label: 'Featured Client Work', to: '/work', note: 'Case studies, web applications & films' },
       { label: 'Careers at ARKA', to: '/careers', note: 'Join our in-house engineering pods' },
-      { label: 'Pricing Transparency & ROI', to: '/who-we-are#pricing', note: 'Fixed scopes, written quotes & verified benchmarks' },
     ],
   },
   { label: 'Our Work', to: '/work', hideOnDesktop: true },
@@ -391,12 +390,12 @@ export const ROLES = [
 ];
 
 export const FAQS = [
-  { q: 'What does Arka Technovation do?', a: 'Ten services across three disciplines: marketing (SEO, digital marketing, digital advertising, content, analytics), technology (web development, CRM software, e-commerce) and creative (film making, UX and interactive design). One in-house team delivers all of it.' },
-  { q: 'Who leads ARKA Technovation?', a: 'ARKA Technovation is founded and led by Mr. Kranti Parashar, an eminent leader with over 17 years of experience in enterprise technology, strategic finance, and corporate communication.' },
+  { q: 'What does ARKA Technovation Private Limited do?', a: 'Ten services across three disciplines: marketing (SEO, digital marketing, digital advertising, content, analytics), technology (web development, CRM software, e-commerce) and creative (film making, UX and interactive design). One in-house team delivers all of it.' },
+  { q: 'Who leads ARKA Technovation Private Limited?', a: 'ARKA Technovation Private Limited is founded and led by Mr. Kranti Parashar, an eminent leader with over 17 years of experience in enterprise technology, strategic finance, and corporate communication.' },
   { q: 'Where are your offices?', a: 'Our corporate office is located at Royace Business Park, Office No- 202, C-4, Sector 63, Noida, Uttar Pradesh 201301, India.' },
   { q: 'How long does a project take?', a: 'A corporate website ships in three to six weeks. E-commerce and mobile apps run eight to sixteen. Custom CRM depends on scope and is planned in milestones. Marketing engines show measurable movement in sixty to ninety days.' },
   { q: 'Do you provide reports after launch?', a: 'Yes. Monthly performance reports, a live dashboard, quarterly strategy reviews and a named account contact. Maintenance, hosting and iteration are available as retainers or per project.' },
-  { q: 'What does it cost?', a: 'Focused websites and single campaigns start around ₹1 lakh. Retainers typically run ₹40,000 to ₹2,50,000 per month depending on scope. After the discovery call you receive a written proposal with a fixed number, not a range.' },
+  { q: 'How is project pricing determined?', a: 'Every engagement is scoped individually based on your technical deliverables, scale, and business objectives. Following a discovery session, you receive a transparent, itemized proposal with clear milestone deliverables.' },
 ];
 
 export const TESTIMONIALS_LITE = [
@@ -426,7 +425,7 @@ export const SEO_SERVICES_DATA = {
   eyebrow: 'Organic Search & High-Velocity Lead Engines',
   title: 'SEO & Lead Generation Services That Power Scalable Pipeline',
   intro:
-    'Search engine optimization is the foundation of digital revenue. At ARKA Technovation, we handle custom end-to-end SEO campaigns from technical health, Core Web Vitals, and structured schemas to competitive enterprise search and hyper-targeted paid media.',
+    'Search engine optimization is the foundation of digital revenue. At ARKA Technovation Private Limited, we handle custom end-to-end SEO campaigns from technical health, Core Web Vitals, and structured schemas to competitive enterprise search and hyper-targeted paid media.',
   stats: [
     { value: '+210%', label: 'Average Organic Traffic Lift' },
     { value: '450+', label: 'In-House Tech & Growth Specialists' },
@@ -525,7 +524,7 @@ export const UX_INTERACTIVES_DATA = {
   eyebrow: 'Human-Centered Digital Craft & Conversion Engineering',
   title: 'UX Interactives, Dynamic Experience Design & Content Systems',
   intro:
-    'A great user interface drives an unforgettable user experience. At ARKA Technovation, our award-winning design and engineering pods build bespoke, high-converting digital interfaces, personalized content engines, and accessible web experiences.',
+    'A great user interface drives an unforgettable user experience. At ARKA Technovation Private Limited, our award-winning design and engineering pods build bespoke, high-converting digital interfaces, personalized content engines, and accessible web experiences.',
   features: [
     {
       id: 'website-design',
@@ -582,7 +581,7 @@ export const TECHNOLOGY_PLATFORMS_DATA = {
   eyebrow: 'Enterprise Architecture & Data Science',
   title: 'Our Technology Stack — Accelerating Digital Transformation',
   intro:
-    'ARKA Technovation develops proprietary software, revenue platforms, and data pipelines that turn raw customer signals into measurable enterprise revenue.',
+    'ARKA Technovation Private Limited develops proprietary software, revenue platforms, and data pipelines that turn raw customer signals into measurable enterprise revenue.',
   platforms: [
     {
       id: 'revenue-platform',
@@ -667,9 +666,9 @@ export const TECHNOLOGY_PLATFORMS_DATA = {
 
 export const WHO_WE_ARE_DATA = {
   eyebrow: 'Our Heritage, Team & Working Culture',
-  title: 'Who We Are — ARKA Technovation',
+  title: 'Who We Are — ARKA Technovation Private Limited',
   intro:
-    'Founded and guided by Mr. Kranti Parashar, ARKA Technovation is a premier digital product, software engineering, and corporate growth company headquartered in Sector 63, Noida. We build serious software, deploy transformative marketing engines, and produce world-class film media under one roof.',
+    'Founded and guided by Mr. Kranti Parashar, ARKA Technovation Private Limited is a premier digital product, software engineering, and corporate growth company headquartered in Sector 63, Noida. We build serious software, deploy transformative marketing engines, and produce world-class film media under one roof.',
   methodology: [
     {
       title: 'Zero Outsourcing Philosophy',
@@ -686,32 +685,6 @@ export const WHO_WE_ARE_DATA = {
     {
       title: 'Truthful Reporting & ROI Governance',
       desc: 'We share the exact same dashboards and telemetry we see internally. Complete transparency on cost-per-acquisition, pipeline generated, and areas targeted for immediate optimization.',
-    },
-  ],
-  pricingGuides: [
-    {
-      discipline: 'Custom Web & Software Development',
-      range: 'From ₹1.2 Lakh (Fixed Scope)',
-      desc: 'High-performance responsive websites, web portals, and custom CRM platforms built with Next.js, React, Node.js, and cloud infrastructure.',
-      includes: ['Technical architecture specification', 'Bespoke UI/UX design system', 'Full-stack development & testing', 'Production deployment & source code handover'],
-    },
-    {
-      discipline: 'SEO & Inbound Lead Generation',
-      range: '₹40,000 – ₹1,80,000 / month',
-      desc: 'Full-service enterprise search engine optimization covering technical health, Core Web Vitals, authority links, and high-volume commercial ranking.',
-      includes: ['Technical & speed audits', 'Keyword intent map', 'Monthly on-page optimization', 'High-authority link building & rank tracking'],
-    },
-    {
-      discipline: 'PPC & Digital Advertising Management',
-      range: '10% – 15% of Ad Spend or Retainer',
-      desc: 'Data-driven paid media campaigns across Google Ads, Meta, LinkedIn, and geofencing networks focused on ROAS and pipeline growth.',
-      includes: ['Account structure setup', 'Competitor keyword research', 'Ad copy & creative variants', 'Conversion tracking & fraud monitoring'],
-    },
-    {
-      discipline: 'Corporate Film & Video Production',
-      range: 'Custom Quote by Production Scale',
-      desc: 'Broadcast-quality corporate documentaries, product demo films, TV commercial ads, and factory shoots produced by our in-house cinematography crew.',
-      includes: ['Concept & scriptwriting', 'Location shooting with cinema gear', 'Colour grading & sound design', 'Cut-downs for social reels & ads'],
     },
   ],
 };

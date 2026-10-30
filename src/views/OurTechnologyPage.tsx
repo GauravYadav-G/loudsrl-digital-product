@@ -69,7 +69,7 @@ export default function OurTechnologyPage() {
       tag: 'Revenue Engine',
       name: 'Marketing Cloud Revenue Platform',
       subtitle: 'Cross-channel marketing suite automation, journey building & VoIP telephony integration',
-      desc: 'Marketing cloud is a suite of cloud-based marketing tools that unify enterprise marketing functions. While a standard CRM system focuses on relationship records and sales contacts, a Marketing Cloud automates, streamlines, and monitors cross-channel marketing operations across email, social, SMS, push notifications, and paid media. At ARKA Technovation, we implement unified marketing clouds integrated with RingCentral and Twilio VoIP telephony for complete customer lifecycle management.',
+      desc: 'Marketing cloud is a suite of cloud-based marketing tools that unify enterprise marketing functions. While a standard CRM system focuses on relationship records and sales contacts, a Marketing Cloud automates, streamlines, and monitors cross-channel marketing operations across email, social, SMS, push notifications, and paid media. At ARKA Technovation Private Limited, we implement unified marketing clouds integrated with RingCentral and Twilio VoIP telephony for complete customer lifecycle management.',
       capabilities: [
         'Cross-channel journey builder coordinating email, SMS, push notifications, and paid retargeting',
         'RingCentral and Twilio VoIP telephony integration for automated call routing, recording, and CRM logging',
@@ -103,7 +103,7 @@ export default function OurTechnologyPage() {
       tag: 'Unified CDP',
       name: 'Customer Data Platform (CDP)',
       subtitle: 'First-party cookie resolution, 360-degree buyer profiles & real-time omnichannel sync',
-      desc: 'At ARKA Technovation, we help enterprises make the most of their first-party data. Our AI-powered Customer Data Platform (CDP) integrates specialized telemetry tools that work in unison to normalize customer interactions across web, email, CRM, and offline channels. Amid third-party cookie deprecation, our persistent CDP database establishes a single, authoritative 360-degree view of your buyer.',
+      desc: 'At ARKA Technovation Private Limited, we help enterprises make the most of their first-party data. Our AI-powered Customer Data Platform (CDP) integrates specialized telemetry tools that work in unison to normalize customer interactions across web, email, CRM, and offline channels. Amid third-party cookie deprecation, our persistent CDP database establishes a single, authoritative 360-degree view of your buyer.',
       capabilities: [
         'Collects, cleanses, and unifies fragmented interactions from web, apps, and POS into 360° buyer profiles',
         'First-party cookie identity resolution and cross-device visitor tracking without third-party reliance',
@@ -260,7 +260,7 @@ export default function OurTechnologyPage() {
       tag: 'M&A Intelligence',
       name: 'Digital Due Diligence',
       subtitle: 'Auditing digital infrastructure, traffic authenticity, code quality, and cybersecurity for M&A',
-      desc: 'Your next acquisition doesn’t have to be a gamble. With digital due diligence services from ARKA Technovation, your firm can get insight into a target company’s true digital health before finalizing mergers or investments. We perform deep forensic audits of website traffic quality (filtering bot fraud), organic search sustainability, technical codebase architecture, cloud security, and customer database retention.',
+      desc: 'Your next acquisition doesn’t have to be a gamble. With digital due diligence services from ARKA Technovation Private Limited, your firm can get insight into a target company’s true digital health before finalizing mergers or investments. We perform deep forensic audits of website traffic quality (filtering bot fraud), organic search sustainability, technical codebase architecture, cloud security, and customer database retention.',
       capabilities: [
         'Forensic web traffic audit identifying authentic human visitors vs disguised bot networks and click farms',
         'SEO equity audit evaluating risk of algorithmic Google penalties and unmasking toxic backlink profiles',
@@ -281,7 +281,7 @@ export default function OurTechnologyPage() {
       tag: 'Target Account ABM',
       name: 'Account-Based Marketing Services',
       subtitle: 'Securing high-value enterprise accounts with synchronized multi-stakeholder campaigns',
-      desc: 'ARKA Technovation offers industry-leading Account-Based Marketing (ABM) services that help your business secure high-value enterprise clients. Rather than broadcasting broad generic messages, ABM treats individual target accounts as markets of one. We coordinate bespoke content, LinkedIn executive outreach, IP-targeted display advertising, and personalized email journeys tailored specifically to decision-makers and buying committees.',
+      desc: 'ARKA Technovation Private Limited offers industry-leading Account-Based Marketing (ABM) services that help your business secure high-value enterprise clients. Rather than broadcasting broad generic messages, ABM treats individual target accounts as markets of one. We coordinate bespoke content, LinkedIn executive outreach, IP-targeted display advertising, and personalized email journeys tailored specifically to decision-makers and buying committees.',
       capabilities: [
         'Target account list (TAL) selection and tiered prioritization based on ideal customer profile (ICP) fit',
         'Firmographic IP-targeted digital advertising serving bespoke ads exclusively to employees of target accounts',
@@ -315,7 +315,7 @@ export default function OurTechnologyPage() {
       tag: 'Template Engineering',
       name: 'Email Marketing Testing & Design',
       subtitle: 'Custom responsive HTML templates tested across 40+ email clients and dark-mode settings',
-      desc: 'Email marketing is one of the most tried and true digital marketing strategies available. At ARKA Technovation, we know that great email marketing requires stunning visual design paired with technical inbox deliverability. We design custom responsive HTML/CSS email templates, execute rigorous multivariate A/B testing across subject lines, sender names, and layouts, ensuring maximum click-to-open rates (CTOR).',
+      desc: 'Email marketing is one of the most tried and true digital marketing strategies available. At ARKA Technovation Private Limited, we know that great email marketing requires stunning visual design paired with technical inbox deliverability. We design custom responsive HTML/CSS email templates, execute rigorous multivariate A/B testing across subject lines, sender names, and layouts, ensuring maximum click-to-open rates (CTOR).',
       capabilities: [
         'Custom responsive email templates rigorously tested across 40+ email clients and dark-mode settings',
         'Multivariate A/B testing of subject lines, preview text, content length, and CTA buttons',
@@ -366,7 +366,7 @@ export default function OurTechnologyPage() {
       tag: 'Turnkey Email Ops',
       name: 'Email Marketing Management Services',
       subtitle: 'Turnkey campaign execution, list segmentation, inbox deliverability & weekly reporting',
-      desc: 'At ARKA Technovation, we take complete care of your email marketing operations. We manage your subscriber lists, craft engaging copy, design responsive templates, execute timely broadcasts, and monitor technical inbox deliverability. Our turnkey email marketing management services allow your leadership team to focus on core operations while your email list generates predictable recurring revenue.',
+      desc: 'At ARKA Technovation Private Limited, we take complete care of your email marketing operations. We manage your subscriber lists, craft engaging copy, design responsive templates, execute timely broadcasts, and monitor technical inbox deliverability. Our turnkey email marketing management services allow your leadership team to focus on core operations while your email list generates predictable recurring revenue.',
       capabilities: [
         'Complete broadcast scheduling, list segmentation, and campaign execution handled by our dedicated pod',
         'Dedicated IP warming, SPF, DKIM, and DMARC authentication protocols ensuring 99%+ deliverability',
@@ -514,7 +514,7 @@ export default function OurTechnologyPage() {
 
   const faqs = [
     {
-      q: 'How does ARKA Technovation handle data privacy and first-party cookie deprecation?',
+      q: 'How does ARKA Technovation Private Limited handle data privacy and first-party cookie deprecation?',
       a: 'We architect Customer Data Platforms (CDPs) and first-party telemetry pipelines that collect and normalize data directly on your own domain infrastructure. By eliminating reliance on vulnerable third-party tracking cookies, our clients maintain 100% compliance with GDPR and Indian DPDP regulations while building persistent, high-accuracy buyer profiles.',
     },
     {
@@ -572,9 +572,9 @@ export default function OurTechnologyPage() {
       </section>
 
       {/* ── Category Filter Tabs Segmented Dock with Spring Physics Animation ── */}
-      <section className="py-2.5 sm:py-4 border-b border-black/5 bg-white/90 sticky top-[64px] sm:top-[78px] z-30 backdrop-blur-md">
-        <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-start md:justify-center overflow-x-auto scrollbar-none py-1">
-          <div className="inline-flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-full bg-zinc-100/90 border border-black/8 shadow-[inset_0_1px_2px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.04)] relative shrink-0">
+      <section className="py-2 border-b border-black/5 bg-white/90 sticky top-[64px] sm:top-[78px] z-30 backdrop-blur-md">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-start md:justify-center overflow-x-auto scrollbar-none py-0.5">
+          <div className="segmented-dock inline-flex items-center gap-1 p-1 rounded-full bg-zinc-100/90 border border-black/8 shadow-[inset_0_1px_2px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.04)] relative shrink-0">
             {[
               { tab: 'All' as TechTab, icon: Cpu },
               { tab: 'Revenue Acceleration' as TechTab, icon: Zap },
@@ -589,13 +589,14 @@ export default function OurTechnologyPage() {
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   whileTap={{ scale: 0.96 }}
-                  className="group relative shrink-0 pl-3.5 sm:pl-4.5 pr-3 sm:pr-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 flex items-center gap-2 whitespace-nowrap focus:outline-none select-none cursor-pointer"
+                  data-dock-btn
+                  className="segmented-dock-btn group relative shrink-0 pl-3 pr-2.5 py-1.5 rounded-full text-xs font-medium transition-colors duration-200 flex items-center gap-1.5 whitespace-nowrap focus:outline-none select-none cursor-pointer"
                 >
                   {/* Sliding active background pill */}
                   {active && (
                     <motion.div
                       layoutId="ourTechTabActiveIndicator"
-                      className="absolute inset-0 bg-black rounded-full shadow-md shadow-black/20"
+                      className="absolute inset-0 bg-black rounded-full shadow-sm shadow-black/20"
                       transition={{
                         type: 'spring',
                         stiffness: 450,
@@ -606,14 +607,14 @@ export default function OurTechnologyPage() {
 
                   {/* Tab Icon */}
                   <Icon
-                    className={`relative z-10 w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 transition-colors duration-200 ${
+                    className={`relative z-10 w-3.5 h-3.5 shrink-0 transition-colors duration-200 ${
                       active ? 'text-white' : 'text-zinc-500 group-hover:text-black'
                     }`}
                   />
 
                   {/* Tab Label */}
                   <span
-                    className={`relative z-10 font-semibold tracking-tight transition-colors duration-200 ${
+                    className={`relative z-10 font-semibold tracking-tight transition-colors duration-200 text-xs sm:text-[13px] ${
                       active ? 'text-white' : 'text-zinc-600 group-hover:text-black'
                     }`}
                   >
@@ -622,7 +623,7 @@ export default function OurTechnologyPage() {
 
                   {/* Tab Count Pill */}
                   <span
-                    className={`relative z-10 px-2 py-0.5 rounded-full text-[10px] font-mono tracking-tight font-bold shrink-0 transition-colors duration-200 ${
+                    className={`relative z-10 px-1.5 py-0.2 min-w-[18px] rounded-full text-[10px] font-mono tracking-tight font-bold shrink-0 transition-colors duration-200 inline-flex items-center justify-center ${
                       active
                         ? 'bg-white/20 text-white'
                         : 'bg-black/5 text-zinc-500 group-hover:bg-black/10 group-hover:text-black'
@@ -647,7 +648,7 @@ export default function OurTechnologyPage() {
             Revenue Systems, Attribution &amp; Automation
           </h2>
           <p className="mt-4 text-zinc-600 text-base sm:text-lg leading-relaxed font-light">
-            Explore all 24 enterprise platforms, attribution algorithms, and cloud data pipelines engineered by ARKA Technovation. Filter by category above to review comprehensive technical specifications.
+            Explore all 24 enterprise platforms, attribution algorithms, and cloud data pipelines engineered by ARKA Technovation Private Limited. Filter by category above to review comprehensive technical specifications.
           </p>
         </div>
 
@@ -827,14 +828,14 @@ export default function OurTechnologyPage() {
 
       {/* ── Footer Consultation CTA ── */}
       <section className="py-20 bg-zinc-950 text-white border-t border-black">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
+          <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold text-center">
             Technical Architecture Review
           </span>
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mt-4 max-w-3xl mx-auto">
+          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mt-4 max-w-3xl !mx-auto text-center" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
             Ready to upgrade your enterprise attribution &amp; data stack?
           </h2>
-          <p className="mt-4 text-zinc-400 max-w-2xl mx-auto text-base sm:text-lg font-light leading-relaxed">
+          <p className="mt-4 text-zinc-400 max-w-2xl !mx-auto text-base sm:text-lg font-light leading-relaxed text-center" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
             Schedule a technical consultation with our software architects in Sector 63, Noida. We evaluate your current CRM, telemetry pipelines, and ad data lakes.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">

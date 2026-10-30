@@ -9,9 +9,9 @@ export const metadata: Metadata = {
     canonical: '/careers',
   },
   openGraph: {
-    title: 'Careers & Engineering Roles | ARKA Technovation',
+    title: 'Careers & Engineering Roles | ARKA Technovation Private Limited',
     description:
-      'Build serious digital products and growth engines with ARKA Technovation. Explore full-time roles in Noida HQ.',
+      'Build serious digital products and growth engines with ARKA Technovation Private Limited. Explore talent opportunities in Noida HQ.',
     url: '/careers',
     type: 'website',
   },

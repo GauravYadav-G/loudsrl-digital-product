@@ -9,9 +9,9 @@ export const metadata: Metadata = {
     canonical: '/contact',
   },
   openGraph: {
-    title: 'Contact Us & Start a Project | ARKA Technovation',
+    title: 'Contact Us & Start a Project | ARKA Technovation Private Limited',
     description:
-      'Direct communication with engineering, marketing, and film directors at ARKA Technovation Corporate HQ in Sector 63, Noida.',
+      'Direct communication with engineering, marketing, and film directors at ARKA Technovation Private Limited Corporate HQ in Sector 63, Noida.',
     url: '/contact',
     type: 'website',
   },

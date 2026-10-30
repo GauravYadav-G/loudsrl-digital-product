@@ -7,6 +7,9 @@ import PortfoliteLogosMarquee from '../components/portfolite/PortfoliteLogosMarq
 const PortfoliteProjectsGrid = dynamic(() => import('../components/portfolite/PortfoliteProjectsGrid'), {
   ssr: true,
 });
+const PortfoliteServicesBento = dynamic(() => import('../components/portfolite/PortfoliteServicesBento'), {
+  ssr: true,
+});
 const PortfoliteAbout = dynamic(() => import('../components/portfolite/PortfoliteAbout'), {
   ssr: true,
 });
@@ -42,28 +45,49 @@ export default function PortfoliteHome() {
       <PortfoliteLogosMarquee />
 
       {/* 3-Column Parallax Featured Case Studies Grid */}
-      <PortfoliteProjectsGrid />
+      <div className="cv-auto">
+        <PortfoliteProjectsGrid />
+      </div>
+
+      {/* Services Bento Grid (Reference 6-Card Layout: Web Dev, Software Dev, SEO, Film, SMM, Digital Marketing) */}
+      <div className="cv-auto">
+        <PortfoliteServicesBento />
+      </div>
 
       {/* Who We Are: Founded by Kranti Parashar, 17+ Years Heritage */}
-      <PortfoliteAbout />
+      <div className="cv-auto">
+        <PortfoliteAbout />
+      </div>
 
       {/* Recent Works Carousel */}
-      <PortfoliteRecentWorksCarousel />
+      <div className="cv-auto">
+        <PortfoliteRecentWorksCarousel />
+      </div>
 
       {/* 3-Stage Delivery Process */}
-      <PortfoliteProcess />
+      <div className="cv-auto">
+        <PortfoliteProcess />
+      </div>
 
       {/* Interactive Sticky Stage Services Section */}
-      <ServicesStickySection />
+      <div className="cv-auto">
+        <ServicesStickySection />
+      </div>
 
       {/* Why Work With Us: 4-Stage Stacking Cards with Parallax & Opacity Progression */}
-      <WhyUsSection />
+      <div className="cv-auto">
+        <WhyUsSection />
+      </div>
 
       {/* Latest News: "Our take on design, technology and what makes a website convert" */}
-      <LatestNewsSection />
+      <div className="cv-auto">
+        <LatestNewsSection />
+      </div>
 
       {/* Clean Minimalist ARKA Corporate Footer */}
-      <PortfoliteFooter />
+      <div className="cv-auto">
+        <PortfoliteFooter />
+      </div>
     </div>
   );
 }

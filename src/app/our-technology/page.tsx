@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     canonical: '/our-technology',
   },
   openGraph: {
-    title: 'Our Technology Stack & Enterprise Systems | ARKA Technovation',
+    title: 'Our Technology Stack & Enterprise Systems | ARKA Technovation Private Limited',
     description:
       'Proprietary CRM platforms, automated lead-tracking engines, multi-touch attribution, and secure cloud pipelines.',
     url: '/our-technology',

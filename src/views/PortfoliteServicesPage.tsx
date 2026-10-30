@@ -250,7 +250,7 @@ export default function PortfoliteServicesPage() {
       tag: 'Google Search Dominance',
       title: 'Google SEO Services',
       subtitle: 'Algorithmic alignment with Google search standards to capture high-intent commercial traffic',
-      desc: 'Google SEO services from ARKA Technovation are absolutely imperative for any business looking to sharpen its online presence and drive organic traffic. Google handles more than 90 percent of all global searches. Optimizing for Google requires deep understanding of how its crawling spiders interpret page content, structure, image assets, and semantic relationships. Instead of languishing on page three or four, our proven Google SEO frameworks place your enterprise firmly on page one.',
+      desc: 'Google SEO services from ARKA Technovation Private Limited are absolutely imperative for any business looking to sharpen its online presence and drive organic traffic. Google handles more than 90 percent of all global searches. Optimizing for Google requires deep understanding of how its crawling spiders interpret page content, structure, image assets, and semantic relationships. Instead of languishing on page three or four, our proven Google SEO frameworks place your enterprise firmly on page one.',
       highlights: [
         'Comprehensive keyword intent mapping focusing on high-converting transactional queries',
         'Entity-based semantic optimization and structured schema markup for Google rich snippets',
@@ -449,8 +449,8 @@ export default function PortfoliteServicesPage() {
 
   const faqs = [
     {
-      q: 'What makes ARKA Technovation the leading digital marketing and engineering company in Noida?',
-      a: 'Unlike traditional agencies that outsource technical tasks or rely on cookie-cutter templates, ARKA Technovation houses software developers, technical SEO engineers, cinematographers, and digital marketing strategists under one roof at our corporate office in Sector 63, Noida. This unified model ensures unbroken accountability, deep technical rigor, and seamless cross-disciplinary execution.',
+      q: 'What makes ARKA Technovation Private Limited the leading digital marketing and engineering company in Noida?',
+      a: 'Unlike traditional agencies that outsource technical tasks or rely on cookie-cutter templates, ARKA Technovation Private Limited houses software developers, technical SEO engineers, cinematographers, and digital marketing strategists under one roof at our corporate office in Sector 63, Noida. This unified model ensures unbroken accountability, deep technical rigor, and seamless cross-disciplinary execution.',
     },
     {
       q: 'How do you structure custom CRM and ERP development projects?',
@@ -515,9 +515,9 @@ export default function PortfoliteServicesPage() {
       </section>
 
       {/* ── Category Filter Tabs Segmented Dock with Spring Physics Animation ── */}
-      <section className="py-2.5 sm:py-4 border-b border-black/5 bg-white/90 sticky top-[64px] sm:top-[78px] z-30 backdrop-blur-md">
-        <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-start md:justify-center overflow-x-auto scrollbar-none py-1">
-          <div className="inline-flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-full bg-zinc-100/90 border border-black/8 shadow-[inset_0_1px_2px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.04)] relative shrink-0">
+      <section className="py-2 border-b border-black/5 bg-white/90 sticky top-[64px] sm:top-[78px] z-30 backdrop-blur-md">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-start md:justify-center overflow-x-auto scrollbar-none py-0.5">
+          <div className="segmented-dock inline-flex items-center gap-1 p-1 rounded-full bg-zinc-100/90 border border-black/8 shadow-[inset_0_1px_2px_rgba(0,0,0,0.04),0_2px_8px_rgba(0,0,0,0.04)] relative shrink-0">
             {[
               { label: 'All', icon: Layers },
               { label: 'Digital Marketing', icon: Share2 },
@@ -532,13 +532,14 @@ export default function PortfoliteServicesPage() {
                   key={label}
                   onClick={() => setSelectedCat(label as CategoryFilter)}
                   whileTap={{ scale: 0.96 }}
-                  className="group relative shrink-0 pl-3.5 sm:pl-4.5 pr-3 sm:pr-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 flex items-center gap-2 whitespace-nowrap focus:outline-none select-none cursor-pointer"
+                  data-dock-btn
+                  className="segmented-dock-btn group relative shrink-0 pl-3 pr-2.5 py-1.5 rounded-full text-xs font-medium transition-colors duration-200 flex items-center gap-1.5 whitespace-nowrap focus:outline-none select-none cursor-pointer"
                 >
                   {/* Sliding active background pill */}
                   {active && (
                     <motion.div
                       layoutId="servicesTabActiveIndicator"
-                      className="absolute inset-0 bg-black rounded-full shadow-md shadow-black/20"
+                      className="absolute inset-0 bg-black rounded-full shadow-sm shadow-black/20"
                       transition={{
                         type: 'spring',
                         stiffness: 450,
@@ -549,14 +550,14 @@ export default function PortfoliteServicesPage() {
 
                   {/* Tab Icon */}
                   <Icon
-                    className={`relative z-10 w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 transition-colors duration-200 ${
+                    className={`relative z-10 w-3.5 h-3.5 shrink-0 transition-colors duration-200 ${
                       active ? 'text-white' : 'text-zinc-500 group-hover:text-black'
                     }`}
                   />
 
                   {/* Tab Label */}
                   <span
-                    className={`relative z-10 font-semibold tracking-tight transition-colors duration-200 ${
+                    className={`relative z-10 font-semibold tracking-tight transition-colors duration-200 text-xs sm:text-[13px] ${
                       active ? 'text-white' : 'text-zinc-600 group-hover:text-black'
                     }`}
                   >
@@ -565,7 +566,7 @@ export default function PortfoliteServicesPage() {
 
                   {/* Tab Count Pill */}
                   <span
-                    className={`relative z-10 px-2 py-0.5 rounded-full text-[10px] font-mono tracking-tight font-bold shrink-0 transition-colors duration-200 ${
+                    className={`relative z-10 px-1.5 py-0.2 min-w-[18px] rounded-full text-[10px] font-mono tracking-tight font-bold shrink-0 transition-colors duration-200 inline-flex items-center justify-center ${
                       active
                         ? 'bg-white/20 text-white'
                         : 'bg-black/5 text-zinc-500 group-hover:bg-black/10 group-hover:text-black'
@@ -770,14 +771,14 @@ export default function PortfoliteServicesPage() {
 
       {/* ── Footer CTA Banner ── */}
       <section className="py-20 bg-zinc-950 text-white border-t border-black">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
+          <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold text-center">
             Start a Conversation
           </span>
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mt-4 max-w-3xl mx-auto">
+          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mt-4 max-w-3xl !mx-auto text-center" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
             Ready to engineer sustainable digital growth?
           </h2>
-          <p className="mt-4 text-zinc-400 max-w-2xl mx-auto text-base sm:text-lg font-light leading-relaxed">
+          <p className="mt-4 text-zinc-400 max-w-2xl !mx-auto text-base sm:text-lg font-light leading-relaxed text-center" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
             Schedule a confidential discovery meeting at our corporate headquarters in Sector 63, Noida, or connect with our leadership team online.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">

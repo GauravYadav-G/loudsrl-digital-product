@@ -5,8 +5,8 @@ import { ArtcraftGalaxyCanvas } from '../ArtcraftGalaxyCanvas';
 
 const PROCESS_COLUMNS = [
   {
-    label: '01 · Discovery & Strategy',
-    title: 'Technical SEO audits, market intent mapping, and commercial roadmaps tailored to your pipeline.',
+    label: '01 · Discovery & System Planning',
+    title: 'Business requirement analysis, system architecture mapping, and technical specifications.',
     illustration: (
       <svg
         viewBox="0 0 200 130"
@@ -57,8 +57,8 @@ const PROCESS_COLUMNS = [
     ),
   },
   {
-    label: '02 · UI & System Architecture',
-    title: 'WCAG 2.2 accessible flows, CRO prototypes, and scalable component design systems.',
+    label: '02 · Interface Design & Modeling',
+    title: 'User journey prototyping, modular component libraries, and relational schema modeling.',
     illustration: (
       <svg
         viewBox="0 0 200 130"
@@ -103,8 +103,8 @@ const PROCESS_COLUMNS = [
     ),
   },
   {
-    label: '03 · Full-Stack Engineering',
-    title: 'Sub-second Next.js 15 platforms, custom CRM & ERP pipelines, and cloud APIs.',
+    label: '03 · Full-Stack Software Development',
+    title: 'Clean frontend components, secure backend services, and enterprise integration workflows.',
     illustration: (
       <svg
         viewBox="0 0 200 130"
@@ -154,8 +154,8 @@ const PROCESS_COLUMNS = [
     ),
   },
   {
-    label: '04 · Growth & Scale',
-    title: 'Page-one organic search dominance and compounding lead pipelines.',
+    label: '04 · Quality Assurance & Deployment',
+    title: 'Automated regression testing, production cloud deployment, and continuous system monitoring.',
     illustration: (
       <svg
         viewBox="0 0 200 130"
@@ -274,7 +274,7 @@ export default function PortfoliteProcess() {
             Engineered for enterprise scale.
           </h2>
           <p className="mt-4 sm:mt-5 text-zinc-600 text-base sm:text-lg font-light leading-relaxed max-w-2xl">
-            From technical architecture to search dominance — every phase of our delivery process turns business requirements into scalable, high-converting digital products.
+            From initial system architecture to production deployment — every phase of our delivery process turns business requirements into scalable, dependable software.
           </p>
         </div>
 

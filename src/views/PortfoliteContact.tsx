@@ -9,7 +9,6 @@ import { OFFICES, COMPANY } from '../lib/data';
 
 export default function PortfoliteContact() {
   const [selectedServices, setSelectedServices] = useState<string[]>(['Technical SEO']);
-  const [budget, setBudget] = useState('₹1L – ₹3L');
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
     name: '',
@@ -28,8 +27,6 @@ export default function PortfoliteContact() {
     'Paid Ads & Performance',
     'Technical Support & Retainer',
   ];
-
-  const budgetOptions = ['Under ₹1L', '₹1L – ₹3L', '₹3L – ₹8L', '₹8L+ / Enterprise'];
 
   const toggleService = (svc: string) => {
     setSelectedServices((prev) =>
@@ -196,29 +193,6 @@ export default function PortfoliteContact() {
                           </button>
                         );
                       })}
-                    </div>
-                  </div>
-
-                  {/* Budget Options */}
-                  <div>
-                    <label className="block text-xs font-medium text-zinc-700 mb-2.5">
-                      Estimated Budget Range
-                    </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                      {budgetOptions.map((b) => (
-                        <button
-                          type="button"
-                          key={b}
-                          onClick={() => setBudget(b)}
-                          className={`py-2 px-3 rounded-xl text-xs font-medium text-center transition-all ${
-                            budget === b
-                              ? '!bg-solar !text-black border !border-solar font-bold shadow-sm'
-                              : '!bg-zinc-100 border border-black/8 !text-zinc-700 hover:!text-black hover:!bg-zinc-200'
-                          }`}
-                        >
-                          {b}
-                        </button>
-                      ))}
                     </div>
                   </div>
 

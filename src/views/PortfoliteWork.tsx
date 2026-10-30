@@ -65,7 +65,7 @@ export default function PortfoliteWork() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-10 flex flex-wrap justify-center gap-2"
+            className="mt-8 flex flex-wrap justify-center gap-2"
           >
             {sectors.map((sector) => {
               const count = sector === 'All' ? WORKS.length : WORKS.filter((w) => w.sector === sector).length;
@@ -74,16 +74,17 @@ export default function PortfoliteWork() {
                 <button
                   key={sector}
                   onClick={() => setSelectedSector(sector)}
-                  className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-2 ${
+                  data-dock-btn
+                  className={`segmented-dock-btn px-3 py-1 rounded-full text-xs font-medium transition-all inline-flex items-center gap-1.5 ${
                     active
-                      ? '!bg-black !text-white shadow-lg shadow-black/20'
+                      ? '!bg-black !text-white shadow-md shadow-black/20'
                       : '!bg-zinc-100 !text-zinc-700 hover:!text-black hover:!bg-zinc-200 !border !border-black/10'
                   }`}
                 >
-                  <span>{sector}</span>
+                  <span className="tracking-tight">{sector}</span>
                   <span
-                    className={`px-1.5 py-0.2 rounded-full text-[10px] ${
-                      active ? '!bg-white/20 !text-white font-bold' : '!bg-black/10 !text-zinc-600'
+                    className={`px-1.5 py-0.2 min-w-[18px] rounded-full text-[10px] font-mono font-semibold inline-flex items-center justify-center ${
+                      active ? '!bg-white/20 !text-white' : '!bg-black/10 !text-zinc-700'
                     }`}
                   >
                     {count}

@@ -55,7 +55,7 @@ export default function PortfoliteTestimonials() {
             <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-black/12 bg-zinc-100 aspect-[4/4.5] shadow-xl group">
               <img
                 src="/images/industries/deeptech.webp"
-                alt="ARKA Technovation Client Partnership"
+                alt="ARKA Technovation Private Limited Client Partnership"
                 className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-80" />

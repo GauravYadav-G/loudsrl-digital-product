@@ -97,28 +97,7 @@ export function renderContactPage() {
             </div>
           </div>
 
-          <!-- Field 4: Budget Range Selector -->
-          <div class="relative border-r border-b border-[#d9d9d9] min-h-[170px] p-6 lg:p-10 bg-white">
-            <label class="!font-mono text-xs opacity-50 mb-3 block tracking-wider uppercase" for="budget-selector-btn">
-              BUDGET RANGE*
-            </label>
-            <div class="relative">
-              <button type="button" id="budget-selector-btn" class="flex items-center justify-between w-full px-4 py-2.5 border border-black/20 bg-white text-black cursor-pointer text-sm font-medium hover:border-black transition-colors">
-                <span id="budget-current-text">Select your budget range</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="m6 9 6 6 6-6" />
-                </svg>
-              </button>
-              <div id="budget-options-menu" class="absolute top-full left-0 right-0 mt-1 bg-white border border-black/20 shadow-lg z-20 hidden flex-col py-1">
-                <button type="button" class="budget-opt px-4 py-2 text-left text-sm hover:bg-neutral-100 transition-colors" data-val="Flexible">&lt; ₹5 Lakhs / Starter</button>
-                <button type="button" class="budget-opt px-4 py-2 text-left text-sm hover:bg-neutral-100 transition-colors" data-val="₹5L - ₹15L">₹5 Lakhs – ₹15 Lakhs</button>
-                <button type="button" class="budget-opt px-4 py-2 text-left text-sm hover:bg-neutral-100 transition-colors" data-val="₹15L - ₹35L">₹15 Lakhs – ₹35 Lakhs</button>
-                <button type="button" class="budget-opt px-4 py-2 text-left text-sm hover:bg-neutral-100 transition-colors" data-val="> ₹35L / Global Scale">&gt; ₹35 Lakhs / Global Enterprise</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Field 5: Short Description -->
+          <!-- Field 4: Short Description -->
           <div class="relative border-r border-b border-[#d9d9d9] min-h-[170px] p-6 lg:p-10 bg-white">
             <label class="!font-mono text-xs opacity-50 mb-3 block tracking-wider uppercase" for="contact-description">
               SHORT DESCRIPTION

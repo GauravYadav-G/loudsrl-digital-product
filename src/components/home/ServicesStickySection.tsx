@@ -9,36 +9,36 @@ const SERVICES = [
     num: 'Service 01',
     title: 'Web & App Development',
     link: '/services/development',
-    text: 'Full-stack Next.js 15, React, Node.js and mobile applications engineered for sub-second speed, seamless database sync, and enterprise scale.',
-    img: '/images/services/investor-ready-website/header.webp',
+    text: 'Modern web and mobile applications engineered with modular architecture, strict type safety, seamless database synchronization, and scalable cloud infrastructure.',
+    img: '/images/services/cards/service-01-web-development.webp',
   },
   {
     num: 'Service 02',
     title: 'UX & Interactives',
     link: '/ux-interactives',
-    text: 'Research-backed interfaces, WCAG 2.2 accessibility compliance, high-converting landing funnels, and data-driven CRO heatmap refinements.',
-    img: '/images/services/3d-websites/header-lettres.webp',
+    text: 'Research-backed interface design, accessible user journeys, interactive design systems, and data-driven behavioral experience modeling.',
+    img: '/images/services/cards/service-02-ux-interactives.webp',
   },
   {
     num: 'Service 03',
     title: 'CRM & Enterprise ERP',
     link: '/services/crm-software',
-    text: 'Custom multi-branch CRM, automated approval matrices, lead distribution systems (LMS), and real-time Tally & WhatsApp synchronization.',
-    img: '/images/services/fundraising/header.webp',
+    text: 'Bespoke business management platforms, automated approval matrices, lead distribution pipelines, and real-time enterprise ERP synchronization.',
+    img: '/images/services/cards/service-03-crm-erp.webp',
   },
   {
     num: 'Service 04',
     title: 'Data & Revenue Engines',
     link: '/our-technology',
-    text: 'Customer Data Platforms (CDP), first-party ETL data lakes, dynamic web call tracking attribution, and account-based marketing automation.',
-    img: '/images/services/rebranding/header.webp',
+    text: 'Centralized customer data platforms, first-party data pipelines, dynamic multi-touch attribution, and automated pipeline intelligence.',
+    img: '/images/services/cards/service-04-data-revenue.webp',
   },
   {
     num: 'Service 05',
     title: 'SEO & Lead Generation',
     link: '/seo-lead-generation',
-    text: 'Page-one Google rankings, sub-second Core Web Vitals audits, competitor addressable geofencing, and multi-location map pack dominance.',
-    img: '/images/home/services-seo-geo.webp',
+    text: 'Comprehensive technical search architecture, structured Schema.org entity graphs, commercial keyword mapping, and Core Web Vitals optimization.',
+    img: '/images/services/cards/service-05-seo-leadgen.webp',
   },
 ];
 
@@ -47,6 +47,8 @@ export default function ServicesStickySection() {
   const pfTrackRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
 
   useEffect(() => {
     const track = pfTrackRef.current;
@@ -55,7 +57,7 @@ export default function ServicesStickySection() {
 
     const steps = [...track.querySelectorAll<HTMLElement>('[data-pf-step]')];
     const figures = [...track.querySelectorAll<HTMLElement>('[data-pf-fig]')];
-    const digits = track.querySelector<HTMLElement>('[data-pf-digits]');
+    const digitsList = [...track.querySelectorAll<HTMLElement>('[data-pf-digits]')];
     const sCount = steps.length;
     let currentStep = -1;
 
@@ -79,10 +81,10 @@ export default function ServicesStickySection() {
     const updateHoles = () => {
       if (!releve || !canvas || !pfRef.current) return;
       const cRect = canvas.getBoundingClientRect();
-      const numEl = pfRef.current.querySelector('.pf__num');
+      const numEls = [...pfRef.current.querySelectorAll('.pf__num')];
       const activeStep = steps[currentStep >= 0 ? currentStep : 0];
       const infoEl = activeStep?.querySelector('.pf__info');
-      const targets = [numEl, infoEl].filter(Boolean) as HTMLElement[];
+      const targets = [...numEls, infoEl].filter(Boolean) as HTMLElement[];
 
       releve.setHoles(
         targets.map((el) => {
@@ -102,12 +104,13 @@ export default function ServicesStickySection() {
       f.setAttribute('data-wheel-offset', String(n));
     });
 
-    // 2. Continuous Scroll Listener (Always active, NEVER detached by intersection observer)
+    // Continuous Scroll Listener (Runs on both Desktop & Mobile)
     const handleScroll = () => {
       if (!track) return;
       const top = -track.getBoundingClientRect().top;
-      const stepH = window.innerHeight * 0.7;
-      const idx = Math.max(0, Math.min(sCount - 1, Math.floor(top / stepH)));
+      const isMobile = window.innerWidth < 1024;
+      const stepH = window.innerHeight * (isMobile ? 0.5 : 0.7);
+      const idx = Math.max(0, Math.min(sCount - 1, Math.floor((top + 40) / stepH)));
 
       if (idx !== currentStep) {
         currentStep = idx;
@@ -119,32 +122,33 @@ export default function ServicesStickySection() {
           f.classList.toggle('is-on', n <= idx);
           f.setAttribute('data-wheel-offset', String(n - idx));
         });
-        if (digits) {
+        digitsList.forEach((digits) => {
           digits.style.setProperty('--a', String(idx));
-        }
+        });
         releve?.setStep(idx, sCount);
         updateHoles();
       }
     };
 
-    let isNearViewport = false;
-    let scrollRaf = 0;
-    const scheduleScroll = () => {
-      if (!isNearViewport) return;
-      if (!scrollRaf) scrollRaf = requestAnimationFrame(() => {
-        scrollRaf = 0;
-        handleScroll();
-      });
-    };
-
     // Initial check
     handleScroll();
-    window.addEventListener('scroll', scheduleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // 3. Initialize and run the particle render loop only while nearby.
+    // Lenis smooth scroll listener integration
+    type LenisGlobal = {
+      __lenis?: {
+        on: (ev: string, cb: () => void) => void;
+        off: (ev: string, cb: () => void) => void;
+      };
+    };
+    const lenis = (window as unknown as LenisGlobal).__lenis;
+    if (lenis) {
+      lenis.on('scroll', handleScroll);
+    }
+
+    // Initialize and run the particle render loop only while nearby.
     const observer = new IntersectionObserver(
       ([entry]) => {
-        isNearViewport = entry.isIntersecting;
         if (entry.isIntersecting) {
           initializeReleve();
           releve?.start();
@@ -157,7 +161,7 @@ export default function ServicesStickySection() {
     );
     observer.observe(track);
 
-    // 4. Mouse Follower Tag & Particle Pointer Interaction
+    // Mouse Follower Tag & Particle Pointer Interaction (desktop only)
     const cursor = cursorRef.current;
     const pf = pfRef.current;
     let rafId = 0;
@@ -216,8 +220,10 @@ export default function ServicesStickySection() {
 
     return () => {
       observer.disconnect();
-      window.removeEventListener('scroll', scheduleScroll);
-      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      window.removeEventListener('scroll', handleScroll);
+      if (lenis) {
+        lenis.off('scroll', handleScroll);
+      }
       window.removeEventListener('resize', onResize);
       if (pf) {
         pf.removeEventListener('pointermove', onPointerMove);
@@ -247,8 +253,187 @@ export default function ServicesStickySection() {
         } as React.CSSProperties
       }
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 pt-12 sm:pt-16 pb-0 lg:absolute lg:inset-x-0 lg:top-0 lg:z-20">
-        <p className="eyebrow text-zinc-500">What we do</p>
+      <style>{`
+        @media (min-width: 1024px) {
+          #services .pf__card-wrap {
+            display: contents !important;
+          }
+        }
+        @media (max-width: 1023px) {
+          #services.pf {
+            padding: 0 !important;
+          }
+          #services .pf__track {
+            width: 100% !important;
+            height: calc(100vh + 4 * 60vh) !important;
+            margin: 0 !important;
+            position: relative;
+          }
+          #services .pf__stage {
+            position: sticky !important;
+            top: 0 !important;
+            height: 100dvh !important;
+            overflow: hidden !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            padding: 68px 16px 20px !important;
+            box-sizing: border-box !important;
+          }
+          #services .pf__bg {
+            display: block !important;
+            position: absolute !important;
+            inset: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            pointer-events: none !important;
+            z-index: 0 !important;
+          }
+          #services .pf__head-mobile {
+            width: min(88vw, 360px);
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            z-index: 10;
+          }
+          #services .pf__num-mobile {
+            display: flex !important;
+            align-items: baseline;
+            gap: 6px;
+            margin: 0;
+            font-family: var(--font-mono);
+            font-variant-numeric: tabular-nums;
+            z-index: 10;
+          }
+          #services .pf__num-mobile .pf__lbl {
+            font-size: 11px !important;
+            text-transform: uppercase !important;
+            color: var(--fg-muted) !important;
+            letter-spacing: .04em !important;
+          }
+          #services .pf__num-mobile .pf__roll {
+            height: 1.1em !important;
+            line-height: 1.1 !important;
+            font-family: var(--font-heading) !important;
+            font-size: 20px !important;
+            font-weight: 700 !important;
+            display: inline-block !important;
+            overflow: hidden !important;
+          }
+          #services .pf__num-mobile .pf__digits {
+            display: flex !important;
+            flex-direction: column !important;
+            transform: translateY(calc(var(--a, 0) * -1.1em)) !important;
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) !important;
+          }
+          #services .pf__num-mobile .pf__digits > span {
+            height: 1.1em !important;
+            line-height: 1.1em !important;
+            display: block !important;
+          }
+          #services .pf__card-wrap {
+            position: relative;
+            width: min(88vw, 360px);
+            height: calc(min(88vw, 360px) * (10 / 16) + 165px);
+            z-index: 10;
+          }
+          #services .pf__steps, #services .pf__step {
+            display: contents !important;
+          }
+          #services .pf__fig {
+            --cut: 26px;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 16/10 !important;
+            margin: 0 !important;
+            z-index: calc(1 + var(--i)) !important;
+            clip-path: polygon(0 100%, calc(100% - var(--cut)) 100%, 100% 100%, 100% 100%, 0 100%) !important;
+            transition: clip-path 0.85s cubic-bezier(0.25, 1, 0.5, 1) !important;
+            border-radius: 14px !important;
+            overflow: hidden !important;
+            box-shadow: 0 16px 36px -10px rgba(0,0,0,0.22) !important;
+          }
+          #services .pf__fig img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            transition: transform 1.4s var(--ease-out-quint) !important;
+            transform: scale(1.14) !important;
+          }
+          #services .pf__fig.is-on {
+            clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, 0 100%) !important;
+          }
+          #services .pf__fig.is-on img {
+            transform: scale(1) !important;
+          }
+          #services .pf__info {
+            position: absolute !important;
+            top: calc(min(88vw, 360px) * (10 / 16) + 12px) !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            z-index: 10 !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            transition: opacity 0.4s var(--ease-out-quint), transform 0.5s var(--ease-out-quint) !important;
+            transform: translateY(16px) !important;
+          }
+          #services .pf__step.is-before .pf__info {
+            transform: translateY(-16px) !important;
+          }
+          #services .pf__step.is-active .pf__info {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            transition-delay: 0.15s !important;
+            transform: translateY(0) !important;
+          }
+          #services .pf__n {
+            font-family: var(--font-mono);
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            color: var(--fg-muted);
+            margin: 0 0 4px;
+            font-size: 11px;
+            display: block !important;
+          }
+          #services .pf__title {
+            font-size: 21px !important;
+            font-weight: 700 !important;
+            letter-spacing: -0.02em !important;
+            line-height: 1.15 !important;
+            margin: 0 !important;
+          }
+          #services .pf__text {
+            margin: 6px 0 0 !important;
+            font-size: 13px !important;
+            line-height: 1.5 !important;
+            color: color-mix(in srgb, var(--fg) 72%, transparent) !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+          }
+          #services .pf__cta {
+            margin-top: 12px !important;
+          }
+          #services .cta {
+            height: 42px !important;
+            padding: 0 16px !important;
+            font-size: 13px !important;
+            border-radius: 8px !important;
+          }
+        }
+      `}</style>
+
+      {/* Desktop Section Header (lg:absolute lg:top-0) */}
+      <div className="hidden lg:block max-w-7xl mx-auto px-4 sm:px-8 pt-12 sm:pt-16 pb-0 lg:absolute lg:inset-x-0 lg:top-0 lg:z-20">
+        <p className="eyebrow text-zinc-500 font-mono tracking-widest uppercase text-xs">Core Capabilities &amp; Architecture</p>
         <h2 className="mt-3 text-4xl sm:text-6xl font-bold tracking-tight text-black leading-none">
           Services
         </h2>
@@ -275,7 +460,7 @@ export default function ServicesStickySection() {
             overflow: 'hidden',
           }}
         >
-          {/* WebGL Three.js Particle Relief Canvas */}
+          {/* WebGL Particle Relief Canvas (active on BOTH desktop & mobile) */}
           <canvas
             ref={canvasRef}
             className="pf__bg !block absolute inset-0 w-full h-full pointer-events-none z-0"
@@ -283,8 +468,33 @@ export default function ServicesStickySection() {
             aria-hidden={true}
           />
 
-          {/* Sticky Counter */}
-          <p className="pf__num z-10" aria-hidden={true}>
+          {/* Mobile Header + Counter (closely & optically grouped right above the card) */}
+          <div className="pf__head-mobile block lg:hidden">
+            <div>
+              <p className="text-[11px] font-mono uppercase tracking-widest text-zinc-500 font-semibold m-0">
+                Core Capabilities &amp; Architecture
+              </p>
+              <h2 className="mt-0.5 text-2xl font-bold tracking-tight text-black leading-tight m-0">
+                Services
+              </h2>
+            </div>
+            <p className="pf__num-mobile pf__num z-10" aria-hidden={true}>
+              <span className="pf__lbl">Service</span>
+              <span className="pf__roll">
+                <span className="pf__digits" data-pf-digits>
+                  <span>01</span>
+                  <span>02</span>
+                  <span>03</span>
+                  <span>04</span>
+                  <span>05</span>
+                </span>
+              </span>
+              <span className="pf__lbl">/ 05</span>
+            </p>
+          </div>
+
+          {/* Desktop Sticky Counter */}
+          <p className="hidden lg:flex pf__num z-10" aria-hidden={true}>
             <span className="pf__lbl">Service</span>
             <span className="pf__roll">
               <span className="pf__digits" data-pf-digits>
@@ -298,91 +508,121 @@ export default function ServicesStickySection() {
             <span className="pf__lbl">/ 05</span>
           </p>
 
-          {/* Step Cards with Polygon Transition & Text */}
-          <ol className="pf__steps">
-            {SERVICES.map((s, idx) => (
-              <li
-                key={s.num}
-                className={`pf__step ${idx === 0 ? 'is-active' : ''}`}
-                data-pf-step
-              >
-                <figure
-                  className={`pf__fig z-20 ${idx === 0 ? 'is-on' : ''}`}
-                  data-pf-fig
-                  data-wheel-offset={String(idx)}
-                  style={{ '--i': String(idx) } as React.CSSProperties}
-                  onClick={(e) => {
-                    if (typeof window !== 'undefined' && window.innerWidth >= 1024 && pfTrackRef.current) {
-                      const track = pfTrackRef.current;
-                      const activeStep = track.querySelector('.pf__step.is-active');
-                      const allSteps = [...track.querySelectorAll('[data-pf-step]')];
-                      const activeIdx = activeStep ? allSteps.indexOf(activeStep as HTMLElement) : 0;
-                      if (activeIdx !== idx) {
-                        e.preventDefault();
-                        const stepH = window.innerHeight * 0.7;
-                        const rect = track.getBoundingClientRect();
-                        const targetY = window.scrollY + rect.top + idx * stepH + 20;
-                        window.scrollTo({ top: targetY, behavior: 'smooth' });
-                      }
-                    }
-                  }}
+          {/* Card Wrap Container (Clean optical mobile card box; display: contents on desktop) */}
+          <div
+            className="pf__card-wrap"
+            onTouchStart={(e) => {
+              touchStartX.current = e.touches[0].clientX;
+              touchStartY.current = e.touches[0].clientY;
+            }}
+            onTouchEnd={(e) => {
+              if (touchStartX.current === null || touchStartY.current === null) return;
+              const dx = e.changedTouches[0].clientX - touchStartX.current;
+              const dy = e.changedTouches[0].clientY - touchStartY.current;
+              if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40 && pfTrackRef.current) {
+                const track = pfTrackRef.current;
+                const activeStepEl = track.querySelector('.pf__step.is-active');
+                const allSteps = [...track.querySelectorAll('[data-pf-step]')];
+                const activeIdx = activeStepEl ? allSteps.indexOf(activeStepEl as HTMLElement) : 0;
+                const nextIdx = dx < 0 ? Math.min(allSteps.length - 1, activeIdx + 1) : Math.max(0, activeIdx - 1);
+                if (nextIdx !== activeIdx) {
+                  const isMobile = window.innerWidth < 1024;
+                  const stepH = window.innerHeight * (isMobile ? 0.5 : 0.7);
+                  const rect = track.getBoundingClientRect();
+                  const targetY = window.scrollY + rect.top + nextIdx * stepH + 20;
+                  window.scrollTo({ top: targetY, behavior: 'smooth' });
+                }
+              }
+              touchStartX.current = null;
+              touchStartY.current = null;
+            }}
+          >
+            <ol className="pf__steps">
+              {SERVICES.map((s, idx) => (
+                <li
+                  key={s.num}
+                  className={`pf__step ${idx === 0 ? 'is-active' : ''}`}
+                  data-pf-step
                 >
-                  <Link
-                    className="pf__figlink"
-                    to={s.link}
-                    data-pf-link
-                    tabIndex={-1}
-                    aria-hidden={true}
+                  <figure
+                    className={`pf__fig z-20 ${idx === 0 ? 'is-on' : ''}`}
+                    data-pf-fig
+                    data-wheel-offset={String(idx)}
+                    style={{ '--i': String(idx) } as React.CSSProperties}
+                    onClick={(e) => {
+                      if (typeof window !== 'undefined' && pfTrackRef.current) {
+                        const track = pfTrackRef.current;
+                        const activeStepEl = track.querySelector('.pf__step.is-active');
+                        const allSteps = [...track.querySelectorAll('[data-pf-step]')];
+                        const activeIdx = activeStepEl ? allSteps.indexOf(activeStepEl as HTMLElement) : 0;
+                        if (activeIdx !== idx) {
+                          e.preventDefault();
+                          const isMobile = window.innerWidth < 1024;
+                          const stepH = window.innerHeight * (isMobile ? 0.5 : 0.7);
+                          const rect = track.getBoundingClientRect();
+                          const targetY = window.scrollY + rect.top + idx * stepH + 20;
+                          window.scrollTo({ top: targetY, behavior: 'smooth' });
+                        }
+                      }
+                    }}
                   >
-                    <img
-                      src={s.img}
-                      alt={s.title}
-                      loading="lazy"
-                      decoding="async"
-                      width="1800"
-                      height="1200"
-                    />
-                  </Link>
-                </figure>
-                <div className="pf__info z-30">
-                  <p className="pf__n">{s.num}</p>
-                  <h3 className="pf__title">
-                    <Link to={s.link}>{s.title}</Link>
-                  </h3>
-                  <p className="pf__text">{s.text}</p>
-                  <div className="pf__cta">
-                    <Link to={s.link} className="cta cta--ink">
-                      <span className="cta__text">
-                        <span className="cta__label">Explore {s.title}</span>
-                        <span className="cta__label cta__label--hover" aria-hidden={true}>
-                          Explore {s.title}
-                        </span>
-                      </span>
-                      <svg
-                        className="cta__arrow"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden={true}
-                      >
-                        <path d="M7 7h10v10" />
-                        <path d="M7 17 17 7" />
-                      </svg>
+                    <Link
+                      className="pf__figlink"
+                      to={s.link}
+                      data-pf-link
+                      tabIndex={-1}
+                      aria-hidden={true}
+                    >
+                      <img
+                        src={s.img}
+                        alt={s.title}
+                        loading="lazy"
+                        decoding="async"
+                        width="1376"
+                        height="768"
+                      />
                     </Link>
+                  </figure>
+                  <div className="pf__info z-30">
+                    <p className="pf__n">{s.num}</p>
+                    <h3 className="pf__title">
+                      <Link to={s.link}>{s.title}</Link>
+                    </h3>
+                    <p className="pf__text">{s.text}</p>
+                    <div className="pf__cta">
+                      <Link to={s.link} className="cta cta--ink">
+                        <span className="cta__text">
+                          <span className="cta__label">Explore {s.title}</span>
+                          <span className="cta__label cta__label--hover" aria-hidden={true}>
+                            Explore {s.title}
+                          </span>
+                        </span>
+                        <svg
+                          className="cta__arrow"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden={true}
+                        >
+                          <path d="M7 7h10v10" />
+                          <path d="M7 17 17 7" />
+                        </svg>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </li>
-            ))}
-          </ol>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </div>
 
-      {/* Floating Interactive Mouse Cursor */}
+      {/* Floating Interactive Mouse Cursor (Desktop only) */}
       <div className="pf__cursor" ref={cursorRef} data-pf-cursor aria-hidden={true}>
         <span className="pf__cursor-in">
           <span className="pf__cursor-txt">View services</span>

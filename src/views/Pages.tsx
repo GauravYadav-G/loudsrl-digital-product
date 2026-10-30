@@ -132,10 +132,10 @@ export function WorkPage() {
         img="https://images.pexels.com/photos/34221997/pexels-photo-34221997.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1800" />
 
       <Section pad="py-16 lg:py-20">
-        <div className="flex flex-wrap gap-2 border-y border-paper/15 py-5">
+        <div className="flex flex-wrap gap-2.5 border-y border-paper/15 py-5">
           {sectors.map(s => (
             <button key={s} onClick={() => setFilter(s)} data-hover
-              className={`mono text-[11px] h-[34px] px-4 rounded-full border transition duration-300 ${filter === s ? 'bg-paper text-void border-paper' : 'border-paper/25 text-paper/65 hover:border-paper hover:text-paper'}`}>{s}</button>
+              className={`mono text-[11px] min-h-[36px] px-5 rounded-full border transition duration-300 inline-flex items-center justify-center ${filter === s ? 'bg-paper text-void border-paper' : 'border-paper/25 text-paper/65 hover:border-paper hover:text-paper'}`}>{s}</button>
           ))}
         </div>
 
@@ -257,38 +257,12 @@ export function CareersPage() {
         intro="We hire for craft and curiosity. If you want to work on manufacturing, D2C, healthcare and software brands alongside senior people who will actually teach you — this is the place."
         img="https://images.pexels.com/photos/8485591/pexels-photo-8485591.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1800" />
 
-      {/* OPEN ROLES */}
-      <Section id="open-roles" eyebrow="Open positions" title="We are hiring." pad="py-16 lg:py-24">
-        <div className="flex flex-wrap gap-2 border-y border-paper/15 py-5">
-          {teams.map(t => (
-            <button key={t} onClick={() => setTeam(t)} data-hover
-              className={`mono text-[11px] h-[34px] px-4 rounded-full border transition duration-300 ${team === t ? 'bg-paper text-void border-paper' : 'border-paper/25 text-paper/65 hover:border-paper hover:text-paper'}`}>{t}</button>
-          ))}
-        </div>
-        <div className="mt-6 border-t border-paper/15">
-          {list.length > 0 ? (
-            list.map((r, i) => (
-              <Fade key={r.role} delay={i * 0.05} y={14}>
-                <div className="group border border-paper/15 rounded-xl p-5 hover:border-solar/50 hover:bg-void/20 transition-all duration-400">
-                  <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
-                    <div>
-                      <span className="mono text-[0.55rem] tracking-[0.16em] uppercase text-paper/35">{r.team}</span>
-                      <p className="mt-1 text-[16px] font-light text-paper group-hover:text-solar transition-colors">{r.role}</p>
-                      <span className="mono text-[0.58rem] tracking-[0.18em] uppercase text-paper/40">{r.type} · {r.place}</span>
-                    </div>
-                    <button onClick={() => setApp(p => ({ ...p, role: r.role }))} data-hover
-                      className="inline-flex items-center gap-2 text-solar font-light hover:pr-2 transition-colors">
-                      Apply for this role →
-                    </button>
-                  </div>
-                </div>
-              </Fade>
-            ))
-          ) : (
-            <div className="border border-paper/15 rounded-xl p-12 text-center text-paper/55">
-              <p>No open positions in this team right now. Send us a note anyway.</p>
-            </div>
-          )}
+      {/* TALENT NETWORK & SPONTANEOUS APPLICATION */}
+      <Section id="open-roles" eyebrow="Talent Network" title="Spontaneous Opportunities." pad="py-16 lg:py-24">
+        <div className="border border-paper/15 rounded-2xl p-8 sm:p-12 bg-void/5">
+          <p className="text-paper/75 text-base sm:text-lg font-light leading-relaxed max-w-2xl">
+            We are not actively listing open seats right now. Our core team in Noida is compact and craft-first. However, we regularly engage high-caliber engineers, SEO strategists, and filmmakers for upcoming enterprise productions. Send your portfolio and introduce yourself below.
+          </p>
         </div>
       </Section>
 
@@ -423,19 +397,12 @@ export function ContactPage() {
                     </label>
                   ))}
                 </div>
-                <div className="grid md:grid-cols-2 gap-x-8">
+                <div>
                   <label className="block border-b border-paper/20 py-4 focus-within:border-solar transition-colors">
                     <span className="mono text-[0.56rem] tracking-[0.22em] text-paper/45">SERVICE REQUIRED*</span>
                     <select required {...sel('type')} className="mt-2 w-full bg-transparent text-[16px] font-light outline-none">
                       <option value="" className="bg-void">Select a service</option>
                       {SERVICES.map(s => <option key={s.slug} className="bg-void">{s.title}</option>)}
-                    </select>
-                  </label>
-                  <label className="block border-b border-paper/20 py-4 focus-within:border-solar transition-colors">
-                    <span className="mono text-[0.56rem] tracking-[0.22em] text-paper/45">BUDGET RANGE*</span>
-                    <select required {...sel('budget')} className="mt-2 w-full bg-transparent text-[16px] font-light outline-none">
-                      <option value="" className="bg-void">Select your budget range</option>
-                      {['Under ₹1 Lakh', '₹1–3 Lakh', '₹3–10 Lakh', '₹10 Lakh+'].map(o => <option key={o} className="bg-void">{o}</option>)}
                     </select>
                   </label>
                 </div>

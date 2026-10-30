@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     canonical: '/work',
   },
   openGraph: {
-    title: 'Our Work & Case Studies | ARKA Technovation',
+    title: 'Our Work & Case Studies | ARKA Technovation Private Limited',
     description:
       'Case studies and verified results across 850+ projects for enterprise and mid-market organizations.',
     url: '/work',

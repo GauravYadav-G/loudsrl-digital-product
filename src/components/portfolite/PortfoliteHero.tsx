@@ -1,8 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { ArrowRight } from 'lucide-react';
-import LiquidBackground, { PRESETS } from '../LiquidBackground';
+import { PRESETS } from '../LiquidBackground';
+
+const LiquidBackground = dynamic(() => import('../LiquidBackground'), {
+  ssr: false,
+});
 
 export default function PortfoliteHero() {
   // Default to ARKA Solar Fire palette (index 0)

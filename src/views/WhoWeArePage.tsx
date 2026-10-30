@@ -88,53 +88,6 @@ export default function WhoWeArePage() {
     },
   ];
 
-  const pricingGuides = [
-    {
-      discipline: 'Custom Web & Software Development',
-      range: 'From ₹1.2 Lakh (Fixed Scope)',
-      desc: 'High-performance responsive websites, web portals, and custom CRM platforms built with Next.js, React, Node.js, and cloud infrastructure.',
-      includes: [
-        'Technical architecture specification & schema design',
-        'Bespoke UI/UX design system in Figma',
-        'Full-stack development with automated testing',
-        'Production cloud deployment & full source code handover',
-      ],
-    },
-    {
-      discipline: 'SEO & Inbound Lead Generation',
-      range: '₹40,000 – ₹1,80,000 / month',
-      desc: 'Full-service enterprise search engine optimization covering technical crawl health, Core Web Vitals, authoritative backlinks, and high-volume commercial ranking.',
-      includes: [
-        'Deep technical crawl and speed audit',
-        'Commercial keyword intent mapping & clustering',
-        'Monthly on-page optimization & content publishing',
-        'High-authority editorial backlink acquisition',
-      ],
-    },
-    {
-      discipline: 'PPC & Digital Advertising Management',
-      range: '10% – 15% of Ad Spend or Retainer',
-      desc: 'Data-driven paid media campaigns across Google Ads, Meta, LinkedIn, and addressable geofencing networks focused on ROAS and pipeline growth.',
-      includes: [
-        'Account structure setup & query management',
-        'Competitor keyword research & bid war mitigation',
-        'Ad copy & creative variant split-testing',
-        'Conversion tracking & click fraud protection',
-      ],
-    },
-    {
-      discipline: 'Corporate Film & Video Production',
-      range: 'Custom Quote by Production Scale',
-      desc: 'Broadcast-quality corporate documentaries, product demo films, TV commercial ads, and factory shoots produced by our in-house cinematography crew.',
-      includes: [
-        'Concept treatment, scripting & storyboarding',
-        'On-location filming with 4K/8K cinema cameras & lighting',
-        'DaVinci Resolve color grading & sound mastering',
-        'Optimized aspect ratio cut-downs for social and landing pages',
-      ],
-    },
-  ];
-
   const guides = [
     {
       title: 'Why the Unified In-House Pod Model Beats Fragmented Agency Outsourcing',
@@ -146,7 +99,7 @@ export default function WhoWeArePage() {
       title: 'Radical Reporting Transparency: Why We Share the Exact Dashboards We Use',
       cat: 'Governance & Ethics',
       readTime: '5 min read',
-      desc: 'How traditional agency reporting hides underperforming campaigns. Why ARKA Technovation shares live, unfiltered telemetry connecting digital spend directly to pipeline revenue.',
+      desc: 'How traditional agency reporting hides underperforming campaigns. Why ARKA Technovation Private Limited shares live, unfiltered telemetry connecting digital spend directly to pipeline revenue.',
     },
     {
       title: 'Corporate Social Responsibility (CSR) in Enterprise Technology',
@@ -158,15 +111,15 @@ export default function WhoWeArePage() {
 
   const faqs = [
     {
-      q: 'Who founded and leads ARKA Technovation?',
-      a: 'ARKA Technovation is founded and led by Mr. Kranti Parashar, an eminent technology leader with over 15 years of industry experience across enterprise web engineering, digital marketing strategy, and corporate film production.',
+      q: 'Who founded and leads ARKA Technovation Private Limited?',
+      a: 'ARKA Technovation Private Limited is founded and led by Mr. Kranti Parashar, an eminent technology leader with over 15 years of industry experience across enterprise web engineering, digital marketing strategy, and corporate film production.',
     },
     {
       q: 'Where is your corporate headquarters located?',
       a: 'Our corporate headquarters is located at Royace Business Park, Office No- 202, C-4, Sector 63, Noida, Uttar Pradesh 201301, India. Our facility houses our engineering development bays, design studios, 4K editing and color grading suites, and meeting rooms.',
     },
     {
-      q: 'Why does ARKA Technovation refuse to outsource work to freelancers or third-party agencies?',
+      q: 'Why does ARKA Technovation Private Limited refuse to outsource work to freelancers or third-party agencies?',
       a: 'Outsourcing creates fragmented communication, security risks, variable code quality, and intellectual property ambiguities. By keeping 100% of our software developers, SEO specialists, designers, and cinematographers in-house in Sector 63, Noida, we guarantee institutional quality, rigorous accountability, and direct client communication.',
     },
     {
@@ -174,7 +127,7 @@ export default function WhoWeArePage() {
       a: 'Our Centralized Content Library is an institutional repository that stores, manages, and organizes all digital assets utilized in client operations—marketing collateral, product specifications, training videos, brand guidelines, cinema b-roll, and interactive presentations. It ensures version stability, rapid retrieval, and seamless collaboration across enterprise teams.',
     },
     {
-      q: 'How does ARKA Technovation contribute to the local community in Uttar Pradesh and Delhi NCR?',
+      q: 'How does ARKA Technovation Private Limited contribute to the local community in Uttar Pradesh and Delhi NCR?',
       a: 'We believe technology companies have a responsibility to uplift their local ecosystems. We run quarterly STEM workshops for government school students in Noida, mentor university engineering undergraduates in modern web frameworks (Next.js, Python), and provide pro-bono digital strategy to emerging local manufacturers and small businesses in the industrial sectors of Delhi NCR.',
     },
     {
@@ -194,7 +147,7 @@ export default function WhoWeArePage() {
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
           <div className="max-w-4xl text-left">
             <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-black leading-[1.08] text-left">
-              Who We Are — ARKA Technovation.
+              Who We Are — ARKA Technovation Private Limited.
             </h1>
 
             <p className="mt-6 text-lg sm:text-xl text-zinc-600 max-w-3xl leading-relaxed font-light text-left">
@@ -403,72 +356,6 @@ export default function WhoWeArePage() {
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Transparent Pricing Guides ── */}
-      <section id="pricing" className="scroll-mt-36 py-20 sm:py-28 bg-zinc-50 border-t border-black/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-left max-w-3xl mb-14">
-            <span className="text-xs font-mono uppercase tracking-widest text-solar font-semibold">
-              Honest Commercials
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-black mt-3">
-              Transparent Pricing Guides
-            </h2>
-            <p className="mt-4 text-zinc-600 text-base sm:text-lg leading-relaxed font-light">
-              We believe in upfront commercial clarity. No hidden fees, no opaque contracts—just fixed scopes and measurable ROI.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {pricingGuides.map((guide, idx) => (
-              <div
-                key={idx}
-                className="p-8 sm:p-10 rounded-2xl bg-white border border-black/10 hover:border-black/25 hover:shadow-xl transition-all duration-300 flex flex-col justify-between shadow-sm"
-              >
-                <div>
-                  <span className="font-mono text-xs px-3 py-1 rounded-full bg-zinc-100 border border-black/10 text-solar font-medium tracking-wide">
-                    Pricing Guide
-                  </span>
-                  <h3 className="text-2xl font-bold text-black mt-4 tracking-tight">
-                    {guide.discipline}
-                  </h3>
-                  <div className="mt-2 text-lg font-mono font-bold text-solar">
-                    {guide.range}
-                  </div>
-                  <p className="mt-3 text-sm text-zinc-600 leading-relaxed font-light">
-                    {guide.desc}
-                  </p>
-
-                  <div className="mt-6 border-t border-black/8 pt-5">
-                    <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-3">
-                      Scope Highlights:
-                    </p>
-                    <ul className="space-y-2">
-                      {guide.includes.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 font-medium">
-                          <CheckCircle2 className="w-4 h-4 text-solar shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="mt-8 pt-4 border-t border-black/8 flex items-center justify-between">
-                  <span className="text-xs font-mono text-zinc-500">Fixed Milestone Scopes</span>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-black hover:text-solar transition-colors"
-                  >
-                    <span>Request Custom Proposal</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

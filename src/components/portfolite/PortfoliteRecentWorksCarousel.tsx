@@ -402,228 +402,296 @@ function DynamicMosaicCanvas({ variant }: { variant: string }) {
 
 /* ─────────────────────────────────────────────────────────────
    SHOWCASE CARDS DATA
-   Exact 1:1 match to the design reference:
-   1. Navy: Real-time sync / Signups
-   2. Olive: Ship in seconds (DEPLOY)
-   3. Terracotta: Data that stays live (QUERY)
-   4. Mauve: Holds up at scale (UPTIME · 90 DAYS)
-   5. Graphite: People and agents (TEAM)
-   6. Sand: Your address (DOMAIN)
+   Structured around core agency operations, methodologies, and quality standards:
+   1. Navy: Production-Grade Architecture (STACK & ENGINEERING)
+   2. Olive: Continuous Delivery & CI/CD (DEPLOYMENT PIPELINE)
+   3. Terracotta: Search Authority & Semantic SEO (SEARCH TELEMETRY)
+   4. Mauve: Enterprise CRM & Workflows (SYSTEMS & DATA SYNC)
+   5. Graphite: Corporate Cinema & Visual Production (BROADCAST CINEMATOGRAPHY)
+   6. Sand: Complete Source Code Ownership (COMMERCIAL IP & HANDOVER)
+   No claimed numbers — focused on operations, working methodologies, and quality.
    ───────────────────────────────────────────────────────────── */
 const SHOWCASE_CARDS: ShowcaseCardItem[] = [
   {
-    id: 'card-real-users',
-    bottomTitle: 'Real users, day one',
+    id: 'card-architecture',
+    bottomTitle: 'Production-Grade Architecture',
     mosaicVariant: 'navy',
     glassWidget: (
       <div className="text-left w-full select-none">
-        <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-1.5">
-          SIGNUPS · TODAY
+        <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-2">
+          ENGINEERING · STACK
         </div>
-        <div className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 my-1 leading-none">
-          1,204
-        </div>
-        <div className="text-xs text-emerald-600 font-medium flex items-center gap-1">
-          <span>+18% vs yesterday</span>
+        <div className="space-y-2 text-xs sm:text-[12.5px] font-mono">
+          <div className="flex items-center justify-between text-zinc-900 font-medium">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-blue-600 shrink-0" />
+              <span>Next.js · React</span>
+            </span>
+            <span className="text-zinc-500 text-[11px] font-normal">Modern Stack</span>
+          </div>
+          <div className="flex items-center justify-between text-zinc-900 font-medium">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0" />
+              <span>Strict TypeScript</span>
+            </span>
+            <span className="text-zinc-500 text-[11px] font-normal">Clean Code</span>
+          </div>
+          <div className="flex items-center justify-between text-zinc-900 font-medium">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+              <span>Node.js Backend</span>
+            </span>
+            <span className="text-emerald-700 text-[11px] font-normal">Scalable</span>
+          </div>
         </div>
       </div>
     ),
     projectData: {
-      id: 'showcase-users',
-      title: 'D2C E-Commerce Growth Platform',
-      category: 'E-Commerce · Digital Marketing',
-      image: '/portfolite/proj-2.png',
-      client: 'Brand Founder',
+      id: 'showcase-architecture',
+      title: 'Enterprise Software & Platform Architecture',
+      category: 'Software Engineering · Technical Architecture',
+      image: '/portfolite/proj-1.webp',
+      client: 'Technical Leadership',
       year: '2025',
       description:
-        'Fast mobile-first storefront, streamlined checkout funnel, and full-funnel digital marketing campaigns.',
-      deliverables: ['E-Commerce Storefront', 'Checkout Rebuild', 'Performance Marketing'],
-      results: 'Compounding Revenue & Leads',
+        'Full-stack enterprise application engineering designed with modular component architecture, typed schema contracts, automated testing suites, and production cloud infrastructure.',
+      deliverables: ['Modular Architecture Specification', 'Next.js & React Frontend', 'Scalable Node.js Microservices', 'Full Source Code Handover'],
+      results: 'Production-Grade Reliability & Ownership',
     },
   },
   {
     id: 'card-deploy',
-    bottomTitle: 'Ship in seconds',
+    bottomTitle: 'Continuous Delivery & CI/CD',
     mosaicVariant: 'olive',
     glassWidget: (
       <div className="text-left w-full select-none">
-        <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-2.5">
-          DEPLOY
+        <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-2">
+          PIPELINE · OPERATIONS
         </div>
-        <div className="space-y-2 text-xs sm:text-[13px] font-mono">
+        <div className="space-y-2 text-xs sm:text-[12.5px] font-mono">
+          <div className="flex items-center justify-between text-zinc-800 font-medium">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 animate-pulse" />
+              <span>Production Build</span>
+            </span>
+            <span className="text-emerald-700 font-medium text-[11px]">Deployed</span>
+          </div>
           <div className="flex items-center justify-between text-zinc-800 font-medium">
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-              <span>production</span>
+              <span>Automated Tests</span>
             </span>
-            <span className="text-zinc-500 font-normal">38 s</span>
+            <span className="text-zinc-500 font-normal text-[11px]">All Passed</span>
           </div>
           <div className="flex items-center justify-between text-zinc-800 font-medium">
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full border border-zinc-700 shrink-0" />
-              <span>preview · pr-214</span>
+              <span>Edge Verification</span>
             </span>
-            <span className="text-zinc-500 font-normal">ready</span>
+            <span className="text-zinc-500 font-normal text-[11px]">Active</span>
           </div>
         </div>
       </div>
     ),
     projectData: {
       id: 'showcase-deploy',
-      title: 'Automated CI/CD Platform',
-      category: 'Cloud Engineering · Instant Deploys',
-      image: '/portfolite/proj-1.png',
-      client: 'Engineering Team',
+      title: 'Automated CI/CD & Deployment Operations',
+      category: 'DevOps · Cloud Infrastructure',
+      image: '/portfolite/proj-2.webp',
+      client: 'Infrastructure Team',
       year: '2025',
       description:
-        'Continuous delivery and zero-downtime deployment pipeline for enterprise web and mobile applications.',
-      deliverables: ['Automated CI/CD', 'Edge Verification', 'Instant Rollbacks'],
-      results: '38s Global Deployments',
+        'Automated continuous integration and deployment pipelines with immutable release stages, pull-request previews, automated test runs, and instant zero-downtime rollbacks.',
+      deliverables: ['Automated CI/CD Workflows', 'Zero-Downtime Releases', 'Pull-Request Environments', 'Instant Rollback Protocols'],
+      results: 'High-Velocity Zero-Downtime Releases',
     },
   },
   {
-    id: 'card-live-data',
-    bottomTitle: 'Data that stays live',
+    id: 'card-live-seo',
+    bottomTitle: 'Search Authority & Semantic SEO',
     mosaicVariant: 'terracotta',
     glassWidget: (
       <div className="text-left w-full select-none">
         <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-2">
-          QUERY
+          SEARCH TELEMETRY
         </div>
-        <div className="font-mono text-xs sm:text-[12.5px] text-zinc-800 leading-snug mb-2 font-medium">
-          <span className="text-blue-600">useQuery</span>
-          <span className="text-zinc-600">(</span>
-          <span className="text-blue-600">Order</span>
-          <span className="text-zinc-600">, &#123; </span>
-          <span className="text-blue-600">status</span>
-          <span className="text-zinc-600">: </span>
-          <span className="text-blue-600">&quot;paid&quot;</span>
-          <span className="text-zinc-600"> &#125;)</span>
-        </div>
-        <div className="text-[11px] font-mono text-zinc-500">
-          1,204 rows · from cache
+        <div className="space-y-2 text-xs sm:text-[12.5px] font-mono">
+          <div className="flex items-center justify-between text-zinc-800 font-medium">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-orange-500 shrink-0" />
+              <span>Schema.org JSON-LD</span>
+            </span>
+            <span className="text-emerald-700 font-medium text-[11px]">Structured</span>
+          </div>
+          <div className="flex items-center justify-between text-zinc-800 font-medium">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-orange-500 shrink-0" />
+              <span>Core Web Vitals</span>
+            </span>
+            <span className="text-emerald-700 font-medium text-[11px]">All Green</span>
+          </div>
+          <div className="flex items-center justify-between text-zinc-800 font-medium">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-orange-500 shrink-0" />
+              <span>Entity Indexing</span>
+            </span>
+            <span className="text-zinc-500 font-normal text-[11px]">Active</span>
+          </div>
         </div>
       </div>
     ),
     projectData: {
-      id: 'showcase-query',
-      title: 'Enterprise Web Platform',
-      category: 'Custom Software · Edge Query',
-      image: '/portfolite/proj-1.png',
-      client: 'Engineering Director',
+      id: 'showcase-seo',
+      title: 'Enterprise Search Authority & Inbound Lead Generation',
+      category: 'SEO & Technical Crawl Engineering',
+      image: '/portfolite/proj-3.webp',
+      client: 'Growth & Marketing Leadership',
       year: '2025',
       description:
-        'Headless Next.js architecture, real-time edge catalog, and high-performance search infrastructure.',
-      deliverables: ['Web Architecture', 'Edge Caching', 'Performance Optimization'],
-      results: 'Verified High Conversion',
+        'Full-service enterprise search engine optimization covering technical crawl architecture, Core Web Vitals optimization, Schema.org entity graphs, high-intent keyword mapping, and AI Overviews visibility.',
+      deliverables: ['Deep Technical Crawl Audit', 'Schema.org Graph Design', 'Commercial Intent Mapping', 'Authoritative Editorial Backlinks'],
+      results: 'Compounding Inbound Commercial Demand',
     },
   },
   {
-    id: 'card-scale-uptime',
-    bottomTitle: 'Holds up at scale',
+    id: 'card-enterprise-crm',
+    bottomTitle: 'Enterprise CRM & Workflows',
     mosaicVariant: 'mauve',
     glassWidget: (
       <div className="text-left w-full select-none">
-        <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-1">
-          UPTIME · 90 DAYS
+        <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-2">
+          ENTERPRISE · WORKFLOWS
         </div>
-        <div className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 my-1 leading-none">
-          99.98%
-        </div>
-        <div className="text-xs text-zinc-500 font-medium">
-          no incidents
+        <div className="space-y-2 text-xs sm:text-[12.5px] font-mono">
+          <div className="flex items-center justify-between text-zinc-800 font-medium">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-purple-600 shrink-0" />
+              <span>Role-Based Access</span>
+            </span>
+            <span className="text-zinc-600 font-normal text-[11px]">Encrypted</span>
+          </div>
+          <div className="flex items-center justify-between text-zinc-800 font-medium">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-purple-600 shrink-0" />
+              <span>ERP Sync Pipeline</span>
+            </span>
+            <span className="text-emerald-700 font-medium text-[11px]">Live</span>
+          </div>
+          <div className="flex items-center justify-between text-zinc-800 font-medium">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-purple-600 shrink-0" />
+              <span>Approval Matrices</span>
+            </span>
+            <span className="text-zinc-600 font-normal text-[11px]">Automated</span>
+          </div>
         </div>
       </div>
     ),
     projectData: {
-      id: 'showcase-uptime',
-      title: 'Cloud CRM & ERP Integration',
-      category: 'Software Development · Cloud Systems',
-      image: '/portfolite/proj-4.jpg',
-      client: 'Chief Technology Officer',
+      id: 'showcase-crm',
+      title: 'Custom Cloud CRM & Process Automation',
+      category: 'Enterprise Software & Workflow Systems',
+      image: '/portfolite/proj-4.webp',
+      client: 'Operations & IT Directors',
       year: '2025',
       description:
-        'Scalable multi-tier cloud CRM with role-based dashboards, automated approval matrices, and live enterprise sync.',
-      deliverables: ['Custom CRM', 'ERP Sync', 'High Availability'],
-      results: '99.98% Verified Uptime',
+        'Bespoke business operating platforms featuring custom lead pipelines, multi-level approval matrices, secure relational schemas, and direct synchronization with legacy ERP systems.',
+      deliverables: ['Bespoke CRM Workflows', 'Legacy ERP Integration', 'Role-Based Dashboards', 'Automated Lead Routing'],
+      results: 'Automated Operational Synchronization',
     },
   },
   {
-    id: 'card-people-systems',
-    bottomTitle: 'People and agents',
+    id: 'card-corporate-cinema',
+    bottomTitle: 'Corporate Cinema & Production',
     mosaicVariant: 'graphite',
     glassWidget: (
       <div className="text-left w-full select-none">
-        <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-2.5">
-          TEAM
+        <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-2">
+          BROADCAST · PRODUCTION
         </div>
-        <div className="space-y-2 text-xs sm:text-[13px] text-zinc-800 font-medium">
-          <div className="flex items-center gap-2">
-            <svg className="w-3.5 h-3.5 text-blue-500 fill-current shrink-0" viewBox="0 0 16 16">
-              <path d="M0 0 L0 14 L3.8 10.8 L6.5 16 L8.8 14.8 L6.2 9.4 L11 9.4 Z" />
-            </svg>
-            <span>4 people</span>
+        <div className="space-y-2 text-xs sm:text-[12.5px] font-mono">
+          <div className="flex items-center justify-between text-zinc-800 font-medium">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-zinc-700 shrink-0" />
+              <span>Cinema Cameras</span>
+            </span>
+            <span className="text-zinc-600 font-normal text-[11px]">Ultra HD</span>
           </div>
-          <div className="flex items-center gap-2">
-            <svg className="w-3.5 h-3.5 text-orange-500 fill-current shrink-0" viewBox="0 0 16 16">
-              <path d="M0 0 L0 14 L3.8 10.8 L6.5 16 L8.8 14.8 L6.2 9.4 L11 9.4 Z" />
-            </svg>
-            <span>2 Operators</span>
+          <div className="flex items-center justify-between text-zinc-800 font-medium">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-zinc-700 shrink-0" />
+              <span>DaVinci Studio Color</span>
+            </span>
+            <span className="text-zinc-600 font-normal text-[11px]">Mastered</span>
+          </div>
+          <div className="flex items-center justify-between text-zinc-800 font-medium">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-zinc-700 shrink-0" />
+              <span>On-Location Filming</span>
+            </span>
+            <span className="text-emerald-700 font-medium text-[11px]">In-House Crew</span>
           </div>
         </div>
       </div>
     ),
     projectData: {
-      id: 'showcase-team',
-      title: 'Healthcare Experience Portal',
-      category: 'UI/UX Design & Engineering',
-      image: '/portfolite/proj-6.png',
-      client: 'Product Head',
+      id: 'showcase-film',
+      title: 'Corporate Film & Brand Cinematography',
+      category: 'Film Production & Brand Storytelling',
+      image: '/portfolite/proj-5.webp',
+      client: 'Brand & Marketing Directors',
       year: '2025',
       description:
-        'Direct partnership with in-house design and engineering teams — seamless user experience and modern design system.',
-      deliverables: ['Patient Portal', 'Design System', 'User Research'],
-      results: 'Measurable Engagement Lift',
+        'Broadcast-standard corporate documentaries, manufacturing plant films, technical product demos, and executive brand stories produced end-to-end by our in-house cinematography crew.',
+      deliverables: ['Concept Treatment & Scripting', 'On-Location Cinema Filming', 'DaVinci Resolve Color Grading', 'Multi-Platform Cutdowns'],
+      results: 'High-Impact Brand Authority & Trust',
     },
   },
   {
-    id: 'card-your-address',
-    bottomTitle: 'Your address',
+    id: 'card-code-ownership',
+    bottomTitle: 'Complete Source Code Ownership',
     mosaicVariant: 'sand',
     glassWidget: (
       <div className="text-left w-full select-none">
-        <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-2.5">
-          DOMAIN
+        <div className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold mb-2">
+          COMMERCIAL · OWNERSHIP
         </div>
-        <div className="space-y-2 text-xs sm:text-[13px] font-mono">
+        <div className="space-y-2 text-xs sm:text-[12.5px] font-mono">
           <div className="flex items-center justify-between text-zinc-800 font-medium">
             <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-              <span>acme.com</span>
+              <span className="w-2 h-2 rounded-full bg-amber-600 shrink-0" />
+              <span>Full Source Code</span>
             </span>
-            <span className="text-zinc-400 font-normal text-[11px]">live</span>
+            <span className="text-emerald-700 font-medium text-[11px]">Full Handover</span>
           </div>
           <div className="flex items-center justify-between text-zinc-800 font-medium">
             <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full border border-zinc-700 shrink-0" />
-              <span>app.acme.com</span>
+              <span className="w-2 h-2 rounded-full bg-amber-600 shrink-0" />
+              <span>Cloud Deployment</span>
             </span>
-            <span className="text-zinc-400 font-normal text-[11px]">live</span>
+            <span className="text-zinc-600 font-normal text-[11px]">Your Accounts</span>
+          </div>
+          <div className="flex items-center justify-between text-zinc-800 font-medium">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-amber-600 shrink-0" />
+              <span>Proprietary Lock-In</span>
+            </span>
+            <span className="text-zinc-500 font-normal text-[11px]">Zero Lock-In</span>
           </div>
         </div>
       </div>
     ),
     projectData: {
-      id: 'showcase-domain',
-      title: 'Organic Search Architecture',
-      category: 'Search Engine Optimization',
-      image: '/portfolite/proj-5.png',
-      client: 'Growth Director',
-      year: '2024',
+      id: 'showcase-ownership',
+      title: 'Uncompromised Intellectual Property & Source Handover',
+      category: 'Commercial Clarity & Client Ownership',
+      image: '/portfolite/proj-6.webp',
+      client: 'Enterprise Founders & Executives',
+      year: '2025',
       description:
-        'Modular technical architecture and Google Business Profile optimization across key target regions.',
-      deliverables: ['Technical SEO', 'Schema Markup', 'Keyword Strategy'],
-      results: 'Page-One Organic Dominance',
+        'Full commercial transparency and complete intellectual property transfer. All source code repositories, deployment credentials, architecture documentation, and assets are transferred directly to your organization.',
+      deliverables: ['Full Git Repository Handover', 'Dedicated Cloud Account Deployment', 'Technical Architecture Documentation', 'Clean Commercial Handover'],
+      results: 'Total IP Control & Freedom',
     },
   },
 ];

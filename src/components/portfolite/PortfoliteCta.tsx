@@ -17,7 +17,7 @@ export default function PortfoliteCta() {
       {/* Massive ambient radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[1000px] h-[500px] sm:h-[600px] bg-gradient-to-b from-solar/[0.12] via-zinc-200/[0.3] to-transparent rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center z-10">
+      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center z-10">
         {/* Availability Badge */}
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-zinc-100 border border-black/10 backdrop-blur-md mb-8">
           <span className="relative flex h-2 w-2">
@@ -30,12 +30,12 @@ export default function PortfoliteCta() {
         </div>
 
         {/* Headline */}
-        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-black leading-[1.12] max-w-3xl mx-auto">
+        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-black leading-[1.12] max-w-3xl !mx-auto text-center" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
           Ready to scale your business with search dominance, custom software &amp; film?
         </h2>
 
         {/* Subtext */}
-        <p className="mt-6 sm:mt-8 text-base sm:text-lg text-zinc-600 font-light max-w-xl mx-auto leading-relaxed">
+        <p className="mt-6 sm:mt-8 text-base sm:text-lg text-zinc-600 font-light max-w-xl !mx-auto leading-relaxed text-center" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
           Talk directly with Kranti and our engineering directors. After our discovery call, you receive a written proposal with a fixed scope, timeline, and deliverables.
         </p>
 

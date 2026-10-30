@@ -22,7 +22,7 @@ export default function PortfoliteFaq() {
             Frequently Asked Questions
           </h2>
           <p className="text-zinc-600 text-base max-w-lg mx-auto font-light">
-            Clear, honest answers about working with ARKA Technovation, timelines, pricing, and project governance.
+            Clear, honest answers about working with ARKA Technovation Private Limited, timelines, pricing, and project governance.
           </p>
         </div>
 

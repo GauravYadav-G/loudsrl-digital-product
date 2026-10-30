@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     canonical: '/ux-interactives',
   },
   openGraph: {
-    title: 'UX & Interactive Digital Experiences | ARKA Technovation',
+    title: 'UX & Interactive Digital Experiences | ARKA Technovation Private Limited',
     description:
       'Human-centric interface design, design systems, WebGL interactions, and enterprise CRO engineering.',
     url: '/ux-interactives',

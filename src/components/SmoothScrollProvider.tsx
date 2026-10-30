@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import Lenis from 'lenis';
@@ -16,6 +16,23 @@ export default function SmoothScrollProvider({
 }) {
   const lenis = useRef<Lenis | null>(null);
   const pathname = usePathname();
+  const [showWidget, setShowWidget] = useState(false);
+
+  useEffect(() => {
+    let t: number | ReturnType<typeof setTimeout> | null = null;
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      t = (window as unknown as { requestIdleCallback: (cb: () => void, opt?: { timeout: number }) => number }).requestIdleCallback(() => setShowWidget(true), { timeout: 1500 });
+    } else {
+      t = setTimeout(() => setShowWidget(true), 800);
+    }
+    return () => {
+      if (typeof window !== 'undefined' && 'cancelIdleCallback' in window && typeof t === 'number') {
+        (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(t);
+      } else if (t) {
+        clearTimeout(t as ReturnType<typeof setTimeout>);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     let l: Lenis | null = null;
@@ -39,9 +56,9 @@ export default function SmoothScrollProvider({
     };
 
     if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-      timerId = (window as unknown as { requestIdleCallback: (cb: () => void, opt?: { timeout: number }) => number }).requestIdleCallback(initLenis, { timeout: 400 });
+      timerId = (window as unknown as { requestIdleCallback: (cb: () => void, opt?: { timeout: number }) => number }).requestIdleCallback(initLenis, { timeout: 1000 });
     } else {
-      timerId = setTimeout(initLenis, 150);
+      timerId = setTimeout(initLenis, 300);
     }
 
     return () => {
@@ -127,7 +144,7 @@ export default function SmoothScrollProvider({
       </main>
 
       {/* Floating Glassmorphic Social & Quick Connect Hub */}
-      <FloatingSocialWidget />
+      {showWidget && <FloatingSocialWidget />}
     </div>
   );
 }

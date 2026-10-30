@@ -146,200 +146,211 @@ export default function LiquidBackground({ preset }: { preset: number }) {
   targetRef.current = preset;
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const gl = canvas?.getContext('webgl', { alpha: false, antialias: false, powerPreference: 'high-performance' });
-    if (!canvas || !gl) return;
+    let canceled = false;
+    let cleanupFn: (() => void) | null = null;
 
-    const compile = (type: number, source: string) => {
-      const shader = gl.createShader(type);
-      if (!shader) return null;
-      gl.shaderSource(shader, source);
-      gl.compileShader(shader);
-      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        console.warn('Liquid background shader unavailable:', gl.getShaderInfoLog(shader));
-        gl.deleteShader(shader);
-        return null;
-      }
-      return shader;
-    };
-    const vertex = compile(gl.VERTEX_SHADER, VERTEX);
-    const fragment = compile(gl.FRAGMENT_SHADER, FRAGMENT);
-    if (!vertex || !fragment) {
-      if (vertex) gl.deleteShader(vertex);
-      if (fragment) gl.deleteShader(fragment);
-      return;
-    }
-    const program = gl.createProgram();
-    if (!program) return;
-    gl.attachShader(program, vertex);
-    gl.attachShader(program, fragment);
-    gl.linkProgram(program);
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-      console.warn('Liquid background program unavailable:', gl.getProgramInfoLog(program));
-      gl.deleteProgram(program);
-      gl.deleteShader(vertex);
-      gl.deleteShader(fragment);
-      return;
-    }
-    gl.useProgram(program);
+    const setupWebGL = () => {
+      if (canceled) return;
+      const canvas = canvasRef.current;
+      const gl = canvas?.getContext('webgl', { alpha: false, antialias: false, powerPreference: 'high-performance' });
+      if (!canvas || !gl) return;
 
-    const buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-    const position = gl.getAttribLocation(program, 'position');
-    gl.enableVertexAttribArray(position);
-    gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
-
-    const locations = new Map<string, WebGLUniformLocation | null>();
-    const uniform = (name: string) => {
-      if (!locations.has(name)) locations.set(name, gl.getUniformLocation(program, name));
-      return locations.get(name)!;
-    };
-    const one = (name: string, n: number) => gl.uniform1f(uniform(name), n);
-
-    const current: Preset = {
-      ...PRESETS[0],
-      colors: PRESETS[0].colors.map(c => [...c]) as Preset['colors'],
-      zoom: 80,
-    };
-    const pointer = { x: 0, y: 0, targetX: 0, targetY: 0 };
-    const move = (event: PointerEvent) => {
-      pointer.targetX = (event.clientX / window.innerWidth - .5) * .04;
-      pointer.targetY = -(event.clientY / window.innerHeight - .5) * .04;
-    };
-    const leave = () => { pointer.targetX = 0; pointer.targetY = 0; };
-    window.addEventListener('pointermove', move, { passive: true });
-    window.addEventListener('pointerleave', leave);
-
-    const resize = () => {
-      const dpr = window.innerWidth < 768 ? 0.45 : 0.55;
-      const w = Math.round(canvas.clientWidth * dpr);
-      const h = Math.round(canvas.clientHeight * dpr);
-      if (w > 0 && h > 0 && (canvas.width !== w || canvas.height !== h)) {
-        canvas.width = w;
-        canvas.height = h;
-        gl.viewport(0, 0, w, h);
-      }
-    };
-    resize();
-    window.addEventListener('resize', resize, { passive: true });
-    const resizeObserver = typeof ResizeObserver !== 'undefined'
-      ? new ResizeObserver(resize)
-      : null;
-    if (canvas.parentElement) resizeObserver?.observe(canvas.parentElement);
-
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let frame = 0;
-    let last = 0;
-    let elapsed = 0;
-    let initial = true;
-    let isVisible = false;
-    const render = (now: number) => {
-      frame = 0;
-      if (!isVisible || document.hidden) return;
-      const dt = Math.min((now - (last || now)) / 1000, .05);
-      last = now;
-      if (!reduced) elapsed += dt;
-      const next = PRESETS[Math.max(0, Math.min(PRESETS.length - 1, targetRef.current))];
-      const n = reduced ? .14 : .055;
-      current.spin = mix(current.spin, next.spin, n);
-      current.speed = mix(current.speed, next.speed, n);
-      current.contrast = mix(current.contrast, next.contrast, n);
-      current.lighting = mix(current.lighting, next.lighting, n);
-      current.amount = mix(current.amount, next.amount, n);
-      current.zoom = mix(current.zoom, next.zoom, initial ? .025 : .045);
-      if (Math.abs(current.zoom - next.zoom) < .05) initial = false;
-      for (let j = 0; j < 3; j++) {
-        for (let k = 0; k < 3; k++) current.colors[j][k] = mix(current.colors[j][k], next.colors[j][k], n);
-      }
-      pointer.x = mix(pointer.x, pointer.targetX, .04);
-      pointer.y = mix(pointer.y, pointer.targetY, .04);
-
-      one('uTime', elapsed);
-      gl.uniform2f(uniform('uResolution'), canvas.width, canvas.height);
-      gl.uniform2f(uniform('uPointer'), pointer.x, pointer.y);
-      one('uZoom', current.zoom);
-      one('uContrast', current.contrast);
-      one('uLighting', current.lighting);
-      one('uSpin', current.spin);
-      one('uSpeed', current.speed);
-      one('uAmount', current.amount);
-      const isMobile = window.innerWidth < 768;
-      const depthOverride = isMobile ? 2 : Math.min(next.depth, 3);
-      gl.uniform1i(uniform('uDepth'), depthOverride);
-      for (let j = 0; j < 3; j++) gl.uniform3f(uniform(`uColor${j + 1}`), ...current.colors[j]);
-      gl.drawArrays(gl.TRIANGLES, 0, 3);
-      frame = requestAnimationFrame(render);
-    };
-
-    let readyToRender = false;
-    const start = () => {
-      if (!readyToRender || frame || !isVisible || document.hidden) return;
-      last = 0;
-      frame = requestAnimationFrame(render);
-    };
-    const stop = () => {
-      if (frame) cancelAnimationFrame(frame);
-      frame = 0;
-      last = 0;
-    };
-
-    const handleScroll = () => {
-      const scrolledPast = window.scrollY > window.innerHeight * 0.75;
-      if (scrolledPast && isVisible) {
-        isVisible = false;
-        stop();
-      } else if (!scrolledPast && !isVisible) {
-        const rect = canvas.getBoundingClientRect();
-        if (rect.bottom > 50 && rect.top < window.innerHeight) {
-          isVisible = true;
-          start();
+      const compile = (type: number, source: string) => {
+        const shader = gl.createShader(type);
+        if (!shader) return null;
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+          console.warn('Liquid background shader unavailable:', gl.getShaderInfoLog(shader));
+          gl.deleteShader(shader);
+          return null;
         }
+        return shader;
+      };
+      const vertex = compile(gl.VERTEX_SHADER, VERTEX);
+      const fragment = compile(gl.FRAGMENT_SHADER, FRAGMENT);
+      if (!vertex || !fragment) {
+        if (vertex) gl.deleteShader(vertex);
+        if (fragment) gl.deleteShader(fragment);
+        return;
       }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
+      const program = gl.createProgram();
+      if (!program) return;
+      gl.attachShader(program, vertex);
+      gl.attachShader(program, fragment);
+      gl.linkProgram(program);
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        console.warn('Liquid background program unavailable:', gl.getProgramInfoLog(program));
+        gl.deleteProgram(program);
+        gl.deleteShader(vertex);
+        gl.deleteShader(fragment);
+        return;
+      }
+      gl.useProgram(program);
 
-    const observer = new IntersectionObserver(entries => {
-      const entry = entries[0];
-      const inHeroZone = window.scrollY <= window.innerHeight * 0.75;
-      isVisible = entry ? (entry.isIntersecting && inHeroZone) : false;
-      if (isVisible) start();
-      else stop();
-    }, { threshold: [0, 0.25] });
-    observer.observe(canvas);
-    const onVisibilityChange = () => document.hidden ? stop() : start();
-    document.addEventListener('visibilitychange', onVisibilityChange);
+      const buffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      const position = gl.getAttribLocation(program, 'position');
+      gl.enableVertexAttribArray(position);
+      gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+
+      const locations = new Map<string, WebGLUniformLocation | null>();
+      const uniform = (name: string) => {
+        if (!locations.has(name)) locations.set(name, gl.getUniformLocation(program, name));
+        return locations.get(name)!;
+      };
+      const one = (name: string, n: number) => gl.uniform1f(uniform(name), n);
+
+      const current: Preset = {
+        ...PRESETS[0],
+        colors: PRESETS[0].colors.map(c => [...c]) as Preset['colors'],
+        zoom: 80,
+      };
+      const pointer = { x: 0, y: 0, targetX: 0, targetY: 0 };
+      const move = (event: PointerEvent) => {
+        pointer.targetX = (event.clientX / window.innerWidth - .5) * .04;
+        pointer.targetY = -(event.clientY / window.innerHeight - .5) * .04;
+      };
+      const leave = () => { pointer.targetX = 0; pointer.targetY = 0; };
+      window.addEventListener('pointermove', move, { passive: true });
+      window.addEventListener('pointerleave', leave);
+
+      const resize = () => {
+        const dpr = window.innerWidth < 768 ? 0.45 : 0.55;
+        const w = Math.round(canvas.clientWidth * dpr);
+        const h = Math.round(canvas.clientHeight * dpr);
+        if (w > 0 && h > 0 && (canvas.width !== w || canvas.height !== h)) {
+          canvas.width = w;
+          canvas.height = h;
+          gl.viewport(0, 0, w, h);
+        }
+      };
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+      const resizeObserver = typeof ResizeObserver !== 'undefined'
+        ? new ResizeObserver(resize)
+        : null;
+      if (canvas.parentElement) resizeObserver?.observe(canvas.parentElement);
+
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let frame = 0;
+      let last = 0;
+      let elapsed = 0;
+      let initial = true;
+      let isVisible = false;
+      const render = (now: number) => {
+        frame = 0;
+        if (!isVisible || document.hidden) return;
+        const dt = Math.min((now - (last || now)) / 1000, .05);
+        last = now;
+        if (!reduced) elapsed += dt;
+        const next = PRESETS[Math.max(0, Math.min(PRESETS.length - 1, targetRef.current))];
+        const n = reduced ? .14 : .055;
+        current.spin = mix(current.spin, next.spin, n);
+        current.speed = mix(current.speed, next.speed, n);
+        current.contrast = mix(current.contrast, next.contrast, n);
+        current.lighting = mix(current.lighting, next.lighting, n);
+        current.amount = mix(current.amount, next.amount, n);
+        current.zoom = mix(current.zoom, next.zoom, initial ? .025 : .045);
+        if (Math.abs(current.zoom - next.zoom) < .05) initial = false;
+        for (let j = 0; j < 3; j++) {
+          for (let k = 0; k < 3; k++) current.colors[j][k] = mix(current.colors[j][k], next.colors[j][k], n);
+        }
+        pointer.x = mix(pointer.x, pointer.targetX, .04);
+        pointer.y = mix(pointer.y, pointer.targetY, .04);
+
+        one('uTime', elapsed);
+        gl.uniform2f(uniform('uResolution'), canvas.width, canvas.height);
+        gl.uniform2f(uniform('uPointer'), pointer.x, pointer.y);
+        one('uZoom', current.zoom);
+        one('uContrast', current.contrast);
+        one('uLighting', current.lighting);
+        one('uSpin', current.spin);
+        one('uSpeed', current.speed);
+        one('uAmount', current.amount);
+        const isMobile = window.innerWidth < 768;
+        const depthOverride = isMobile ? 2 : Math.min(next.depth, 3);
+        gl.uniform1i(uniform('uDepth'), depthOverride);
+        for (let j = 0; j < 3; j++) gl.uniform3f(uniform(`uColor${j + 1}`), ...current.colors[j]);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        frame = requestAnimationFrame(render);
+      };
+
+      const start = () => {
+        if (frame || !isVisible || document.hidden) return;
+        last = 0;
+        frame = requestAnimationFrame(render);
+      };
+      const stop = () => {
+        if (frame) cancelAnimationFrame(frame);
+        frame = 0;
+        last = 0;
+      };
+
+      const handleScroll = () => {
+        const scrolledPast = window.scrollY > window.innerHeight * 0.75;
+        if (scrolledPast && isVisible) {
+          isVisible = false;
+          stop();
+        } else if (!scrolledPast && !isVisible) {
+          const rect = canvas.getBoundingClientRect();
+          if (rect.bottom > 50 && rect.top < window.innerHeight) {
+            isVisible = true;
+            start();
+          }
+        }
+      };
+      window.addEventListener('scroll', handleScroll, { passive: true });
+
+      const observer = new IntersectionObserver(entries => {
+        const entry = entries[0];
+        const inHeroZone = window.scrollY <= window.innerHeight * 0.75;
+        isVisible = entry ? (entry.isIntersecting && inHeroZone) : false;
+        if (isVisible) start();
+        else stop();
+      }, { threshold: [0, 0.25] });
+      observer.observe(canvas);
+      const onVisibilityChange = () => document.hidden ? stop() : start();
+      document.addEventListener('visibilitychange', onVisibilityChange);
+
+      // Start rendering if in hero zone
+      if (window.scrollY <= window.innerHeight * 0.75) {
+        isVisible = true;
+        start();
+      }
+
+      cleanupFn = () => {
+        stop();
+        observer.disconnect();
+        resizeObserver?.disconnect();
+        document.removeEventListener('visibilitychange', onVisibilityChange);
+        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('pointermove', move);
+        window.removeEventListener('pointerleave', leave);
+        window.removeEventListener('resize', resize);
+        gl.deleteBuffer(buffer);
+        gl.deleteProgram(program);
+        gl.deleteShader(vertex);
+        gl.deleteShader(fragment);
+      };
+    };
 
     let deferTimer: number | ReturnType<typeof setTimeout> | null = null;
-    const enableRender = () => {
-      readyToRender = true;
-      if (isVisible) start();
-    };
-
     if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-      deferTimer = (window as unknown as { requestIdleCallback: (cb: () => void, opt?: { timeout: number }) => number }).requestIdleCallback(enableRender, { timeout: 350 });
+      deferTimer = (window as unknown as { requestIdleCallback: (cb: () => void, opt?: { timeout: number }) => number }).requestIdleCallback(setupWebGL, { timeout: 200 });
     } else {
-      deferTimer = setTimeout(enableRender, 150);
+      deferTimer = setTimeout(setupWebGL, 80);
     }
 
     return () => {
+      canceled = true;
       if (typeof window !== 'undefined' && 'cancelIdleCallback' in window && typeof deferTimer === 'number') {
         (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(deferTimer);
       } else if (deferTimer) {
         clearTimeout(deferTimer as ReturnType<typeof setTimeout>);
       }
-      stop();
-      observer.disconnect();
-      resizeObserver?.disconnect();
-      document.removeEventListener('visibilitychange', onVisibilityChange);
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('pointermove', move);
-      window.removeEventListener('pointerleave', leave);
-      window.removeEventListener('resize', resize);
-      gl.deleteBuffer(buffer);
-      gl.deleteProgram(program);
-      gl.deleteShader(vertex);
-      gl.deleteShader(fragment);
+      if (cleanupFn) cleanupFn();
     };
   }, []);
 

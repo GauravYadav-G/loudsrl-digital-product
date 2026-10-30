@@ -116,7 +116,7 @@ export default function PortfoliteServices() {
             <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-black/12 bg-zinc-100 aspect-[4/3.4] min-h-[380px] sm:min-h-[440px] shadow-xl group">
               <img
                 src="/portfolite/proj-5.png"
-                alt="ARKA Technovation Engineering Services"
+                alt="ARKA Technovation Private Limited Engineering Services"
                 className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-70" />
