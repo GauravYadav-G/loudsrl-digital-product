@@ -217,7 +217,7 @@ export default function LiquidBackground({ preset }: { preset: number }) {
       window.addEventListener('pointerleave', leave);
 
       const resize = () => {
-        const dpr = window.innerWidth < 768 ? 0.45 : 0.55;
+        const dpr = window.innerWidth < 768 ? 1.0 : 0.55;
         const w = Math.round(canvas.clientWidth * dpr);
         const h = Math.round(canvas.clientHeight * dpr);
         if (w > 0 && h > 0 && (canvas.width !== w || canvas.height !== h)) {
