@@ -106,6 +106,7 @@ const NEWS_ARTICLES: NewsArticle[] = [
 ];
 
 export default function LatestNewsSection() {
+  const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLUListElement>(null);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(true);
@@ -119,13 +120,44 @@ export default function LatestNewsSection() {
 
   useEffect(() => {
     const el = trackRef.current;
-    if (!el) return;
-    checkScroll();
-    el.addEventListener('scroll', checkScroll, { passive: true });
-    window.addEventListener('resize', checkScroll);
+    if (el) {
+      checkScroll();
+      el.addEventListener('scroll', checkScroll, { passive: true });
+      window.addEventListener('resize', checkScroll);
+    }
+
+    const reveals = sectionRef.current?.querySelectorAll('[data-reveal]');
+    if (reveals && reveals.length > 0) {
+      if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add('is-in');
+                obs.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -5% 0px' }
+        );
+        reveals.forEach((r) => obs.observe(r));
+        return () => {
+          obs.disconnect();
+          if (el) {
+            el.removeEventListener('scroll', checkScroll);
+            window.removeEventListener('resize', checkScroll);
+          }
+        };
+      } else {
+        reveals.forEach((r) => r.classList.add('is-in'));
+      }
+    }
+
     return () => {
-      el.removeEventListener('scroll', checkScroll);
-      window.removeEventListener('resize', checkScroll);
+      if (el) {
+        el.removeEventListener('scroll', checkScroll);
+        window.removeEventListener('resize', checkScroll);
+      }
     };
   }, []);
 
@@ -138,7 +170,7 @@ export default function LatestNewsSection() {
   };
 
   return (
-    <section className="hn hn--survol" data-hn style={{ background: '#fbfbfb', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
+    <section ref={sectionRef} className="hn hn--survol" data-hn style={{ background: '#fbfbfb', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
       <div className="container hn__head">
         <div className="hn__headtxt">
           <p className="eyebrow" data-reveal>Latest news</p>
