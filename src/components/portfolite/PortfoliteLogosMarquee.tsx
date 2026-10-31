@@ -48,11 +48,47 @@ const BRANDS: Brand[] = [
     heightClass: 'h-7 sm:h-8',
   },
   {
+    name: 'Purolite Industries',
+    url: 'https://bharatautoparts.com',
+    src: '/portfolite/brands/purolite.webp',
+    alt: 'Purolite Industries',
+    width: 120,
+    height: 64,
+    heightClass: 'h-7 sm:h-8',
+  },
+  {
+    name: 'Ingenious Solutions India',
+    url: 'https://ingenioussolutionsindia.com',
+    src: '/portfolite/brands/ingenious.webp',
+    alt: 'Ingenious Solutions India',
+    width: 184,
+    height: 64,
+    heightClass: 'h-7 sm:h-8',
+  },
+  {
+    name: 'SKN Industries',
+    url: 'https://www.sknindustries.com',
+    src: '/portfolite/brands/sknindustries.webp',
+    alt: 'SKN Industries',
+    width: 181,
+    height: 64,
+    heightClass: 'h-7 sm:h-8',
+  },
+  {
     name: 'Laxmi Electromech',
     url: 'https://laxmielectromech.com',
     src: '/portfolite/brands/laxmielectromech.webp',
     alt: 'Laxmi Electromech Pvt. Ltd.',
     width: 274,
+    height: 64,
+    heightClass: 'h-7 sm:h-8',
+  },
+  {
+    name: 'Adexcel',
+    url: 'https://adxelauto.com',
+    src: '/portfolite/brands/adexcel.webp',
+    alt: 'Adexcel Auto',
+    width: 90,
     height: 64,
     heightClass: 'h-7 sm:h-8',
   },
@@ -65,11 +101,56 @@ const BRANDS: Brand[] = [
     height: 64,
     heightClass: 'h-7 sm:h-8',
   },
+  {
+    name: 'Atlas Rolling Mill',
+    url: 'https://atlasrollingmillmfg.com',
+    src: '/portfolite/brands/atlasrollingmill.webp',
+    alt: 'Atlas Rolling Mill',
+    width: 117,
+    height: 64,
+    heightClass: 'h-7 sm:h-8',
+  },
+  {
+    name: 'Chic & Holand',
+    url: 'https://chicandholland.com',
+    src: '/portfolite/brands/chicandholland.webp',
+    alt: 'Chic & Holland',
+    width: 473,
+    height: 48,
+    heightClass: 'h-7 sm:h-8',
+  },
+  {
+    name: 'Refer Me Group',
+    url: 'http://refermegroup.com',
+    src: '/portfolite/brands/refermegroup.webp',
+    alt: 'Refer Me Group',
+    width: 184,
+    height: 64,
+    heightClass: 'h-7 sm:h-8',
+  },
+  {
+    name: 'Sunny Lights',
+    url: 'https://sunnylights.co.in',
+    src: '/portfolite/brands/sunnylights.webp',
+    alt: 'Sunny Lights',
+    width: 91,
+    height: 64,
+    heightClass: 'h-7 sm:h-8',
+  },
+  {
+    name: 'Gemak Engineering Solutions',
+    url: 'http://www.gemak.co.in',
+    src: '/portfolite/brands/gemak.webp',
+    alt: 'Gemak Engineering Solutions',
+    width: 266,
+    height: 64,
+    heightClass: 'h-7 sm:h-8',
+  },
 ];
 
 export default function PortfoliteLogosMarquee() {
-  // 4 sets total = 2 sets per half for seamless 50% loop
-  const displayBrands = [...BRANDS, ...BRANDS, ...BRANDS, ...BRANDS];
+  // 2 identical sets for seamless -50% marquee loop
+  const displayBrands = [...BRANDS, ...BRANDS];
 
   return (
     <section aria-label="Enterprise & Industrial Clients" className="py-7 sm:py-9 bg-white relative overflow-hidden font-framer select-none border-y border-black/[0.04]">
@@ -78,7 +159,10 @@ export default function PortfoliteLogosMarquee() {
       <div className="absolute right-0 inset-y-0 w-20 sm:w-40 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
 
       <div className="overflow-hidden flex py-1">
-        <div className="animate-marquee flex items-center gap-16 sm:gap-24 opacity-85 hover:opacity-100 transition-opacity will-change-transform">
+        <div
+          className="animate-marquee flex items-center gap-16 sm:gap-24 opacity-85 hover:opacity-100 transition-opacity will-change-transform"
+          style={{ animationDuration: '48s' }}
+        >
           {displayBrands.map((brand, idx) => (
             <a
               key={`${brand.name}-${idx}`}
